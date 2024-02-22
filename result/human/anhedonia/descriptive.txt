@@ -1,0 +1,19 @@
+# List of studies contributing to the meta-analysis:
+Bymaster (2011) - 90051758
+Hewett (2009) - 87997883
+Hewett (2010a) - 87997755
+Hewett (2010b) - 87997769
+Jefferson (2006) - 87998173
+Koshino (2013) - 87997374
+
+# List of treatments contributing to the meta-analysis:
+amitifadine
+bupropion
+placebo
+
+# Additional details:
+amitifadine (k = 1; n = 33; r = 0).
+bupropion (k = 5; n = 1110; r = 0).
+placebo (k = 6; n = 936; r = 0).
+
+File created on 2024-02-22 by user edoardoostinelli (script v2).

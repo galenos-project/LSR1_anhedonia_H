@@ -1,0 +1,37 @@
+Review:     vomiting
+
+Number of studies: k = 5
+Number of observations: o = 962 (o.e = 614, o.c = 348)
+Number of events: e = 115
+
+                         OR           95%-CI    t p-value
+Random effects model 1.8978 [0.9010; 3.9973] 2.39  0.0753
+Prediction interval         [0.8156; 4.4159]             
+
+Quantifying heterogeneity:
+ tau^2 < 0.0001 [0.0000; 6.1435]; tau = 0.0009 [0.0000; 2.4786]
+ I^2 = 2.2% [0.0%; 79.7%]; H = 1.01 [1.00; 2.22]
+
+Test of heterogeneity:
+    Q d.f. p-value
+ 4.09    4  0.3941
+
+Results for subgroups (random effects model):
+                  k     OR              95%-CI  tau^2    tau    Q   I^2
+group = Agonist   2 4.2065 [0.0077; 2297.1833]      0      0 0.53  0.0%
+group = MAOI      1 1.8345 [0.5259;    6.3989]     --     -- 0.00    --
+group = *DRI      2 1.4472 [0.0031;  672.3435] 0.2363 0.4861 1.93 48.1%
+
+Test for subgroup differences (random effects model):
+                  Q d.f. p-value
+Between groups 2.53    2  0.2829
+
+Details on meta-analytical method:
+- Inverse variance method
+- Restricted maximum-likelihood estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau
+- Hartung-Knapp adjustment for random effects model (df = 4)
+- Prediction interval based on t-distribution (df = 3)
+- Continuity correction of 0.5 in studies with zero cell frequencies
+
+File created on 2024-02-22 by user edoardoostinelli (script v2).

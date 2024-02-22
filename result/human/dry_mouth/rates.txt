@@ -1,0 +1,4 @@
+Control event rate (placebo): 0.09
+Experimental event rate (pro-dopaminergic interventions): 0.18
+
+File created on 2024-02-22 by user edoardoostinelli (script v2).

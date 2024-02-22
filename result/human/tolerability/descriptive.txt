@@ -1,0 +1,79 @@
+# List of studies contributing to the meta-analysis:
+A multicentre comparative... (1994) - 89915739
+Amsterdam (2003) - 87998463
+Bakish (1992) - 87999050
+Benes (2011) - 87997624
+Bodkin (2002) - 89915354
+Botte (1992) - 87999081
+Bymaster (2011) - 90051758
+Chouinard (1993) - 87999011
+Coleman (1999) - 87998674
+Corrigan (2000) - 90044744
+Croft (1999) - 87998692
+Davidson (1988) - 87999240
+DelBello (2014) - 87997132
+Feiger (2006) - 87998150
+Feighner (1984) - 87999367
+Georgotas (1986) - 87999298
+GlaxoSmithKline (1980) - 89913897
+GlaxoSmithKline (1985) - 89913880
+GlaxoSmithKline (1993) - 89913900
+GlaxoSmithKline (1994) - 89913899
+Han (2012) - 87997489
+Hewett (2009) - 87997883
+Hewett (2010a) - 87997755
+Hewett (2010b) - 87997769
+Iosifescu (2022) - 87996305
+Jarrett (1999) - 87998702
+Jefferson (2006) - 87998173
+Koshino (2013) - 87997374
+Larsen (1989) - 87999196
+Learned (2012a) - 90047003
+Learned (2012b) - 91551222
+Nair (1995) - 87998891
+Ose (1992) - 87999057
+Quitkin (1990) - 87999150
+Rampello (1991) - 90055414
+Reimherr (1998) - 87998734
+Riesenberg (2010) - 90051999
+ROBIN (1958) - 87999692
+Versiani (1990) - 87999137
+Zarate (2006) - 87998230
+
+# List of treatments contributing to the meta-analysis:
+amitifadine
+brofaromine
+bupropion
+dextromethorphan-bupropion
+gsk372475
+isocarboxazid
+memantine
+methylphenidate
+minaprine
+moclobemide
+phenelzine
+placebo
+pramipexole
+ropinirole
+rx-10100
+selegiline
+
+# Additional details:
+amitifadine (k = 1; n = 34; r = 3).
+brofaromine (k = 1; n = 111; r = 16).
+bupropion (k = 14; n = 2612; r = 191).
+dextromethorphan-bupropion (k = 1; n = 156; r = 10).
+gsk372475 (k = 2; n = 305; r = 44).
+isocarboxazid (k = 1; n = 68; r = 10).
+memantine (k = 1; n = 16; r = 1).
+methylphenidate (k = 1; n = 22; r = 2).
+minaprine (k = 1; n = 10; r = 0).
+moclobemide (k = 7; n = 255; r = 16).
+phenelzine (k = 3; n = 91; r = 8).
+placebo (k = 40; n = 3392; r = 164).
+pramipexole (k = 1; n = 104; r = 25).
+ropinirole (k = 1; n = 198; r = 35).
+rx-10100 (k = 1; n = 54; r = 2).
+selegiline (k = 4; n = 522; r = 33).
+
+File created on 2024-02-22 by user edoardoostinelli (script v2).

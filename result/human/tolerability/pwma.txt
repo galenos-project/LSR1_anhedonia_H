@@ -1,0 +1,39 @@
+Review:     tolerability
+
+Number of studies: k = 40
+Number of observations: o = 7950 (o.e = 4558, o.c = 3392)
+Number of events: e = 560
+
+                         OR           95%-CI    t p-value
+Random effects model 1.7365 [1.2553; 2.4022] 3.44  0.0014
+Prediction interval         [0.4679; 6.4447]             
+
+Quantifying heterogeneity:
+ tau^2 = 0.3948 [0.1030; 1.1964]; tau = 0.6283 [0.3210; 1.0938]
+ I^2 = 45.7% [21.1%; 62.6%]; H = 1.36 [1.13; 1.63]
+
+Test of heterogeneity:
+     Q d.f. p-value
+ 71.79   39  0.0011
+
+Results for subgroups (random effects model):
+                                        k     OR           95%-CI  tau^2    tau     Q   I^2
+group = RIMA                            9 1.0913 [0.4951; 2.4053] 0.3289 0.5735 10.05 20.4%
+group = MAOI                            8 1.3603 [0.5355; 3.4556] 0.6977 0.8353 16.60 57.8%
+group = Agonist                         3 2.1780 [1.1805; 4.0186]      0      0  0.33  0.0%
+group = *DRI                           19 2.3623 [1.4982; 3.7247] 0.4187 0.6470 36.98 51.3%
+group = Vesicle transport facilitator   1 0.2308 [0.0356; 1.4939]     --     --  0.00    --
+
+Test for subgroup differences (random effects model):
+                   Q d.f. p-value
+Between groups 10.11    4  0.0387
+
+Details on meta-analytical method:
+- Inverse variance method
+- Restricted maximum-likelihood estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau
+- Hartung-Knapp adjustment for random effects model (df = 39)
+- Prediction interval based on t-distribution (df = 38)
+- Continuity correction of 0.5 in studies with zero cell frequencies
+
+File created on 2024-02-22 by user edoardoostinelli (script v2).

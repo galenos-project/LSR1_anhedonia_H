@@ -1,0 +1,22 @@
+# List of studies contributing to the meta-analysis:
+Benes (2011) - 87997624
+Corrigan (2000) - 90044744
+DelBello (2014) - 87997132
+GlaxoSmithKline (1980) - 89913897
+GlaxoSmithKline (1985) - 89913880
+
+# List of treatments contributing to the meta-analysis:
+bupropion
+placebo
+pramipexole
+ropinirole
+selegiline
+
+# Additional details:
+bupropion (k = 2; n = 160; r = 49).
+placebo (k = 5; n = 348; r = 28).
+pramipexole (k = 1; n = 104; r = 17).
+ropinirole (k = 1; n = 198; r = 14).
+selegiline (k = 1; n = 152; r = 7).
+
+File created on 2024-02-22 by user edoardoostinelli (script v2).

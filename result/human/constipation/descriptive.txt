@@ -1,0 +1,46 @@
+# List of studies contributing to the meta-analysis:
+A multicentre comparative... (1994) - 89915739
+Chouinard (1993) - 87999011
+Croft (1999) - 87998692
+Georgotas (1986) - 87999298
+GlaxoSmithKline (1980) - 89913897
+GlaxoSmithKline (1985) - 89913880
+GlaxoSmithKline (1994) - 89913899
+Hewett (2009) - 87997883
+Hewett (2010a) - 87997755
+Hewett (2010b) - 87997769
+Iosifescu (2022) - 87996305
+Koshino (2013) - 87997374
+Learned (2012a) - 90047003
+Learned (2012b) - 91551222
+Mann (1989) - 87999225
+Reimherr (1998) - 87998734
+Riesenberg (2010) - 90051999
+Versiani (1997) - 87998762
+White (1984) - 87999366
+
+# List of treatments contributing to the meta-analysis:
+brofaromine
+bupropion
+dextromethorphan-bupropion
+gsk372475
+moclobemide
+phenelzine
+placebo
+rx-10100
+selegiline
+tranylcypromine
+
+# Additional details:
+brofaromine (k = 1; n = 111; r = 16).
+bupropion (k = 9; n = 1804; r = 160).
+dextromethorphan-bupropion (k = 1; n = 156; r = 3).
+gsk372475 (k = 2; n = 305; r = 30).
+moclobemide (k = 2; n = 164; r = 18).
+phenelzine (k = 1; n = 22; r = 6).
+placebo (k = 19; n = 2108; r = 123).
+rx-10100 (k = 1; n = 54; r = 3).
+selegiline (k = 1; n = 22; r = 4).
+tranylcypromine (k = 1; n = 63; r = 5).
+
+File created on 2024-02-22 by user edoardoostinelli (script v2).

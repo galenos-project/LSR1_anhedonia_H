@@ -1,0 +1,38 @@
+Review:     constipation
+
+Number of studies: k = 19
+Number of observations: o = 4809 (o.e = 2701, o.c = 2108)
+Number of events: e = 368
+
+                         OR           95%-CI    t p-value
+Random effects model 1.5517 [1.2492; 1.9276] 4.26  0.0005
+Prediction interval         [1.2009; 2.0051]             
+
+Quantifying heterogeneity:
+ tau^2 = 0 [0.0000; 0.1786]; tau = 0 [0.0000; 0.4226]
+ I^2 = 0.0% [0.0%; 48.9%]; H = 1.00 [1.00; 1.40]
+
+Test of heterogeneity:
+     Q d.f. p-value
+ 13.00   18  0.7915
+
+Results for subgroups (random effects model):
+                                        k     OR            95%-CI tau^2 tau    Q  I^2
+group = RIMA                            3 1.0014 [0.3757;  2.6688]     0   0 1.50 0.0%
+group = *DRI                           12 1.7208 [1.3305;  2.2257]     0   0 7.22 0.0%
+group = MAOI                            3 1.9393 [0.6736;  5.5831]     0   0 0.59 0.0%
+group = Vesicle transport facilitator   1 2.9223 [0.1447; 59.0273]    --  -- 0.00   --
+
+Test for subgroup differences (random effects model):
+                  Q d.f. p-value
+Between groups 5.39    3  0.1457
+
+Details on meta-analytical method:
+- Inverse variance method
+- Restricted maximum-likelihood estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau
+- Hartung-Knapp adjustment for random effects model (df = 18)
+- Prediction interval based on t-distribution (df = 17)
+- Continuity correction of 0.5 in studies with zero cell frequencies
+
+File created on 2024-02-22 by user edoardoostinelli (script v2).

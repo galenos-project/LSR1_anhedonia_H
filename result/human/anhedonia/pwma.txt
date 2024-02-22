@@ -1,0 +1,26 @@
+Review:     Anhedonia
+
+Number of studies: k = 6
+Number of observations: o = 2079 (o.e = 1143, o.c = 936)
+
+                         SMD             95%-CI     t p-value
+Random effects model -0.2440 [-0.4562; -0.0318] -2.96  0.0317
+Prediction interval          [-0.7401;  0.2520]              
+
+Quantifying heterogeneity:
+ tau^2 = 0.0252 [0.0022; 0.2660]; tau = 0.1589 [0.0472; 0.5157]
+ I^2 = 67.8% [23.6%; 86.4%]; H = 1.76 [1.14; 2.71]
+
+Test of heterogeneity:
+     Q d.f. p-value
+ 15.51    5  0.0084
+
+Details on meta-analytical method:
+- Inverse variance method
+- Restricted maximum-likelihood estimator for tau^2
+- Q-Profile method for confidence interval of tau^2 and tau
+- Hartung-Knapp adjustment for random effects model (df = 5)
+- Prediction interval based on t-distribution (df = 4)
+- Hedges' g (bias corrected standardised mean difference; using exact formulae)
+
+File created on 2024-02-22 by user edoardoostinelli (script v2).

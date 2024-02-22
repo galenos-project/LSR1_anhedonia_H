@@ -1,0 +1,47 @@
+# List of studies contributing to the meta-analysis:
+Bodkin (2002) - 89915354
+Chouinard (1993) - 87999011
+Coleman (2001) - 87998563
+Corrigan (2000) - 90044744
+DelBello (2014) - 87997132
+Feiger (2006) - 87998150
+GlaxoSmithKline (1980) - 89913897
+GlaxoSmithKline (1985) - 89913880
+GlaxoSmithKline (1994) - 89913899
+Hewett (2009) - 87997883
+Hewett (2010a) - 87997755
+Hewett (2010b) - 87997769
+Iosifescu (2022) - 87996305
+Jefferson (2006) - 87998173
+Koshino (2013) - 87997374
+Learned (2012a) - 90047003
+Learned (2012b) - 91551222
+Mann (1989) - 87999225
+Ose (1992) - 87999057
+Reimherr (1998) - 87998734
+Versiani (1997) - 87998762
+White (1984) - 87999366
+
+# List of treatments contributing to the meta-analysis:
+brofaromine
+bupropion
+dextromethorphan-bupropion
+gsk372475
+moclobemide
+placebo
+pramipexole
+selegiline
+tranylcypromine
+
+# Additional details:
+brofaromine (k = 1; n = 111; r = 26).
+bupropion (k = 10; n = 1969; r = 214).
+dextromethorphan-bupropion (k = 1; n = 156; r = 6).
+gsk372475 (k = 2; n = 305; r = 33).
+moclobemide (k = 2; n = 143; r = 20).
+placebo (k = 22; n = 2620; r = 198).
+pramipexole (k = 1; n = 104; r = 14).
+selegiline (k = 4; n = 395; r = 58).
+tranylcypromine (k = 1; n = 63; r = 20).
+
+File created on 2024-02-22 by user edoardoostinelli (script v2).

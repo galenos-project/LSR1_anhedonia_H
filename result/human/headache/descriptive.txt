@@ -1,0 +1,57 @@
+# List of studies contributing to the meta-analysis:
+Amsterdam (2003) - 87998463
+Benes (2011) - 87997624
+Bodkin (2002) - 89915354
+Bymaster (2011) - 90051758
+Chouinard (1993) - 87999011
+Coleman (1999) - 87998674
+Coleman (2001) - 87998563
+Corrigan (2000) - 90044744
+Croft (1999) - 87998692
+DelBello (2014) - 87997132
+GlaxoSmithKline (1980) - 89913897
+GlaxoSmithKline (1985) - 89913880
+GlaxoSmithKline (1994) - 89913899
+Hewett (2009) - 87997883
+Hewett (2010a) - 87997755
+Hewett (2010b) - 87997769
+Iosifescu (2022) - 87996305
+Koshino (2013) - 87997374
+Learned (2012a) - 90047003
+Learned (2012b) - 91551222
+Mann (1989) - 87999225
+Ose (1992) - 87999057
+Reimherr (1998) - 87998734
+Riesenberg (2010) - 90051999
+Versiani (1997) - 87998762
+White (1984) - 87999366
+
+# List of treatments contributing to the meta-analysis:
+amitifadine
+brofaromine
+bupropion
+dextromethorphan-bupropion
+gsk372475
+moclobemide
+placebo
+pramipexole
+ropinirole
+rx-10100
+selegiline
+tranylcypromine
+
+# Additional details:
+amitifadine (k = 1; n = 34; r = 3).
+brofaromine (k = 1; n = 111; r = 53).
+bupropion (k = 11; n = 2076; r = 425).
+dextromethorphan-bupropion (k = 1; n = 156; r = 13).
+gsk372475 (k = 2; n = 305; r = 63).
+moclobemide (k = 2; n = 143; r = 22).
+placebo (k = 26; n = 2862; r = 516).
+pramipexole (k = 1; n = 104; r = 37).
+ropinirole (k = 1; n = 198; r = 39).
+rx-10100 (k = 1; n = 54; r = 7).
+selegiline (k = 4; n = 412; r = 70).
+tranylcypromine (k = 1; n = 63; r = 11).
+
+File created on 2024-02-22 by user edoardoostinelli (script v2).
