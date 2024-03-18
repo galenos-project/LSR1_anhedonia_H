@@ -1,0 +1,1244 @@
+---
+title: "A systematic review and meta-analysis of dopaminergic agonists for anhedonia - results from human studies"
+output: html_document
+date: "2024-03-11"
+author: "First draft by Jaycee Kennett, Claire Friedrich, Ava Homiar, Charlotte Austin <span style='font-size: 15px'></style>"
+mainfont: Arialh
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Description of the methodological approach
+
+For this review, The team searched for all controlled and uncontrolled studies that examined dopaminergic agonists. In the first iteration of the review consisted of analyzing any usable data from randomized controlled studies that compared any dopaminergic agonists to placebo in individuals with a diagnosis of depressive disorder or major depressive disorder. Specifically, the team aimed to assess the recorded measures of anhedonia that were measured using scales such as the MADRS Anhedonia Factor, MEI Total and IDS Pleasure scales. We examines efficacy outcomes, including symptoms of anhedonia and anxiety (primary outcomes) and symptom domains, dropouts due to any reason, and adverse events.
+
+## Description of included studies
+
+There were 61 eligible studies that were extracted and appraised. The study characteristics can be found in **Table 1**. Data from 6 studies were analyzed (total of #participants), which included adults that participates from multiple countries. All studies were sponsored by pharmaceutical companies that were manufacturing the dopaminergic agonists. The studies included 2 to 3 arms of administering the dopaminergic agonist (i.e. Amitifadine, Bupropion, or Bupropion XR) with a constant or increasing dose, which also included a comparison to placebo. These pharmacological interventions were delivered to individuals with depressive disorder or major depressive disorder and healthy volunteers. All studies consisted of a treatment duration lasting between 6 to 10 weeks, with placebo. One study administered the agonist for 6 weeks, 3 studies administered the agonist for 8 weeks, and 2 administered the agonist for 10 weeks. Of the 6 studies, 3 administered a fixed dosage, while the other 2 administered a flexible dosage. All studies had an oral intervention format, with a delivered dosage range of 25mg-50mg for Amitifadine, and 150mg-300mg for Bupropion and Bupropion XR. 
+
+## Risk of Bias assessment
+
+The risk of bias of the studies was examined using the ROB2 tool for all outcomes in the studies.
+
+```{r echo=FALSE, include=FALSE}
+#set working directory
+setwd("C:/Users/jkennett/Documents/GitHub/LSR1_anhedonia_H")
+
+#open rds data file
+df <- readRDS("~/GitHub/LSR1_anhedonia_H/rds/human/df.rds")
+
+#load packages
+library(meta)
+
+# functions ----
+## remove one-arm studies
+remove.onearm <- function(data, warn = T) {
+  # Remove 1-arm studies
+  sel <- as.logical(sapply(data[,'studlab'],
+                           function(study) {sum(data[,'studlab'] == study, na.rm = T) > 1
+                           }))
+  
+  if (warn && !all(sel)) {
+    warning(paste('Removed', sum(!sel), 'one-arm studies:',
+                  paste(data[!sel,'studlab'], collapse=', ')))
+  }
+  data[sel, , drop = F]
+}
+## collapse arms - binary
+collapse.arms.binary <- function(data) {
+  data3.2 = data[, c(which(colnames(data)=='studlab'), 
+                     which(colnames(data)=='treatment'),
+                     which(colnames(data)=='arm'))]
+  data3.31 = data[, c(which(colnames(data)=='n'),
+                      which(colnames(data)=='r'))]
+  data3.32 = data[, c(which(colnames(data)=='age_mean'),
+                      which(colnames(data)=='female_prop'),
+                      which(colnames(data)=='anhedonia_baseline_mean'), 
+                      which(colnames(data)=='anxiety_baseline_mean'), 
+                      which(colnames(data)=='reward_baseline_mean'), 
+                      which(colnames(data)=='tx_duration'))]
+  data3.41 = aggregate(x = data3.31, by = list(data3.2$studlab, data3.2$treatment, data3.2$arm), FUN = sum)
+  data3.42 = aggregate(x = data3.32, by = list(data3.2$studlab, data3.2$treatment), FUN = mean)
+  data3.4 = merge(x = data3.41, y = data3.42, by = c('Group.1', 'Group.2'))
+  colnames(data3.4) = c('studlab', 
+                        'treatment', 
+                        'arm', 
+                        'n', 
+                        'r', 
+                        'age_mean', 
+                        'female_prop', 
+                        'anhedonia_baseline_mean', 
+                        'anxiety_baseline_mean', 
+                        'reward_baseline_mean', 
+                        'tx_duration')
+  data3.4 <- data3.4[with(data3.4, order(studlab, arm)), ]
+  return(data3.4)
+  #return.list = list('data_collapsed' = data3.4)
+  #return(return.list)
+}
+
+## collapse arms - continuous
+collapse.arms.continuous <- function(data) {
+  data3.2 = data[, c(which(colnames(data)=='studlab'), 
+                     which(colnames(data)=='treatment'),
+                     which(colnames(data)=='arm'))]
+  data3.31 = data[, which(colnames(data)=='n')]
+  data3.32 = data[, c(which(colnames(data)=='mean'), 
+                      which(colnames(data)=='sd'), 
+                      which(colnames(data)=='age_mean'),
+                      which(colnames(data)=='female_prop'),
+                      which(colnames(data)=='anhedonia_baseline_mean'), 
+                      which(colnames(data)=='anxiety_baseline_mean'), 
+                      which(colnames(data)=='reward_baseline_mean'), 
+                      which(colnames(data)=='tx_duration'))]
+  data3.41 = aggregate(x = data3.31, by = list(data3.2$studlab, data3.2$treatment, data3.2$arm), FUN = sum)
+  data3.42 = aggregate(x = data3.32, by = list(data3.2$studlab, data3.2$treatment), FUN = mean)
+  data3.4 = merge(x = data3.41, y = data3.42, by = c('Group.1', 'Group.2'))
+  colnames(data3.4) = c('studlab', 
+                        'treatment', 
+                        'arm', 
+                        'n', 
+                        'mean', 
+                        'sd', 
+                        'age_mean', 
+                        'female_prop', 
+                        'anhedonia_baseline_mean', 
+                        'anxiety_baseline_mean', 
+                        'reward_baseline_mean', 
+                        'tx_duration')
+  data3.4 <- data3.4[with(data3.4, order(studlab, arm)), ]
+  return(data3.4)
+  #return.list = list('data_collapsed' = data3.4)
+  #return(return.list)
+}
+
+## collapse arms - continuous
+collapse.arms.continuous.short <- function(data) {
+  data3.2 = data[, c(which(colnames(data)=='studlab'), 
+                     which(colnames(data)=='treatment'),
+                     which(colnames(data)=='arm'))]
+  data3.31 = data[, which(colnames(data)=='n')]
+  data3.32 = data[, c(which(colnames(data)=='mean'), 
+                      which(colnames(data)=='sd'))]
+  data3.41 = aggregate(x = data3.31, by = list(data3.2$studlab, data3.2$treatment, data3.2$arm), FUN = sum)
+  data3.42 = aggregate(x = data3.32, by = list(data3.2$studlab, data3.2$treatment), FUN = mean)
+  data3.4 = merge(x = data3.41, y = data3.42, by = c('Group.1', 'Group.2'))
+  colnames(data3.4) = c('studlab', 
+                        'treatment',
+                        'arm', 
+                        'n', 
+                        'mean', 
+                        'sd')
+  data3.4 <- data3.4[with(data3.4, order(studlab, arm)), ]
+  return(data3.4)
+  #return.list = list('data_collapsed' = data3.4)
+  #return(return.list)
+}
+
+# drugs ----
+IMAO = c('isocarboxazid', 'phenelzine', 'tranylcypromine', 'selegiline')
+RIMA = c('brofaromine', 'minaprine', 'moclobemide')
+DRI = c('bupropion', 'dextromethorphan-bupropion', 'amitifadine', 'gsk372475', 'methylphenidate')
+agonist = c('memantine', 'ropinirole', 'pramipexole')
+vescicular = ('rx-10100')
+
+df <- readRDS('rds/human/df.rds')
+
+```
+
+### Primary outcome: reduction in anhedonia scores at 4-12 weeks
+
+```{r echo=FALSE, include=FALSE}
+
+#run anheo
+# anhedonia ----
+df.anhedonia <- df[!is.na(df$anhedonia_followup_mean), c('studlab', 
+                                                         'treatment', 
+                                                         'treatment_details', 
+                                                         'anhedonia_followup_n', 
+                                                         'anhedonia_followup_mean', 
+                                                         'anhedonia_followup_sd', 
+                                                         'anhedonia_followup_type', 
+                                                         'anhedonia_followup_scale', 
+                                                         'anhedonia_followup_direction', 
+                                                         'age_mean',
+                                                         'female_prop',
+                                                         'anhedonia_baseline_mean',
+                                                         'anxiety_baseline_mean',
+                                                         'reward_baseline_mean',
+                                                         'tx_duration',
+                                                         'arm')]
+df.anhedonia$anhedonia_followup_mean[df.anhedonia$anhedonia_followup_direction=='positive'] <- df.anhedonia$anhedonia_followup_mean[df.anhedonia$anhedonia_followup_direction=='positive']*-1
+colnames(df.anhedonia) <- c('studlab', 
+                            'treatment', 
+                            'treatment_details', 
+                            'n', 
+                            'mean', 
+                            'sd', 
+                            'anhedonia_followup_type', 
+                            'anhedonia_followup_scale', 
+                            'anhedonia_followup_direction', 
+                            'age_mean',
+                            'female_prop',
+                            'anhedonia_baseline_mean',
+                            'anxiety_baseline_mean',
+                            'reward_baseline_mean',
+                            'tx_duration',
+                            'arm')
+df.anhedonia <- remove.onearm(df.anhedonia)
+df.anhedonia.merged <- collapse.arms.continuous(df.anhedonia)
+df.pw.anhedonia <- netmeta::pairwise(studlab = studlab,
+                                     treat = treatment,
+                                     n = n,
+                                     mean = mean,
+                                     sd = sd,
+                                     data = df.anhedonia.merged,
+                                     sm = 'SMD')
+df.pw.anhedonia$age <- rowMeans(df.pw.anhedonia[, c('age_mean1', 'age_mean2')], na.rm = T)
+df.pw.anhedonia$female_prop <- rowMeans(df.pw.anhedonia[, c('female_prop1', 'female_prop2')], na.rm = T)
+df.pw.anhedonia$anhedonia_baseline <- rowMeans(df.pw.anhedonia[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
+df.pw.anhedonia$anxiety_baseline <- rowMeans(df.pw.anhedonia[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
+df.pw.anhedonia$reward_baseline <- rowMeans(df.pw.anhedonia[, c('reward_baseline_mean1', 'reward_baseline_mean2')], na.rm = T)
+df.pw.anhedonia$colour <- ifelse(df.pw.anhedonia$treat1 %in% IMAO, 
+                               'red', 
+                               ifelse(df.pw.anhedonia$treat1 %in% RIMA,
+                                      'orange',
+                                      ifelse(df.pw.anhedonia$treat1 %in% DRI,
+                                             'deepskyblue',
+                                             ifelse(df.pw.anhedonia$treat1 %in% agonist,
+                                                    'purple',
+                                                    ifelse(df.pw.anhedonia$treat1 %in% vescicular,
+                                                    'green4',
+                                                    'grey'
+                                      )))))
+#run anhedonia meta-analysis
+pwma.anhedonia <- metacont(n.e = n1, 
+                           mean.e = mean1, 
+                           sd.e = sd1, 
+                           n.c = n2, 
+                           mean.c = mean2, 
+                           sd.c = sd2, 
+                           studlab = studlab, 
+                           data = df.pw.anhedonia, 
+                           sm = 'SMD', 
+                           method.smd = 'Hedges', 
+                           comb.fixed = F, 
+                           comb.random = T, 
+                           title = 'Anhedonia',
+                           prediction = T, 
+                           hakn = T, 
+                           method.tau = 'REML')
+
+
+```
+
+```{r echo=FALSE, fig.width=12, fig.height=4}
+forest(pwma.anhedonia, 
+       sortvar = seTE, 
+       print.I2.ci = T, 
+       label.e = 'Intervention', 
+       label.c = 'Placebo', 
+       label.left = 'Favours intervention',
+       label.right = "Favours placebo",
+       smlab = 'Anhedonia symptoms severity',
+       col.square = pwma.anhedonia$data$colour
+       #lower.equi = -0.20, upper.equi = 0.20, 
+       #col.equi = '#F8F8F8', 
+       #fill.lower.equi = c("#E4EBF4", "#F8F8F8"),
+       #fill.upper.equi = c("#F8F8F8", "#EFE6ED")
+       )
+```
+
+**Figure X** Forest plot for symptoms of anhedonia (primary outcome) comparing dopaminergic agonists vs placebo for individuals with anhedonia at 4-12 weeks (primary timepoint). SMD: standardised mean difference, 95%CI: 95% confidence intervals, SD: standard deviation.
+
+### Secondary outcome: Reduction in mean anxiety score at 4-12 weeks
+
+```{r echo=FALSE, include=FALSE}
+# anxiety ----
+df.anxiety <- df[!is.na(df$anxiety_followup_mean), c('studlab', 
+                                                     'treatment', 
+                                                     'treatment_details', 
+                                                     'anxiety_followup_n', 
+                                                     'anxiety_followup_mean', 
+                                                     'anxiety_followup_sd', 
+                                                     'anxiety_followup_type', 
+                                                     'anxiety_followup_scale', 
+                                                     'anxiety_followup_direction', 
+                                                     'age_mean',
+                                                     'female_prop',
+                                                     'anhedonia_baseline_mean',
+                                                     'anxiety_baseline_mean',
+                                                     'reward_baseline_mean',
+                                                     'tx_duration',
+                                                     'arm')]
+df.anxiety$anxiety_followup_mean[df.anxiety$anxiety_followup_direction=='positive'] <- df.anxiety$anxiety_followup_mean[df.anxiety$anxiety_followup_direction=='positive']*-1
+colnames(df.anxiety) <- c('studlab', 
+                          'treatment', 
+                          'treatment_details', 
+                          'n', 
+                          'mean', 
+                          'sd', 
+                          'anxiety_followup_type', 
+                          'anxiety_followup_scale', 
+                          'anxiety_followup_direction',
+                          'age_mean',
+                          'female_prop',
+                          'anhedonia_baseline_mean',
+                          'anxiety_baseline_mean',
+                          'reward_baseline_mean',
+                          'tx_duration',
+                          'arm')
+df.anxiety <- remove.onearm(df.anxiety)
+df.anxiety.merged <- collapse.arms.continuous(df.anxiety)
+df.pw.anxiety <- netmeta::pairwise(studlab = studlab,
+                                   treat = treatment,
+                                   n = n,
+                                   mean = mean,
+                                   sd = sd,
+                                   data = df.anxiety.merged,
+                                   sm = 'SMD')
+df.pw.anxiety$age <- rowMeans(df.pw.anxiety[, c('age_mean1', 'age_mean2')], na.rm = T)
+df.pw.anxiety$female_prop <- rowMeans(df.pw.anxiety[, c('female_prop1', 'female_prop2')], na.rm = T)
+df.pw.anxiety$anhedonia_baseline <- rowMeans(df.pw.anxiety[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
+df.pw.anxiety$anxiety_baseline <- rowMeans(df.pw.anxiety[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
+df.pw.anxiety$reward_baseline <- rowMeans(df.pw.anxiety[, c('reward_baseline_mean1', 'reward_baseline_mean2')], na.rm = T)
+df.pw.anxiety$colour <- ifelse(df.pw.anxiety$treat1 %in% IMAO, 
+                               'red', 
+                               ifelse(df.pw.anxiety$treat1 %in% RIMA,
+                                      'orange',
+                                      ifelse(df.pw.anxiety$treat1 %in% DRI,
+                                             'deepskyblue',
+                                             ifelse(df.pw.anxiety$treat1 %in% agonist,
+                                                    'purple',
+                                                    ifelse(df.pw.anxiety$treat1 %in% vescicular,
+                                                    'green4',
+                                                    'grey'
+                                             )))))
+df.pw.anxiety$group <- ifelse(df.pw.anxiety$colour=='red',
+                          'MAOI',
+                          ifelse(df.pw.anxiety$colour=='orange',
+                                 'RIMA',
+                                 ifelse(df.pw.anxiety$colour=='deepskyblue',
+                                        '*DRI',
+                                        ifelse(df.pw.anxiety$colour=='purple',
+                                               'Agonist',
+                                               ifelse(df.pw.anxiety$colour=='green4',
+                                                      'Vesicle transport facilitator',
+                                                      'Other')))))
+#run anxiety meta-analysis
+pwma.anxiety <- metacont(n.e = n1, 
+                         mean.e = mean1, 
+                         sd.e = sd1, 
+                         n.c = n2, 
+                         mean.c = mean2, 
+                         sd.c = sd2, 
+                         studlab = studlab, 
+                         data = df.pw.anxiety, 
+                         sm = 'SMD', 
+                         method.smd = 'Hedges', 
+                         comb.fixed = F, 
+                         comb.random = T, 
+                         title = 'Anxiety',
+                         prediction = T, 
+                         hakn = T, 
+                         method.tau = 'REML',
+                         subgroup = group)
+```
+```{r echo=FALSE, fig.width=12, fig.height=8}
+forest(pwma.anxiety, 
+       sortvar = seTE, 
+       print.I2.ci = T, 
+       label.e = 'Intervention', 
+       label.c = 'Placebo', 
+       label.left = 'Favours intervention',
+       label.right = "Favours placebo",
+       smlab = 'Anxiety symptoms severity',
+       col.square = pwma.anxiety$data$colour
+       #lower.equi = -0.20, upper.equi = 0.20, 
+       #col.equi = '#F8F8F8', 
+       #fill.lower.equi = c("#E4EBF4", "#F8F8F8"),
+       #fill.upper.equi = c("#F8F8F8", "#EFE6ED")
+)
+```
+
+**Figure X** Forest plot for symptoms of anxiety (secondary outcome) comparing dopaminergic agonists vs placebo for individuals with anxiety at 4-12 weeks (primary timepoint). SMD: standardised mean difference, 95%CI: 95% confidence intervals, SD: standard deviation.
+
+### Secondary outcome: Dropouts due to any reason
+
+```{r echo=FALSE, include=FALSE}
+# acceptability ----
+df.acc <- df[!is.na(df$r_acceptability), c('studlab', 
+                                           'treatment', 
+                                           'treatment_details', 
+                                           'n_randomised', 
+                                           'r_acceptability',
+                                           'age_mean',
+                                           'female_prop',
+                                           'anhedonia_baseline_mean',
+                                           'anxiety_baseline_mean',
+                                           'reward_baseline_mean',
+                                           'tx_duration',
+                                           'arm')]
+colnames(df.acc) <- c('studlab', 
+                      'treatment', 
+                      'treatment_details', 
+                      'n', 
+                      'r',
+                      'age_mean',
+                      'female_prop',
+                      'anhedonia_baseline_mean',
+                      'anxiety_baseline_mean',
+                      'reward_baseline_mean',
+                      'tx_duration',
+                      'arm')
+df.acc$treatment_details <- tolower(df.acc$treatment_details)
+df.acc$treatment_details <- ifelse(df.acc$treatment_details=='placebo', 'placebo', 'active')
+df.acc <- df.acc[-(is.na(df.acc$n)), ]
+df.acc <- remove.onearm(df.acc)
+df.acc.merged <- collapse.arms.binary(df.acc)
+df.pw.acc <- netmeta::pairwise(studlab = studlab,
+                               treat = treatment,
+                               n = n,
+                               event = r,
+                               data = df.acc.merged,
+                               sm = 'OR')
+df.pw.acc$age <- rowMeans(df.pw.acc[, c('age_mean1', 'age_mean2')], na.rm = T)
+df.pw.acc$female_prop <- rowMeans(df.pw.acc[, c('female_prop1', 'female_prop2')], na.rm = T)
+df.pw.acc$anhedonia_baseline <- rowMeans(df.pw.acc[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
+df.pw.acc$anxiety_baseline <- rowMeans(df.pw.acc[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
+df.pw.acc$reward_baseline <- rowMeans(df.pw.acc[, c('reward_baseline_mean1', 'reward_baseline_mean2')], na.rm = T)
+df.pw.acc$colour <- ifelse(df.pw.acc$treat1 %in% IMAO, 
+                           'red', 
+                           ifelse(df.pw.acc$treat1 %in% RIMA,
+                                  'orange',
+                                  ifelse(df.pw.acc$treat1 %in% DRI,
+                                         'deepskyblue',
+                                         ifelse(df.pw.acc$treat1 %in% agonist,
+                                                'purple',
+                                                ifelse(df.pw.acc$treat1 %in% vescicular,
+                                                'green4',
+                                                'grey'
+                                         )))))
+df.pw.acc$group <- ifelse(df.pw.acc$colour=='red',
+                          'MAOI',
+                          ifelse(df.pw.acc$colour=='orange',
+                                 'RIMA',
+                                 ifelse(df.pw.acc$colour=='deepskyblue',
+                                        '*DRI',
+                                        ifelse(df.pw.acc$colour=='purple',
+                                               'Agonist',
+                                               ifelse(df.pw.acc$colour=='green4',
+                                                      'Vesicle transport facilitator',
+                                                      'Other')))))
+#run acceptability meta-analysis
+pwma.acc <- metabin(n.e = n1, 
+                    event.e = event1, 
+                    n.c = n2, 
+                    event.c = event2, 
+                    studlab = studlab, 
+                    data = df.pw.acc, 
+                    sm = 'OR', 
+                    comb.fixed = F, 
+                    comb.random = T, 
+                    title = 'Acceptability',
+                    prediction = T, 
+                    hakn = T, 
+                    method.tau = 'REML',
+                    subgroup = group)
+```
+
+
+```{r echo=FALSE, fig.width=12, fig.height=14}
+forest(pwma.acc, 
+       sortvar = seTE, 
+       print.I2.ci = T, 
+       label.e = 'Intervention', 
+       label.c = 'Placebo', 
+       label.left = 'Favours intervention',
+       label.right = "Favours placebo",
+       smlab = 'Dropout due to any reasons',
+       col.square = pwma.acc$data$colour
+)
+```
+
+**Figure X** Forest plot for dropouts due to any reason for the comparison of dopaminergic agonists vs placebo at 4-12 weeks. OR: odds ratio, 95%CI: 95% confidence intervals.
+
+### Secondary outcome: dropouts due to side effects
+
+```{r echo=FALSE, include=FALSE}
+# tolerability ----
+df.tol <- df[!is.na(df$r_tolerability), c('studlab', 
+                                          'treatment', 
+                                          'treatment_details', 
+                                          'n_randomised', 
+                                          'r_tolerability',
+                                          'age_mean',
+                                          'female_prop',
+                                          'anhedonia_baseline_mean',
+                                          'anxiety_baseline_mean',
+                                          'reward_baseline_mean',
+                                          'tx_duration',
+                                          'arm')]
+colnames(df.tol) <- c('studlab', 
+                      'treatment', 
+                      'treatment_details', 
+                      'n', 
+                      'r',
+                      'age_mean',
+                      'female_prop',
+                      'anhedonia_baseline_mean',
+                      'anxiety_baseline_mean',
+                      'reward_baseline_mean',
+                      'tx_duration',
+                      'arm')
+df.tol$treatment_details <- tolower(df.tol$treatment_details)
+df.tol$treatment_details <- ifelse(df.tol$treatment_details=='placebo', 'placebo', 'active')
+df.tol <- remove.onearm(df.tol)
+df.tol.merged <- collapse.arms.binary(df.tol)
+df.pw.tol <- netmeta::pairwise(studlab = studlab,
+                               treat = treatment,
+                               n = n,
+                               event = r,
+                               data = df.tol.merged,
+                               sm = 'OR')
+df.pw.tol$age <- rowMeans(df.pw.tol[, c('age_mean1', 'age_mean2')], na.rm = T)
+df.pw.tol$female_prop <- rowMeans(df.pw.tol[, c('female_prop1', 'female_prop2')], na.rm = T)
+df.pw.tol$anhedonia_baseline <- rowMeans(df.pw.tol[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
+df.pw.tol$anxiety_baseline <- rowMeans(df.pw.tol[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
+df.pw.tol$reward_baseline <- rowMeans(df.pw.tol[, c('reward_baseline_mean1', 'reward_baseline_mean2')], na.rm = T)
+df.pw.tol$colour <- ifelse(df.pw.tol$treat1 %in% IMAO, 
+                           'red', 
+                           ifelse(df.pw.tol$treat1 %in% RIMA,
+                                  'orange',
+                                  ifelse(df.pw.tol$treat1 %in% DRI,
+                                         'deepskyblue',
+                                         ifelse(df.pw.tol$treat1 %in% agonist,
+                                                'purple',
+                                                ifelse(df.pw.tol$treat1 %in% vescicular,
+                                                'green4',
+                                                'grey'
+                                         )))))
+df.pw.tol$group <- ifelse(df.pw.tol$colour=='red',
+                          'MAOI',
+                          ifelse(df.pw.tol$colour=='orange',
+                                 'RIMA',
+                                 ifelse(df.pw.tol$colour=='deepskyblue',
+                                        '*DRI',
+                                        ifelse(df.pw.tol$colour=='purple',
+                                               'Agonist',
+                                               ifelse(df.pw.tol$colour=='green4',
+                                                      'Vesicle transport facilitator',
+                                                      'Other')))))
+#run tolerability meta-analysis
+pwma.tol <- metabin(n.e = n1, 
+                    event.e = event1, 
+                    n.c = n2, 
+                    event.c = event2, 
+                    studlab = studlab, 
+                    data = df.pw.tol, 
+                    sm = 'OR', 
+                    comb.fixed = F, 
+                    comb.random = T, 
+                    title = 'tolerability',
+                    prediction = T, 
+                    hakn = T, 
+                    method.tau = 'REML',
+                    subgroup = group)
+```
+
+```{r echo=FALSE, fig.width=12, fig.height=14}
+
+forest(pwma.tol, 
+       sortvar = seTE, 
+       print.I2.ci = T, 
+       label.e = 'Intervention', 
+       label.c = 'Placebo', 
+       label.left = 'Favours intervention',
+       label.right = "Favours placebo",
+       smlab = 'Dropout due to side effects',
+       col.square = pwma.tol$data$colour
+)
+```
+
+**Figure X** Forest plot for dropouts due to side effects for the comparison of dopaminergic agonists vs placebo at 4-12 weeks. OR: odds ratio, 95%CI: 95% confidence intervals.
+
+### Secondary outcome: nausea
+```{r echo=FALSE, include=FALSE}
+#nausea
+df.nausea <- df[!is.na(df$nausea), c('studlab', 
+                                     'treatment', 
+                                     'treatment_details', 
+                                     'n_randomised', 
+                                     'nausea',
+                                     'age_mean',
+                                     'female_prop',
+                                     'anhedonia_baseline_mean',
+                                     'anxiety_baseline_mean',
+                                     'reward_baseline_mean',
+                                     'tx_duration',
+                                     'arm')]
+colnames(df.nausea) <- c('studlab', 
+                      'treatment', 
+                      'treatment_details', 
+                      'n', 
+                      'r',
+                      'age_mean',
+                      'female_prop',
+                      'anhedonia_baseline_mean',
+                      'anxiety_baseline_mean',
+                      'reward_baseline_mean',
+                      'tx_duration',
+                      'arm')
+df.nausea$treatment_details <- tolower(df.nausea$treatment_details)
+df.nausea$treatment_details <- ifelse(df.nausea$treatment_details=='placebo', 'placebo', 'active')
+df.nausea <- remove.onearm(df.nausea)
+df.nausea.merged <- collapse.arms.binary(df.nausea)
+df.pw.nausea <- netmeta::pairwise(studlab = studlab,
+                                  treat = treatment,
+                                  n = n,
+                                  event = r,
+                                  data = df.nausea.merged,
+                                  sm = 'OR')
+df.pw.nausea$age <- rowMeans(df.pw.nausea[, c('age_mean1', 'age_mean2')], na.rm = T)
+df.pw.nausea$female_prop <- rowMeans(df.pw.nausea[, c('female_prop1', 'female_prop2')], na.rm = T)
+df.pw.nausea$anhedonia_baseline <- rowMeans(df.pw.nausea[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
+df.pw.nausea$anxiety_baseline <- rowMeans(df.pw.nausea[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
+df.pw.nausea$reward_baseline <- rowMeans(df.pw.nausea[, c('reward_baseline_mean1', 'reward_baseline_mean2')], na.rm = T)
+df.pw.nausea$colour <- ifelse(df.pw.nausea$treat1 %in% IMAO, 
+                           'red', 
+                           ifelse(df.pw.nausea$treat1 %in% RIMA,
+                                  'orange',
+                                  ifelse(df.pw.nausea$treat1 %in% DRI,
+                                         'deepskyblue',
+                                         ifelse(df.pw.nausea$treat1 %in% agonist,
+                                                'purple',
+                                                ifelse(df.pw.nausea$treat1 %in% vescicular,
+                                                       'green4',
+                                                       'grey'
+                                                )))))
+df.pw.nausea$group <- ifelse(df.pw.nausea$colour=='red',
+                          'MAOI',
+                          ifelse(df.pw.nausea$colour=='orange',
+                                 'RIMA',
+                                 ifelse(df.pw.nausea$colour=='deepskyblue',
+                                        '*DRI',
+                                        ifelse(df.pw.nausea$colour=='purple',
+                                               'Agonist',
+                                               ifelse(df.pw.nausea$colour=='green4',
+                                                      'Vesicle transport facilitator',
+                                                      'Other')))))
+#run nausea meta-analysis
+pwma.nausea <- metabin(n.e = n1, 
+                    event.e = event1, 
+                    n.c = n2, 
+                    event.c = event2, 
+                    studlab = studlab, 
+                    data = df.pw.nausea, 
+                    sm = 'OR', 
+                    comb.fixed = F, 
+                    comb.random = T, 
+                    title = 'Nausea',
+                    prediction = T, 
+                    hakn = T, 
+                    method.tau = 'REML',
+                    subgroup = group)
+
+```
+
+```{r echo=FALSE, fig.width=12, fig.height=10}
+forest(pwma.nausea, 
+       sortvar = seTE, 
+       print.I2.ci = T, 
+       label.e = 'Intervention', 
+       label.c = 'Placebo', 
+       label.left = 'Favours intervention',
+       label.right = "Favours placebo",
+       smlab = 'Nausea',
+       col.square = pwma.nausea$data$colour
+)
+```
+**Figure X** Forest plot for nausea for the comparison of dopaminergic agonists vs placebo at 4-12 weeks. OR: odds ratio, 95%CI: 95% confidence intervals.
+
+
+### Secondary outcome: headache
+```{r echo=FALSE, include=FALSE}
+df.headache <- df[!is.na(df$headache), c('studlab', 
+                                     'treatment', 
+                                     'treatment_details', 
+                                     'n_randomised', 
+                                     'headache',
+                                     'age_mean',
+                                     'female_prop',
+                                     'anhedonia_baseline_mean',
+                                     'anxiety_baseline_mean',
+                                     'reward_baseline_mean',
+                                     'tx_duration',
+                                     'arm')]
+colnames(df.headache) <- c('studlab', 
+                         'treatment', 
+                         'treatment_details', 
+                         'n', 
+                         'r',
+                         'age_mean',
+                         'female_prop',
+                         'anhedonia_baseline_mean',
+                         'anxiety_baseline_mean',
+                         'reward_baseline_mean',
+                         'tx_duration',
+                         'arm')
+df.headache$treatment_details <- tolower(df.headache$treatment_details)
+df.headache$treatment_details <- ifelse(df.headache$treatment_details=='placebo', 'placebo', 'active')
+df.headache <- remove.onearm(df.headache)
+df.headache.merged <- collapse.arms.binary(df.headache)
+df.pw.headache <- netmeta::pairwise(studlab = studlab,
+                                  treat = treatment,
+                                  n = n,
+                                  event = r,
+                                  data = df.headache.merged,
+                                  sm = 'OR')
+df.pw.headache$age <- rowMeans(df.pw.headache[, c('age_mean1', 'age_mean2')], na.rm = T)
+df.pw.headache$female_prop <- rowMeans(df.pw.headache[, c('female_prop1', 'female_prop2')], na.rm = T)
+df.pw.headache$anhedonia_baseline <- rowMeans(df.pw.headache[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
+df.pw.headache$anxiety_baseline <- rowMeans(df.pw.headache[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
+df.pw.headache$reward_baseline <- rowMeans(df.pw.headache[, c('reward_baseline_mean1', 'reward_baseline_mean2')], na.rm = T)
+df.pw.headache$colour <- ifelse(df.pw.headache$treat1 %in% IMAO, 
+                              'red', 
+                              ifelse(df.pw.headache$treat1 %in% RIMA,
+                                     'orange',
+                                     ifelse(df.pw.headache$treat1 %in% DRI,
+                                            'deepskyblue',
+                                            ifelse(df.pw.headache$treat1 %in% agonist,
+                                                   'purple',
+                                                   ifelse(df.pw.headache$treat1 %in% vescicular,
+                                                          'green4',
+                                                          'grey'
+                                                   )))))
+df.pw.headache$group <- ifelse(df.pw.headache$colour=='red',
+                             'MAOI',
+                             ifelse(df.pw.headache$colour=='orange',
+                                    'RIMA',
+                                    ifelse(df.pw.headache$colour=='deepskyblue',
+                                           '*DRI',
+                                           ifelse(df.pw.headache$colour=='purple',
+                                                  'Agonist',
+                                                  ifelse(df.pw.headache$colour=='green4',
+                                                         'Vesicle transport facilitator',
+                                                         'Other')))))
+#run headache meta-analysis
+pwma.headache <- metabin(n.e = n1, 
+                       event.e = event1, 
+                       n.c = n2, 
+                       event.c = event2, 
+                       studlab = studlab, 
+                       data = df.pw.headache, 
+                       sm = 'OR', 
+                       comb.fixed = F, 
+                       comb.random = T, 
+                       title = 'headache',
+                       prediction = T, 
+                       hakn = T, 
+                       method.tau = 'REML',
+                       subgroup = group)
+```
+
+```{r echo=FALSE, fig.width=12, fig.height=12}
+forest(pwma.headache, 
+       sortvar = seTE, 
+       print.I2.ci = T, 
+       label.e = 'Intervention', 
+       label.c = 'Placebo', 
+       label.left = 'Favours intervention',
+       label.right = "Favours placebo",
+       smlab = 'headache',
+       col.square = pwma.headache$data$colour
+)
+```
+**Figure X** Forest plot for headache for the comparison of dopaminergic agonists vs placebo at 4-12 weeks. OR: odds ratio, 95%CI: 95% confidence intervals.
+
+### Secondary outcome: insomnia
+```{r echo=FALSE, include=FALSE}
+# insomnia ----
+df.insomnia <- df[!is.na(df$insomnia), c('studlab', 
+                                     'treatment', 
+                                     'treatment_details', 
+                                     'n_randomised', 
+                                     'insomnia',
+                                     'age_mean',
+                                     'female_prop',
+                                     'anhedonia_baseline_mean',
+                                     'anxiety_baseline_mean',
+                                     'reward_baseline_mean',
+                                     'tx_duration',
+                                     'arm')]
+colnames(df.insomnia) <- c('studlab', 
+                         'treatment', 
+                         'treatment_details', 
+                         'n', 
+                         'r',
+                         'age_mean',
+                         'female_prop',
+                         'anhedonia_baseline_mean',
+                         'anxiety_baseline_mean',
+                         'reward_baseline_mean',
+                         'tx_duration',
+                         'arm')
+df.insomnia$treatment_details <- tolower(df.insomnia$treatment_details)
+df.insomnia$treatment_details <- ifelse(df.insomnia$treatment_details=='placebo', 'placebo', 'active')
+df.insomnia <- remove.onearm(df.insomnia)
+df.insomnia.merged <- collapse.arms.binary(df.insomnia)
+df.pw.insomnia <- netmeta::pairwise(studlab = studlab,
+                                  treat = treatment,
+                                  n = n,
+                                  event = r,
+                                  data = df.insomnia.merged,
+                                  sm = 'OR')
+df.pw.insomnia$age <- rowMeans(df.pw.insomnia[, c('age_mean1', 'age_mean2')], na.rm = T)
+df.pw.insomnia$female_prop <- rowMeans(df.pw.insomnia[, c('female_prop1', 'female_prop2')], na.rm = T)
+df.pw.insomnia$anhedonia_baseline <- rowMeans(df.pw.insomnia[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
+df.pw.insomnia$anxiety_baseline <- rowMeans(df.pw.insomnia[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
+df.pw.insomnia$reward_baseline <- rowMeans(df.pw.insomnia[, c('reward_baseline_mean1', 'reward_baseline_mean2')], na.rm = T)
+df.pw.insomnia$colour <- ifelse(df.pw.insomnia$treat1 %in% IMAO, 
+                              'red', 
+                              ifelse(df.pw.insomnia$treat1 %in% RIMA,
+                                     'orange',
+                                     ifelse(df.pw.insomnia$treat1 %in% DRI,
+                                            'deepskyblue',
+                                            ifelse(df.pw.insomnia$treat1 %in% agonist,
+                                                   'purple',
+                                                   ifelse(df.pw.insomnia$treat1 %in% vescicular,
+                                                          'green4',
+                                                          'grey'
+                                                   )))))
+df.pw.insomnia$group <- ifelse(df.pw.insomnia$colour=='red',
+                             'MAOI',
+                             ifelse(df.pw.insomnia$colour=='orange',
+                                    'RIMA',
+                                    ifelse(df.pw.insomnia$colour=='deepskyblue',
+                                           '*DRI',
+                                           ifelse(df.pw.insomnia$colour=='purple',
+                                                  'Agonist',
+                                                  ifelse(df.pw.insomnia$colour=='green4',
+                                                         'Vesicle transport facilitator',
+                                                         'Other')))))
+#run insomnia meta-analysis
+pwma.insomnia <- metabin(n.e = n1, 
+                       event.e = event1, 
+                       n.c = n2, 
+                       event.c = event2, 
+                       studlab = studlab, 
+                       data = df.pw.insomnia, 
+                       sm = 'OR', 
+                       comb.fixed = F, 
+                       comb.random = T, 
+                       title = 'insomnia',
+                       prediction = T, 
+                       hakn = T, 
+                       method.tau = 'REML',
+                       subgroup = group)
+```
+
+```{r echo=FALSE, fig.width=12, fig.height=10}
+forest(pwma.insomnia, 
+       sortvar = seTE, 
+       print.I2.ci = T, 
+       label.e = 'Intervention', 
+       label.c = 'Placebo', 
+       label.left = 'Favours intervention',
+       label.right = "Favours placebo",
+       smlab = 'insomnia',
+       col.square = pwma.insomnia$data$colour
+)
+```
+**Figure X** Forest plot for insomnia for the comparison of dopaminergic agonists vs placebo at 4-12 weeks. OR: odds ratio, 95%CI: 95% confidence intervals.
+
+### Secondary outcome:dry mouth
+```{r echo=FALSE, include=FALSE}
+# dry_mouth ----
+df.dry_mouth <- df[!is.na(df$dry_mouth), c('studlab', 
+                                     'treatment', 
+                                     'treatment_details', 
+                                     'n_randomised', 
+                                     'dry_mouth',
+                                     'age_mean',
+                                     'female_prop',
+                                     'anhedonia_baseline_mean',
+                                     'anxiety_baseline_mean',
+                                     'reward_baseline_mean',
+                                     'tx_duration',
+                                     'arm')]
+colnames(df.dry_mouth) <- c('studlab', 
+                         'treatment', 
+                         'treatment_details', 
+                         'n', 
+                         'r',
+                         'age_mean',
+                         'female_prop',
+                         'anhedonia_baseline_mean',
+                         'anxiety_baseline_mean',
+                         'reward_baseline_mean',
+                         'tx_duration',
+                         'arm')
+df.dry_mouth$treatment_details <- tolower(df.dry_mouth$treatment_details)
+df.dry_mouth$treatment_details <- ifelse(df.dry_mouth$treatment_details=='placebo', 'placebo', 'active')
+df.dry_mouth <- remove.onearm(df.dry_mouth)
+df.dry_mouth.merged <- collapse.arms.binary(df.dry_mouth)
+df.pw.dry_mouth <- netmeta::pairwise(studlab = studlab,
+                                  treat = treatment,
+                                  n = n,
+                                  event = r,
+                                  data = df.dry_mouth.merged,
+                                  sm = 'OR')
+df.pw.dry_mouth$age <- rowMeans(df.pw.dry_mouth[, c('age_mean1', 'age_mean2')], na.rm = T)
+df.pw.dry_mouth$female_prop <- rowMeans(df.pw.dry_mouth[, c('female_prop1', 'female_prop2')], na.rm = T)
+df.pw.dry_mouth$anhedonia_baseline <- rowMeans(df.pw.dry_mouth[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
+df.pw.dry_mouth$anxiety_baseline <- rowMeans(df.pw.dry_mouth[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
+df.pw.dry_mouth$reward_baseline <- rowMeans(df.pw.dry_mouth[, c('reward_baseline_mean1', 'reward_baseline_mean2')], na.rm = T)
+df.pw.dry_mouth$colour <- ifelse(df.pw.dry_mouth$treat1 %in% IMAO, 
+                              'red', 
+                              ifelse(df.pw.dry_mouth$treat1 %in% RIMA,
+                                     'orange',
+                                     ifelse(df.pw.dry_mouth$treat1 %in% DRI,
+                                            'deepskyblue',
+                                            ifelse(df.pw.dry_mouth$treat1 %in% agonist,
+                                                   'purple',
+                                                   ifelse(df.pw.dry_mouth$treat1 %in% vescicular,
+                                                          'green4',
+                                                          'grey'
+                                                   )))))
+df.pw.dry_mouth$group <- ifelse(df.pw.dry_mouth$colour=='red',
+                             'MAOI',
+                             ifelse(df.pw.dry_mouth$colour=='orange',
+                                    'RIMA',
+                                    ifelse(df.pw.dry_mouth$colour=='deepskyblue',
+                                           '*DRI',
+                                           ifelse(df.pw.dry_mouth$colour=='purple',
+                                                  'Agonist',
+                                                  ifelse(df.pw.dry_mouth$colour=='green4',
+                                                         'Vesicle transport facilitator',
+                                                         'Other')))))
+#run dry mouth meta-analysis
+pwma.dry_mouth <- metabin(n.e = n1, 
+                       event.e = event1, 
+                       n.c = n2, 
+                       event.c = event2, 
+                       studlab = studlab, 
+                       data = df.pw.dry_mouth, 
+                       sm = 'OR', 
+                       comb.fixed = F, 
+                       comb.random = T, 
+                       title = 'dry_mouth',
+                       prediction = T, 
+                       hakn = T, 
+                       method.tau = 'REML',
+                       subgroup = group)
+```
+```{r echo=FALSE, fig.width=12, fig.height=10}
+forest(pwma.dry_mouth, 
+       sortvar = seTE, 
+       print.I2.ci = T, 
+       label.e = 'Intervention', 
+       label.c = 'Placebo', 
+       label.left = 'Favours intervention',
+       label.right = "Favours placebo",
+       smlab = 'dry_mouth',
+       col.square = pwma.dry_mouth$data$colour
+)
+```
+**Figure X** Forest plot for dry mouth for the comparison of dopaminergic agonists vs placebo at 4-12 weeks. OR: odds ratio, 95%CI: 95% confidence intervals.
+
+### Secondary outcome:constipation
+```{r echo=FALSE, include=FALSE}
+# constipation ----
+df.constipation <- df[!is.na(df$constipation), c('studlab', 
+                                     'treatment', 
+                                     'treatment_details', 
+                                     'n_randomised', 
+                                     'constipation',
+                                     'age_mean',
+                                     'female_prop',
+                                     'anhedonia_baseline_mean',
+                                     'anxiety_baseline_mean',
+                                     'reward_baseline_mean',
+                                     'tx_duration',
+                                     'arm')]
+colnames(df.constipation) <- c('studlab', 
+                         'treatment', 
+                         'treatment_details', 
+                         'n', 
+                         'r',
+                         'age_mean',
+                         'female_prop',
+                         'anhedonia_baseline_mean',
+                         'anxiety_baseline_mean',
+                         'reward_baseline_mean',
+                         'tx_duration',
+                         'arm')
+df.constipation$treatment_details <- tolower(df.constipation$treatment_details)
+df.constipation$treatment_details <- ifelse(df.constipation$treatment_details=='placebo', 'placebo', 'active')
+df.constipation <- remove.onearm(df.constipation)
+df.constipation.merged <- collapse.arms.binary(df.constipation)
+df.pw.constipation <- netmeta::pairwise(studlab = studlab,
+                                  treat = treatment,
+                                  n = n,
+                                  event = r,
+                                  data = df.constipation.merged,
+                                  sm = 'OR')
+df.pw.constipation$age <- rowMeans(df.pw.constipation[, c('age_mean1', 'age_mean2')], na.rm = T)
+df.pw.constipation$female_prop <- rowMeans(df.pw.constipation[, c('female_prop1', 'female_prop2')], na.rm = T)
+df.pw.constipation$anhedonia_baseline <- rowMeans(df.pw.constipation[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
+df.pw.constipation$anxiety_baseline <- rowMeans(df.pw.constipation[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
+df.pw.constipation$reward_baseline <- rowMeans(df.pw.constipation[, c('reward_baseline_mean1', 'reward_baseline_mean2')], na.rm = T)
+df.pw.constipation$colour <- ifelse(df.pw.constipation$treat1 %in% IMAO, 
+                              'red', 
+                              ifelse(df.pw.constipation$treat1 %in% RIMA,
+                                     'orange',
+                                     ifelse(df.pw.constipation$treat1 %in% DRI,
+                                            'deepskyblue',
+                                            ifelse(df.pw.constipation$treat1 %in% agonist,
+                                                   'purple',
+                                                   ifelse(df.pw.constipation$treat1 %in% vescicular,
+                                                          'green4',
+                                                          'grey'
+                                                   )))))
+df.pw.constipation$group <- ifelse(df.pw.constipation$colour=='red',
+                             'MAOI',
+                             ifelse(df.pw.constipation$colour=='orange',
+                                    'RIMA',
+                                    ifelse(df.pw.constipation$colour=='deepskyblue',
+                                           '*DRI',
+                                           ifelse(df.pw.constipation$colour=='purple',
+                                                  'Agonist',
+                                                  ifelse(df.pw.constipation$colour=='green4',
+                                                         'Vesicle transport facilitator',
+                                                         'Other')))))
+#run constipation meta-analysis
+pwma.constipation <- metabin(n.e = n1, 
+                       event.e = event1, 
+                       n.c = n2, 
+                       event.c = event2, 
+                       studlab = studlab, 
+                       data = df.pw.constipation, 
+                       sm = 'OR', 
+                       comb.fixed = F, 
+                       comb.random = T, 
+                       title = 'constipation',
+                       prediction = T, 
+                       hakn = T, 
+                       method.tau = 'REML',
+                       subgroup = group)
+```
+```{r echo=FALSE, fig.width=12, fig.height=9}
+forest(pwma.constipation, 
+       sortvar = seTE, 
+       print.I2.ci = T, 
+       label.e = 'Intervention', 
+       label.c = 'Placebo', 
+       label.left = 'Favours intervention',
+       label.right = "Favours placebo",
+       smlab = 'constipation',
+       col.square = pwma.constipation$data$colour
+)
+```
+**Figure X** Forest plot for constipation for the comparison of dopaminergic agonists vs placebo at 4-12 weeks. OR: odds ratio, 95%CI: 95% confidence intervals.
+
+### Secondary outcome: dizziness
+```{r echo=FALSE, include=FALSE}
+df.dizziness <- df[!is.na(df$dizziness), c('studlab', 
+                                     'treatment', 
+                                     'treatment_details', 
+                                     'n_randomised', 
+                                     'dizziness',
+                                     'age_mean',
+                                     'female_prop',
+                                     'anhedonia_baseline_mean',
+                                     'anxiety_baseline_mean',
+                                     'reward_baseline_mean',
+                                     'tx_duration',
+                                     'arm')]
+colnames(df.dizziness) <- c('studlab', 
+                         'treatment', 
+                         'treatment_details', 
+                         'n', 
+                         'r',
+                         'age_mean',
+                         'female_prop',
+                         'anhedonia_baseline_mean',
+                         'anxiety_baseline_mean',
+                         'reward_baseline_mean',
+                         'tx_duration',
+                         'arm')
+df.dizziness$treatment_details <- tolower(df.dizziness$treatment_details)
+df.dizziness$treatment_details <- ifelse(df.dizziness$treatment_details=='placebo', 'placebo', 'active')
+df.dizziness <- remove.onearm(df.dizziness)
+df.dizziness.merged <- collapse.arms.binary(df.dizziness)
+df.pw.dizziness <- netmeta::pairwise(studlab = studlab,
+                                  treat = treatment,
+                                  n = n,
+                                  event = r,
+                                  data = df.dizziness.merged,
+                                  sm = 'OR')
+df.pw.dizziness$age <- rowMeans(df.pw.dizziness[, c('age_mean1', 'age_mean2')], na.rm = T)
+df.pw.dizziness$female_prop <- rowMeans(df.pw.dizziness[, c('female_prop1', 'female_prop2')], na.rm = T)
+df.pw.dizziness$anhedonia_baseline <- rowMeans(df.pw.dizziness[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
+df.pw.dizziness$anxiety_baseline <- rowMeans(df.pw.dizziness[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
+df.pw.dizziness$reward_baseline <- rowMeans(df.pw.dizziness[, c('reward_baseline_mean1', 'reward_baseline_mean2')], na.rm = T)
+df.pw.dizziness$colour <- ifelse(df.pw.dizziness$treat1 %in% IMAO, 
+                              'red', 
+                              ifelse(df.pw.dizziness$treat1 %in% RIMA,
+                                     'orange',
+                                     ifelse(df.pw.dizziness$treat1 %in% DRI,
+                                            'deepskyblue',
+                                            ifelse(df.pw.dizziness$treat1 %in% agonist,
+                                                   'purple',
+                                                   ifelse(df.pw.dizziness$treat1 %in% vescicular,
+                                                          'green4',
+                                                          'grey'
+                                                   )))))
+df.pw.dizziness$group <- ifelse(df.pw.dizziness$colour=='red',
+                             'MAOI',
+                             ifelse(df.pw.dizziness$colour=='orange',
+                                    'RIMA',
+                                    ifelse(df.pw.dizziness$colour=='deepskyblue',
+                                           '*DRI',
+                                           ifelse(df.pw.dizziness$colour=='purple',
+                                                  'Agonist',
+                                                  ifelse(df.pw.dizziness$colour=='green4',
+                                                         'Vesicle transport facilitator',
+                                                         'Other')))))
+#run dizziness meta-analysis
+pwma.dizziness <- metabin(n.e = n1, 
+                       event.e = event1, 
+                       n.c = n2, 
+                       event.c = event2, 
+                       studlab = studlab, 
+                       data = df.pw.dizziness, 
+                       sm = 'OR', 
+                       comb.fixed = F, 
+                       comb.random = T, 
+                       title = 'dizziness',
+                       prediction = T, 
+                       hakn = T, 
+                       method.tau = 'REML',
+                       subgroup = group)
+```
+
+```{r echo=FALSE, fig.width=12, fig.height=10}
+forest(pwma.dizziness, 
+       sortvar = seTE, 
+       print.I2.ci = T, 
+       label.e = 'Intervention', 
+       label.c = 'Placebo', 
+       label.left = 'Favours intervention',
+       label.right = "Favours placebo",
+       smlab = 'dizziness',
+       col.square = pwma.dizziness$data$colour
+)
+```
+**Figure X** Forest plot for dizziness for the comparison of dopaminergic agonists vs placebo at 4-12 weeks. OR: odds ratio, 95%CI: 95% confidence intervals.
+
+### Secondary outcome: vomiting
+```{r echo=FALSE, include=FALSE}
+df.vomiting <- df[!is.na(df$vomiting), c('studlab', 
+                                     'treatment', 
+                                     'treatment_details', 
+                                     'n_randomised', 
+                                     'vomiting',
+                                     'age_mean',
+                                     'female_prop',
+                                     'anhedonia_baseline_mean',
+                                     'anxiety_baseline_mean',
+                                     'reward_baseline_mean',
+                                     'tx_duration',
+                                     'arm')]
+colnames(df.vomiting) <- c('studlab', 
+                         'treatment', 
+                         'treatment_details', 
+                         'n', 
+                         'r',
+                         'age_mean',
+                         'female_prop',
+                         'anhedonia_baseline_mean',
+                         'anxiety_baseline_mean',
+                         'reward_baseline_mean',
+                         'tx_duration',
+                         'arm')
+df.vomiting$treatment_details <- tolower(df.vomiting$treatment_details)
+df.vomiting$treatment_details <- ifelse(df.vomiting$treatment_details=='placebo', 'placebo', 'active')
+df.vomiting <- remove.onearm(df.vomiting)
+df.vomiting.merged <- collapse.arms.binary(df.vomiting)
+df.pw.vomiting <- netmeta::pairwise(studlab = studlab,
+                                  treat = treatment,
+                                  n = n,
+                                  event = r,
+                                  data = df.vomiting.merged,
+                                  sm = 'OR')
+df.pw.vomiting$age <- rowMeans(df.pw.vomiting[, c('age_mean1', 'age_mean2')], na.rm = T)
+df.pw.vomiting$female_prop <- rowMeans(df.pw.vomiting[, c('female_prop1', 'female_prop2')], na.rm = T)
+df.pw.vomiting$anhedonia_baseline <- rowMeans(df.pw.vomiting[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
+df.pw.vomiting$anxiety_baseline <- rowMeans(df.pw.vomiting[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
+df.pw.vomiting$reward_baseline <- rowMeans(df.pw.vomiting[, c('reward_baseline_mean1', 'reward_baseline_mean2')], na.rm = T)
+df.pw.vomiting$colour <- ifelse(df.pw.vomiting$treat1 %in% IMAO, 
+                              'red', 
+                              ifelse(df.pw.vomiting$treat1 %in% RIMA,
+                                     'orange',
+                                     ifelse(df.pw.vomiting$treat1 %in% DRI,
+                                            'deepskyblue',
+                                            ifelse(df.pw.vomiting$treat1 %in% agonist,
+                                                   'purple',
+                                                   ifelse(df.pw.vomiting$treat1 %in% vescicular,
+                                                          'green4',
+                                                          'grey'
+                                                   )))))
+df.pw.vomiting$group <- ifelse(df.pw.vomiting$colour=='red',
+                             'MAOI',
+                             ifelse(df.pw.vomiting$colour=='orange',
+                                    'RIMA',
+                                    ifelse(df.pw.vomiting$colour=='deepskyblue',
+                                           '*DRI',
+                                           ifelse(df.pw.vomiting$colour=='purple',
+                                                  'Agonist',
+                                                  ifelse(df.pw.vomiting$colour=='green4',
+                                                         'Vesicle transport facilitator',
+                                                         'Other')))))
+#run vomiting meta-analysis
+pwma.vomiting <- metabin(n.e = n1, 
+                       event.e = event1, 
+                       n.c = n2, 
+                       event.c = event2, 
+                       studlab = studlab, 
+                       data = df.pw.vomiting, 
+                       sm = 'OR', 
+                       comb.fixed = F, 
+                       comb.random = T, 
+                       title = 'vomiting',
+                       prediction = T, 
+                       hakn = T, 
+                       method.tau = 'REML',
+                       subgroup = group)
+```
+
+```{r echo=FALSE, fig.width=12, fig.height=5}
+forest(pwma.vomiting, 
+       sortvar = seTE, 
+       print.I2.ci = T, 
+       label.e = 'Intervention', 
+       label.c = 'Placebo', 
+       label.left = 'Favours intervention',
+       label.right = "Favours placebo",
+       smlab = 'vomiting',
+       col.square = pwma.vomiting$data$colour
+)
+```
+**Figure X** Forest plot for vomiting for the comparison of dopaminergic agonists vs placebo at 4-12 weeks. OR: odds ratio, 95%CI: 95% confidence intervals.
+
+## Subgroup analyses and meta-regressions
+
+## Reporting bias
+
+## Summary of evidence tables
+
+## Abbreviations
+
+## References
