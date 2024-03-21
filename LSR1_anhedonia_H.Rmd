@@ -537,8 +537,6 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 Participants assigned to pro-dopaminergic interventions were more likely to drop out due to any reason with an OR of 0.912, however this difference was not statistically significant with a p=0.4084.The results were significantly heterogeneous with a significance of p\<0.001.
 There were significant subgroup differences with participants taking dopamine reuptake inhibitors more likely to drop out due to any reason than any other class of drug in the analysis p=.011.
 
-Meta-reg.....
-
 ### Secondary outcome: dropouts due to side effects
 
 ```{r echo=FALSE, include=FALSE}
@@ -639,7 +637,7 @@ forest(pwma.tol,
 **Figure X** Forest plot for dropouts due to side effects for the comparison of dopaminergic agonists vs placebo at 4-12 weeks.
 OR: odds ratio, 95%CI: 95% confidence intervals.
 
-40 studies contributed to the meta-analysis with a total of 7950 participants.
+40 studies contributed to the meta-analysis with a total of 7950 participants. 
 Participants assigned to pro-dopaminergic interventions were more likely to drop out due to any reason with an OR=1.737, this difference was not statistically significant with p=.001The results were significantly heterogeneous with a significance of p\<.001.
 There were significant subgroup differences with participants taking dopamine reuptake inhibitors more likely to drop out due to any reason than any other class of drug in the analysis p=.039
 
