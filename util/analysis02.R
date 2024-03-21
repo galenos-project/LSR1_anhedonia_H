@@ -1864,7 +1864,7 @@ cat(paste0(''), sep = '\n')
 cat(paste0('File created on ', Sys.Date()), sep = '\n')
 sink()
 
-# vomiting ----
+:# vomiting ----
 df.vomiting <- df[!is.na(df$vomiting), c('studlab', 
                                      'treatment', 
                                      'treatment_details', 

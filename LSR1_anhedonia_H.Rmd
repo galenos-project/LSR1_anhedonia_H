@@ -36,24 +36,23 @@ knitr::opts_chunk$set(echo = TRUE)
 
 5.  The outcomes extracted were anhedonia symptom severity (as per standardised scales or subscales both self and observer rated), acceptability (proportion of drop outs for any reason), tolerability (the proportion of drop outs due to any adverse event), safety (the proportion of specific adverse events), and anxiety symptom severity (as per observer or self-reported standardised scales)
 
-6.  When extracting continuous outcomes.......
+6.  When extracting continuous outcomes...
 
-7.  For extracting dichotomous outcomes......
+7.  For extracting dichotomous outcomes...
 
 8.  Risk of bias method
 
-9.  Effect sizes were....(?)
+9.  Effect sizes were...
 
-10. Meta-analysis method.....
+10. Meta-analysis method...
 
-11. Sensitivity analysis method......
+11. Sensitivity analysis method...
 
-12. Subgroup/meta-regression analysis method....
+12. Subgroup/meta-regression analysis method...
 
-13. Summary of evidence tables were constructed including....
+13. Summary of evidence tables were constructed including...
 
-14. Limitations.....?(
-    See LSR3)
+14. Limitations...?(See LSR3)
 
 ## Description of included studies
 
@@ -426,9 +425,13 @@ SMD: standardised mean difference, 95%CI: 95% confidence intervals, SD: standard
 11 studies contributed to the meta-analysis with a total of 3517 participants.
 Pro-dopaminergic interventions showed a small significant effect reducing symptoms of anxiety with a SMD of -0.1656, p=\<.0001 The study results were not significantly heterogeneous with p=.560.There were no significant differences between subgroups with Q=4.44 (2) p=.108
 
-Data were available to conduct meta-regressions for age, sex, anhedonia baseline score, and anxiety baseline score, all using mixed effects models, none of which were statistically significant.
+Data were available to conduct meta-regressions for age, sex, anhedonia baseline score, and anxiety baseline score, all using mixed effects models, none of which were statistically significant. Meta-regressions were not applicable for reward baseline score or treatment duration.
 
-Age was not a significant predictor of change in anxiety score (BETA=-.159 [95%CI -.436; .118] p=.997)
+```{r, echo=FALSE, include=FALSE}
+##### FORMATTING NOTE if we want to list each predictor and give statistics (e.g. line 434), do we want both the model F and p values and the beta, 95%CI, and significance values of the coefficient, even if the coefficient wasn't a significant predictor??
+
+#Age was not a significant predictor of change in anxiety score (BETA=-.159 [95%CI -.436; .118] p=.997),
+```
 
 ### Secondary outcome: Dropouts due to any reason
 
@@ -533,6 +536,8 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 50 studies contributed to the meta-analysis with a total of 9159 participants.
 Participants assigned to pro-dopaminergic interventions were more likely to drop out due to any reason with an OR of 0.912, however this difference was not statistically significant with a p=0.4084.The results were significantly heterogeneous with a significance of p\<0.001.
 There were significant subgroup differences with participants taking dopamine reuptake inhibitors more likely to drop out due to any reason than any other class of drug in the analysis p=.011.
+
+Meta-reg.....
 
 ### Secondary outcome: dropouts due to side effects
 
@@ -1363,6 +1368,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 Participants assigned to pro-dopaminergic interventions were not significantly more likely to experience vomiting with an OR=1.8918 and p=.075.
 The results were not significantly heterogeneous.
 There were no significant subgroup differences between participants assigned to different classes of drug.
+
 
 ```{r echo=FALSE, include=FALSE}
 #this runs all meta regressions for the below outcomes (which more than 10 studies contribute to)
