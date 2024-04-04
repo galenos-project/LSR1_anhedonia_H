@@ -9,7 +9,7 @@ editor_options:
     wrap: sentence
 ---
 
-```{r setup echo = F, include = F, warning = F}
+```{r echo = F, include = F, warning = F}
 source('util/analysis02 for markdown.R')
 all.studies <- unique(c(pwma.acc$studlab,
                         pwma.anhedonia$studlab, 
@@ -34,56 +34,71 @@ knitr::opts_chunk$set(echo = T)
     Database search results were imported into [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") and de-duplicated prior to screening.
     All steps related to record screening and data extraction were completed in [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer").
 
-3.  Titles and abstracts of the identified records were screened by at least two reviewers (CF, EB, JK, JP); conflicts were resolved through discussion within the screening team and consultation with senior reviewers (AC, EGO). We retrieved the full-texts and any supporting documents for all records that were not excluded at the title and abstract screening stage. The full-text screening was conducted by at least two reviewers (CF, CA, EB, JK, JP) and conflicts were resolved through discussion between the two reviewers and involvement of a third reviewer (EO, AC). Additional information on the full eligibility criteria can be found in the pre-published [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies").
+3.  Titles and abstracts of the identified records were screened by at least two reviewers (CF, EB, JK, JP); conflicts were resolved through discussion within the screening team and consultation with senior reviewers (AC, EGO).
+    We retrieved the full-texts and any supporting documents for all records that were not excluded at the title and abstract screening stage.
+    The full-text screening was conducted by at least two reviewers (CF, CA, EB, JK, JP) and conflicts were resolved through discussion between the two reviewers and involvement of a third reviewer (EO, AC).
+    Additional information on the full eligibility criteria can be found in the pre-published [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies").
 
 4.  Relevant data was extracted using [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") by at least two reviewers (CF, CA, EB, JK).
 
 5.  As specified in our [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies"), we focused on:
-* anhedonia symptom severity: using anhedonia-specific scales, anhedonia-specific sub-scales, or individual items focusing on anhedonia (observer-rated or self-rated). Continuous, primary outcome.
-* acceptability: proportion of drop outs for any reason. Binary, secondary outcome.
-* tolerability: the proportion of drop outs due to any adverse event. Binary, secondary outcome.
-* safety: the proportion of specific adverse events. Binary, secondary outcome.
-* anxiety symptom severity: as per observer or self-reported standardised scales. Continuous, secondary outcome.
-* specific-adverse events: as reported by individual studies. Binary, secondary outcome.
-    For anhedonia and anxiety symptom severity, we extracted outcome data reported at 8 weeks post-treatment or manipulation. If information at 8 weeks was not available, we considered eligible data ranging between 4 and 12 weeks (with preference to the time point closest to 8 weeks, and if equidistant the longer outcome).
-    For acceptability, tolerability, safety and specific-adverse events, we extracted outcome data reported at the end of the studies.
 
-6.  When extracting continuous outcomes we extracted mean and standard deviation to two decimal places. Where standard error was reported instead, we converted the value to standard deviation. Baseline and endpoint values were extracted, where only change in score and baseline or endpoint was reported, the missing value was calculated by adding or subtracting the change score to the baseline or endpoint.
+-   anhedonia symptom severity: using anhedonia-specific scales, anhedonia-specific sub-scales, or individual items focusing on anhedonia (observer-rated or self-rated). Continuous, primary outcome.
+-   acceptability: proportion of drop outs for any reason. Binary, secondary outcome.
+-   tolerability: the proportion of drop outs due to any adverse event. Binary, secondary outcome.
+-   safety: the proportion of specific adverse events. Binary, secondary outcome.
+-   anxiety symptom severity: as per observer or self-reported standardised scales. Continuous, secondary outcome.
+-   specific-adverse events: as reported by individual studies. Binary, secondary outcome. For anhedonia and anxiety symptom severity, we extracted outcome data reported at 8 weeks post-treatment or manipulation. If information at 8 weeks was not available, we considered eligible data ranging between 4 and 12 weeks (with preference to the time point closest to 8 weeks, and if equidistant the longer outcome). For acceptability, tolerability, safety and specific-adverse events, we extracted outcome data reported at the end of the studies.
 
-7.  When extracting dichotomous outcomes we extracted natural numbers and where only percentages of participant groups were reported, a value was calculated and rounded up to the nearest natural number. Adverse events were extracted using the exact terms they were reported in the included studies.
+6.  When extracting continuous outcomes we extracted mean and standard deviation to two decimal places.
+    Where standard error was reported instead, we converted the value to standard deviation.
+    Baseline and endpoint values were extracted, where only change in score and baseline or endpoint was reported, the missing value was calculated by adding or subtracting the change score to the baseline or endpoint.
 
-8.  We assessed risk of bias with the RoB2 tool (Sterne et al. 2019). All outcomes for all included studies were assessed as per [CITE] by at least two reviewers (JK, CF, CA, AH) and conflicts were were resolved by discussion between the reviewers or in consultation with senior reviewers (AC, EGO). To evaluate biases due to missing evidence and biases across studies the ROB-ME tool was used with the same double screening and conflict resolution process as described above.
+7.  When extracting dichotomous outcomes we extracted natural numbers and where only percentages of participant groups were reported, a value was calculated and rounded up to the nearest natural number.
+    Adverse events were extracted using the exact terms they were reported in the included studies.
 
-9.  Effect sizes were as follows: 1) standardised mean differences for continuous outcomes (anhedonia and anxiety). This was used as  multiple outcome measures were used to report anhedonia and anxiety scores as per [CITE]. 2) odds ratios (ORs) for dichotomous outcomes (acceptability, tolerability, and adverse events). 3) 95% confidence intervals (95% CI) were also reported.
+8.  We assessed risk of bias with the RoB2 tool (Sterne et al. 2019).
+    All outcomes for all included studies were assessed as per [CITE] by at least two reviewers (JK, CF, CA, AH) and conflicts were were resolved by discussion between the reviewers or in consultation with senior reviewers (AC, EGO).
+    To evaluate biases due to missing evidence and biases across studies the ROB-ME tool was used with the same double screening and conflict resolution process as described above.
 
-10.  The meta-analysis was conducted using a random effects model with the inverse variance method, using the maximum-likelihood estimator for tau^2 and the Q-Profile method for the confidence interval of tau^2 and tau. Confidence intervals were corrected using the Hartung-Knapp method [WHY? CITE]. The prediction interval was based on t-distribution and for continuous outcomes Hedge’s g [CITE] was used to calculate the bias corrected standardised mean differences using exact formulae. For dichotomous outcomes continuity correction of 0.5 in studies with zero cell frequencies was used.
+9.  Effect sizes were as follows: 1) standardised mean differences for continuous outcomes (anhedonia and anxiety).
+    This was used as multiple outcome measures were used to report anhedonia and anxiety scores as per [CITE].
+    2) odds ratios (ORs) for dichotomous outcomes (acceptability, tolerability, and adverse events).
+    3) 95% confidence intervals (95% CI) were also reported.
+
+10. The meta-analysis was conducted using a random effects model with the inverse variance method, using the maximum-likelihood estimator for tau\^2 and the Q-Profile method for the confidence interval of tau\^2 and tau.
+    Confidence intervals were corrected using the Hartung-Knapp method [WHY?
+    CITE].
+    The prediction interval was based on t-distribution and for continuous outcomes Hedge's g [CITE] was used to calculate the bias corrected standardised mean differences using exact formulae.
+    For dichotomous outcomes continuity correction of 0.5 in studies with zero cell frequencies was used.
 
 11. Sensitivity analysis method...
 
-12. Subgroup analysis and meta-regressions were also conducted for the variables mean age of participants, anhedonia baseline score, anxiety baseline score, sex, reward baseline score, and treatment duration. This was done using a mixed-effects model with the REML [CHECK AND CITE]. Meta-regressions were only conducted for outcomes where k > 10.
+12. Subgroup analysis and meta-regressions were also conducted for the variables mean age of participants, anhedonia baseline score, anxiety baseline score, sex, reward baseline score, and treatment duration.
+    This was done using a mixed-effects model with the REML [CHECK AND CITE].
+    Meta-regressions were only conducted for outcomes where k \> 10.
 
 13. Summary of evidence tables were constructed for all outcomes including a summary of the meta-analytic result, biases within-study, across-study, and due to indirectness.
 
 Please see the final manuscript [CITE], extended data [CITE], and [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies") for more details.
 
-A list of abbreviations can be found towards the end of the document. 
-
+A list of abbreviations can be found towards the end of the document.
 
 # Results
 
 Below are the results of the systematic review and meta-analysis including a PRISMA flow diagram (Page et al 2021) for details of the flow of study selection, a table of characteristics for included studies, risk of bias assessment, forest plots for each outcome with accompanying descriptive text.
 
-## PRISMA diagram
+### [PRISMA diagram]
 
 ## Description of included studies
 
-We identified `r length(unique(df$studlab))` eligible studies. The study characteristics can be found in **Table 1**.
-Data from `r cat(paste0(length(all.studies)))` studies contributed with at least one outcome with quantitative data (total of `r all.participants` participants), which included adults from multiple countries. The mean age of participants was `r mean(df$mean_age, na.rm = T)` years (range `r min(df$mean_age, na.rm = T)` to `r max(df$mean_age, na.rm = T)` years), with a mean proportion of `r mean(df$female_prop, na.rm = T)` female participants (range `r min(df$female_prop, na.rm = T)` to `r max(df$female_prop, na.rm = T)`).
+We identified `r length(unique(df$studlab))` eligible studies.
+The study characteristics can be found in **Table 1**.
+Data from `r cat(paste0(length(all.studies)))` studies contributed with at least one outcome with quantitative data (total of `r all.participants` participants), which included adults from multiple countries.
+The mean age of participants was `r mean(df$mean_age, na.rm = T)` years (range `r min(df$mean_age, na.rm = T)` to `r max(df$mean_age, na.rm = T)` years), with a mean proportion of `r mean(df$female_prop, na.rm = T)` female participants (range `r min(df$female_prop, na.rm = T)` to `r max(df$female_prop, na.rm = T)`).
 Included studies allocated the participants to treatment lasting between `r min(df$tx_duration, na.rm = T)` to `r max(df$tx_duration, na.rm = T)` weeks (median, `r median(df$tx_duration, na.rm = T)` weeks).
 
 ### Risk of Bias assessment
-
-
 
 ### Primary outcome: reduction in anhedonia scores at 4-12 weeks
 
@@ -104,7 +119,7 @@ forest(pwma.anhedonia,
 SMD: standardised mean difference, 95%CI: 95% confidence intervals, SD: standard deviation.
 
 6 studies contributed to the meta-analysis with a total of 2079 participants.
-Pro-dopaminergic interventions showed a small but significant effect reducing symptoms of anhedonia with a SMD of -0.2440, p=.032.The study results were significantly heterogeneous with p=.008.As less than 10 studies contributed to the meta-analysis a meta-regression was not appropriate.
+Pro-dopaminergic interventions showed a small but significant effect reducing symptoms of anhedonia with a SMD of -0.2440, p=.032.The study results were significantly heterogeneous with p=.008.As less than 10 studies contributed to the meta-analysis a meta-regression was not appropriate
 
 ### Secondary outcome: Reduction in mean anxiety score at 4-12 weeks
 
@@ -127,7 +142,8 @@ SMD: standardised mean difference, 95%CI: 95% confidence intervals, SD: standard
 11 studies contributed to the meta-analysis with a total of 3517 participants.
 Pro-dopaminergic interventions showed a small significant effect reducing symptoms of anxiety with a SMD of -0.1656, p=\<.0001 The study results were not significantly heterogeneous with p=.560.There were no significant differences between subgroups with Q=4.44 (2) p=.108
 
-Data were available to conduct meta-regressions for age, sex, anhedonia baseline score, and anxiety baseline score, all using mixed effects models, none of which were statistically significant. Meta-regressions were not applicable for reward baseline score or treatment duration.
+Data were available to conduct meta-regressions for age, sex, and anxiety baseline score, all using mixed effects models, none of which were statistically significant.
+Meta-regressions were not applicable for anhedonia baseline score, reward baseline score or treatment duration.
 
 ### Secondary outcome: Dropouts due to any reason
 
@@ -148,12 +164,9 @@ forest(pwma.acc,
 OR: odds ratio, 95%CI: 95% confidence intervals.
 
 50 studies contributed to the meta-analysis with a total of 9159 participants.
-Participants assigned to pro-dopaminergic interventions were more likely to drop out due to any reason with an OR of 0.912, however this difference was not statistically significant with a p=0.4084.The results were significantly heterogeneous with a significance of p\<0.001.
+Participants assigned to pro-dopaminergic interventions were more likely to drop out due to any reason with an OR of 0.912, however this difference was not statistically significant with a p=0.408.The results were significantly heterogeneous with a significance of p\<0.001.
 There were significant subgroup differences with participants taking dopamine reuptake inhibitors more likely to drop out due to any reason than any other class of drug in the analysis p=.011.
-
-Data were available to conduct meta-regressions for age, sex, anhedonia baseline score, and anxiety baseline score, all using mixed effects models, none of which were statistically significant. Meta-regressions were not applicable for reward baseline score or treatment duration.
-
-##JC NOTE TO SELF [CHECK WHETHER META REGRESSIONS ARE ONLY CONDUCTED FOR K<10. IF SO, CHECK THAT THESE VARIABLES WERE APPROPRIATE]
+Data were available to conduct meta-regressions for age, sex, and anxiety baseline score, none of which were statistically significant.
 
 ### Secondary outcome: dropouts due to side effects
 
@@ -173,12 +186,11 @@ forest(pwma.tol,
 
 **Figure X** Forest plot for dropouts due to adverse events for the comparison of dopaminergic agonists vs placebo at 4-12 weeks.OR: odds ratio, 95%CI: 95% confidence intervals.
 
-40 studies contributed to the meta-analysis with a total of 7950 participants. 
+40 studies contributed to the meta-analysis with a total of 7950 participants.
 Participants assigned to pro-dopaminergic interventions were more likely to drop out due to adverse events with an OR=1.737, this difference was not statistically significant with p=.001 The results were significantly heterogeneous with a significance of p\<.001.
-
 There were significant subgroup differences with participants taking dopamine reuptake inhibitors more likely to drop out due to adverse events than any other class of drug in the analysis p=.039.
-
-Meta-regressions were conducted for [CHECK WHICH ONES]
+Meta-regressions were conducted for age, sex, and baseline anxiety score.
+Of these, only sex was a significant predictor of dropouts due to adverse events with a beta=-2.960, SE=1.21 95%CI (-5.423; -0.497) and an R\^2=40.63% and p=.022.
 
 ### Secondary outcome: nausea
 
@@ -202,6 +214,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 Participants assigned to pro-dopaminergic interventions were significantly more likely to experience nausea with an OR=1.459, and p=.001.
 The results were not significantly heterogeneous.
 There were significant subgroup differences with participants taking dopamine agonists more likely to experience nausea than participants on than any other class of drug in the analysis p\<.0001.
+Meta-regressions were conducted for age and sex and neither were significant predictors.
 
 ### Secondary outcome: headache
 
@@ -225,6 +238,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 Participants assigned to pro-dopaminergic interventions were significantly more likely to experience headache with an OR=1.161, and p=.016.
 The results were not significantly heterogeneous.
 There were no significant subgroup differences between participants assigned to different classes of drug.
+Meta-regressions were conducted for age and sex and neither were significant predictors.
 
 ### Secondary outcome: insomnia
 
@@ -248,6 +262,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 Participants assigned to pro-dopaminergic interventions were significantly more likely to experience insomnia a with an OR=1.7921 and p\<.0001.
 The results were not significantly heterogeneous.
 There were no significant subgroup differences between participants assigned to different classes of drug.
+Meta-regressions were conducted for age and sex and neither were significant predictors.
 
 ### Secondary outcome:dry mouth
 
@@ -271,6 +286,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 Participants assigned to pro-dopaminergic interventions were significantly more likely to experience dry mouth a with an OR=2.119 and p\<.001.
 The results were significantly heterogeneous with a p=.041.
 There were no significant subgroup differences between participants assigned to different classes of drug.
+Meta-regressions were conducted for age, sex, and treatment duration of which only sex was a significant predictor with females significantly more likely to report dry mouth with a beta=-2.070, p=.002, 95%CI(-3.834; -0.308) and the model accounting for 55.280% of heterogeneity and p=.024.
 
 ### Secondary outcome:constipation
 
@@ -294,6 +310,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 Participants assigned to pro-dopaminergic interventions were significantly more likely to experience constipation with an OR=1.552 and p=.0005.
 The results were not significantly heterogeneous.
 There were no significant subgroup differences between participants assigned to different classes of drug.
+Meta-regressions were conducted for age, sex, and treatment duration, none of which were found to be significant predictors.
 
 ### Secondary outcome: dizziness
 
@@ -317,6 +334,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 Participants assigned to pro-dopaminergic interventions were significantly more likely to experience dizziness with an OR=1.721 and p=.0003.
 The results were not significantly heterogeneous.
 There were no significant subgroup differences between participants assigned to different classes of drug.
+Meta-regressions were conducted for age and sex and neither were significant predictors.
 
 ### Secondary outcome: vomiting
 
@@ -340,7 +358,6 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 Participants assigned to pro-dopaminergic interventions were not significantly more likely to experience vomiting with an OR=1.8918 and p=.075.
 The results were not significantly heterogeneous.
 There were no significant subgroup differences between participants assigned to different classes of drug.
-
 
 ```{r meta-regressions, echo=FALSE, include=FALSE}
 #this runs all meta regressions for the below outcomes (which more than 10 studies contribute to)
