@@ -2,7 +2,7 @@
 title: "A systematic review and meta-analysis of pro-dopaminergic interventions for anhedonia - results from human studies"
 output: html_document
 date: "2024-03-25"
-author: "Jaycee Kennett, Edoardo G. Ostinelli, Claire Friedrich <span style='font-size: 15px'></style>"
+author: "Jaycee Kennett, Claire Friedrich, Edoardo G. Ostinelli <span style='font-size: 15px'></style>"
 mainfont: Arialh
 editor_options: 
   markdown: 
@@ -48,7 +48,8 @@ knitr::opts_chunk$set(echo = T)
 -   tolerability: the proportion of drop outs due to any adverse event. Binary, secondary outcome.
 -   safety: the proportion of specific adverse events. Binary, secondary outcome.
 -   anxiety symptom severity: as per observer or self-reported standardised scales. Continuous, secondary outcome.
--   specific-adverse events: as reported by individual studies. Binary, secondary outcome. For anhedonia and anxiety symptom severity, we extracted outcome data reported at 8 weeks post-treatment or manipulation. If information at 8 weeks was not available, we considered eligible data ranging between 4 and 12 weeks (with preference to the time point closest to 8 weeks, and if equidistant the longer outcome). For acceptability, tolerability, safety and specific-adverse events, we extracted outcome data reported at the end of the studies.
+
+For anhedonia and anxiety symptom severity, we extracted outcome data reported at 8 weeks post-treatment or manipulation. If information at 8 weeks was not available, we considered eligible data ranging between 4 and 12 weeks (with preference to the time point closest to 8 weeks, and if equidistant the longer outcome). For acceptability, tolerability, safety and specific-adverse events, we extracted outcome data reported at the end of the studies.
 
 6.  When extracting continuous outcomes we extracted mean and standard deviation to two decimal places.
     Where standard error was reported instead, we converted the value to standard deviation.
@@ -61,21 +62,14 @@ knitr::opts_chunk$set(echo = T)
     All outcomes for all included studies were assessed as per [CITE] by at least two reviewers (JK, CF, CA, AH) and conflicts were were resolved by discussion between the reviewers or in consultation with senior reviewers (AC, EGO).
     To evaluate biases due to missing evidence and biases across studies the ROB-ME tool was used with the same double screening and conflict resolution process as described above.
 
-9.  Effect sizes were as follows: 1) standardised mean differences for continuous outcomes (anhedonia and anxiety).
-    This was used as multiple outcome measures were used to report anhedonia and anxiety scores as per [CITE].
-    2) odds ratios (ORs) for dichotomous outcomes (acceptability, tolerability, and adverse events).
-    3) 95% confidence intervals (95% CI) were also reported.
+9.  Effect sizes were calculated as standardised mean differences (SMDs) for continuous outcomes (anhedonia and anxiety symptom severity) and odds ratios (ORs) for dichotomous outcomes (acceptability, tolerability, and specific-adverse events). We calculated the 95% confidence interval (CI) around the pooled effect size for each meta-analysis.
 
-10. The meta-analysis was conducted using a random effects model with the inverse variance method, using the maximum-likelihood estimator for tau\^2 and the Q-Profile method for the confidence interval of tau\^2 and tau.
-    Confidence intervals were corrected using the Hartung-Knapp method [WHY?
-    CITE].
-    The prediction interval was based on t-distribution and for continuous outcomes Hedge's g [CITE] was used to calculate the bias corrected standardised mean differences using exact formulae.
-    For dichotomous outcomes continuity correction of 0.5 in studies with zero cell frequencies was used.
+10. The meta-analyses were conducted using a random effects model with the inverse variance method, using the restricted maximum-likelihood estimator for tau\^2 and the Q-Profile method for the confidence interval of tau\^2. Confidence intervals were adjusted using the Hartung-Knapp method. Prediction intervals were calculated to better report the effect of heterogeneity on the overall pooled effect.
 
 11. Sensitivity analysis method...
 
-12. Subgroup analysis and meta-regressions were also conducted for the variables mean age of participants, anhedonia baseline score, anxiety baseline score, sex, reward baseline score, and treatment duration.
-    This was done using a mixed-effects model with the REML [CHECK AND CITE].
+12. Subgroup analysis and meta-regressions were also conducted for the following variables: mean age of participants, mean anhedonia baseline score, mean anxiety baseline score, sex (proportion of female participants), mean reward baseline score, and planned treatment duration.
+    This was done using a mixed-effects model with the estimation of the between-study heterogeneity tau2 based on the REML method.
     Meta-regressions were only conducted for outcomes where k \> 10.
 
 13. Summary of evidence tables were constructed for all outcomes including a summary of the meta-analytic result, biases within-study, across-study, and due to indirectness.
@@ -100,7 +94,7 @@ Included studies allocated the participants to treatment lasting between `r min(
 
 ### Risk of Bias assessment
 
-### Primary outcome: reduction in anhedonia scores at 4-12 weeks
+### Primary outcome: reduction in anhedonia scores at 8 weeks (from 4 to 12 weeks)
 
 ```{r anhedonia_forest, echo=FALSE, fig.width=12, fig.height=4}
 forest(pwma.anhedonia, 
@@ -118,8 +112,21 @@ forest(pwma.anhedonia,
 **Figure X** Forest plot for symptoms of anhedonia (primary outcome) comparing pro-dopaminergic interventions vs placebo for individuals with anhedonia at 4-12 weeks (primary timepoint).
 SMD: standardised mean difference, 95%CI: 95% confidence intervals, SD: standard deviation.
 
-6 studies contributed to the meta-analysis with a total of 2079 participants.
-Pro-dopaminergic interventions showed a small but significant effect reducing symptoms of anhedonia with a SMD of -0.2440, p=.032.The study results were significantly heterogeneous with p=.008.As less than 10 studies contributed to the meta-analysis a meta-regression was not appropriate
+`r pwma.anhedonia$k.TE` `r ifelse(pwma.anhedonia$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.anhedonia$n.e.pooled, pwma.anhedonia$n.c.pooled), na.rm = T)` participants (`r pwma.anhedonia$n.e.pooled` allocated to pro-dopaminergic interventions, `r pwma.anhedonia$n.c.pooled` allocated to pill placebo).
+
+The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.anhedonia$lower.random < 0) & (pwma.anhedonia$upper.random < 0)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.anhedonia$lower.random > 0) & (pwma.anhedonia$upper.random > 0)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.anhedonia$TE.random, 3)` (95%CI from `r round(pwma.anhedonia$lower.random, 3)` to `r round(pwma.anhedonia$upper.random, 3)`). The study results presented an I2 value of `r round(pwma.anhedonia$I2*100, 1)`% (95%CI from `r round(pwma.anhedonia$lower.I2*100, 1)`% to `r round(pwma.anhedonia$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.anhedonia$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.anhedonia$lower.predict, 3)` to `r round(pwma.anhedonia$upper.predict, 3)`).
+
+
+#### Sub-group and meta-regression analyses
+```{r, anhedonia_meta-reg, echo = F, results = 'asis'}
+# you will need to change 11 with your k from the meta-regression - not necessarily all the studies contributing to the MA had also data for the regressors.
+if (11 < 10) {
+  cat(paste0('As there were less than 10 studies, no meta-regression was performed.'), sep = '\n')
+} else {
+  # here you can nest other if/else statements, e.g., whether beta was significant or not.
+  cat(paste0('If you are reading this text, meta-regressions have not been implemented yet.'), sep = '\n')
+}
+```
 
 ### Secondary outcome: Reduction in mean anxiety score at 4-12 weeks
 
@@ -163,10 +170,19 @@ forest(pwma.acc,
 **Figure X** Forest plot for dropouts due to any reason for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
 OR: odds ratio, 95%CI: 95% confidence intervals.
 
-50 studies contributed to the meta-analysis with a total of 9159 participants.
-Participants assigned to pro-dopaminergic interventions were more likely to drop out due to any reason with an OR of 0.912, however this difference was not statistically significant with a p=0.408.The results were significantly heterogeneous with a significance of p\<0.001.
-There were significant subgroup differences with participants taking dopamine reuptake inhibitors more likely to drop out due to any reason than any other class of drug in the analysis p=.011.
-Data were available to conduct meta-regressions for age, sex, and anxiety baseline score, none of which were statistically significant.
+`r pwma.acc$k.TE` `r ifelse(pwma.acc$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.acc$n.e.pooled, pwma.acc$n.c.pooled), na.rm = T)` participants (`r pwma.acc$n.e.pooled` allocated to pro-dopaminergic interventions, `r pwma.acc$n.c.pooled` allocated to pill placebo).
+
+The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.acc$lower.random < 1) & (pwma.acc$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.acc$lower.random > 1) & (pwma.acc$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.acc$TE.random, 3)` (95%CI from `r round(pwma.acc$lower.random, 3)` to `r round(pwma.acc$upper.random, 3)`). The study results presented an I2 value of `r round(pwma.acc$I2*100, 1)`% (95%CI from `r round(pwma.acc$lower.I2*100, 1)`% to `r round(pwma.acc$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.acc$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.acc$lower.predict, 3)` to `r round(pwma.acc$upper.predict, 3)`).
+
+```{r, acc_meta-reg, echo = F, results = 'asis'}
+# you will need to change 11 with your k from the meta-regression - not necessarily all the studies contributing to the MA had also data for the regressors.
+if (11 < 10) {
+  cat(paste0('As there were less than 10 studies, no meta-regression was performed.'), sep = '\n')
+} else {
+  # here you can nest other if/else statements, e.g., whether beta was significant or not.
+  cat(paste0('If you are reading this text, meta-regressions have not been implemented yet.'), sep = '\n')
+}
+```
 
 ### Secondary outcome: dropouts due to side effects
 
@@ -405,8 +421,6 @@ for(meta_result_name in names(meta_analysis_results)) {
   }
 }
 ```
-
-## Subgroup analyses and meta-regressions
 
 ## Reporting bias
 
