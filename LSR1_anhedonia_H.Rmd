@@ -2,7 +2,7 @@
 title: "A systematic review and meta-analysis of pro-dopaminergic interventions for anhedonia - results from human studies"
 output: html_document
 date: "2024-03-25"
-author: "Jaycee Kennett, Edoardo G. Ostinelli<span style='font-size: 15px'></style>"
+author: "Jaycee Kennett, Edoardo G. Ostinelli, Claire Friedrich <span style='font-size: 15px'></style>"
 mainfont: Arialh
 editor_options: 
   markdown: 
