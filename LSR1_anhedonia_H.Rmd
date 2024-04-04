@@ -48,23 +48,32 @@ knitr::opts_chunk$set(echo = T)
     For anhedonia and anxiety symptom severity, we extracted outcome data reported at 8 weeks post-treatment or manipulation. If information at 8 weeks was not available, we considered eligible data ranging between 4 and 12 weeks (with preference to the time point closest to 8 weeks, and if equidistant the longer outcome).
     For acceptability, tolerability, safety and specific-adverse events, we extracted outcome data reported at the end of the studies.
 
-6.  When extracting continuous outcomes...
+6.  When extracting continuous outcomes we extracted mean and standard deviation to two decimal places. Where standard error was reported instead, we converted the value to standard deviation. Baseline and endpoint values were extracted, where only change in score and baseline or endpoint was reported, the missing value was calculated by adding or subtracting the change score to the baseline or endpoint.
 
-7.  For extracting dichotomous outcomes...
+7.  When extracting dichotomous outcomes we extracted natural numbers and where only percentages of participant groups were reported, a value was calculated and rounded up to the nearest natural number. Adverse events were extracted using the exact terms they were reported in the included studies.
 
-8.  Risk of bias method
+8.  We assessed risk of bias with the RoB2 tool (Sterne et al. 2019). All outcomes for all included studies were assessed as per [CITE] by at least two reviewers (JK, CF, CA, AH) and conflicts were were resolved by discussion between the reviewers or in consultation with senior reviewers (AC, EGO). To evaluate biases due to missing evidence and biases across studies the ROB-ME tool was used with the same double screening and conflict resolution process as described above.
 
-9.  Effect sizes were...
+9.  Effect sizes were as follows: 1) standardised mean differences for continuous outcomes (anhedonia and anxiety). This was used as  multiple outcome measures were used to report anhedonia and anxiety scores as per [CITE]. 2) odds ratios (ORs) for dichotomous outcomes (acceptability, tolerability, and adverse events). 3) 95% confidence intervals (95% CI) were also reported.
 
-10. Meta-analysis method...
+10.  The meta-analysis was conducted using a random effects model with the inverse variance method, using the maximum-likelihood estimator for tau^2 and the Q-Profile method for the confidence interval of tau^2 and tau. Confidence intervals were corrected using the Hartung-Knapp method [WHY? CITE]. The prediction interval was based on t-distribution and for continuous outcomes Hedge’s g [CITE] was used to calculate the bias corrected standardised mean differences using exact formulae. For dichotomous outcomes continuity correction of 0.5 in studies with zero cell frequencies was used.
 
 11. Sensitivity analysis method...
 
-12. Subgroup/meta-regression analysis method...
+12. Subgroup analysis and meta-regressions were also conducted for the variables mean age of participants, anhedonia baseline score, anxiety baseline score, sex, reward baseline score, and treatment duration. This was done using a mixed-effects model with the REML [CHECK AND CITE]. Meta-regressions were only conducted for outcomes where k > 10.
 
-13. Summary of evidence tables were constructed including...
+13. Summary of evidence tables were constructed for all outcomes including a summary of the meta-analytic result, biases within-study, across-study, and due to indirectness.
 
-14. Limitations...?(See LSR3)
+Please see the final manuscript [CITE], extended data [CITE], and [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies") for more details.
+
+A list of abbreviations can be found towards the end of the document. 
+
+
+# Results
+
+Below are the results of the systematic review and meta-analysis including a PRISMA flow diagram (Page et al 2021) for details of the flow of study selection, a table of characteristics for included studies, risk of bias assessment, forest plots for each outcome with accompanying descriptive text.
+
+## PRISMA diagram
 
 ## Description of included studies
 
@@ -72,9 +81,9 @@ We identified `r length(unique(df$studlab))` eligible studies. The study charact
 Data from `r cat(paste0(length(all.studies)))` studies contributed with at least one outcome with quantitative data (total of `r all.participants` participants), which included adults from multiple countries. The mean age of participants was `r mean(df$mean_age, na.rm = T)` years (range `r min(df$mean_age, na.rm = T)` to `r max(df$mean_age, na.rm = T)` years), with a mean proportion of `r mean(df$female_prop, na.rm = T)` female participants (range `r min(df$female_prop, na.rm = T)` to `r max(df$female_prop, na.rm = T)`).
 Included studies allocated the participants to treatment lasting between `r min(df$tx_duration, na.rm = T)` to `r max(df$tx_duration, na.rm = T)` weeks (median, `r median(df$tx_duration, na.rm = T)` weeks).
 
-## Risk of Bias assessment
+### Risk of Bias assessment
 
-The risk of bias of the studies was examined using the ROB2 tool for all outcomes in the studies.
+
 
 ### Primary outcome: reduction in anhedonia scores at 4-12 weeks
 
@@ -142,6 +151,10 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 Participants assigned to pro-dopaminergic interventions were more likely to drop out due to any reason with an OR of 0.912, however this difference was not statistically significant with a p=0.4084.The results were significantly heterogeneous with a significance of p\<0.001.
 There were significant subgroup differences with participants taking dopamine reuptake inhibitors more likely to drop out due to any reason than any other class of drug in the analysis p=.011.
 
+Data were available to conduct meta-regressions for age, sex, anhedonia baseline score, and anxiety baseline score, all using mixed effects models, none of which were statistically significant. Meta-regressions were not applicable for reward baseline score or treatment duration.
+
+##JC NOTE TO SELF [CHECK WHETHER META REGRESSIONS ARE ONLY CONDUCTED FOR K<10. IF SO, CHECK THAT THESE VARIABLES WERE APPROPRIATE]
+
 ### Secondary outcome: dropouts due to side effects
 
 ```{r tolerability_forest, echo=FALSE, fig.width=12, fig.height=14}
@@ -158,12 +171,14 @@ forest(pwma.tol,
 )
 ```
 
-**Figure X** Forest plot for dropouts due to side effects for the comparison of dopaminergic agonists vs placebo at 4-12 weeks.
-OR: odds ratio, 95%CI: 95% confidence intervals.
+**Figure X** Forest plot for dropouts due to adverse events for the comparison of dopaminergic agonists vs placebo at 4-12 weeks.OR: odds ratio, 95%CI: 95% confidence intervals.
 
 40 studies contributed to the meta-analysis with a total of 7950 participants. 
-Participants assigned to pro-dopaminergic interventions were more likely to drop out due to any reason with an OR=1.737, this difference was not statistically significant with p=.001The results were significantly heterogeneous with a significance of p\<.001.
-There were significant subgroup differences with participants taking dopamine reuptake inhibitors more likely to drop out due to any reason than any other class of drug in the analysis p=.039
+Participants assigned to pro-dopaminergic interventions were more likely to drop out due to adverse events with an OR=1.737, this difference was not statistically significant with p=.001 The results were significantly heterogeneous with a significance of p\<.001.
+
+There were significant subgroup differences with participants taking dopamine reuptake inhibitors more likely to drop out due to adverse events than any other class of drug in the analysis p=.039.
+
+Meta-regressions were conducted for [CHECK WHICH ONES]
 
 ### Secondary outcome: nausea
 
