@@ -146,11 +146,17 @@ forest(pwma.anxiety,
 **Figure X** Forest plot for symptoms of anxiety (secondary outcome) comparing pro-dopaminergic interventions vs placebo for individuals with anxiety at 4-12 weeks (primary timepoint).
 SMD: standardised mean difference, 95%CI: 95% confidence intervals, SD: standard deviation.
 
-11 studies contributed to the meta-analysis with a total of 3517 participants.
+`r pwma.anxiety$k.TE` `r ifelse(pwma.anxiety$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.anxiety$n.e.pooled, pwma.anxiety$n.c.pooled), na.rm = T)` participants (`r pwma.anxiety$n.e.pooled` allocated to pro-dopaminergic interventions, `r pwma.anxiety$n.c.pooled` allocated to pill placebo.
+
+The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.anxiety$lower.random < 0) & (pwma.anxiety$upper.random < 0)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.anxiety$lower.random > 0) & (pwma.anxiety$upper.random > 0)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.anxiety$TE.random, 3)` (95%CI from `r round(pwma.anxiety$lower.random, 3)` to `r round(pwma.anxiety$upper.random, 3)`). The study results presented an I2 value of `r round(pwma.anxiety$I2*100, 1)`% (95%CI from `r round(pwma.anxiety$lower.I2*100, 1)`% to `r round(pwma.anxiety$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.anxiety$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.anxiety$lower.predict, 3)` to `r round(pwma.anxiety$upper.predict, 3)`).
+
 Pro-dopaminergic interventions showed a small significant effect reducing symptoms of anxiety with a SMD of -0.1656, p=\<.0001 The study results were not significantly heterogeneous with p=.560.There were no significant differences between subgroups with Q=4.44 (2) p=.108
 
 Data were available to conduct meta-regressions for age, sex, and anxiety baseline score, all using mixed effects models, none of which were statistically significant.
 Meta-regressions were not applicable for anhedonia baseline score, reward baseline score or treatment duration.
+
+
+
 
 ### Secondary outcome: Dropouts due to any reason
 
@@ -375,52 +381,6 @@ Participants assigned to pro-dopaminergic interventions were not significantly m
 The results were not significantly heterogeneous.
 There were no significant subgroup differences between participants assigned to different classes of drug.
 
-```{r meta-regressions, echo=FALSE, include=FALSE}
-#this runs all meta regressions for the below outcomes (which more than 10 studies contribute to)
-
-#set meta-regression results container
-meta_regressions_results <- list()
-meta_analysis_results <- list(
-anxiety_result = pwma.anxiety, 
-acc_result = pwma.acc,
-tol_result = pwma.tol, 
-nausea_result = pwma.nausea,
-headache_result = pwma.headache,
-insomnia_result = pwma.insomnia,
-dry_mouth_result = pwma.dry_mouth,
-constipation_result = pwma.constipation,
-dizziness_result = pwma.dizziness
-)
-#set meta regression predictors
-predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
-
-# Function to perform a single meta-regression
-perform_meta_regression <- function(meta_result, predictor_var) {
-# Correctly constructing the formula using the predictor_var variable
-  formula <- as.formula(paste0("~", predictor_var))
-  result <- metareg(meta_result, formula)
-  return(result)
-}
-# Iterating over meta-analysis results and predictors
-for(meta_result_name in names(meta_analysis_results)) {
-  for(predictor_var in predictors) {
-    # Constructing a unique key for storing results
-    result_key <- paste(meta_result_name, predictor_var, sep = "_")
-    # Attempting the meta-regression, catching errors to continue with the next iteration
-    result <- tryCatch({
-      # Attempt to perform meta-regression
-      perform_meta_regression(meta_analysis_results[[meta_result_name]], predictor_var)
-      }, error = function(e) {
-        # If an error occurs, print a message and return NULL
-        message(paste0("Meta-regression failed for ", result_key, ": ", e$message))
-        NULL # Return NULL to indicate failure
-        }
-      )
-    # Store the result if the meta-regression was successful; otherwise, result will be NULL
-    meta_regressions_results[[result_key]] <- result
-  }
-}
-```
 
 ## Reporting bias
 

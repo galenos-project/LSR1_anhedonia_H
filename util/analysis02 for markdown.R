@@ -1055,6 +1055,51 @@ constipation.eer
   vomiting.eer
 }
 
+#this runs all meta regressions for the below outcomes (which more than 10 studies contribute to)
+
+#set meta-regression results container
+meta_regressions_results <- list()
+meta_analysis_results <- list(
+  anxiety_result = pwma.anxiety, 
+  acc_result = pwma.acc,
+  tol_result = pwma.tol, 
+  nausea_result = pwma.nausea,
+  headache_result = pwma.headache,
+  insomnia_result = pwma.insomnia,
+  dry_mouth_result = pwma.dry_mouth,
+  constipation_result = pwma.constipation,
+  dizziness_result = pwma.dizziness
+)
+#set meta regression predictors
+predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
+
+# Function to perform a single meta-regression
+perform_meta_regression <- function(meta_result, predictor_var) {
+  # Correctly constructing the formula using the predictor_var variable
+  formula <- as.formula(paste0("~", predictor_var))
+  result <- metareg(meta_result, formula)
+  return(result)
+}
+# Iterating over meta-analysis results and predictors
+for(meta_result_name in names(meta_analysis_results)) {
+  for(predictor_var in predictors) {
+    # Constructing a unique key for storing results
+    result_key <- paste(meta_result_name, predictor_var, sep = "_")
+    # Attempting the meta-regression, catching errors to continue with the next iteration
+    result <- tryCatch({
+      # Attempt to perform meta-regression
+      perform_meta_regression(meta_analysis_results[[meta_result_name]], predictor_var)
+    }, error = function(e) {
+      # If an error occurs, print a message and return NULL
+      message(paste0("Meta-regression failed for ", result_key, ": ", e$message))
+      NULL # Return NULL to indicate failure
+    }
+    )
+    # Store the result if the meta-regression was successful; otherwise, result will be NULL
+    meta_regressions_results[[result_key]] <- result
+  }
+}
+
 # drop it if you don't like it ----
 names <- c('pwma.anhedonia',
            'pwma.anxiety',
@@ -1085,6 +1130,7 @@ names <- c('pwma.anhedonia',
            'pwma.vomiting', 
            'vomiting.eer',
            'vomiting.rate.pla',
-           'df')
+           'df',
+           'meta_regressions_results')
 
 rm(list=setdiff(ls(pos=1), names), pos=1)
