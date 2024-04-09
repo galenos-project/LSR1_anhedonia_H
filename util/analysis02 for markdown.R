@@ -1056,50 +1056,78 @@ constipation.eer
 }
 
 #this runs all meta regressions for the below outcomes (which more than 10 studies contribute to)
-
 #set meta-regression results container
-meta_regressions_results <- list()
-meta_analysis_results <- list(
-  anxiety_result = pwma.anxiety, 
-  acc_result = pwma.acc,
-  tol_result = pwma.tol, 
-  nausea_result = pwma.nausea,
-  headache_result = pwma.headache,
-  insomnia_result = pwma.insomnia,
-  dry_mouth_result = pwma.dry_mouth,
-  constipation_result = pwma.constipation,
-  dizziness_result = pwma.dizziness
-)
-#set meta regression predictors
-predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
-
-# Function to perform a single meta-regression
-perform_meta_regression <- function(meta_result, predictor_var) {
-  # Correctly constructing the formula using the predictor_var variable
-  formula <- as.formula(paste0("~", predictor_var))
-  result <- metareg(meta_result, formula)
-  return(result)
-}
-# Iterating over meta-analysis results and predictors
-for(meta_result_name in names(meta_analysis_results)) {
-  for(predictor_var in predictors) {
-    # Constructing a unique key for storing results
-    result_key <- paste(meta_result_name, predictor_var, sep = "_")
-    # Attempting the meta-regression, catching errors to continue with the next iteration
-    result <- tryCatch({
-      # Attempt to perform meta-regression
-      perform_meta_regression(meta_analysis_results[[meta_result_name]], predictor_var)
-    }, error = function(e) {
-      # If an error occurs, print a message and return NULL
-      message(paste0("Meta-regression failed for ", result_key, ": ", e$message))
-      NULL # Return NULL to indicate failure
-    }
-    )
-    # Store the result if the meta-regression was successful; otherwise, result will be NULL
-    meta_regressions_results[[result_key]] <- result
-  }
-}
-
+ meta_regressions_results <- list()
+      meta_analysis_results <- list(
+        anxiety_result = pwma.anxiety, 
+        acc_result = pwma.acc,
+        tol_result = pwma.tol, 
+        nausea_result = pwma.nausea,
+        headache_result = pwma.headache,
+        insomnia_result = pwma.insomnia,
+        dry_mouth_result = pwma.dry_mouth,
+        constipation_result = pwma.constipation,
+        dizziness_result = pwma.dizziness
+      )
+      #set meta regression predictors
+      predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
+      
+      # Function to perform a single meta-regression, adjusted to check for study count
+      perform_meta_regression <- function(meta_result, predictor_var) {
+        # Assuming 'k' represents the number of studies in the meta-analysis result
+        # You might need to adjust this part depending on the structure of your meta-analysis result objects
+        if(meta_result$k >= 10) { 
+          # If there are 10 or more studies, perform the meta-regression
+          formula <- as.formula(paste0("~", predictor_var))
+          result <- metareg(meta_result, formula)
+          return(result)
+        } else {
+          # If there are fewer than 10 studies, return a message or NULL
+          return(paste0("Not enough studies (", k, ") for ", predictor_var))
+        }
+      }
+      # Iterating over meta-analysis results and predictors
+      for(meta_result_name in names(meta_analysis_results)) {
+        for(predictor_var in predictors) {
+          # Constructing a unique key for storing results
+          result_key <- paste(meta_result_name, predictor_var, sep = "_")
+          # Attempting the meta-regression, catching errors to continue with the next iteration
+          result <- tryCatch({
+            # Attempt to perform meta-regression, now with a study count check
+            perform_meta_regression(meta_analysis_results[[meta_result_name]], predictor_var)
+          }, error = function(e) {
+            # If an error occurs, print a message and return NULL
+            message(paste0("Meta-regression failed for ", result_key, ": ", e$message))
+            NULL # Return NULL to indicate failure
+          }
+          )
+          # Store the result if the meta-regression was successful; otherwise, result will be NULL or a message
+          meta_regressions_results[[result_key]] <- result
+        }
+      }
+  
+      
+#this code removes regression results where there is a k < 10      
+      # Initialize a new list to store selected regression results
+      selected_regressions_results <- list()
+      
+      # Iterate through each key in the meta_regressions_results
+      for (result_key in names(meta_regressions_results)) {
+        # Access the regression result object
+        regression_result <- meta_regressions_results[[result_key]]
+        
+        # Check if regression_result is indeed a list and contains the 'k' value
+        if (is.list(regression_result) && !is.null(regression_result[["k"]])) {
+          # Check if 'k' is greater or equal to 10
+          if (regression_result[["k"]] >= 10) {
+            # If so, add this regression result to the selected_regressions_results list
+            selected_regressions_results[[result_key]] <- regression_result
+          }
+        }
+      }
+      
+     
+      
 # drop it if you don't like it ----
 names <- c('pwma.anhedonia',
            'pwma.anxiety',
@@ -1131,6 +1159,7 @@ names <- c('pwma.anhedonia',
            'vomiting.eer',
            'vomiting.rate.pla',
            'df',
-           'meta_regressions_results')
+           'selected_regressions_results')
 
 rm(list=setdiff(ls(pos=1), names), pos=1)
+
