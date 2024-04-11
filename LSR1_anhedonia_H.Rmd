@@ -71,7 +71,7 @@ For acceptability, tolerability, safety and specific-adverse events, we extracte
     Confidence intervals were adjusted using the Hartung-Knapp method.
     Prediction intervals were calculated to better report the effect of heterogeneity on the overall pooled effect.
 
-11. Sensitivity analysis method...
+11. We conducted a series of sensitivity analyses on the primary outcome. We aggregated IPD on randomised controlled trials on antidepressants in people with depression, performing a series of random effects network meta-analyses to compare the effects of pro-dopaminergic and non-pro-dopaminergic pharmacological interventions on anhedonia.
 
 12. Subgroup analysis and meta-regressions were also conducted for the following variables: mean age of participants, mean anhedonia baseline score, mean anxiety baseline score, sex (proportion of female participants), mean reward baseline score, and planned treatment duration.
     This was done using a mixed-effects model with the estimation of the between-study heterogeneity tau2 based on the REML method.
@@ -97,12 +97,6 @@ Data from `r cat(paste0(length(all.studies)))` studies contributed with at least
 The mean age of participants was `r round(mean(df$age_mean, na.rm = T), 1)` years (range `r round(min(df$age_mean, na.rm = T), 0)` to `r round(max(df$age_mean, na.rm = T), 0)` years), with a mean proportion of `r round(mean(df$female_prop, na.rm = T), 2)` female participants (range `r round(min(df$female_prop, na.rm = T), 2)` to `r round(max(df$female_prop, na.rm = T), 2)`).
 Included studies allocated the participants to treatment lasting between `r round(min(df$tx_duration, na.rm = T), 1)` to `r round(max(df$tx_duration, na.rm = T), 1)` weeks (median, `r round(median(df$tx_duration, na.rm = T), 1)` weeks).
 
-### Risk of Bias assessment
-
-For the primary outcome, anhedonia, two studies were rated high risk using the RoB2 tool, one due to domain three, bias due to missing outcome data, and one due to domain 5, the reporting of results.
-Two further studies were rated 'some concerns' while another two were rated low.
-These mixed risk of bias scores were....
-
 ### Primary outcome: reduction in anhedonia scores at 8 weeks (from 4 to 12 weeks)
 
 ```{r anhedonia_forest, echo=FALSE, fig.width=12, fig.height=4}
@@ -126,20 +120,25 @@ SMD: standardised mean difference, 95%CI: 95% confidence intervals, SD: standard
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.anhedonia$lower.random < 0) & (pwma.anhedonia$upper.random < 0)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.anhedonia$lower.random > 0) & (pwma.anhedonia$upper.random > 0)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.anhedonia$TE.random, 3)` (95%CI from `r round(pwma.anhedonia$lower.random, 3)` to `r round(pwma.anhedonia$upper.random, 3)`).
 The study results presented an I2 value of `r round(pwma.anhedonia$I2*100, 1)`% (95%CI from `r round(pwma.anhedonia$lower.I2*100, 1)`% to `r round(pwma.anhedonia$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.anhedonia$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.anhedonia$lower.predict, 3)` to `r round(pwma.anhedonia$upper.predict, 3)`).
 
-#### Sub-group and meta-regression analyses
+#### Risk of bias
 
-```{r, anhedonia_meta-reg, echo = F, results = 'asis'}
-# you will need to change 11 with your k from the meta-regression - not necessarily all the studies contributing to the MA had also data for the regressors.
-if (pwma.anhedonia[["k"]] < 10) 
-  cat(paste0('As there were less than 10 studies, no meta-regression was performed.'), sep = '\n')
+
+
+#### Sensitivity analyses
+
+```{r ipd-anhedonia-1, echo = F, results = 'asis'}
+
 ```
 
-```{r prepare-metareg-text-anhedonia, echo=F}
+#### Sub-group and meta-regression analyses
+
+```{r prepare-metareg-text-anhedonia, echo = F, results = 'asis'}
 # define predictors
 predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
 
 # Map short names to descriptive names for reporting
-descriptive_names <- c(age = "age", female_prop = "proportion of females",
+descriptive_names <- c(age = "age", 
+                       female_prop = "proportion of females",
                        anhedonia_baseline = "anhedonia baseline score",
                        anxiety_baseline = "anxiety baseline score",
                        reward_baseline = "reward baseline score",
@@ -175,23 +174,20 @@ to_natural_list <- function(vec) {
 
 # Prepare summary sentences
 sufficient_text <- if (length(sufficient_predictors) > 0) {
-  paste("Sufficient data to conduct a meta-regression existed for", to_natural_list(sufficient_predictors))
+  cat(paste0("We found enough data (i.e. at least ten studies) to conduct a meta-regression for ", to_natural_list(sufficient_predictors), '.'))
 } else {
-  "sufficient data to conduct a meta-regression did not exist for any predictor."
+  cat(paste("We did not find sufficient data (i.e. at least ten studies) to conduct a meta-regression for the investigated predictors."))
 }
 
 insufficient_text <- if (length(insufficient_predictors) > 0) {
-  paste("Insufficient data existed for", to_natural_list(insufficient_predictors))
+  cat(paste0(" Insufficient data existed for ", to_natural_list(insufficient_predictors), '.'))
 } else {
-  "insufficient data did not exist for any predictor."
+  cat(paste(" Insufficient data did not exist for any predictor."))
 }
+```
 
-# Combine the sentences
-summary_available_data <- paste(sufficient_text, insufficient_text, sep = ". ")
-
-#details of meta-regression for text
-
-# Define acceptability as the outcome of interest 
+``` {r prepare-metareg-text-anhedonia-details, echo = F, results = 'asis'}
+# Define outcome of interest
 specific_outcome <- "anhedonia_result"
 
 # Initialize a list to store messages about the significance for the specific outcome
@@ -210,11 +206,11 @@ for (predictor in predictors) {
       beta <- round(regression_result[["beta"]][2], 3)
       ci_lb <- round(regression_result[["ci.lb"]][2], 3)
       ci_ub <- round(regression_result[["ci.ub"]][2], 3)
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was significant (beta =", beta, 
-                        ", 95% CI from", ci_lb, "to", ci_ub, ")")
+      message <- paste0("* The meta-regression for ", descriptive_names[[predictor]], " was significant (beta = ", beta, 
+                        ", 95% CI from ", ci_lb, " to ", ci_ub, ").")
     } else {
       # Not significant
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was not significant")
+      message <- paste("* The meta-regression for", descriptive_names[[predictor]], "was not significant.")
     }
     
     significance_summary[[predictor]] <- message
@@ -222,14 +218,10 @@ for (predictor in predictors) {
 }
 
 # Combine all messages into a single string for inline use
-mr_significance_text_anhedonia <- paste(significance_summary, collapse = ". ")
-
+mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
 
-In our analysis `r summary_available_data`.
-`r mr_significance_text_anhedonia`
-
-### Secondary outcome: Reduction in mean anxiety score at 4-12 weeks
+### Secondary outcome: Reduction in mean anxiety score at 8 weeks (from 4 to 12 weeks)
 
 ```{r anxiety_forest, echo=FALSE, fig.width=12, fig.height=8}
 forest(pwma.anxiety, 
@@ -252,22 +244,15 @@ SMD: standardised mean difference, 95%CI: 95% confidence intervals, SD: standard
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.anxiety$lower.random < 0) & (pwma.anxiety$upper.random < 0)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.anxiety$lower.random > 0) & (pwma.anxiety$upper.random > 0)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.anxiety$TE.random, 3)` (95%CI from `r round(pwma.anxiety$lower.random, 3)` to `r round(pwma.anxiety$upper.random, 3)`).
 The study results presented an I2 value of `r round(pwma.anxiety$I2*100, 1)`% (95%CI from `r round(pwma.anxiety$lower.I2*100, 1)`% to `r round(pwma.anxiety$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.anxiety$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.anxiety$lower.predict, 3)` to `r round(pwma.anxiety$upper.predict, 3)`).
 
-Pro-dopaminergic interventions showed a small significant effect reducing symptoms of anxiety with a SMD of -0.1656, p=\<.0001 The study results were not significantly heterogeneous with p=.560.There were no significant differences between subgroups with Q=4.44 (2) p=.108
+#### Sub-group and meta-regression analyses
 
-```{r, anx_meta-reg, echo=F, include=T, results='asis'}
-
-if (pwma.anxiety[["k"]] < 10) 
-  
-  cat(paste0('As there were less than 10 studies, no meta-regression was performed.'), sep = '\n')
-
-```
-
-```{r prepare-metareg-text-anx, echo=F}
+```{r prepare-metareg-text-anx, echo = F, results = 'asis'}
 # define predictors
 predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
 
 # Map short names to descriptive names for reporting
-descriptive_names <- c(age = "age", female_prop = "proportion of females",
+descriptive_names <- c(age = "age", 
+                       female_prop = "proportion of females",
                        anhedonia_baseline = "anhedonia baseline score",
                        anxiety_baseline = "anxiety baseline score",
                        reward_baseline = "reward baseline score",
@@ -303,24 +288,21 @@ to_natural_list <- function(vec) {
 
 # Prepare summary sentences
 sufficient_text <- if (length(sufficient_predictors) > 0) {
-  paste("Sufficient data to conduct a meta-regression existed for", to_natural_list(sufficient_predictors))
+  cat(paste0("We found enough data (i.e. at least ten studies) to conduct a meta-regression for ", to_natural_list(sufficient_predictors), '.'))
 } else {
-  "sufficient data to conduct a meta-regression did not exist for any predictor."
+  cat(paste("We did not find sufficient data (i.e. at least ten studies) to conduct a meta-regression for the investigated predictors."))
 }
 
 insufficient_text <- if (length(insufficient_predictors) > 0) {
-  paste("Insufficient data existed for", to_natural_list(insufficient_predictors))
+  cat(paste0(" Insufficient data existed for ", to_natural_list(insufficient_predictors), '.'))
 } else {
-  "insufficient data did not exist for any predictor."
+  cat(paste(" Insufficient data did not exist for any predictor."))
 }
+```
 
-# Combine the sentences
-summary_available_data <- paste(sufficient_text, insufficient_text, sep = ". ")
-
-#details of meta-regression for text
-
-# Define acceptability as the outcome of interest 
-specific_outcome <- "acc_result"
+``` {r prepare-metareg-text-anx-details, echo = F, results = 'asis'}
+# Define outcome of interest
+specific_outcome <- "anxiety_result"
 
 # Initialize a list to store messages about the significance for the specific outcome
 significance_summary <- list()
@@ -338,11 +320,11 @@ for (predictor in predictors) {
       beta <- round(regression_result[["beta"]][2], 3)
       ci_lb <- round(regression_result[["ci.lb"]][2], 3)
       ci_ub <- round(regression_result[["ci.ub"]][2], 3)
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was significant (beta =", beta, 
-                        ", 95% CI from", ci_lb, "to", ci_ub, ")")
+      message <- paste0("* The meta-regression for ", descriptive_names[[predictor]], " was significant (beta = ", beta, 
+                        ", 95% CI from ", ci_lb, " to ", ci_ub, ").")
     } else {
       # Not significant
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was not significant")
+      message <- paste("* The meta-regression for", descriptive_names[[predictor]], "was not significant.")
     }
     
     significance_summary[[predictor]] <- message
@@ -350,11 +332,8 @@ for (predictor in predictors) {
 }
 
 # Combine all messages into a single string for inline use
-mr_significance_text_anx <- paste(significance_summary, collapse = ". ")
+mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
-
-In our analysis `r summary_available_data`.
-`r mr_significance_text_anx`
 
 ### Secondary outcome: Dropouts due to any reason
 
@@ -379,17 +358,15 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.acc$lower.random < 1) & (pwma.acc$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.acc$lower.random > 1) & (pwma.acc$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.acc$TE.random, 3)` (95%CI from `r round(pwma.acc$lower.random, 3)` to `r round(pwma.acc$upper.random, 3)`).
 The study results presented an I2 value of `r round(pwma.acc$I2*100, 1)`% (95%CI from `r round(pwma.acc$lower.I2*100, 1)`% to `r round(pwma.acc$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.acc$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.acc$lower.predict, 3)` to `r round(pwma.acc$upper.predict, 3)`).
 
-```{r, acc_meta-reg, echo=F, include=T, results='asis'}
+#### Sub-group and meta-regression analyses
 
-if (pwma.acc[["k"]] < 10) 
-  
-  cat(paste0('As there were less than 10 studies, no meta-regression was performed.'), sep = '\n')
-
+```{r prepare-metareg-text-acc, echo = F, results = 'asis'}
 # define predictors
 predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
 
 # Map short names to descriptive names for reporting
-descriptive_names <- c(age = "age", female_prop = "proportion of females",
+descriptive_names <- c(age = "age", 
+                       female_prop = "proportion of females",
                        anhedonia_baseline = "anhedonia baseline score",
                        anxiety_baseline = "anxiety baseline score",
                        reward_baseline = "reward baseline score",
@@ -425,24 +402,20 @@ to_natural_list <- function(vec) {
 
 # Prepare summary sentences
 sufficient_text <- if (length(sufficient_predictors) > 0) {
-  paste("sufficient data to conduct a meta-regression existed for", to_natural_list(sufficient_predictors))
+  cat(paste0("We found enough data (i.e. at least ten studies) to conduct a meta-regression for ", to_natural_list(sufficient_predictors), '.'))
 } else {
-  "sufficient data to conduct a meta-regression did not exist for any predictor."
+  cat(paste("We did not find sufficient data (i.e. at least ten studies) to conduct a meta-regression for the investigated predictors."))
 }
 
 insufficient_text <- if (length(insufficient_predictors) > 0) {
-  paste("Insufficient data existed for", to_natural_list(insufficient_predictors))
+  cat(paste0(" Insufficient data existed for ", to_natural_list(insufficient_predictors), '.'))
 } else {
-  "insufficient data did not exist for any predictor."
+  cat(paste(" Insufficient data did not exist for any predictor."))
 }
+```
 
-# Combine the sentences
-summary_available_data <- paste(sufficient_text, insufficient_text, sep = ". ")
-
-
-#DETAILS OF META-REGRESSION
-
-# Define acceptability as the outcome of interest 
+``` {r prepare-metareg-text-acc-details, echo = F, results = 'asis'}
+# Define outcome of interest
 specific_outcome <- "acc_result"
 
 # Initialize a list to store messages about the significance for the specific outcome
@@ -457,15 +430,15 @@ for (predictor in predictors) {
   # Proceed if the regression_result is not null and has the expected structure
   if (!is.null(regression_result) && !is.null(regression_result[["pval"]]) && length(regression_result[["pval"]]) >= 2) {
     if (regression_result[["pval"]][2] < 0.05) {
-      # Significant result, prepare text with the second values of beta and CI
-      beta <- rounbd(regression_result[["beta"]][2], 3)
+      # Significant result, prepare summary with the second values of beta and CI
+      beta <- round(regression_result[["beta"]][2], 3)
       ci_lb <- round(regression_result[["ci.lb"]][2], 3)
       ci_ub <- round(regression_result[["ci.ub"]][2], 3)
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was significant (beta =", beta, 
-                        ", 95% CI from", ci_lb, "to", ci_ub, ")")
+      message <- paste0("* The meta-regression for ", descriptive_names[[predictor]], " was significant (beta = ", beta, 
+                        ", 95% CI from ", ci_lb, " to ", ci_ub, ").")
     } else {
       # Not significant
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was not significant")
+      message <- paste("* The meta-regression for", descriptive_names[[predictor]], "was not significant.")
     }
     
     significance_summary[[predictor]] <- message
@@ -473,12 +446,8 @@ for (predictor in predictors) {
 }
 
 # Combine all messages into a single string for inline use
-mr_significance_text_acc <- paste(significance_summary, collapse = ". ")
-
+mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
-
-In our analysis `r summary_available_data`.
-`r mr_significance_text_acc`.
 
 ### Secondary outcome: dropouts due to side effects
 
@@ -507,20 +476,15 @@ The study results presented an I2 value of `r round(pwma.tol$I2*100, 1)`% (95%CI
 Meta-regressions were conducted for age, sex, and baseline anxiety score.
 Of these, only sex was a significant predictor of dropouts due to adverse events with a beta=-2.960, SE=1.21 95%CI (-5.423; -0.497) and an R\^2=40.63% and p=.022.
 
-```{r, tol_meta-reg, echo=F, include=T, results='asis'}
+#### Sub-group and meta-regression analyses
 
-if (pwma.tol[["k"]] < 10) 
-  
-  cat(paste0('As there were less than 10 studies, no meta-regression was performed.'), sep = '\n')
-
-```
-
-```{r metareg-text-tol, echo=F}
+```{r prepare-metareg-text-tol, echo = F, results = 'asis'}
 # define predictors
 predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
 
 # Map short names to descriptive names for reporting
-descriptive_names <- c(age = "age", female_prop = "proportion of females",
+descriptive_names <- c(age = "age", 
+                       female_prop = "proportion of females",
                        anhedonia_baseline = "anhedonia baseline score",
                        anxiety_baseline = "anxiety baseline score",
                        reward_baseline = "reward baseline score",
@@ -556,24 +520,20 @@ to_natural_list <- function(vec) {
 
 # Prepare summary sentences
 sufficient_text <- if (length(sufficient_predictors) > 0) {
-  paste("sufficient data to conduct a meta-regression existed for", to_natural_list(sufficient_predictors))
+  cat(paste0("We found enough data (i.e. at least ten studies) to conduct a meta-regression for ", to_natural_list(sufficient_predictors), '.'))
 } else {
-  "sufficient data to conduct a meta-regression did not exist for any predictor."
+  cat(paste("We did not find sufficient data (i.e. at least ten studies) to conduct a meta-regression for the investigated predictors."))
 }
 
 insufficient_text <- if (length(insufficient_predictors) > 0) {
-  paste("Insufficient data existed for", to_natural_list(insufficient_predictors))
+  cat(paste0(" Insufficient data existed for ", to_natural_list(insufficient_predictors), '.'))
 } else {
-  "insufficient data did not exist for any predictor."
+  cat(paste(" Insufficient data did not exist for any predictor."))
 }
+```
 
-# Combine the sentences
-summary_available_data <- paste(sufficient_text, insufficient_text, sep = ". ")
-
-
-#DETAILS OF META-REGRESSION
-
-# Define acceptability as the outcome of interest 
+``` {r prepare-metareg-text-tol-details, echo = F, results = 'asis'}
+# Define outcome of interest
 specific_outcome <- "tol_result"
 
 # Initialize a list to store messages about the significance for the specific outcome
@@ -592,11 +552,11 @@ for (predictor in predictors) {
       beta <- round(regression_result[["beta"]][2], 3)
       ci_lb <- round(regression_result[["ci.lb"]][2], 3)
       ci_ub <- round(regression_result[["ci.ub"]][2], 3)
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was significant (beta =", beta, 
-                        ", 95% CI from", ci_lb, "to", ci_ub, ")")
+      message <- paste0("* The meta-regression for ", descriptive_names[[predictor]], " was significant (beta = ", beta, 
+                        ", 95% CI from ", ci_lb, " to ", ci_ub, ").")
     } else {
       # Not significant
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was not significant")
+      message <- paste("* The meta-regression for", descriptive_names[[predictor]], "was not significant.")
     }
     
     significance_summary[[predictor]] <- message
@@ -604,12 +564,8 @@ for (predictor in predictors) {
 }
 
 # Combine all messages into a single string for inline use
-mr_significance_text_tol <- paste(significance_summary, collapse = ". ")
-
+mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
-
-In our analysis `r summary_available_data`.
-`r mr_significance_text_tol`.
 
 ### Secondary outcome: nausea
 
@@ -634,20 +590,15 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.nausea$lower.random < 1) & (pwma.nausea$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.nausea$lower.random > 1) & (pwma.nausea$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.nausea$TE.random, 3)` (95%CI from `r round(pwma.nausea$lower.random, 3)` to `r round(pwma.nausea$upper.random, 3)`).
 The study results presented an I2 value of `r round(pwma.nausea$I2*100, 1)`% (95%CI from `r round(pwma.nausea$lower.I2*100, 1)`% to `r round(pwma.nausea$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.nausea$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.nausea$lower.predict, 3)` to `r round(pwma.nausea$upper.predict, 3)`).
 
-```{r, nausea_meta-reg, echo=F, include=T, results='asis'}
+#### Sub-group and meta-regression analyses
 
-if (pwma.nausea[["k"]] < 10) 
-  
-  cat(paste0('As there were less than 10 studies, no meta-regression was performed.'), sep = '\n')
-
-```
-
-```{r metareg-text-nausea, echo=F}
+```{r prepare-metareg-text-nausea, echo = F, results = 'asis'}
 # define predictors
 predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
 
 # Map short names to descriptive names for reporting
-descriptive_names <- c(age = "age", female_prop = "proportion of females",
+descriptive_names <- c(age = "age", 
+                       female_prop = "proportion of females",
                        anhedonia_baseline = "anhedonia baseline score",
                        anxiety_baseline = "anxiety baseline score",
                        reward_baseline = "reward baseline score",
@@ -683,24 +634,20 @@ to_natural_list <- function(vec) {
 
 # Prepare summary sentences
 sufficient_text <- if (length(sufficient_predictors) > 0) {
-  paste("sufficient data to conduct a meta-regression existed for", to_natural_list(sufficient_predictors))
+  cat(paste0("We found enough data (i.e. at least ten studies) to conduct a meta-regression for ", to_natural_list(sufficient_predictors), '.'))
 } else {
-  "sufficient data to conduct a meta-regression did not exist for any predictor."
+  cat(paste("We did not find sufficient data (i.e. at least ten studies) to conduct a meta-regression for the investigated predictors."))
 }
 
 insufficient_text <- if (length(insufficient_predictors) > 0) {
-  paste("Insufficient data existed for", to_natural_list(insufficient_predictors))
+  cat(paste0(" Insufficient data existed for ", to_natural_list(insufficient_predictors), '.'))
 } else {
-  "insufficient data did not exist for any predictor."
+  cat(paste(" Insufficient data did not exist for any predictor."))
 }
+```
 
-# Combine the sentences
-summary_available_data <- paste(sufficient_text, insufficient_text, sep = ". ")
-
-
-#DETAILS OF META-REGRESSION
-
-# Define acceptability as the outcome of interest 
+``` {r prepare-metareg-text-nausea-details, echo = F, results = 'asis'}
+# Define outcome of interest
 specific_outcome <- "nausea_result"
 
 # Initialize a list to store messages about the significance for the specific outcome
@@ -719,11 +666,11 @@ for (predictor in predictors) {
       beta <- round(regression_result[["beta"]][2], 3)
       ci_lb <- round(regression_result[["ci.lb"]][2], 3)
       ci_ub <- round(regression_result[["ci.ub"]][2], 3)
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was significant (beta =", beta, 
-                        ", 95% CI from", ci_lb, "to", ci_ub, ")")
+      message <- paste0("* The meta-regression for ", descriptive_names[[predictor]], " was significant (beta = ", beta, 
+                        ", 95% CI from ", ci_lb, " to ", ci_ub, ").")
     } else {
       # Not significant
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was not significant")
+      message <- paste("* The meta-regression for", descriptive_names[[predictor]], "was not significant.")
     }
     
     significance_summary[[predictor]] <- message
@@ -731,12 +678,8 @@ for (predictor in predictors) {
 }
 
 # Combine all messages into a single string for inline use
-mr_significance_text_nausea <- paste(significance_summary, collapse = ". ")
-
+mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
-
-In our analysis `r summary_available_data`.
-`r mr_significance_text_nausea`.
 
 ### Secondary outcome: headache
 
@@ -761,23 +704,15 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.headache$lower.random < 1) & (pwma.headache$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.headache$lower.random > 1) & (pwma.headache$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.headache$TE.random, 3)` (95%CI from `r round(pwma.headache$lower.random, 3)` to `r round(pwma.headache$upper.random, 3)`).
 The study results presented an I2 value of `r round(pwma.headache$I2*100, 1)`% (95%CI from `r round(pwma.headache$lower.I2*100, 1)`% to `r round(pwma.headache$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.headache$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.headache$lower.predict, 3)` to `r round(pwma.headache$upper.predict, 3)`).
 
-There were no significant subgroup differences between participants assigned to different classes of drug.
-Meta-regressions were conducted for age and sex and neither were significant predictors.
+#### Sub-group and meta-regression analyses
 
-```{r, headache_meta-reg, echo=F, include=T, results='asis'}
-
-if (pwma.tol[["k"]] < 10) 
-  
-  cat(paste0('As there were less than 10 studies, no meta-regression was performed.'), sep = '\n')
-
-```
-
-```{r metareg-text-headache, echo=F}
+```{r prepare-metareg-text-headache, echo = F, results = 'asis'}
 # define predictors
 predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
 
 # Map short names to descriptive names for reporting
-descriptive_names <- c(age = "age", female_prop = "proportion of females",
+descriptive_names <- c(age = "age", 
+                       female_prop = "proportion of females",
                        anhedonia_baseline = "anhedonia baseline score",
                        anxiety_baseline = "anxiety baseline score",
                        reward_baseline = "reward baseline score",
@@ -813,24 +748,20 @@ to_natural_list <- function(vec) {
 
 # Prepare summary sentences
 sufficient_text <- if (length(sufficient_predictors) > 0) {
-  paste("sufficient data to conduct a meta-regression existed for", to_natural_list(sufficient_predictors))
+  cat(paste0("We found enough data (i.e. at least ten studies) to conduct a meta-regression for ", to_natural_list(sufficient_predictors), '.'))
 } else {
-  "sufficient data to conduct a meta-regression did not exist for any predictor."
+  cat(paste("We did not find sufficient data (i.e. at least ten studies) to conduct a meta-regression for the investigated predictors."))
 }
 
 insufficient_text <- if (length(insufficient_predictors) > 0) {
-  paste("Insufficient data existed for", to_natural_list(insufficient_predictors))
+  cat(paste0(" Insufficient data existed for ", to_natural_list(insufficient_predictors), '.'))
 } else {
-  "insufficient data did not exist for any predictor."
+  cat(paste(" Insufficient data did not exist for any predictor."))
 }
+```
 
-# Combine the sentences
-summary_available_data <- paste(sufficient_text, insufficient_text, sep = ". ")
-
-
-#DETAILS OF META-REGRESSION
-
-# Define acceptability as the outcome of interest 
+``` {r prepare-metareg-text-headache-details, echo = F, results = 'asis'}
+# Define outcome of interest
 specific_outcome <- "headache_result"
 
 # Initialize a list to store messages about the significance for the specific outcome
@@ -849,11 +780,11 @@ for (predictor in predictors) {
       beta <- round(regression_result[["beta"]][2], 3)
       ci_lb <- round(regression_result[["ci.lb"]][2], 3)
       ci_ub <- round(regression_result[["ci.ub"]][2], 3)
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was significant (beta =", beta, 
-                        ", 95% CI from", ci_lb, "to", ci_ub, ")")
+      message <- paste0("* The meta-regression for ", descriptive_names[[predictor]], " was significant (beta = ", beta, 
+                        ", 95% CI from ", ci_lb, " to ", ci_ub, ").")
     } else {
       # Not significant
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was not significant")
+      message <- paste("* The meta-regression for", descriptive_names[[predictor]], "was not significant.")
     }
     
     significance_summary[[predictor]] <- message
@@ -861,12 +792,8 @@ for (predictor in predictors) {
 }
 
 # Combine all messages into a single string for inline use
-mr_significance_text_headache <- paste(significance_summary, collapse = ". ")
-
+mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
-
-In our analysis `r summary_available_data`.
-`r mr_significance_text_headache`.
 
 ### Secondary outcome: insomnia
 
@@ -891,20 +818,15 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.insomnia$lower.random < 1) & (pwma.insomnia$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.insomnia$lower.random > 1) & (pwma.insomnia$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.insomnia$TE.random, 3)` (95%CI from `r round(pwma.insomnia$lower.random, 3)` to `r round(pwma.insomnia$upper.random, 3)`).
 The study results presented an I2 value of `r round(pwma.insomnia$I2*100, 1)`% (95%CI from `r round(pwma.insomnia$lower.I2*100, 1)`% to `r round(pwma.insomnia$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.insomnia$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.insomnia$lower.predict, 3)` to `r round(pwma.insomnia$upper.predict, 3)`).
 
-```{r, insomnia_meta-reg, echo=F, include=T, results='asis'}
+#### Sub-group and meta-regression analyses
 
-if (pwma.insomnia[["k"]] < 10) 
-  
-  cat(paste0('As there were less than 10 studies, no meta-regression was performed.'), sep = '\n')
-
-```
-
-```{r metareg-text-insomnia, echo=F}
+```{r prepare-metareg-text-insomnia, echo = F, results = 'asis'}
 # define predictors
 predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
 
 # Map short names to descriptive names for reporting
-descriptive_names <- c(age = "age", female_prop = "proportion of females",
+descriptive_names <- c(age = "age", 
+                       female_prop = "proportion of females",
                        anhedonia_baseline = "anhedonia baseline score",
                        anxiety_baseline = "anxiety baseline score",
                        reward_baseline = "reward baseline score",
@@ -940,24 +862,20 @@ to_natural_list <- function(vec) {
 
 # Prepare summary sentences
 sufficient_text <- if (length(sufficient_predictors) > 0) {
-  paste("sufficient data to conduct a meta-regression existed for", to_natural_list(sufficient_predictors))
+  cat(paste0("We found enough data (i.e. at least ten studies) to conduct a meta-regression for ", to_natural_list(sufficient_predictors), '.'))
 } else {
-  "sufficient data to conduct a meta-regression did not exist for any predictor."
+  cat(paste("We did not find sufficient data (i.e. at least ten studies) to conduct a meta-regression for the investigated predictors."))
 }
 
 insufficient_text <- if (length(insufficient_predictors) > 0) {
-  paste("Insufficient data existed for", to_natural_list(insufficient_predictors))
+  cat(paste0(" Insufficient data existed for ", to_natural_list(insufficient_predictors), '.'))
 } else {
-  "insufficient data did not exist for any predictor."
+  cat(paste(" Insufficient data did not exist for any predictor."))
 }
+```
 
-# Combine the sentences
-summary_available_data <- paste(sufficient_text, insufficient_text, sep = ". ")
-
-
-#DETAILS OF META-REGRESSION
-
-# Define acceptability as the outcome of interest 
+``` {r prepare-metareg-text-insomnia-details, echo = F, results = 'asis'}
+# Define outcome of interest
 specific_outcome <- "insomnia_result"
 
 # Initialize a list to store messages about the significance for the specific outcome
@@ -976,11 +894,11 @@ for (predictor in predictors) {
       beta <- round(regression_result[["beta"]][2], 3)
       ci_lb <- round(regression_result[["ci.lb"]][2], 3)
       ci_ub <- round(regression_result[["ci.ub"]][2], 3)
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was significant (beta =", beta, 
-                        ", 95% CI from", ci_lb, "to", ci_ub, ")")
+      message <- paste0("* The meta-regression for ", descriptive_names[[predictor]], " was significant (beta = ", beta, 
+                        ", 95% CI from ", ci_lb, " to ", ci_ub, ").")
     } else {
       # Not significant
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was not significant")
+      message <- paste("* The meta-regression for", descriptive_names[[predictor]], "was not significant.")
     }
     
     significance_summary[[predictor]] <- message
@@ -988,144 +906,10 @@ for (predictor in predictors) {
 }
 
 # Combine all messages into a single string for inline use
-mr_significance_text_insomnia <- paste(significance_summary, collapse = ". ")
-
+mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
 
-In our analysis `r summary_available_data`.
-`r mr_significance_text_insomnia`.
-
-### Secondary outcome:dry mouth
-
-```{r dry_mouth_forest, echo=FALSE, fig.width=12, fig.height=10}
-forest(pwma.dry_mouth, 
-       sortvar = seTE, 
-       print.I2.ci = T, 
-       label.e = 'Intervention', 
-       label.c = 'Placebo', 
-       label.left = 'Favours intervention',
-       label.right = "Favours placebo",
-       smlab = 'dry_mouth',
-       col.square = pwma.dry_mouth$data$colour
-)
-```
-
-**Figure X** Forest plot for dry mouth for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
-OR: odds ratio, 95%CI: 95% confidence intervals.
-
-`r pwma.dry_mouth$k.TE` `r ifelse(pwma.dry_mouth$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.dry_mouth$n.e.pooled, pwma.dry_mouth$n.c.pooled), na.rm = T)` participants (`r pwma.dry_mouth$n.e.pooled` allocated to pro-dopaminergic interventions, `r pwma.dry_mouth$n.c.pooled` allocated to pill placebo).
-
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.dry_mouth$lower.random < 1) & (pwma.dry_mouth$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.dry_mouth$lower.random > 1) & (pwma.dry_mouth$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.dry_mouth$TE.random, 3)` (95%CI from `r round(pwma.dry_mouth$lower.random, 3)` to `r round(pwma.dry_mouth$upper.random, 3)`).
-The study results presented an I2 value of `r round(pwma.dry_mouth$I2*100, 1)`% (95%CI from `r round(pwma.dry_mouth$lower.I2*100, 1)`% to `r round(pwma.dry_mouth$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.dry_mouth$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.dry_mouth$lower.predict, 3)` to `r round(pwma.dry_mouth$upper.predict, 3)`).
-
-There were no significant subgroup differences between participants assigned to different classes of drug.
-Meta-regressions were conducted for age, sex, and treatment duration of which only sex was a significant predictor with females significantly more likely to report dry mouth with a beta=-2.070, p=.002, 95%CI(-3.834; -0.308) and the model accounting for 55.280% of heterogeneity and p=.024.
-
-```{r, dry_mouth_meta-reg, echo=F, include=T, results='asis'}
-
-if (pwma.dry_mouth[["k"]] < 10) 
-  
-  cat(paste0('As there were less than 10 studies, no meta-regression was performed.'), sep = '\n')
-
-```
-
-```{r metareg-text-dry_mouth, echo=F}
-# define predictors
-predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
-
-# Map short names to descriptive names for reporting
-descriptive_names <- c(age = "age", female_prop = "proportion of females",
-                       anhedonia_baseline = "anhedonia baseline score",
-                       anxiety_baseline = "anxiety baseline score",
-                       reward_baseline = "reward baseline score",
-                       tx_duration = "treatment duration")
-
-# Initialize lists to store predictors with sufficient and insufficient data
-sufficient_predictors <- vector("character", length = 0)
-insufficient_predictors <- vector("character", length = 0)
-
-# Iterate over predictors to categorize them
-for (predictor in predictors) {
-  result_key <- paste("dry_mouth_result", predictor, sep = "_")
-  if (!is.null(selected_regressions_results[[result_key]])) {
-    sufficient_predictors <- c(sufficient_predictors, descriptive_names[[predictor]])
-  } else {
-    insufficient_predictors <- c(insufficient_predictors, descriptive_names[[predictor]])
-  }
-}
-
-# Function to create a natural language list from a vector
-to_natural_list <- function(vec) {
-  if (length(vec) == 0) {
-    return(NULL)
-  } else if (length(vec) == 1) {
-    return(vec)
-  } else if (length(vec) == 2) {
-    return(paste(vec, collapse = " and "))
-  } else {
-    vec[length(vec)] <- paste("and", vec[length(vec)])
-    return(paste(vec, collapse = ", "))
-  }
-}
-
-# Prepare summary sentences
-sufficient_text <- if (length(sufficient_predictors) > 0) {
-  paste("sufficient data to conduct a meta-regression existed for", to_natural_list(sufficient_predictors))
-} else {
-  "sufficient data to conduct a meta-regression did not exist for any predictor."
-}
-
-insufficient_text <- if (length(insufficient_predictors) > 0) {
-  paste("Insufficient data existed for", to_natural_list(insufficient_predictors))
-} else {
-  "insufficient data did not exist for any predictor."
-}
-
-# Combine the sentences
-summary_available_data <- paste(sufficient_text, insufficient_text, sep = ". ")
-
-
-#DETAILS OF META-REGRESSION
-
-# Define acceptability as the outcome of interest 
-specific_outcome <- "dry_mouth_result"
-
-# Initialize a list to store messages about the significance for the specific outcome
-significance_summary <- list()
-
-# Iterate only over the predictors related to the specific outcome
-for (predictor in predictors) {
-  # Construct the result key for the specific outcome and predictor
-  result_key <- paste(specific_outcome, predictor, sep = "_")
-  regression_result <- selected_regressions_results[[result_key]]
-  
-  # Proceed if the regression_result is not null and has the expected structure
-  if (!is.null(regression_result) && !is.null(regression_result[["pval"]]) && length(regression_result[["pval"]]) >= 2) {
-    if (regression_result[["pval"]][2] < 0.05) {
-      # Significant result, prepare summary with the second values of beta and CI
-      beta <- round(regression_result[["beta"]][2], 3)
-      ci_lb <- round(regression_result[["ci.lb"]][2], 3)
-      ci_ub <- round(regression_result[["ci.ub"]][2], 3)
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was significant (beta =", beta, 
-                        ", 95% CI from", ci_lb, "to", ci_ub, ")")
-    } else {
-      # Not significant
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was not significant")
-    }
-    
-    significance_summary[[predictor]] <- message
-  }
-}
-
-# Combine all messages into a single string for inline use
-mr_significance_text_dry_mouth <- paste(significance_summary, collapse = ". ")
-
-```
-
-In our analysis `r summary_available_data`.
-`r mr_significance_text_dry_mouth`.
-
-### Secondary outcome:constipation
+### Secondary outcome: constipation
 
 ```{r constipation_forest, echo=FALSE, fig.width=12, fig.height=9}
 forest(pwma.constipation, 
@@ -1140,7 +924,7 @@ forest(pwma.constipation,
 )
 ```
 
-**Figure X** Forest plot for dropouts due to adverse events for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
+**Figure X** Forest plot for dropouts due to adverse events for the comparison of pro-dopaminergic interventions vs placebo at 8 (4-12) weeks.
 OR: odds ratio, 95%CI: 95% confidence intervals.
 
 `r pwma.constipation$k.TE` `r ifelse(pwma.constipation$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.constipation$n.e.pooled, pwma.constipation$n.c.pooled), na.rm = T)` participants (`r pwma.constipation$n.e.pooled` allocated to pro-dopaminergic interventions, `r pwma.constipation$n.c.pooled` allocated to pill placebo).
@@ -1150,20 +934,15 @@ The study results presented an I2 value of `r round(pwma.constipation$I2*100, 1)
 
 There were no significant subgroup differences between participants assigned to different classes of drug.
 
-```{r, constipation_meta-reg, echo=F, include=T, results='asis'}
+#### Sub-group and meta-regression analyses
 
-if (pwma.constipation[["k"]] < 10) 
-  
-  cat(paste0('As there were less than 10 studies, no meta-regression was performed.'), sep = '\n')
-
-```
-
-```{r metareg-text-constipation, echo=F}
+```{r prepare-metareg-text-constipation, echo = F, results = 'asis'}
 # define predictors
 predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
 
 # Map short names to descriptive names for reporting
-descriptive_names <- c(age = "age", female_prop = "proportion of females",
+descriptive_names <- c(age = "age", 
+                       female_prop = "proportion of females",
                        anhedonia_baseline = "anhedonia baseline score",
                        anxiety_baseline = "anxiety baseline score",
                        reward_baseline = "reward baseline score",
@@ -1199,25 +978,21 @@ to_natural_list <- function(vec) {
 
 # Prepare summary sentences
 sufficient_text <- if (length(sufficient_predictors) > 0) {
-  paste("sufficient data to conduct a meta-regression existed for", to_natural_list(sufficient_predictors))
+  cat(paste0("We found enough data (i.e. at least ten studies) to conduct a meta-regression for ", to_natural_list(sufficient_predictors), '.'))
 } else {
-  "sufficient data to conduct a meta-regression did not exist for any predictor."
+  cat(paste("We did not find sufficient data (i.e. at least ten studies) to conduct a meta-regression for the investigated predictors."))
 }
 
 insufficient_text <- if (length(insufficient_predictors) > 0) {
-  paste("Insufficient data existed for", to_natural_list(insufficient_predictors))
+  cat(paste0(" Insufficient data existed for ", to_natural_list(insufficient_predictors), '.'))
 } else {
-  "insufficient data did not exist for any predictor."
+  cat(paste(" Insufficient data did not exist for any predictor."))
 }
+```
 
-# Combine the sentences
-summary_available_data <- paste(sufficient_text, insufficient_text, sep = ". ")
-
-
-#DETAILS OF META-REGRESSION
-
-# Define acceptability as the outcome of interest 
-specific_outcome <- "tol_result"
+``` {r prepare-metareg-text-constipation-details, echo = F, results = 'asis'}
+# Define outcome of interest
+specific_outcome <- "constipation_result"
 
 # Initialize a list to store messages about the significance for the specific outcome
 significance_summary <- list()
@@ -1235,11 +1010,11 @@ for (predictor in predictors) {
       beta <- round(regression_result[["beta"]][2], 3)
       ci_lb <- round(regression_result[["ci.lb"]][2], 3)
       ci_ub <- round(regression_result[["ci.ub"]][2], 3)
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was significant (beta =", beta, 
-                        ", 95% CI from", ci_lb, "to", ci_ub, ")")
+      message <- paste0("* The meta-regression for ", descriptive_names[[predictor]], " was significant (beta = ", beta, 
+                        ", 95% CI from ", ci_lb, " to ", ci_ub, ").")
     } else {
       # Not significant
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was not significant")
+      message <- paste("* The meta-regression for", descriptive_names[[predictor]], "was not significant.")
     }
     
     significance_summary[[predictor]] <- message
@@ -1247,12 +1022,8 @@ for (predictor in predictors) {
 }
 
 # Combine all messages into a single string for inline use
-mr_significance_text_constipation <- paste(significance_summary, collapse = ". ")
-
+mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
-
-In our analysis `r summary_available_data`.
-`r mr_significance_text_constipation`.
 
 ### Secondary outcome: dizziness
 
@@ -1269,7 +1040,7 @@ forest(pwma.dizziness,
 )
 ```
 
-**Figure X** Forest plot for dizziness for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
+**Figure X** Forest plot for dizziness for the comparison of pro-dopaminergic interventions vs placebo at 8 (4-12) weeks.
 OR: odds ratio, 95%CI: 95% confidence intervals.
 
 `r pwma.dizziness$k.TE` `r ifelse(pwma.dizziness$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.dizziness$n.e.pooled, pwma.dizziness$n.c.pooled), na.rm = T)` participants (`r pwma.dizziness$n.e.pooled` allocated to pro-dopaminergic interventions, `r pwma.dizziness$n.c.pooled` allocated to pill placebo).
@@ -1277,22 +1048,15 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.dizziness$lower.random < 1) & (pwma.dizziness$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.dizziness$lower.random > 1) & (pwma.dizziness$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.dizziness$TE.random, 3)` (95%CI from `r round(pwma.dizziness$lower.random, 3)` to `r round(pwma.dizziness$upper.random, 3)`).
 The study results presented an I2 value of `r round(pwma.dizziness$I2*100, 1)`% (95%CI from `r round(pwma.dizziness$lower.I2*100, 1)`% to `r round(pwma.dizziness$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.dizziness$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.dizziness$lower.predict, 3)` to `r round(pwma.dizziness$upper.predict, 3)`).
 
-There were no significant subgroup differences between participants assigned to different classes of drug.
+#### Sub-group and meta-regression analyses
 
-```{r, dizziness_meta-reg, echo=F, include=T, results='asis'}
-
-if (pwma.tol[["k"]] < 10) 
-  
-  cat(paste0('As there were less than 10 studies, no meta-regression was performed.'), sep = '\n')
-
-```
-
-```{r metareg-text-dizziness, echo=F}
+```{r prepare-metareg-text-dizziness, echo = F, results = 'asis'}
 # define predictors
 predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
 
 # Map short names to descriptive names for reporting
-descriptive_names <- c(age = "age", female_prop = "proportion of females",
+descriptive_names <- c(age = "age", 
+                       female_prop = "proportion of females",
                        anhedonia_baseline = "anhedonia baseline score",
                        anxiety_baseline = "anxiety baseline score",
                        reward_baseline = "reward baseline score",
@@ -1328,24 +1092,20 @@ to_natural_list <- function(vec) {
 
 # Prepare summary sentences
 sufficient_text <- if (length(sufficient_predictors) > 0) {
-  paste("sufficient data to conduct a meta-regression existed for", to_natural_list(sufficient_predictors))
+  cat(paste0("We found enough data (i.e. at least ten studies) to conduct a meta-regression for ", to_natural_list(sufficient_predictors), '.'))
 } else {
-  "sufficient data to conduct a meta-regression did not exist for any predictor."
+  cat(paste("We did not find sufficient data (i.e. at least ten studies) to conduct a meta-regression for the investigated predictors."))
 }
 
 insufficient_text <- if (length(insufficient_predictors) > 0) {
-  paste("Insufficient data existed for", to_natural_list(insufficient_predictors))
+  cat(paste0(" Insufficient data existed for ", to_natural_list(insufficient_predictors), '.'))
 } else {
-  "insufficient data did not exist for any predictor."
+  cat(paste(" Insufficient data did not exist for any predictor."))
 }
+```
 
-# Combine the sentences
-summary_available_data <- paste(sufficient_text, insufficient_text, sep = ". ")
-
-
-#DETAILS OF META-REGRESSION
-
-# Define acceptability as the outcome of interest 
+``` {r prepare-metareg-text-dizziness-details, echo = F, results = 'asis'}
+# Define outcome of interest
 specific_outcome <- "dizziness_result"
 
 # Initialize a list to store messages about the significance for the specific outcome
@@ -1364,11 +1124,11 @@ for (predictor in predictors) {
       beta <- round(regression_result[["beta"]][2], 3)
       ci_lb <- round(regression_result[["ci.lb"]][2], 3)
       ci_ub <- round(regression_result[["ci.ub"]][2], 3)
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was significant (beta =", beta, 
-                        ", 95% CI from", ci_lb, "to", ci_ub, ")")
+      message <- paste0("* The meta-regression for ", descriptive_names[[predictor]], " was significant (beta = ", beta, 
+                        ", 95% CI from ", ci_lb, " to ", ci_ub, ").")
     } else {
       # Not significant
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was not significant")
+      message <- paste("* The meta-regression for", descriptive_names[[predictor]], "was not significant.")
     }
     
     significance_summary[[predictor]] <- message
@@ -1376,12 +1136,122 @@ for (predictor in predictors) {
 }
 
 # Combine all messages into a single string for inline use
-mr_significance_text_dizziness <- paste(significance_summary, collapse = ". ")
-
+mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
 
-In our analysis `r summary_available_data`.
-`r mr_significance_text_dizziness`.
+### Secondary outcome: dry mouth
+
+```{r dry_mouth_forest, echo=FALSE, fig.width=12, fig.height=10}
+forest(pwma.dry_mouth, 
+       sortvar = seTE, 
+       print.I2.ci = T, 
+       label.e = 'Intervention', 
+       label.c = 'Placebo', 
+       label.left = 'Favours intervention',
+       label.right = "Favours placebo",
+       smlab = 'dry_mouth',
+       col.square = pwma.dry_mouth$data$colour
+)
+```
+
+**Figure X** Forest plot for dry mouth for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
+OR: odds ratio, 95%CI: 95% confidence intervals.
+
+`r pwma.dry_mouth$k.TE` `r ifelse(pwma.dry_mouth$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.dry_mouth$n.e.pooled, pwma.dry_mouth$n.c.pooled), na.rm = T)` participants (`r pwma.dry_mouth$n.e.pooled` allocated to pro-dopaminergic interventions, `r pwma.dry_mouth$n.c.pooled` allocated to pill placebo).
+
+The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.dry_mouth$lower.random < 1) & (pwma.dry_mouth$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.dry_mouth$lower.random > 1) & (pwma.dry_mouth$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.dry_mouth$TE.random, 3)` (95%CI from `r round(pwma.dry_mouth$lower.random, 3)` to `r round(pwma.dry_mouth$upper.random, 3)`).
+The study results presented an I2 value of `r round(pwma.dry_mouth$I2*100, 1)`% (95%CI from `r round(pwma.dry_mouth$lower.I2*100, 1)`% to `r round(pwma.dry_mouth$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.dry_mouth$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.dry_mouth$lower.predict, 3)` to `r round(pwma.dry_mouth$upper.predict, 3)`).
+
+#### Sub-group and meta-regression analyses
+
+```{r prepare-metareg-text-dry-mouth, echo = F, results = 'asis'}
+# define predictors
+predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
+
+# Map short names to descriptive names for reporting
+descriptive_names <- c(age = "age", 
+                       female_prop = "proportion of females",
+                       anhedonia_baseline = "anhedonia baseline score",
+                       anxiety_baseline = "anxiety baseline score",
+                       reward_baseline = "reward baseline score",
+                       tx_duration = "treatment duration")
+
+# Initialize lists to store predictors with sufficient and insufficient data
+sufficient_predictors <- vector("character", length = 0)
+insufficient_predictors <- vector("character", length = 0)
+
+# Iterate over predictors to categorize them
+for (predictor in predictors) {
+  result_key <- paste("dry_mouth_result", predictor, sep = "_")
+  if (!is.null(selected_regressions_results[[result_key]])) {
+    sufficient_predictors <- c(sufficient_predictors, descriptive_names[[predictor]])
+  } else {
+    insufficient_predictors <- c(insufficient_predictors, descriptive_names[[predictor]])
+  }
+}
+
+# Function to create a natural language list from a vector
+to_natural_list <- function(vec) {
+  if (length(vec) == 0) {
+    return(NULL)
+  } else if (length(vec) == 1) {
+    return(vec)
+  } else if (length(vec) == 2) {
+    return(paste(vec, collapse = " and "))
+  } else {
+    vec[length(vec)] <- paste("and", vec[length(vec)])
+    return(paste(vec, collapse = ", "))
+  }
+}
+
+# Prepare summary sentences
+sufficient_text <- if (length(sufficient_predictors) > 0) {
+  cat(paste0("We found enough data (i.e. at least ten studies) to conduct a meta-regression for ", to_natural_list(sufficient_predictors), '.'))
+} else {
+  cat(paste("We did not find sufficient data (i.e. at least ten studies) to conduct a meta-regression for the investigated predictors."))
+}
+
+insufficient_text <- if (length(insufficient_predictors) > 0) {
+  cat(paste0(" Insufficient data existed for ", to_natural_list(insufficient_predictors), '.'))
+} else {
+  cat(paste(" Insufficient data did not exist for any predictor."))
+}
+```
+
+``` {r prepare-metareg-text-dry-mouth-details, echo = F, results = 'asis'}
+# Define outcome of interest
+specific_outcome <- "dry_mouth_result"
+
+# Initialize a list to store messages about the significance for the specific outcome
+significance_summary <- list()
+
+# Iterate only over the predictors related to the specific outcome
+for (predictor in predictors) {
+  # Construct the result key for the specific outcome and predictor
+  result_key <- paste(specific_outcome, predictor, sep = "_")
+  regression_result <- selected_regressions_results[[result_key]]
+  
+  # Proceed if the regression_result is not null and has the expected structure
+  if (!is.null(regression_result) && !is.null(regression_result[["pval"]]) && length(regression_result[["pval"]]) >= 2) {
+    if (regression_result[["pval"]][2] < 0.05) {
+      # Significant result, prepare summary with the second values of beta and CI
+      beta <- round(regression_result[["beta"]][2], 3)
+      ci_lb <- round(regression_result[["ci.lb"]][2], 3)
+      ci_ub <- round(regression_result[["ci.ub"]][2], 3)
+      message <- paste0("* The meta-regression for ", descriptive_names[[predictor]], " was significant (beta = ", beta, 
+                        ", 95% CI from ", ci_lb, " to ", ci_ub, ").")
+    } else {
+      # Not significant
+      message <- paste("* The meta-regression for", descriptive_names[[predictor]], "was not significant.")
+    }
+    
+    significance_summary[[predictor]] <- message
+  }
+}
+
+# Combine all messages into a single string for inline use
+mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
+```
 
 ### Secondary outcome: vomiting
 
@@ -1406,22 +1276,15 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.vomiting$lower.random < 1) & (pwma.vomiting$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.vomiting$lower.random > 1) & (pwma.vomiting$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.vomiting$TE.random, 3)` (95%CI from `r round(pwma.vomiting$lower.random, 3)` to `r round(pwma.vomiting$upper.random, 3)`).
 The study results presented an I2 value of `r round(pwma.vomiting$I2*100, 1)`% (95%CI from `r round(pwma.vomiting$lower.I2*100, 1)`% to `r round(pwma.vomiting$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.vomiting$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.vomiting$lower.predict, 3)` to `r round(pwma.vomiting$upper.predict, 3)`).
 
-There were no significant subgroup differences between participants assigned to different classes of drug.
+#### Sub-group and meta-regression analyses
 
-```{r, vomiting_meta-reg, echo=F, include=T, results='asis'}
-
-if (pwma.tol[["k"]] < 10) 
-  
-  cat(paste0('As there were less than 10 studies, no meta-regression was performed.'), sep = '\n')
-
-```
-
-```{r metareg-text-vomiting, echo=F}
+```{r prepare-metareg-text-vomiting, echo = F, results = 'asis'}
 # define predictors
 predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
 
 # Map short names to descriptive names for reporting
-descriptive_names <- c(age = "age", female_prop = "proportion of females",
+descriptive_names <- c(age = "age", 
+                       female_prop = "proportion of females",
                        anhedonia_baseline = "anhedonia baseline score",
                        anxiety_baseline = "anxiety baseline score",
                        reward_baseline = "reward baseline score",
@@ -1457,24 +1320,20 @@ to_natural_list <- function(vec) {
 
 # Prepare summary sentences
 sufficient_text <- if (length(sufficient_predictors) > 0) {
-  paste("sufficient data to conduct a meta-regression existed for", to_natural_list(sufficient_predictors))
+  cat(paste0("We found enough data (i.e. at least ten studies) to conduct a meta-regression for ", to_natural_list(sufficient_predictors), '.'))
 } else {
-  "sufficient data to conduct a meta-regression did not exist for any predictor."
+  cat(paste("We did not find sufficient data (i.e. at least ten studies) to conduct a meta-regression for the investigated predictors."))
 }
 
 insufficient_text <- if (length(insufficient_predictors) > 0) {
-  paste("Insufficient data existed for", to_natural_list(insufficient_predictors))
+  cat(paste0(" Insufficient data existed for ", to_natural_list(insufficient_predictors), '.'))
 } else {
-  "insufficient data did not exist for any predictor."
+  cat(paste(" Insufficient data did not exist for any predictor."))
 }
+```
 
-# Combine the sentences
-summary_available_data <- paste(sufficient_text, insufficient_text, sep = ". ")
-
-
-#DETAILS OF META-REGRESSION
-
-# Define acceptability as the outcome of interest 
+``` {r prepare-metareg-text-vomiting-details, echo = F, results = 'asis'}
+# Define outcome of interest
 specific_outcome <- "vomiting_result"
 
 # Initialize a list to store messages about the significance for the specific outcome
@@ -1493,11 +1352,11 @@ for (predictor in predictors) {
       beta <- round(regression_result[["beta"]][2], 3)
       ci_lb <- round(regression_result[["ci.lb"]][2], 3)
       ci_ub <- round(regression_result[["ci.ub"]][2], 3)
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was significant (beta =", beta, 
-                        ", 95% CI from", ci_lb, "to", ci_ub, ")")
+      message <- paste0("* The meta-regression for ", descriptive_names[[predictor]], " was significant (beta = ", beta, 
+                        ", 95% CI from ", ci_lb, " to ", ci_ub, ").")
     } else {
       # Not significant
-      message <- paste("The meta-regression for", descriptive_names[[predictor]], "was not significant")
+      message <- paste("* The meta-regression for", descriptive_names[[predictor]], "was not significant.")
     }
     
     significance_summary[[predictor]] <- message
@@ -1505,12 +1364,8 @@ for (predictor in predictors) {
 }
 
 # Combine all messages into a single string for inline use
-mr_significance_text_vomiting <- paste(significance_summary, collapse = ". ")
-
+mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
-
-In our analysis `r summary_available_data`.
-`r mr_significance_text_vomiting`.
 
 ## Reporting bias
 
