@@ -30,13 +30,14 @@ knitr::opts_chunk$set(echo = T)
 
 1.  In this first iteration of the living systematic review we searched for randomised controlled trials that compared pro-dopaminergic interventions to placebo in adults with unipolar depression (i.e. any standardised measure, above-threshold symptoms on any standardised measure, or a clinical diagnosis based on any operationalised criteria).
 
-2.  Eight databases were searched from inception up to the 4th of September, 2023: Web of Science Core Collection, BIOSIS Citation Index (Web of Science), CENTRAL, EMBASE (OVID), MEDLINE (OVID), PsycINFO (OVID), and SCOPUS (see appendix for the full search strategies).
+2.  Eight databases were searched from inception up to the 4th of September, 2023 (see appendix for the full search strategies).
     Database search results were imported into [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") and de-duplicated prior to screening.
     All steps related to record screening and data extraction were completed in [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer").
 
-3.  Titles and abstracts of the identified records were screened by at least two reviewers (CF, MC, JK, JP, AK); conflicts were resolved through discussion within the screening team and consultation with senior reviewers (AC, EGO).
+3.  Titles and abstracts of the identified records were screened by at least two reviewers (CF, MC, JK, JP).
     We retrieved the full-texts and any supporting documents for all records that were not excluded at the title and abstract screening stage.
-    The full-text screening was conducted by at least two reviewers (CF, CA, EB, JK, JP) and conflicts were resolved through discussion between the two reviewers and involvement of a third reviewer (EO, AC).
+    The full-text screening was conducted by at least two reviewers (CF, JK, JP, AK, EB).
+    Conflicts at title and abstract, and full-text screening, were resolved through discussion between the two reviewers and involvement of a third reviewer (AC, EGO).
     Additional information on the full eligibility criteria can be found in the pre-published [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies").
 
 4.  Relevant data was extracted using [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") by at least two reviewers (CF, CA, EB, JK).
