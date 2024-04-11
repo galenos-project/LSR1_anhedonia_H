@@ -34,7 +34,7 @@ knitr::opts_chunk$set(echo = T)
     Database search results were imported into [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") and de-duplicated prior to screening.
     All steps related to record screening and data extraction were completed in [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer").
 
-3.  Titles and abstracts of the identified records were screened by at least two reviewers (CF, EB, JK, JP); conflicts were resolved through discussion within the screening team and consultation with senior reviewers (AC, EGO).
+3.  Titles and abstracts of the identified records were screened by at least two reviewers (CF, MC, JK, JP, AK); conflicts were resolved through discussion within the screening team and consultation with senior reviewers (AC, EGO).
     We retrieved the full-texts and any supporting documents for all records that were not excluded at the title and abstract screening stage.
     The full-text screening was conducted by at least two reviewers (CF, CA, EB, JK, JP) and conflicts were resolved through discussion between the two reviewers and involvement of a third reviewer (EO, AC).
     Additional information on the full eligibility criteria can be found in the pre-published [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies").
@@ -71,7 +71,8 @@ For acceptability, tolerability, safety and specific-adverse events, we extracte
     Confidence intervals were adjusted using the Hartung-Knapp method.
     Prediction intervals were calculated to better report the effect of heterogeneity on the overall pooled effect.
 
-11. We conducted a series of sensitivity analyses on the primary outcome. We aggregated IPD on randomised controlled trials on antidepressants in people with depression, performing a series of random effects network meta-analyses to compare the effects of pro-dopaminergic and non-pro-dopaminergic pharmacological interventions on anhedonia.
+11. We conducted a series of sensitivity analyses on the primary outcome.
+    We aggregated IPD on randomised controlled trials on antidepressants in people with depression, performing a series of random effects network meta-analyses to compare the effects of pro-dopaminergic and non-pro-dopaminergic pharmacological interventions on anhedonia.
 
 12. Subgroup analysis and meta-regressions were also conducted for the following variables: mean age of participants, mean anhedonia baseline score, mean anxiety baseline score, sex (proportion of female participants), mean reward baseline score, and planned treatment duration.
     This was done using a mixed-effects model with the estimation of the between-study heterogeneity tau2 based on the REML method.
@@ -121,8 +122,6 @@ The comparative effect of pro-dopaminergic interventions versus placebo showed `
 The study results presented an I2 value of `r round(pwma.anhedonia$I2*100, 1)`% (95%CI from `r round(pwma.anhedonia$lower.I2*100, 1)`% to `r round(pwma.anhedonia$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.anhedonia$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.anhedonia$lower.predict, 3)` to `r round(pwma.anhedonia$upper.predict, 3)`).
 
 #### Risk of bias
-
-
 
 #### Sensitivity analyses
 
@@ -186,7 +185,7 @@ insufficient_text <- if (length(insufficient_predictors) > 0) {
 }
 ```
 
-``` {r prepare-metareg-text-anhedonia-details, echo = F, results = 'asis'}
+```{r prepare-metareg-text-anhedonia-details, echo = F, results = 'asis'}
 # Define outcome of interest
 specific_outcome <- "anhedonia_result"
 
@@ -300,7 +299,7 @@ insufficient_text <- if (length(insufficient_predictors) > 0) {
 }
 ```
 
-``` {r prepare-metareg-text-anx-details, echo = F, results = 'asis'}
+```{r prepare-metareg-text-anx-details, echo = F, results = 'asis'}
 # Define outcome of interest
 specific_outcome <- "anxiety_result"
 
@@ -414,7 +413,7 @@ insufficient_text <- if (length(insufficient_predictors) > 0) {
 }
 ```
 
-``` {r prepare-metareg-text-acc-details, echo = F, results = 'asis'}
+```{r prepare-metareg-text-acc-details, echo = F, results = 'asis'}
 # Define outcome of interest
 specific_outcome <- "acc_result"
 
@@ -532,7 +531,7 @@ insufficient_text <- if (length(insufficient_predictors) > 0) {
 }
 ```
 
-``` {r prepare-metareg-text-tol-details, echo = F, results = 'asis'}
+```{r prepare-metareg-text-tol-details, echo = F, results = 'asis'}
 # Define outcome of interest
 specific_outcome <- "tol_result"
 
@@ -646,7 +645,7 @@ insufficient_text <- if (length(insufficient_predictors) > 0) {
 }
 ```
 
-``` {r prepare-metareg-text-nausea-details, echo = F, results = 'asis'}
+```{r prepare-metareg-text-nausea-details, echo = F, results = 'asis'}
 # Define outcome of interest
 specific_outcome <- "nausea_result"
 
@@ -760,7 +759,7 @@ insufficient_text <- if (length(insufficient_predictors) > 0) {
 }
 ```
 
-``` {r prepare-metareg-text-headache-details, echo = F, results = 'asis'}
+```{r prepare-metareg-text-headache-details, echo = F, results = 'asis'}
 # Define outcome of interest
 specific_outcome <- "headache_result"
 
@@ -874,7 +873,7 @@ insufficient_text <- if (length(insufficient_predictors) > 0) {
 }
 ```
 
-``` {r prepare-metareg-text-insomnia-details, echo = F, results = 'asis'}
+```{r prepare-metareg-text-insomnia-details, echo = F, results = 'asis'}
 # Define outcome of interest
 specific_outcome <- "insomnia_result"
 
@@ -990,7 +989,7 @@ insufficient_text <- if (length(insufficient_predictors) > 0) {
 }
 ```
 
-``` {r prepare-metareg-text-constipation-details, echo = F, results = 'asis'}
+```{r prepare-metareg-text-constipation-details, echo = F, results = 'asis'}
 # Define outcome of interest
 specific_outcome <- "constipation_result"
 
@@ -1104,7 +1103,7 @@ insufficient_text <- if (length(insufficient_predictors) > 0) {
 }
 ```
 
-``` {r prepare-metareg-text-dizziness-details, echo = F, results = 'asis'}
+```{r prepare-metareg-text-dizziness-details, echo = F, results = 'asis'}
 # Define outcome of interest
 specific_outcome <- "dizziness_result"
 
@@ -1218,7 +1217,7 @@ insufficient_text <- if (length(insufficient_predictors) > 0) {
 }
 ```
 
-``` {r prepare-metareg-text-dry-mouth-details, echo = F, results = 'asis'}
+```{r prepare-metareg-text-dry-mouth-details, echo = F, results = 'asis'}
 # Define outcome of interest
 specific_outcome <- "dry_mouth_result"
 
@@ -1332,7 +1331,7 @@ insufficient_text <- if (length(insufficient_predictors) > 0) {
 }
 ```
 
-``` {r prepare-metareg-text-vomiting-details, echo = F, results = 'asis'}
+```{r prepare-metareg-text-vomiting-details, echo = F, results = 'asis'}
 # Define outcome of interest
 specific_outcome <- "vomiting_result"
 
