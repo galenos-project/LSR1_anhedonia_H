@@ -99,6 +99,14 @@ Data from `r cat(paste0(length(all.studies)))` studies contributed with at least
 The mean age of participants was `r round(mean(df$age_mean, na.rm = T), 1)` years (range `r round(min(df$age_mean, na.rm = T), 0)` to `r round(max(df$age_mean, na.rm = T), 0)` years), with a mean proportion of `r round(mean(df$female_prop, na.rm = T), 2)` female participants (range `r round(min(df$female_prop, na.rm = T), 2)` to `r round(max(df$female_prop, na.rm = T), 2)`).
 Included studies allocated the participants to treatment lasting between `r round(min(df$tx_duration, na.rm = T), 1)` to `r round(max(df$tx_duration, na.rm = T), 1)` weeks (median, `r round(median(df$tx_duration, na.rm = T), 1)` weeks).
 
+```{r table_of_characteristics, echo=F, warning=F, include=T}
+TOC_Indir <- read_xlsx("data/LSR1_H_TOC.xlsx", "all_studies")
+table_output <- knitr::kable(TOC_Indir, na = "") %>%
+  kable_styling(bootstrap_options = "bordered")
+```
+
+*Table 1. characteristics of all included studies*
+
 ### Primary outcome: reduction in anhedonia scores at 8 weeks (from 4 to 12 weeks)
 
 ```{r anhedonia_forest, echo=FALSE, fig.width=12, fig.height=4}
@@ -123,6 +131,11 @@ The comparative effect of pro-dopaminergic interventions versus placebo showed `
 The study results presented an I2 value of `r round(pwma.anhedonia$I2*100, 1)`% (95%CI from `r round(pwma.anhedonia$lower.I2*100, 1)`% to `r round(pwma.anhedonia$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.anhedonia$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.anhedonia$lower.predict, 3)` to `r round(pwma.anhedonia$upper.predict, 3)`).
 
 #### Risk of bias
+
+Evidence for the efficacy of pro-dopaminergic interventions vs placebo in improving anhedonia was rated moderate for risk of bias.
+50% of the included studies had an overall high risk of bias while the other 50% had moderate risk of bias, primarily due to missing outcome data, issues with outcome measurement, and selective reporting of findings.
+The extent to which the result was affected by across-study biases is unclear and all included studies were rated at least moderate in domain 5, selection of results.
+This result was judged to be at moderate risk of bias due to indirectness as while there was no clear indication of indirectness in terms of population, comparator, or outcomes, 80% of the studies measured the same intervention, bupropion.
 
 #### Sensitivity analyses
 
@@ -1370,6 +1383,14 @@ mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ## Reporting bias
 
 ## Summary of evidence tables
+
+```{r echo = F}
+SoE_Indir <- read_xlsx("data/LSR1_H_SOE.xlsx", "SOE")
+
+knitr::kable(SoE_Indir) %>%
+  kable_styling(bootstrap_options = "bordered")
+
+```
 
 ## Abbreviations
 

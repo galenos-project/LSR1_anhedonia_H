@@ -1,5 +1,9 @@
 rm(list = setdiff(ls(), lsf.str()))
 library(meta)
+library(readxl)
+library(dplyr)
+library(knitr)
+library(kableExtra)
 
 # functions ----
 source('util/util for markdown.R')
