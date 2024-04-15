@@ -38,7 +38,7 @@ knitr::opts_chunk$set(echo = T)
     We retrieved the full-texts and any supporting documents for all records that were not excluded at the title and abstract screening stage.
     The full-text screening was conducted by at least two reviewers (CF, JK, JP, AK, EB).
     Conflicts at title and abstract, and full-text screening, were resolved through discussion between the two reviewers and involvement of a third reviewer (AC, EGO).
-    Additional information on the full eligibility criteria can be found in the pre-published [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies").
+    Additional information on the full study eligibility criteria can be found in the pre-published [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies").
 
 4.  Relevant data was extracted using [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") by at least two reviewers (CF, CA, EB, JK).
 
@@ -62,22 +62,22 @@ For acceptability, tolerability, safety and specific-adverse events, we extracte
     Adverse events were extracted using the exact terms they were reported in the included studies.
 
 8.  We assessed risk of bias with the RoB2 tool (Sterne et al. 2019).
-    All outcomes for all included studies were assessed as per [CITE] by at least two reviewers (JK, CF, CA, AH) and conflicts were were resolved by discussion between the reviewers or in consultation with senior reviewers (AC, EGO).
-    To evaluate biases due to missing evidence and biases across studies the ROB-ME tool was used with the same double screening and conflict resolution process as described above.
+    All outcomes for all included studies were assessed as per [CITE] by at least two reviewers (JK, CF, CA, AH) and conflicts were resolved by discussion between reviewers.
+    To evaluate biases due to missing evidence and biases across studies, the ROB-ME tool was used with the same double screening and conflict resolution process as described above.
 
 9.  Effect sizes were calculated as standardised mean differences (SMDs) for continuous outcomes (anhedonia and anxiety symptom severity) and odds ratios (ORs) for dichotomous outcomes (acceptability, tolerability, and specific-adverse events).
     We calculated the 95% confidence interval (CI) around the pooled effect size for each meta-analysis.
 
-10. The meta-analyses were conducted using a random effects model with the inverse variance method, using the restricted maximum-likelihood estimator for tau\^2 and the Q-Profile method for the confidence interval of tau\^2.
+10. Meta-analyses were conducted using a random effects model with the inverse variance method, using the restricted maximum-likelihood estimator for tau\^2 and the Q-Profile method for the confidence interval of tau\^2.
     Confidence intervals were adjusted using the Hartung-Knapp method.
     Prediction intervals were calculated to better report the effect of heterogeneity on the overall pooled effect.
 
 11. We conducted a series of sensitivity analyses on the primary outcome.
-    We aggregated IPD on randomised controlled trials on antidepressants in people with depression, performing a series of random effects network meta-analyses to compare the effects of pro-dopaminergic and non-pro-dopaminergic pharmacological interventions on anhedonia.
+    We aggregated individual participant data (IPD) of randomised controlled trials on antidepressants in people with depression, performing a series of random effects network meta-analyses to compare the effects of pro-dopaminergic and non-pro-dopaminergic pharmacological interventions on anhedonia.
 
-12. Subgroup analysis and meta-regressions were also conducted for the following variables: mean age of participants, mean anhedonia baseline score, mean anxiety baseline score, sex (proportion of female participants), mean reward baseline score, and planned treatment duration.
-    This was done using a mixed-effects model with the estimation of the between-study heterogeneity tau2 based on the REML method.
-    Meta-regressions were only conducted for outcomes where k \> 10.
+12. Subgroup analyses and meta-regressions were also conducted for the following variables: mean age of participants, mean anhedonia baseline score, mean anxiety baseline score, sex (proportion of female participants), and planned treatment duration.
+    This was done using a mixed-effects model with the estimation of the between-study heterogeneity tau\^2 based on the REML method.
+    Meta-regressions were only conducted for outcomes where data was available from 10 or more studies.
 
 13. Summary of evidence tables were constructed for all outcomes including a summary of the meta-analytic result, biases within-study, across-study, and due to indirectness.
 
