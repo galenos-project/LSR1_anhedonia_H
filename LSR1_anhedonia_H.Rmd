@@ -91,6 +91,8 @@ Below are the results of the systematic review and meta-analysis including a PRI
 
 ### [PRISMA diagram]
 
+![PRISMA Diagram](lsr1%20prisma.jpg)
+
 ## Description of included studies
 
 We identified `r length(unique(df$studlab))` eligible studies.
