@@ -103,7 +103,7 @@ The mean age of participants was `r round(mean(df$age_mean, na.rm = T), 1)` year
 Included studies allocated the participants to treatment lasting between `r round(min(df$tx_duration, na.rm = T), 1)` to `r round(max(df$tx_duration, na.rm = T), 1)` weeks (median, `r round(median(df$tx_duration, na.rm = T), 1)` weeks).
 
 ```{r table_of_characteristics, echo=F}
-toc_Indir <- read_xlsx("data/lsr1charactanhedonia.xlsx")
+toc_Indir <- read_xlsx("data/human/lsr1charactanhedonia.xlsx")
 knitr::kable(toc_Indir) %>%
   kable_styling(bootstrap_options = "bordered")
 ```
@@ -1388,7 +1388,7 @@ mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ## Summary of evidence tables
 
 ```{r echo = F}
-SoE_Indir <- read_xlsx("data/LSR1_H_SOE.xlsx", "SOE")
+SoE_Indir <- read_xlsx("data/human/LSR1_H_SOE.xlsx", "SOE")
 
 knitr::kable(SoE_Indir) %>%
   kable_styling(bootstrap_options = "bordered")
