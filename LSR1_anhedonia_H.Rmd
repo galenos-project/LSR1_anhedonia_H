@@ -91,7 +91,7 @@ Below are the results of the systematic review and meta-analysis including a PRI
 
 ### [PRISMA diagram]
 
-![](data/lsr1 prisma.jpg)
+![](data/human/lsr1 prisma.jpg)
 
 
 ## Description of included studies
