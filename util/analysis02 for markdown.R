@@ -1,9 +1,10 @@
 rm(list = setdiff(ls(), lsf.str()))
 library(meta)
-library(readxl)
 library(dplyr)
-library(knitr)
+library(robvis)
+library(readxl)
 library(kableExtra)
+
 
 # functions ----
 source('util/util for markdown.R')
@@ -1130,8 +1131,7 @@ constipation.eer
         }
       }
       
-     
-      
+    
 # drop it if you don't like it ----
 names <- c('pwma.anhedonia',
            'pwma.anxiety',
