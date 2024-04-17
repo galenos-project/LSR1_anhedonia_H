@@ -23,6 +23,14 @@ outcomes <- c('anhedonia',
 # load df ----
 df <- readRDS('rds/human/df.rds')
 
+# update coleman 2001 ----
+# BUP arm
+df[31, "r_acceptability"] <- 56
+df[31, "r_tolerability"] <- 13
+# PBO arm
+df[32, "r_acceptability"] <- 50
+df[32, "r_tolerability"] <- 5
+
 # anhedonia ----
 {
   df.anhedonia <- df[!is.na(df$anhedonia_followup_mean), c('studlab', 
