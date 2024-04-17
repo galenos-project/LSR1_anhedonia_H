@@ -1,7 +1,7 @@
 ---
 title: "A systematic review and meta-analysis of pro-dopaminergic interventions for anhedonia - results from human studies"
 output: html_document
-date: "2024-03-25"
+date: "2024-04-17"
 author: "Jaycee Kennett, Claire Friedrich, Edoardo G. Ostinelli <span style='font-size: 15px'></style>"
 mainfont: Arialh
 editor_options: 
@@ -30,7 +30,7 @@ knitr::opts_chunk$set(echo = T)
 
 1.  In this first iteration of the living systematic review we searched for randomised controlled trials that compared pro-dopaminergic interventions to placebo in adults with unipolar depression (i.e. any standardised measure, above-threshold symptoms on any standardised measure, or a clinical diagnosis based on any operationalised criteria).
 
-2.  Eight databases were searched from inception up to the 4th of September, 2023 (see appendix for the full search strategies).
+2.  Eight databases were searched from inception up to the 4th of September, 2023 (see [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies") for full search strings).
     Database search results were imported into [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") and de-duplicated prior to screening.
     All steps related to record screening and data extraction were completed in [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer").
 
@@ -61,9 +61,9 @@ For acceptability, tolerability, safety and specific-adverse events, we extracte
 7.  When extracting dichotomous outcomes we extracted natural numbers and where only percentages of participant groups were reported, a value was calculated and rounded up to the nearest natural number.
     Adverse events were extracted using the exact terms they were reported in the included studies.
 
-8.  We assessed risk of bias with the RoB2 tool (Sterne et al. 2019).
-    All outcomes for all included studies were assessed as per [CITE] by at least two reviewers (JK, CF, CA, AH) and conflicts were resolved by discussion between reviewers.
-    To evaluate biases due to missing evidence and biases across studies, the ROB-ME tool was used with the same double screening and conflict resolution process as described above.
+8.  We assessed risk of bias with the RoB2 tool (Higgins et al. 2019).
+    All outcomes for all included studies were assessed by at least two reviewers (JK, CF, CA, AH) and conflicts were resolved by discussion between reviewers (Flemyng et al, 2023).
+    To evaluate biases due to missing evidence and biases across studies, the ROB-ME tool (Page et al, 2023) was used with the same double screening and conflict resolution process as described above.
 
 9.  Effect sizes were calculated as standardised mean differences (SMDs) for continuous outcomes (anhedonia and anxiety symptom severity) and odds ratios (ORs) for dichotomous outcomes (acceptability, tolerability, and specific-adverse events).
     We calculated the 95% confidence interval (CI) around the pooled effect size for each meta-analysis.
@@ -89,26 +89,31 @@ A list of abbreviations can be found towards the end of the document.
 
 Below are the results of the systematic review and meta-analysis including a PRISMA flow diagram (Page et al 2021) for details of the flow of study selection, a table of characteristics for included studies, risk of bias assessment, forest plots for each outcome with accompanying descriptive text.
 
-### [PRISMA diagram]
-
-![](data/human/lsr1 prisma.jpg)
-
+![](data/human/lsr1%20prisma.jpg)
 
 ## Description of included studies
 
 We identified `r length(unique(df$studlab))` eligible studies.
-The study characteristics can be found in **Table 1**.
+The study characteristics for studies that reported anhedonia scores can be found in **Table 1** and characteristics of studies that did not report anhedonia can be found in **Table 2**.
 Data from `r cat(paste0(length(all.studies)))` studies contributed with at least one outcome with quantitative data (total of `r all.participants` participants), which included adults from multiple countries.
 The mean age of participants was `r round(mean(df$age_mean, na.rm = T), 1)` years (range `r round(min(df$age_mean, na.rm = T), 0)` to `r round(max(df$age_mean, na.rm = T), 0)` years), with a mean proportion of `r round(mean(df$female_prop, na.rm = T), 2)` female participants (range `r round(min(df$female_prop, na.rm = T), 2)` to `r round(max(df$female_prop, na.rm = T), 2)`).
 Included studies allocated the participants to treatment lasting between `r round(min(df$tx_duration, na.rm = T), 1)` to `r round(max(df$tx_duration, na.rm = T), 1)` weeks (median, `r round(median(df$tx_duration, na.rm = T), 1)` weeks).
 
-```{r table_of_characteristics, echo=F}
-toc_Indir <- read_xlsx("data/human/lsr1charactanhedonia.xlsx")
-knitr::kable(toc_Indir) %>%
+```{r table_of_characteristics_anhedonia, echo=F}
+toca_Indir <- read_xlsx("data/human/toc_a.xlsx")
+knitr::kable(toca_Indir) %>%
   kable_styling(bootstrap_options = "bordered")
 ```
 
-*Table 1. characteristics of included studies that reported anhedonia scores*
+*Table 1. characteristics of included studies that reported anhedonia scores. NI=no information available*
+
+```{r table_of_characteristics_woanhedonia, echo=F}
+toc_woa <- read_xlsx("data/human/toc_woa.xlsx")
+knitr::kable(toc_woa) %>%
+  kable_styling(bootstrap_options = "bordered")
+```
+
+*Table 2. characteristics of included studies that did not report anhedonia scores. NI=no information reported*
 
 ### Primary outcome: reduction in anhedonia scores at 8 weeks (from 4 to 12 weeks)
 
@@ -1397,4 +1402,49 @@ knitr::kable(SoE_Indir) %>%
 
 ## Abbreviations
 
+-   CI: Confidence Interval
+
+-   GALENOS: Global Alliance for Living Evidence on aNxiety depressiOn and pSychosis
+
+-   IPD: Individual Participant Data
+
+-   OR: Odds Ratio
+
+-   NI: No Information
+
+-   SD: Standard Deviation
+
+-   SMD: Standard Mean Difference
+
+-   REML: Restricted Maximum Likelyhood
+
+-   RoB2: Risk of Bias 2
+
+-   ROB-ME: Risk of Bias for Missing Evidence
+
+## Software Used
+
+We used R version 4.3.1 (R Core Team 2023) and the following packages; meta (Balduzzi, Rucker, and Schwarzer, 2019); dplyr (Wickham et al, 2023); readxl (Wickham and Bryan, 2023); kableExtra (Zhu, 2024).
+
 ## References
+
+-   Higgins, J. P., Savović, J., Page, M. J., Elbers, R. G., & Sterne, J. A.
+    (2019).
+    Assessing risk of bias in a randomized trial. 
+    *Cochrane handbook for systematic reviews of interventions*, 205-228.
+
+-   Flemyng, E., Moore, T. H., Boutron, I., Higgins, J. P., Hróbjartsson, A., Nejstgaard, C. H., & Dwan, K.
+    (2023).
+    Using Risk of Bias 2 to assess results from randomised controlled trials: guidance from Cochrane.
+    BMJ Evidence-Based Medicine, 28(4), 260-266.
+
+-   Page, M. J., McKenzie, J. E., Bossuyt, P. M., Boutron, I., Hoffmann, T. C., Mulrow, C. D., \...
+    & Moher, D.
+    (2021).
+    The PRISMA 2020 statement: an updated guideline for reporting systematic reviews. 
+    *Bmj*, *372*.
+
+-   Page, M. J., Sterne, J. A., Boutron, I., Hróbjartsson, A., Kirkham, J. J., Li, T., \...
+    & Higgins, J. P. (2023).
+    ROB-ME: a tool for assessing risk of bias due to missing evidence in systematic reviews with meta-analysis. 
+    *bmj*, *383*
