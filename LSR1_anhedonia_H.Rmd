@@ -1,7 +1,7 @@
 ---
 title: "A systematic review and meta-analysis of pro-dopaminergic interventions for anhedonia - results from human studies"
 output: html_document
-date: "2024-04-17"
+date: "2024-04-18"
 author: "Jaycee Kennett, Claire Friedrich, Edoardo G. Ostinelli <span style='font-size: 15px'></style>"
 mainfont: Arialh
 editor_options: 
@@ -30,7 +30,7 @@ knitr::opts_chunk$set(echo = T)
 
 1.  In this first iteration of the living systematic review we searched for randomised controlled trials that compared pro-dopaminergic interventions to placebo in adults with unipolar depression (i.e. any standardised measure, above-threshold symptoms on any standardised measure, or a clinical diagnosis based on any operationalised criteria).
 
-2.  Eight databases were searched from inception up to the 4th of September, 2023 (see [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies") for full search strings).
+2.  Eight databases were searched from inception up to the 9th of November, 2023 (see [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies") for full search strings).
     Database search results were imported into [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") and de-duplicated prior to screening.
     All steps related to record screening and data extraction were completed in [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer").
 
@@ -89,7 +89,7 @@ A list of abbreviations can be found towards the end of the document.
 
 Below are the results of the systematic review and meta-analysis including a PRISMA flow diagram (Page et al 2021) for details of the flow of study selection, a table of characteristics for included studies, risk of bias assessment, forest plots for each outcome with accompanying descriptive text.
 
-![](data/human/lsr1%20prisma.jpg)
+![](data/human/lsr1_prisma.jpg)
 
 ## Description of included studies
 
@@ -376,7 +376,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 
 `r pwma.acc$k.TE` `r ifelse(pwma.acc$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.acc$n.e., pwma.acc$n.c.), na.rm = T)` participants (`r sum(pwma.acc$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.acc$n.c.)` allocated to pill placebo).
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.acc$lower.random < 1) & (pwma.acc$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.acc$lower.random > 1) & (pwma.acc$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.acc$TE.random, 3)` (95%CI from `r round(pwma.acc$lower.random, 3)` to `r round(pwma.acc$upper.random, 3)`).
+The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.acc$lower.random < 1) & (pwma.acc$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.acc$lower.random > 1) & (pwma.acc$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.acc$TE.random), 3)` (95%CI from `r round(exp(pwma.acc$lower.random), 3)` to `r round(exp(pwma.acc$upper.random), 3)`).
 The study results presented an I2 value of `r round(pwma.acc$I2*100, 1)`% (95%CI from `r round(pwma.acc$lower.I2*100, 1)`% to `r round(pwma.acc$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.acc$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.acc$lower.predict, 3)` to `r round(pwma.acc$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
@@ -491,7 +491,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 
 `r pwma.tol$k.TE` `r ifelse(pwma.tol$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.tol$n.e., pwma.tol$n.c.), na.rm = T)` participants (`r sum(pwma.tol$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.tol$n.c.)` allocated to pill placebo).
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.tol$lower.random < 1) & (pwma.tol$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.tol$lower.random > 1) & (pwma.tol$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.tol$TE.random, 3)` (95%CI from `r round(pwma.tol$lower.random, 3)` to `r round(pwma.tol$upper.random, 3)`).
+The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.tol$lower.random < 1) & (pwma.tol$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.tol$lower.random > 1) & (pwma.tol$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.tol$TE.random), 3)` (95%CI from `r round(exp(pwma.tol$lower.random), 3)` to `r round(exp(pwma.tol$upper.random), 3)`).
 The study results presented an I2 value of `r round(pwma.tol$I2*100, 1)`% (95%CI from `r round(pwma.tol$lower.I2*100, 1)`% to `r round(pwma.tol$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.tol$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.acc$lower.predict, 3)` to `r round(pwma.tol$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
@@ -605,7 +605,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 
 `r pwma.nausea$k.TE` `r ifelse(pwma.nausea$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.nausea$n.e., pwma.nausea$n.c.), na.rm = T)` participants (`r sum(pwma.nausea$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.nausea$n.c.)` allocated to pill placebo).
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.nausea$lower.random < 1) & (pwma.nausea$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.nausea$lower.random > 1) & (pwma.nausea$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.nausea$TE.random, 3)` (95%CI from `r round(pwma.nausea$lower.random, 3)` to `r round(pwma.nausea$upper.random, 3)`).
+The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.nausea$lower.random < 1) & (pwma.nausea$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.nausea$lower.random > 1) & (pwma.nausea$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.nausea$TE.random), 3)` (95%CI from `r round(exp(pwma.nausea$lower.random), 3)` to `r round(pwma.nausea$upper.random, 3)`).
 The study results presented an I2 value of `r round(pwma.nausea$I2*100, 1)`% (95%CI from `r round(pwma.nausea$lower.I2*100, 1)`% to `r round(pwma.nausea$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.nausea$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.nausea$lower.predict, 3)` to `r round(pwma.nausea$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
@@ -719,7 +719,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 
 `r pwma.headache$k.TE` `r ifelse(pwma.headache$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.headache$n.e., pwma.headache$n.c.), na.rm = T)` participants (`r sum(pwma.headache$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.headache$n.c.)` allocated to pill placebo).
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.headache$lower.random < 1) & (pwma.headache$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.headache$lower.random > 1) & (pwma.headache$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.headache$TE.random, 3)` (95%CI from `r round(pwma.headache$lower.random, 3)` to `r round(pwma.headache$upper.random, 3)`).
+The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.headache$lower.random < 1) & (pwma.headache$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.headache$lower.random > 1) & (pwma.headache$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.headache$TE.random), 3)` (95%CI from `r round(exp(pwma.headache$lower.random), 3)` to `r round(exp(pwma.headache$upper.random), 3)`).
 The study results presented an I2 value of `r round(pwma.headache$I2*100, 1)`% (95%CI from `r round(pwma.headache$lower.I2*100, 1)`% to `r round(pwma.headache$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.headache$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.headache$lower.predict, 3)` to `r round(pwma.headache$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
@@ -833,7 +833,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 
 `r pwma.insomnia$k.TE` `r ifelse(pwma.insomnia$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.insomnia$n.e., pwma.insomnia$n.c.), na.rm = T)` participants (`r sum(pwma.insomnia$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.insomnia$n.c.)` allocated to pill placebo).
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.insomnia$lower.random < 1) & (pwma.insomnia$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.insomnia$lower.random > 1) & (pwma.insomnia$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.insomnia$TE.random, 3)` (95%CI from `r round(pwma.insomnia$lower.random, 3)` to `r round(pwma.insomnia$upper.random, 3)`).
+The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.insomnia$lower.random < 1) & (pwma.insomnia$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.insomnia$lower.random > 1) & (pwma.insomnia$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.insomnia$TE.random), 3)` (95%CI from `r round(exp(pwma.insomnia$lower.random), 3)` to `r round(exp(pwma.insomnia$upper.random), 3)`).
 The study results presented an I2 value of `r round(pwma.insomnia$I2*100, 1)`% (95%CI from `r round(pwma.insomnia$lower.I2*100, 1)`% to `r round(pwma.insomnia$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.insomnia$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.insomnia$lower.predict, 3)` to `r round(pwma.insomnia$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
@@ -947,7 +947,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 
 `r pwma.constipation$k.TE` `r ifelse(pwma.constipation$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.constipation$n.e., pwma.constipation$n.c.), na.rm = T)` participants (`r sum(pwma.constipation$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.constipation$n.c.)` allocated to pill placebo).
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.constipation$lower.random < 1) & (pwma.constipation$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.constipation$lower.random > 1) & (pwma.constipation$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.constipation$TE.random, 3)` (95%CI from `r round(pwma.constipation$lower.random, 3)` to `r round(pwma.constipation$upper.random, 3)`).
+The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.constipation$lower.random < 1) & (pwma.constipation$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.constipation$lower.random > 1) & (pwma.constipation$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.constipation$TE.random), 3)` (95%CI from `r round(exp(pwma.constipation$lower.random), 3)` to `r round(exp(pwma.constipation$upper.random), 3)`).
 The study results presented an I2 value of `r round(pwma.constipation$I2*100, 1)`% (95%CI from `r round(pwma.constipation$lower.I2*100, 1)`% to `r round(pwma.constipation$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.constipation$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.constipation$lower.predict, 3)` to `r round(pwma.constipation$upper.predict, 3)`).
 
 There were no significant subgroup differences between participants assigned to different classes of drug.
@@ -1063,7 +1063,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 
 `r pwma.dizziness$k.TE` `r ifelse(pwma.dizziness$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.dizziness$n.e., pwma.dizziness$n.c.), na.rm = T)` participants (`r sum(pwma.dizziness$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.dizziness$n.c.)` allocated to pill placebo).
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.dizziness$lower.random < 1) & (pwma.dizziness$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.dizziness$lower.random > 1) & (pwma.dizziness$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.dizziness$TE.random, 3)` (95%CI from `r round(pwma.dizziness$lower.random, 3)` to `r round(pwma.dizziness$upper.random, 3)`).
+The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.dizziness$lower.random < 1) & (pwma.dizziness$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.dizziness$lower.random > 1) & (pwma.dizziness$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.dizziness$TE.random), 3)` (95%CI from `r round(exp(pwma.dizziness$lower.random), 3)` to `r round(exp(pwma.dizziness$upper.random), 3)`).
 The study results presented an I2 value of `r round(pwma.dizziness$I2*100, 1)`% (95%CI from `r round(pwma.dizziness$lower.I2*100, 1)`% to `r round(pwma.dizziness$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.dizziness$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.dizziness$lower.predict, 3)` to `r round(pwma.dizziness$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
@@ -1177,7 +1177,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 
 `r pwma.dry_mouth$k.TE` `r ifelse(pwma.dry_mouth$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.dry_mouth$n.e., pwma.dry_mouth$n.c.), na.rm = T)` participants (`r sum(pwma.dry_mouth$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.dry_mouth$n.c.)` allocated to pill placebo).
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.dry_mouth$lower.random < 1) & (pwma.dry_mouth$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.dry_mouth$lower.random > 1) & (pwma.dry_mouth$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.dry_mouth$TE.random, 3)` (95%CI from `r round(pwma.dry_mouth$lower.random, 3)` to `r round(pwma.dry_mouth$upper.random, 3)`).
+The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.dry_mouth$lower.random < 1) & (pwma.dry_mouth$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.dry_mouth$lower.random > 1) & (pwma.dry_mouth$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.dry_mouth$TE.random), 3)` (95%CI from `r round(exp(pwma.dry_mouth$lower.random), 3)` to `r round(exp(pwma.dry_mouth$upper.random), 3)`).
 The study results presented an I2 value of `r round(pwma.dry_mouth$I2*100, 1)`% (95%CI from `r round(pwma.dry_mouth$lower.I2*100, 1)`% to `r round(pwma.dry_mouth$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.dry_mouth$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.dry_mouth$lower.predict, 3)` to `r round(pwma.dry_mouth$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
@@ -1291,7 +1291,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 
 `r pwma.vomiting$k.TE` `r ifelse(pwma.vomiting$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.vomiting$n.e., pwma.vomiting$n.c.), na.rm = T)` participants (`r sum(pwma.vomiting$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.vomiting$n.c.)` allocated to pill placebo).
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.vomiting$lower.random < 1) & (pwma.vomiting$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.vomiting$lower.random > 1) & (pwma.vomiting$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.vomiting$TE.random, 3)` (95%CI from `r round(pwma.vomiting$lower.random, 3)` to `r round(pwma.vomiting$upper.random, 3)`).
+The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.vomiting$lower.random < 1) & (pwma.vomiting$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.vomiting$lower.random > 1) & (pwma.vomiting$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.vomiting$TE.random), 3)` (95%CI from `r round(exp(pwma.vomiting$lower.random), 3)` to `r round(pwma.vomiting$upper.random, 3)`).
 The study results presented an I2 value of `r round(pwma.vomiting$I2*100, 1)`% (95%CI from `r round(pwma.vomiting$lower.I2*100, 1)`% to `r round(pwma.vomiting$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.vomiting$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.vomiting$lower.predict, 3)` to `r round(pwma.vomiting$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
@@ -1413,7 +1413,7 @@ knitr::kable(SoE_Indir) %>%
 
 -   SMD: Standard Mean Difference
 
--   REML: Restricted Maximum Likelyhood
+-   REML: Restricted Maximum Likelihood
 
 -   RoB2: Risk of Bias 2
 
