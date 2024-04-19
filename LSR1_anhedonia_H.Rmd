@@ -140,9 +140,9 @@ The study results presented an I2 value of `r round(pwma.anhedonia$I2*100, 1)`% 
 
 #### Risk of bias
 
-![](data\human\LSR1%20RoB%20Visuals\robanhedonia1.png)
+![](data\human\LSR1RoBVisuals\robanhedonia1.png)
 
-![](data\human\LSR1%20RoB%20Visuals\robanhedonia2.png)
+![](data\human\LSR1RoBVisuals\robanhedonia2.png)
 
 Evidence for the efficacy of pro-dopaminergic interventions vs placebo in improving anhedonia was rated moderate for risk of bias.
 50% of the included studies had an overall high risk of bias while the other 50% had moderate risk of bias, primarily due to missing outcome data, issues with outcome measurement, and selective reporting of findings.
@@ -362,9 +362,9 @@ mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 
 #### Risk of bias
 
-![](data\human\LSR1%20RoB%20Visuals\robanxiety1.png)
+![](data\human\LSR1RoBVisuals\robanxiety1.png)
 
-![](data\human\LSR1%20RoB%20Visuals\robanxiety2.png)
+![](data\human\LSR1RoBVisuals\robanxiety2.png)
 
 ### Secondary outcome: Dropouts due to any reason
 
@@ -482,9 +482,9 @@ mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 
 #### Risk of bias
 
-![](data\human\LSR1%20RoB%20Visuals\robacceptability1.png)
+![](data\human\LSR1RoBVisuals\robacceptability1.png)
 
-![](data\human\LSR1%20RoB%20Visuals\robacceptability2.png)
+![](data\human\LSR1RoBVisuals\robacceptability2.png)
 
 ### Secondary outcome: dropouts due to side effects
 
@@ -603,9 +603,9 @@ mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 
 #### Risk of bias
 
-![](data\human\LSR1%20RoB%20Visuals\robtolerability1.png)
+![](data\human\LSR1RoBVisuals\robtolerability1.png)
 
-![](data\human\LSR1%20RoB%20Visuals\robtolerability2.png)
+![](data\human\LSR1RoBVisuals\robtolerability2.png)
 
 ### Secondary outcome: nausea
 
@@ -723,9 +723,9 @@ mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 
 #### Risk of bias
 
-![](data\human\LSR1%20RoB%20Visuals\robnausea1.png)
+![](data\human\LSR1RoBVisuals\robnausea1.png)
 
-![](data\human\LSR1%20RoB%20Visuals\robnausea2.png)
+![](data\human\LSR1RoBVisuals\robnausea2.png)
 
 ### Secondary outcome: headache
 
@@ -843,9 +843,9 @@ mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 
 #### Risk of bias
 
-![](data\human\LSR1%20RoB%20Visuals\robheadache1.png)
+![](data\human\LSR1RoBVisuals\robheadache1.png)
 
-![](data\human\LSR1%20RoB%20Visuals\robheadache2.png)
+![](data\human\LSR1RoBVisuals\robheadache2.png)
 
 ### Secondary outcome: insomnia
 
@@ -963,9 +963,9 @@ mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 
 #### Risk of bias
 
-![](data\human\LSR1%20RoB%20Visuals\robinsomnia1.png)
+![](data\human\LSR1RoBVisuals\robinsomnia1.png)
 
-![](data\human\LSR1%20RoB%20Visuals\robinsomnia2.png)
+![](data\human\LSR1RoBVisuals\robinsomnia2.png)
 
 ### Secondary outcome: constipation
 
@@ -1085,9 +1085,9 @@ mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 
 #### Risk of bias
 
-![](data\human\LSR1%20RoB%20Visuals\robconstipation1.png)
+![](data\human\LSR1RoBVisuals\robconstipation1.png)
 
-![](data\human\LSR1%20RoB%20Visuals\robconstipation2.png)
+![](data\human\LSR1RoBVisuals\robconstipation2.png)
 
 ### Secondary outcome: dizziness
 
@@ -1205,9 +1205,9 @@ mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 
 #### Risk of bias
 
-![](data\human\LSR1%20RoB%20Visuals\robdizziness1.png)
+![](data\human\LSR1RoBVisuals\robdizziness1.png)
 
-![](data\human\LSR1%20RoB%20Visuals\robdizziness2.png)
+![](data\human\LSR1RoBVisuals\robdizziness2.png)
 
 ### Secondary outcome: dry mouth
 
@@ -1325,9 +1325,9 @@ mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 
 #### Risk of bias
 
-![](data\human\LSR1%20RoB%20Visuals\robdrymouth1.png)
+![](data\human\LSR1RoBVisuals\robdrymouth1.png)
 
-![](data\human\LSR1%20RoB%20Visuals\robdrymouth2.png)
+![](data\human\LSR1RoBVisuals\robdrymouth2.png)
 
 ### Secondary outcome: vomiting
 
@@ -1445,9 +1445,9 @@ mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 
 #### Risk of bias
 
-![](data\human\LSR1%20RoB%20Visuals\robvomiting1.png)
+![](data\human\LSR1RoBVisuals\robvomiting1.png)
 
-![](data\human\LSR1%20RoB%20Visuals\robvomiting2.png)
+![](data\human\LSR1RoBVisuals\robvomiting2.png)
 
 ## Reporting bias
 
