@@ -1,7 +1,7 @@
 ---
 title: "A systematic review and meta-analysis of pro-dopaminergic interventions for anhedonia - results from human studies"
 output: html_document
-date: "2024-04-18"
+date: "2024-04-19"
 author: "Jaycee Kennett, Claire Friedrich, Edoardo G. Ostinelli <span style='font-size: 15px'></style>"
 mainfont: Arialh
 editor_options: 
@@ -26,62 +26,62 @@ all.participants <- sum(df$n_randomised[df$studlab %in% all.studies], na.rm = T)
 knitr::opts_chunk$set(echo = T)
 ```
 
-## Description of the methodological approach
+## Methods (brief)
 
-1.  In this first iteration of the living systematic review we searched for randomised controlled trials that compared pro-dopaminergic interventions to placebo in adults with unipolar depression (i.e. any standardised measure, above-threshold symptoms on any standardised measure, or a clinical diagnosis based on any operationalised criteria).
+In this first iteration of the living systematic review we searched for randomised controlled trials that compared pro-dopaminergic interventions to placebo in adults with unipolar depression (i.e. any standardised measure, above-threshold symptoms on any standardised measure, or a clinical diagnosis based on any operationalised criteria).
 
-2.  Eight databases were searched from inception up to the 9th of November, 2023 (see [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies") for full search strings).
-    Database search results were imported into [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") and de-duplicated prior to screening.
-    All steps related to record screening and data extraction were completed in [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer").
+Eight databases were searched from inception up to the 9th of November, 2023 (see [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies") for full search strings).
+Database search results were imported into [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") and de-duplicated prior to screening.
+All steps related to record screening and data extraction were completed in [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer").
 
-3.  Titles and abstracts of the identified records were screened by at least two reviewers (CF, MC, JK, JP).
-    We retrieved the full-texts and any supporting documents for all records that were not excluded at the title and abstract screening stage.
-    The full-text screening was conducted by at least two reviewers (CF, JK, JP, AK, EB).
-    Conflicts at title and abstract, and full-text screening, were resolved through discussion between the two reviewers and involvement of a third reviewer (AC, EGO).
-    Additional information on the full study eligibility criteria can be found in the pre-published [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies").
+Titles and abstracts of the identified records were screened by at least two reviewers (CF, MC, JK, JP).
+We retrieved the full-texts and any supporting documents for all records that were not excluded at the title and abstract screening stage.
+The full-text screening was conducted by at least two reviewers (CF, JK, JP, AK, EB).
+Conflicts at title and abstract, and full-text screening, were resolved through discussion between the two reviewers and involvement of a third reviewer (AC, EGO).
+Additional information on the full study eligibility criteria can be found in the pre-published [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies").
 
-4.  Relevant data was extracted using [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") by at least two reviewers (CF, CA, EB, JK).
+Relevant data was extracted using [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") by at least two reviewers (CF, CA, EB, JK).
 
-5.  As specified in our [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies"), we focused on:
+As specified in our [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies"), we focused on:
 
 -   anhedonia symptom severity: using anhedonia-specific scales, anhedonia-specific sub-scales, or individual items focusing on anhedonia (observer-rated or self-rated). Continuous, primary outcome.
--   acceptability: proportion of drop outs for any reason. Binary, secondary outcome.
--   tolerability: the proportion of drop outs due to any adverse event. Binary, secondary outcome.
--   safety: the proportion of specific adverse events. Binary, secondary outcome.
+-   acceptability: proportion of participants dropping out for any reason. Binary, secondary outcome.
+-   tolerability: the proportion of participants dropping out due to an adverse event. Binary, secondary outcome.
+-   safety: the proportion of participants reporting specific adverse events. Binary, secondary outcome.
 -   anxiety symptom severity: as per observer or self-reported standardised scales. Continuous, secondary outcome.
 
 For anhedonia and anxiety symptom severity, we extracted outcome data reported at 8 weeks post-treatment or manipulation.
-If information at 8 weeks was not available, we considered eligible data ranging between 4 and 12 weeks (with preference to the time point closest to 8 weeks, and if equidistant the longer outcome).
-For acceptability, tolerability, safety and specific-adverse events, we extracted outcome data reported at the end of the studies.
+If the information at 8 weeks was not available, we considered eligible data ranging between 4 and 12 weeks (with preference to the time point closest to 8 weeks and, if equidistant, the longer outcome).
+For acceptability, tolerability, safety and safety (specific adverse events), we extracted outcome data reported at the end of the studies.
 
-6.  When extracting continuous outcomes we extracted mean and standard deviation to two decimal places.
-    Where standard error was reported instead, we converted the value to standard deviation.
-    Baseline and endpoint values were extracted, where only change in score and baseline or endpoint was reported, the missing value was calculated by adding or subtracting the change score to the baseline or endpoint.
+When extracting continuous outcomes we extracted mean and standard deviation to two decimal places.
+Where standard error was reported instead, we converted the value to standard deviation.
+Baseline and endpoint values were extracted, where only change in score and baseline or endpoint was reported, the missing value was calculated by adding or subtracting the change score to the baseline or endpoint.
 
-7.  When extracting dichotomous outcomes we extracted natural numbers and where only percentages of participant groups were reported, a value was calculated and rounded up to the nearest natural number.
-    Adverse events were extracted using the exact terms they were reported in the included studies.
+When extracting dichotomous outcomes we extracted natural numbers and where only percentages of participant groups were reported, a value was calculated and rounded up to the nearest natural number.
+Adverse events were extracted using the exact terms they were reported in the included studies.
 
-8.  We assessed risk of bias with the RoB2 tool (Higgins et al. 2019).
-    All outcomes for all included studies were assessed by at least two reviewers (JK, CF, CA, AH) and conflicts were resolved by discussion between reviewers (Flemyng et al, 2023).
-    To evaluate biases due to missing evidence and biases across studies, the ROB-ME tool (Page et al, 2023) was used with the same double screening and conflict resolution process as described above.
+We assessed risk of bias with the RoB2 tool (Higgins et al. 2019).
+All outcomes for all included studies were assessed by at least two reviewers (JK, CF, CA, AH) and conflicts were resolved by discussion between reviewers (Flemyng et al, 2023).
+To evaluate biases due to missing evidence and biases across studies, the ROB-ME tool (Page et al, 2023) was used with the same double screening and conflict resolution process as described above.
 
-9.  Effect sizes were calculated as standardised mean differences (SMDs) for continuous outcomes (anhedonia and anxiety symptom severity) and odds ratios (ORs) for dichotomous outcomes (acceptability, tolerability, and specific-adverse events).
-    We calculated the 95% confidence interval (CI) around the pooled effect size for each meta-analysis.
+Effect sizes were calculated as standardised mean differences (SMDs) for continuous outcomes (anhedonia and anxiety symptom severity) and odds ratios (ORs) for dichotomous outcomes (acceptability, tolerability, and specific-adverse events).
+We calculated the 95% confidence interval (CI) around the pooled effect size for each meta-analysis.
 
-10. Meta-analyses were conducted using a random effects model with the inverse variance method, using the restricted maximum-likelihood estimator for tau\^2 and the Q-Profile method for the confidence interval of tau\^2.
-    Confidence intervals were adjusted using the Hartung-Knapp method.
-    Prediction intervals were calculated to better report the effect of heterogeneity on the overall pooled effect.
+Meta-analyses were conducted using a random effects model with the inverse variance method, using the restricted maximum-likelihood estimator for tau^2^ and the Q-Profile method for the confidence interval of tau^2^.
+Confidence intervals were adjusted using the Hartung-Knapp method.
+Prediction intervals were calculated to better report the effect of heterogeneity on the overall pooled effect.
 
-11. We conducted a series of sensitivity analyses on the primary outcome.
-    We aggregated individual participant data (IPD) of randomised controlled trials on antidepressants in people with depression, performing a series of random effects network meta-analyses to compare the effects of pro-dopaminergic and non-pro-dopaminergic pharmacological interventions on anhedonia.
+We conducted a series of sensitivity analyses on the primary outcome.
+We aggregated individual participant data (IPD) of randomised controlled trials on antidepressants in people with depression, performing a series of random effects network meta-analyses to compare the effects of pro-dopaminergic and non-pro-dopaminergic pharmacological interventions on anhedonia.
 
-12. Subgroup analyses and meta-regressions were also conducted for the following variables: mean age of participants, mean anhedonia baseline score, mean anxiety baseline score, sex (proportion of female participants), and planned treatment duration.
-    This was done using a mixed-effects model with the estimation of the between-study heterogeneity tau\^2 based on the REML method.
-    Meta-regressions were only conducted for outcomes where data was available from 10 or more studies.
+Subgroup analyses and meta-regressions were also conducted for the following variables: mean age of participants, mean anhedonia baseline score, mean anxiety baseline score, sex (proportion of female participants), and planned treatment duration.
+This was done using a mixed-effects model with the estimation of the between-study heterogeneity tau^2^ based on the REML method.
+Meta-regressions were only conducted for outcomes where data was available from 10 or more studies.
 
-13. Summary of evidence tables were constructed for all outcomes including a summary of the meta-analytic result, biases within-study, across-study, and due to indirectness.
+Summary of evidence tables were constructed for all outcomes including a summary of the meta-analytic result, biases within-study, across-study, and due to indirectness.
 
-Please see the final manuscript, extended data, and [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies") for more details.
+Please refer to the [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies") and the extended data for more details.
 
 A list of abbreviations can be found towards the end of the document.
 
@@ -136,7 +136,7 @@ SMD: standardised mean difference, 95%CI: 95% confidence intervals, SD: standard
 `r pwma.anhedonia$k.TE` `r ifelse(pwma.anhedonia$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.anhedonia$n.e.pooled, pwma.anhedonia$n.c.pooled), na.rm = T)` participants (`r pwma.anhedonia$n.e.pooled` allocated to pro-dopaminergic interventions, `r pwma.anhedonia$n.c.pooled` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.anhedonia$lower.random < 0) & (pwma.anhedonia$upper.random < 0)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.anhedonia$lower.random > 0) & (pwma.anhedonia$upper.random > 0)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.anhedonia$TE.random, 3)` (95%CI from `r round(pwma.anhedonia$lower.random, 3)` to `r round(pwma.anhedonia$upper.random, 3)`).
-The study results presented an I2 value of `r round(pwma.anhedonia$I2*100, 1)`% (95%CI from `r round(pwma.anhedonia$lower.I2*100, 1)`% to `r round(pwma.anhedonia$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.anhedonia$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.anhedonia$lower.predict, 3)` to `r round(pwma.anhedonia$upper.predict, 3)`).
+The study results presented an I^2^ value of `r round(pwma.anhedonia$I2*100, 1)`% (95%CI from `r round(pwma.anhedonia$lower.I2*100, 1)`% to `r round(pwma.anhedonia$upper.I2*100, 1)`%) and a tau^2^ value of `r round(pwma.anhedonia$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.anhedonia$lower.predict, 3)` to `r round(pwma.anhedonia$upper.predict, 3)`).
 
 #### Risk of bias
 
@@ -151,9 +151,19 @@ This result was judged to be at moderate risk of bias due to indirectness as whi
 
 #### Sensitivity analyses
 
-```{r ipd-anhedonia-1, echo = F, results = 'asis'}
+We performed a series of random effects network meta-analyses on the MADRS “inability to feel” item (aggregated IPD from 34 studies, 14054 participants).
+First, we included all the available studies and compared all the antidepressants against placebo.
 
-```
+![](result/human/non-dopaminergic/IPD_AD_NMA_pla_with_estimates.png)
+
+The comparative effect of buproprion versus placebo was -0.12 (SMD, 95%CI from -0.25 to 0.00; 34 studies, 14054 participants), lower than what we could observe from the retrieved data (random effects pairwise meta-analysis, bupropion versus placebo): -0.22 (SMD, 95%CI from -0.44 to 0.01; 5 studies, 2020 participants).
+
+![](result/human/non-dopaminergic/GALENOS_AD_PWMA.png)
+
+We also performed a random effects pairwise meta-analysis of buproprion versus placebo based on the aggregated IPD, resulting in estimates comparable to the network meta-analytical model (SMD -0.12, 95%CI from -0.29 to 0.05; 4 studies, 1085 participants).
+
+Finally, we performed a random effects pairwise meta-analysis including aggregate data from both sources (IPD and retrieved as aggregated). As three studies (Hewett 2009 - 87997883, Hewett 2010a - 87997755, Koshino 2013 - 87997374) were available in both sources, we prioritised aggregate IPD over data retrieved as aggregated. The comparative effect of bupropion versus placebo was -0.19 (SMD, 95%CI from -0.33 to 0.04; 6 studies, 2489 participants)
+
 
 #### Sub-group and meta-regression analyses
 
@@ -267,7 +277,7 @@ SMD: standardised mean difference, 95%CI: 95% confidence intervals, SD: standard
 `r pwma.anxiety$k.TE` `r ifelse(pwma.anxiety$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.anxiety$n.e.pooled, pwma.anxiety$n.c.pooled), na.rm = T)` participants (`r pwma.anxiety$n.e.pooled` allocated to pro-dopaminergic interventions, `r pwma.anxiety$n.c.pooled` allocated to pill placebo.
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.anxiety$lower.random < 0) & (pwma.anxiety$upper.random < 0)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.anxiety$lower.random > 0) & (pwma.anxiety$upper.random > 0)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.anxiety$TE.random, 3)` (95%CI from `r round(pwma.anxiety$lower.random, 3)` to `r round(pwma.anxiety$upper.random, 3)`).
-The study results presented an I2 value of `r round(pwma.anxiety$I2*100, 1)`% (95%CI from `r round(pwma.anxiety$lower.I2*100, 1)`% to `r round(pwma.anxiety$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.anxiety$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.anxiety$lower.predict, 3)` to `r round(pwma.anxiety$upper.predict, 3)`).
+The study results presented an I^2^ value of `r round(pwma.anxiety$I2*100, 1)`% (95%CI from `r round(pwma.anxiety$lower.I2*100, 1)`% to `r round(pwma.anxiety$upper.I2*100, 1)`%) and a tau^2^ value of `r round(pwma.anxiety$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.anxiety$lower.predict, 3)` to `r round(pwma.anxiety$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
 
@@ -360,11 +370,11 @@ for (predictor in predictors) {
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
 
-#### Risk of bias
-
+#### Risk of Bias
 ![](data\human\LSR1RoBVisuals\robanxiety1.png)
 
 ![](data\human\LSR1RoBVisuals\robanxiety2.png)
+
 
 ### Secondary outcome: Dropouts due to any reason
 
@@ -387,7 +397,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 `r pwma.acc$k.TE` `r ifelse(pwma.acc$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.acc$n.e., pwma.acc$n.c.), na.rm = T)` participants (`r sum(pwma.acc$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.acc$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.acc$lower.random < 1) & (pwma.acc$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.acc$lower.random > 1) & (pwma.acc$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.acc$TE.random), 3)` (95%CI from `r round(exp(pwma.acc$lower.random), 3)` to `r round(exp(pwma.acc$upper.random), 3)`).
-The study results presented an I2 value of `r round(pwma.acc$I2*100, 1)`% (95%CI from `r round(pwma.acc$lower.I2*100, 1)`% to `r round(pwma.acc$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.acc$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.acc$lower.predict, 3)` to `r round(pwma.acc$upper.predict, 3)`).
+The study results presented an I^2^ value of `r round(pwma.acc$I2*100, 1)`% (95%CI from `r round(pwma.acc$lower.I2*100, 1)`% to `r round(pwma.acc$upper.I2*100, 1)`%) and a tau^2^ value of `r round(pwma.acc$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.acc$lower.predict, 3)` to `r round(pwma.acc$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
 
@@ -486,6 +496,7 @@ mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 
 ![](data\human\LSR1RoBVisuals\robacceptability2.png)
 
+
 ### Secondary outcome: dropouts due to side effects
 
 ```{r tolerability_forest, echo=FALSE, fig.width=12, fig.height=14}
@@ -508,7 +519,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 `r pwma.tol$k.TE` `r ifelse(pwma.tol$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.tol$n.e., pwma.tol$n.c.), na.rm = T)` participants (`r sum(pwma.tol$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.tol$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.tol$lower.random < 1) & (pwma.tol$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.tol$lower.random > 1) & (pwma.tol$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.tol$TE.random), 3)` (95%CI from `r round(exp(pwma.tol$lower.random), 3)` to `r round(exp(pwma.tol$upper.random), 3)`).
-The study results presented an I2 value of `r round(pwma.tol$I2*100, 1)`% (95%CI from `r round(pwma.tol$lower.I2*100, 1)`% to `r round(pwma.tol$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.tol$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.acc$lower.predict, 3)` to `r round(pwma.tol$upper.predict, 3)`).
+The study results presented an I^2^ value of `r round(pwma.tol$I2*100, 1)`% (95%CI from `r round(pwma.tol$lower.I2*100, 1)`% to `r round(pwma.tol$upper.I2*100, 1)`%) and a tau^2^ value of `r round(pwma.tol$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.acc$lower.predict, 3)` to `r round(pwma.tol$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
 
@@ -600,12 +611,12 @@ for (predictor in predictors) {
 # Combine all messages into a single string for inline use
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
-
 #### Risk of bias
 
 ![](data\human\LSR1RoBVisuals\robtolerability1.png)
 
 ![](data\human\LSR1RoBVisuals\robtolerability2.png)
+
 
 ### Secondary outcome: nausea
 
@@ -628,7 +639,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 `r pwma.nausea$k.TE` `r ifelse(pwma.nausea$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.nausea$n.e., pwma.nausea$n.c.), na.rm = T)` participants (`r sum(pwma.nausea$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.nausea$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.nausea$lower.random < 1) & (pwma.nausea$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.nausea$lower.random > 1) & (pwma.nausea$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.nausea$TE.random), 3)` (95%CI from `r round(exp(pwma.nausea$lower.random), 3)` to `r round(pwma.nausea$upper.random, 3)`).
-The study results presented an I2 value of `r round(pwma.nausea$I2*100, 1)`% (95%CI from `r round(pwma.nausea$lower.I2*100, 1)`% to `r round(pwma.nausea$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.nausea$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.nausea$lower.predict, 3)` to `r round(pwma.nausea$upper.predict, 3)`).
+The study results presented an I^2^ value of `r round(pwma.nausea$I2*100, 1)`% (95%CI from `r round(pwma.nausea$lower.I2*100, 1)`% to `r round(pwma.nausea$upper.I2*100, 1)`%) and a tau^2^ value of `r round(pwma.nausea$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.nausea$lower.predict, 3)` to `r round(pwma.nausea$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
 
@@ -720,7 +731,6 @@ for (predictor in predictors) {
 # Combine all messages into a single string for inline use
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
-
 #### Risk of bias
 
 ![](data\human\LSR1RoBVisuals\robnausea1.png)
@@ -748,7 +758,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 `r pwma.headache$k.TE` `r ifelse(pwma.headache$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.headache$n.e., pwma.headache$n.c.), na.rm = T)` participants (`r sum(pwma.headache$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.headache$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.headache$lower.random < 1) & (pwma.headache$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.headache$lower.random > 1) & (pwma.headache$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.headache$TE.random), 3)` (95%CI from `r round(exp(pwma.headache$lower.random), 3)` to `r round(exp(pwma.headache$upper.random), 3)`).
-The study results presented an I2 value of `r round(pwma.headache$I2*100, 1)`% (95%CI from `r round(pwma.headache$lower.I2*100, 1)`% to `r round(pwma.headache$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.headache$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.headache$lower.predict, 3)` to `r round(pwma.headache$upper.predict, 3)`).
+The study results presented an I^2^ value of `r round(pwma.headache$I2*100, 1)`% (95%CI from `r round(pwma.headache$lower.I2*100, 1)`% to `r round(pwma.headache$upper.I2*100, 1)`%) and a tau^2^ value of `r round(pwma.headache$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.headache$lower.predict, 3)` to `r round(pwma.headache$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
 
@@ -840,12 +850,12 @@ for (predictor in predictors) {
 # Combine all messages into a single string for inline use
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
-
 #### Risk of bias
 
 ![](data\human\LSR1RoBVisuals\robheadache1.png)
 
 ![](data\human\LSR1RoBVisuals\robheadache2.png)
+
 
 ### Secondary outcome: insomnia
 
@@ -868,7 +878,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 `r pwma.insomnia$k.TE` `r ifelse(pwma.insomnia$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.insomnia$n.e., pwma.insomnia$n.c.), na.rm = T)` participants (`r sum(pwma.insomnia$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.insomnia$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.insomnia$lower.random < 1) & (pwma.insomnia$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.insomnia$lower.random > 1) & (pwma.insomnia$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.insomnia$TE.random), 3)` (95%CI from `r round(exp(pwma.insomnia$lower.random), 3)` to `r round(exp(pwma.insomnia$upper.random), 3)`).
-The study results presented an I2 value of `r round(pwma.insomnia$I2*100, 1)`% (95%CI from `r round(pwma.insomnia$lower.I2*100, 1)`% to `r round(pwma.insomnia$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.insomnia$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.insomnia$lower.predict, 3)` to `r round(pwma.insomnia$upper.predict, 3)`).
+The study results presented an I^2^ value of `r round(pwma.insomnia$I2*100, 1)`% (95%CI from `r round(pwma.insomnia$lower.I2*100, 1)`% to `r round(pwma.insomnia$upper.I2*100, 1)`%) and a tau^2^ value of `r round(pwma.insomnia$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.insomnia$lower.predict, 3)` to `r round(pwma.insomnia$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
 
@@ -960,12 +970,12 @@ for (predictor in predictors) {
 # Combine all messages into a single string for inline use
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
-
 #### Risk of bias
 
 ![](data\human\LSR1RoBVisuals\robinsomnia1.png)
 
 ![](data\human\LSR1RoBVisuals\robinsomnia2.png)
+
 
 ### Secondary outcome: constipation
 
@@ -988,7 +998,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 `r pwma.constipation$k.TE` `r ifelse(pwma.constipation$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.constipation$n.e., pwma.constipation$n.c.), na.rm = T)` participants (`r sum(pwma.constipation$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.constipation$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.constipation$lower.random < 1) & (pwma.constipation$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.constipation$lower.random > 1) & (pwma.constipation$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.constipation$TE.random), 3)` (95%CI from `r round(exp(pwma.constipation$lower.random), 3)` to `r round(exp(pwma.constipation$upper.random), 3)`).
-The study results presented an I2 value of `r round(pwma.constipation$I2*100, 1)`% (95%CI from `r round(pwma.constipation$lower.I2*100, 1)`% to `r round(pwma.constipation$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.constipation$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.constipation$lower.predict, 3)` to `r round(pwma.constipation$upper.predict, 3)`).
+The study results presented an I^2^ value of `r round(pwma.constipation$I2*100, 1)`% (95%CI from `r round(pwma.constipation$lower.I2*100, 1)`% to `r round(pwma.constipation$upper.I2*100, 1)`%) and a tau^2^ value of `r round(pwma.constipation$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.constipation$lower.predict, 3)` to `r round(pwma.constipation$upper.predict, 3)`).
 
 There were no significant subgroup differences between participants assigned to different classes of drug.
 
@@ -1082,12 +1092,12 @@ for (predictor in predictors) {
 # Combine all messages into a single string for inline use
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
-
 #### Risk of bias
 
 ![](data\human\LSR1RoBVisuals\robconstipation1.png)
 
 ![](data\human\LSR1RoBVisuals\robconstipation2.png)
+
 
 ### Secondary outcome: dizziness
 
@@ -1110,7 +1120,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 `r pwma.dizziness$k.TE` `r ifelse(pwma.dizziness$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.dizziness$n.e., pwma.dizziness$n.c.), na.rm = T)` participants (`r sum(pwma.dizziness$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.dizziness$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.dizziness$lower.random < 1) & (pwma.dizziness$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.dizziness$lower.random > 1) & (pwma.dizziness$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.dizziness$TE.random), 3)` (95%CI from `r round(exp(pwma.dizziness$lower.random), 3)` to `r round(exp(pwma.dizziness$upper.random), 3)`).
-The study results presented an I2 value of `r round(pwma.dizziness$I2*100, 1)`% (95%CI from `r round(pwma.dizziness$lower.I2*100, 1)`% to `r round(pwma.dizziness$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.dizziness$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.dizziness$lower.predict, 3)` to `r round(pwma.dizziness$upper.predict, 3)`).
+The study results presented an I^2^ value of `r round(pwma.dizziness$I2*100, 1)`% (95%CI from `r round(pwma.dizziness$lower.I2*100, 1)`% to `r round(pwma.dizziness$upper.I2*100, 1)`%) and a tau^2^ value of `r round(pwma.dizziness$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.dizziness$lower.predict, 3)` to `r round(pwma.dizziness$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
 
@@ -1202,12 +1212,12 @@ for (predictor in predictors) {
 # Combine all messages into a single string for inline use
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
-
 #### Risk of bias
 
 ![](data\human\LSR1RoBVisuals\robdizziness1.png)
 
 ![](data\human\LSR1RoBVisuals\robdizziness2.png)
+
 
 ### Secondary outcome: dry mouth
 
@@ -1230,7 +1240,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 `r pwma.dry_mouth$k.TE` `r ifelse(pwma.dry_mouth$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.dry_mouth$n.e., pwma.dry_mouth$n.c.), na.rm = T)` participants (`r sum(pwma.dry_mouth$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.dry_mouth$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.dry_mouth$lower.random < 1) & (pwma.dry_mouth$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.dry_mouth$lower.random > 1) & (pwma.dry_mouth$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.dry_mouth$TE.random), 3)` (95%CI from `r round(exp(pwma.dry_mouth$lower.random), 3)` to `r round(exp(pwma.dry_mouth$upper.random), 3)`).
-The study results presented an I2 value of `r round(pwma.dry_mouth$I2*100, 1)`% (95%CI from `r round(pwma.dry_mouth$lower.I2*100, 1)`% to `r round(pwma.dry_mouth$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.dry_mouth$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.dry_mouth$lower.predict, 3)` to `r round(pwma.dry_mouth$upper.predict, 3)`).
+The study results presented an I^2^ value of `r round(pwma.dry_mouth$I2*100, 1)`% (95%CI from `r round(pwma.dry_mouth$lower.I2*100, 1)`% to `r round(pwma.dry_mouth$upper.I2*100, 1)`%) and a tau^2^ value of `r round(pwma.dry_mouth$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.dry_mouth$lower.predict, 3)` to `r round(pwma.dry_mouth$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
 
@@ -1322,12 +1332,13 @@ for (predictor in predictors) {
 # Combine all messages into a single string for inline use
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
-
 #### Risk of bias
 
 ![](data\human\LSR1RoBVisuals\robdrymouth1.png)
 
 ![](data\human\LSR1RoBVisuals\robdrymouth2.png)
+
+
 
 ### Secondary outcome: vomiting
 
@@ -1350,7 +1361,7 @@ OR: odds ratio, 95%CI: 95% confidence intervals.
 `r pwma.vomiting$k.TE` `r ifelse(pwma.vomiting$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.vomiting$n.e., pwma.vomiting$n.c.), na.rm = T)` participants (`r sum(pwma.vomiting$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.vomiting$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.vomiting$lower.random < 1) & (pwma.vomiting$upper.random < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.vomiting$lower.random > 1) & (pwma.vomiting$upper.random > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.vomiting$TE.random), 3)` (95%CI from `r round(exp(pwma.vomiting$lower.random), 3)` to `r round(pwma.vomiting$upper.random, 3)`).
-The study results presented an I2 value of `r round(pwma.vomiting$I2*100, 1)`% (95%CI from `r round(pwma.vomiting$lower.I2*100, 1)`% to `r round(pwma.vomiting$upper.I2*100, 1)`%) and a tau2 value of `r round(pwma.vomiting$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.vomiting$lower.predict, 3)` to `r round(pwma.vomiting$upper.predict, 3)`).
+The study results presented an I^2^ value of `r round(pwma.vomiting$I2*100, 1)`% (95%CI from `r round(pwma.vomiting$lower.I2*100, 1)`% to `r round(pwma.vomiting$upper.I2*100, 1)`%) and a tau^2^ value of `r round(pwma.vomiting$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.vomiting$lower.predict, 3)` to `r round(pwma.vomiting$upper.predict, 3)`).
 
 #### Sub-group and meta-regression analyses
 
@@ -1442,12 +1453,12 @@ for (predictor in predictors) {
 # Combine all messages into a single string for inline use
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
-
 #### Risk of bias
 
 ![](data\human\LSR1RoBVisuals\robvomiting1.png)
 
 ![](data\human\LSR1RoBVisuals\robvomiting2.png)
+
 
 ## Reporting bias
 
@@ -1458,7 +1469,6 @@ SoE_Indir <- read_xlsx("data/human/LSR1_H_SOE.xlsx", "SOE")
 
 knitr::kable(SoE_Indir) %>%
   kable_styling(bootstrap_options = "bordered")
-
 ```
 
 ## Abbreviations
@@ -1470,6 +1480,10 @@ knitr::kable(SoE_Indir) %>%
 -   IPD: Individual Participant Data
 
 -   OR: Odds Ratio
+
+-   N: number of studies
+
+-   n: number of participants
 
 -   NI: No Information
 
@@ -1499,13 +1513,13 @@ We used R version 4.3.1 (R Core Team 2023) and the following packages; meta (Bal
     Using Risk of Bias 2 to assess results from randomised controlled trials: guidance from Cochrane.
     BMJ *Evidence-Based Medicine*, 28(4), 260-266.
 
--   Page, M. J., McKenzie, J. E., Bossuyt, P. M., Boutron, I., Hoffmann, T. C., Mulrow, C. D., ...
+-   Page, M. J., McKenzie, J. E., Bossuyt, P. M., Boutron, I., Hoffmann, T. C., Mulrow, C. D., \...
     & Moher, D.
     (2021).
     The PRISMA 2020 statement: an updated guideline for reporting systematic reviews. 
     *Bmj*, *372*.
 
--   Page, M. J., Sterne, J. A., Boutron, I., Hróbjartsson, A., Kirkham, J. J., Li, T., ...
+-   Page, M. J., Sterne, J. A., Boutron, I., Hróbjartsson, A., Kirkham, J. J., Li, T., \...
     & Higgins, J. P. (2023).
     ROB-ME: a tool for assessing risk of bias due to missing evidence in systematic reviews with meta-analysis. 
     *bmj*, *383*
