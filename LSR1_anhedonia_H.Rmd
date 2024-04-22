@@ -1,9 +1,11 @@
 ---
 title: "A systematic review and meta-analysis of pro-dopaminergic interventions for anhedonia - results from human studies"
-output: html_document
-date: "2024-04-19"
 author: "Jaycee Kennett, Claire Friedrich, Edoardo G. Ostinelli <span style='font-size: 15px'></style>"
-mainfont: Arialh
+output: 
+  html_document:
+      toc: TRUE
+date: "`r format(Sys.Date(), '%d %B %Y')`"
+mainfont: Arial
 editor_options: 
   markdown: 
     wrap: sentence
@@ -151,7 +153,7 @@ This result was judged to be at moderate risk of bias due to indirectness as whi
 
 #### Sensitivity analyses
 
-We performed a series of random effects network meta-analyses on the MADRS “inability to feel” item (aggregated IPD from 34 studies, 14054 participants).
+We performed a series of random effects network meta-analyses on the MADRS "inability to feel" item (aggregated IPD from 34 studies, 14054 participants).
 First, we included all the available studies and compared all the antidepressants against placebo.
 
 ![](result/human/non-dopaminergic/IPD_AD_NMA_pla_with_estimates.png)
@@ -162,8 +164,9 @@ The comparative effect of buproprion versus placebo was -0.12 (SMD, 95%CI from -
 
 We also performed a random effects pairwise meta-analysis of buproprion versus placebo based on the aggregated IPD, resulting in estimates comparable to the network meta-analytical model (SMD -0.12, 95%CI from -0.29 to 0.05; 4 studies, 1085 participants).
 
-Finally, we performed a random effects pairwise meta-analysis including aggregate data from both sources (IPD and retrieved as aggregated). As three studies (Hewett 2009 - 87997883, Hewett 2010a - 87997755, Koshino 2013 - 87997374) were available in both sources, we prioritised aggregate IPD over data retrieved as aggregated. The comparative effect of bupropion versus placebo was -0.19 (SMD, 95%CI from -0.33 to 0.04; 6 studies, 2489 participants)
-
+Finally, we performed a random effects pairwise meta-analysis including aggregate data from both sources (IPD and retrieved as aggregated).
+As three studies (Hewett 2009 - 87997883, Hewett 2010a - 87997755, Koshino 2013 - 87997374) were available in both sources, we prioritised aggregate IPD over data retrieved as aggregated.
+The comparative effect of bupropion versus placebo was -0.19 (SMD, 95%CI from -0.33 to 0.04; 6 studies, 2489 participants)
 
 #### Sub-group and meta-regression analyses
 
@@ -371,10 +374,10 @@ mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
 
 #### Risk of Bias
+
 ![](data\human\LSR1RoBVisuals\robanxiety1.png)
 
 ![](data\human\LSR1RoBVisuals\robanxiety2.png)
-
 
 ### Secondary outcome: Dropouts due to any reason
 
@@ -496,7 +499,6 @@ mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 
 ![](data\human\LSR1RoBVisuals\robacceptability2.png)
 
-
 ### Secondary outcome: dropouts due to side effects
 
 ```{r tolerability_forest, echo=FALSE, fig.width=12, fig.height=14}
@@ -611,12 +613,12 @@ for (predictor in predictors) {
 # Combine all messages into a single string for inline use
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
+
 #### Risk of bias
 
 ![](data\human\LSR1RoBVisuals\robtolerability1.png)
 
 ![](data\human\LSR1RoBVisuals\robtolerability2.png)
-
 
 ### Secondary outcome: nausea
 
@@ -731,6 +733,7 @@ for (predictor in predictors) {
 # Combine all messages into a single string for inline use
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
+
 #### Risk of bias
 
 ![](data\human\LSR1RoBVisuals\robnausea1.png)
@@ -850,12 +853,12 @@ for (predictor in predictors) {
 # Combine all messages into a single string for inline use
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
+
 #### Risk of bias
 
 ![](data\human\LSR1RoBVisuals\robheadache1.png)
 
 ![](data\human\LSR1RoBVisuals\robheadache2.png)
-
 
 ### Secondary outcome: insomnia
 
@@ -970,12 +973,12 @@ for (predictor in predictors) {
 # Combine all messages into a single string for inline use
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
+
 #### Risk of bias
 
 ![](data\human\LSR1RoBVisuals\robinsomnia1.png)
 
 ![](data\human\LSR1RoBVisuals\robinsomnia2.png)
-
 
 ### Secondary outcome: constipation
 
@@ -1092,12 +1095,12 @@ for (predictor in predictors) {
 # Combine all messages into a single string for inline use
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
+
 #### Risk of bias
 
 ![](data\human\LSR1RoBVisuals\robconstipation1.png)
 
 ![](data\human\LSR1RoBVisuals\robconstipation2.png)
-
 
 ### Secondary outcome: dizziness
 
@@ -1212,12 +1215,12 @@ for (predictor in predictors) {
 # Combine all messages into a single string for inline use
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
+
 #### Risk of bias
 
 ![](data\human\LSR1RoBVisuals\robdizziness1.png)
 
 ![](data\human\LSR1RoBVisuals\robdizziness2.png)
-
 
 ### Secondary outcome: dry mouth
 
@@ -1332,13 +1335,12 @@ for (predictor in predictors) {
 # Combine all messages into a single string for inline use
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
+
 #### Risk of bias
 
 ![](data\human\LSR1RoBVisuals\robdrymouth1.png)
 
 ![](data\human\LSR1RoBVisuals\robdrymouth2.png)
-
-
 
 ### Secondary outcome: vomiting
 
@@ -1453,12 +1455,12 @@ for (predictor in predictors) {
 # Combine all messages into a single string for inline use
 mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 ```
+
 #### Risk of bias
 
 ![](data\human\LSR1RoBVisuals\robvomiting1.png)
 
 ![](data\human\LSR1RoBVisuals\robvomiting2.png)
-
 
 ## Reporting bias
 
