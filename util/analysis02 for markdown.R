@@ -21,7 +21,10 @@ outcomes <- c('anhedonia',
               'vomiting')
 
 # load df ----
-df <- readRDS('rds/human/df_new.rds')
+df <- readRDS('rds/human/df.rds')
+
+# amend df ----
+source('util/df_amendments20240430.R')
 
 # anhedonia ----
 {
