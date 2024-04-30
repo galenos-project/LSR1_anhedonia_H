@@ -1,31 +1,33 @@
+
+> pwma.dizziness
 Review:     dizziness
 
 Number of studies: k = 22
-Number of observations: o = 5460 (o.e = 2989, o.c = 2471)
+Number of observations: o = 5469
 Number of events: e = 511
 
                          OR           95%-CI    t p-value
-Random effects model 1.7206 [1.3238; 2.2364] 4.30  0.0003
-Prediction interval         [0.8917; 3.3201]             
+Random effects model 1.7160 [1.3221; 2.2273] 4.31  0.0003
+Prediction interval         [0.9026; 3.2627]             
 
 Quantifying heterogeneity:
- tau^2 = 0.0838 [0.0000; 0.4970]; tau = 0.2895 [0.0000; 0.7050]
- I^2 = 26.5% [0.0%; 56.4%]; H = 1.17 [1.00; 1.51]
+ tau^2 = 0.0796 [0.0000; 0.4917]; tau = 0.2822 [0.0000; 0.7012]
+ I^2 = 25.8% [0.0%; 56.0%]; H = 1.16 [1.00; 1.51]
 
 Test of heterogeneity:
      Q d.f. p-value
- 28.59   21  0.1243
+ 28.31   21  0.1316
 
 Results for subgroups (random effects model):
                   k     OR           95%-CI   tau^2    tau     Q   I^2
 group = MAOI      7 1.8356 [1.0497; 3.2099]  0.0753 0.2744  7.13 15.8%
 group = Agonist   2 2.7456 [0.8652; 8.7129]       0      0  0.03  0.0%
 group = RIMA      3 1.7717 [0.6053; 5.1856] <0.0001 0.0021  1.82  0.0%
-group = *DRI     10 1.6155 [0.9953; 2.6223]  0.2053 0.4531 18.14 50.4%
+group = *DRI     10 1.6066 [0.9938; 2.5972]  0.1963 0.4431 17.81 49.5%
 
 Test for subgroup differences (random effects model):
                   Q d.f. p-value
-Between groups 8.43    3  0.0379
+Between groups 8.58    3  0.0354
 
 Details on meta-analytical method:
 - Inverse variance method
@@ -34,4 +36,10 @@ Details on meta-analytical method:
 - Hartung-Knapp adjustment for random effects model (df = 21)
 - Prediction interval based on t-distribution (df = 20)
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

@@ -1,3 +1,12 @@
+
+> if (!inherits(try(metareg(pwma.anhedonia, reward_baseline), silent = T), "try-error")) {
++   reg.anhedonia.reward <- metareg(pwma.anhedonia, reward_ .... [TRUNCATED] 
 Meta-regression not applicable.
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

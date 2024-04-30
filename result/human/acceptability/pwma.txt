@@ -1,32 +1,34 @@
+
+> pwma.acc
 Review:     Acceptability
 
 Number of studies: k = 50
-Number of observations: o = 9159 (o.e = 5227, o.c = 3932)
-Number of events: e = 2614
+Number of observations: o = 9168
+Number of events: e = 2657
 
                          OR           95%-CI     t p-value
-Random effects model 0.9117 [0.7295; 1.1393] -0.83  0.4084
-Prediction interval         [0.2798; 2.9699]              
+Random effects model 0.9593 [0.7819; 1.1771] -0.41  0.6853
+Prediction interval         [0.3516; 2.6176]              
 
 Quantifying heterogeneity:
- tau^2 = 0.3339 [0.1974; 0.8090]; tau = 0.5778 [0.4443; 0.8994]
- I^2 = 67.6% [56.6%; 75.8%]; H = 1.76 [1.52; 2.03]
+ tau^2 = 0.2403 [0.1458; 0.7045]; tau = 0.4902 [0.3819; 0.8394]
+ I^2 = 61.7% [48.1%; 71.8%]; H = 1.62 [1.39; 1.88]
 
 Test of heterogeneity:
       Q d.f.  p-value
- 151.29   49 < 0.0001
+ 128.08   49 < 0.0001
 
 Results for subgroups (random effects model):
                                         k     OR           95%-CI  tau^2    tau     Q   I^2
 group = RIMA                           12 0.8053 [0.5019; 1.2920] 0.2060 0.4539 20.94 47.5%
 group = MAOI                           13 0.8253 [0.4463; 1.5263] 0.6388 0.7993 41.13 70.8%
 group = Agonist                         3 0.8012 [0.1877; 3.4203] 0.2422 0.4922  4.17 52.1%
-group = *DRI                           21 1.0833 [0.8130; 1.4435] 0.2443 0.4943 66.40 69.9%
+group = *DRI                           21 1.1686 [0.9550; 1.4300] 0.0854 0.2923 39.00 48.7%
 group = Vesicle transport facilitator   1 0.1399 [0.0458; 0.4273]     --     --  0.00    --
 
 Test for subgroup differences (random effects model):
                    Q d.f. p-value
-Between groups 12.97    4  0.0114
+Between groups 16.41    4  0.0025
 
 Details on meta-analytical method:
 - Inverse variance method
@@ -36,4 +38,10 @@ Details on meta-analytical method:
 - Prediction interval based on t-distribution (df = 48)
 - Continuity correction of 0.5 in studies with zero cell frequencies
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

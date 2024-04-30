@@ -1,5 +1,8 @@
+
+> cat('# List of studies contributing to the meta-analysis:', sep = '\n')
 # List of studies contributing to the meta-analysis:
-A multicentre comparative... (1994) - 89915739
+
+> cat(pwma.dry_mouth$studlab, sep = '\n')
 Amsterdam (2003) - 87998463
 Bodkin (2002) - 89915354
 Chouinard (1993) - 87999011
@@ -21,10 +24,17 @@ Learned (2012a) - 90047003
 Learned (2012b) - 91551222
 Mann (1989) - 87999225
 Reimherr (1998) - 87998734
+UK Moclobomide Study Group (1994)
 Versiani (1997) - 87998762
 White (1984) - 87999366
 
+> cat(paste0(''), sep = '\n')
+
+
+> cat('# List of treatments contributing to the meta-analysis:', sep = '\n')
 # List of treatments contributing to the meta-analysis:
+
+> cat(sort(unique(df.dry_mouth$treatment[df.dry_mouth$studlab %in% pwma.dry_mouth$studlab])), sep = '\n')
 brofaromine
 bupropion
 dextromethorphan-bupropion
@@ -35,15 +45,30 @@ placebo
 selegiline
 tranylcypromine
 
+> cat(paste0(''), sep = '\n')
+
+
+> cat('# Additional details:', sep = '\n')
 # Additional details:
+
+> for (i in sort(unique(df.dry_mouth$treatment[df.dry_mouth$studlab %in% pwma.dry_mouth$studlab]))) {
++   cat(paste0(i, 
++              ' (k = ', 
++   .... [TRUNCATED] 
 brofaromine (k = 1; n = 111; r = 22).
 bupropion (k = 12; n = 2211; r = 342).
-dextromethorphan-bupropion (k = 1; n = 156; r = 9).
+dextromethorphan-bupropion (k = 1; n = 163; r = 9).
 gsk372475 (k = 2; n = 305; r = 69).
 moclobemide (k = 2; n = 164; r = 53).
 phenelzine (k = 1; n = 22; r = 13).
-placebo (k = 24; n = 2875; r = 253).
+placebo (k = 24; n = 2877; r = 253).
 selegiline (k = 4; n = 392; r = 41).
 tranylcypromine (k = 1; n = 63; r = 26).
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

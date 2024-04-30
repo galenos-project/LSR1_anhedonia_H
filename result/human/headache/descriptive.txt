@@ -1,4 +1,8 @@
+
+> cat('# List of studies contributing to the meta-analysis:', sep = '\n')
 # List of studies contributing to the meta-analysis:
+
+> cat(pwma.headache$studlab, sep = '\n')
 Amsterdam (2003) - 87998463
 Benes (2011) - 87997624
 Bodkin (2002) - 89915354
@@ -26,7 +30,13 @@ Riesenberg (2010) - 90051999
 Versiani (1997) - 87998762
 White (1984) - 87999366
 
+> cat(paste0(''), sep = '\n')
+
+
+> cat('# List of treatments contributing to the meta-analysis:', sep = '\n')
 # List of treatments contributing to the meta-analysis:
+
+> cat(sort(unique(df.headache$treatment[df.headache$studlab %in% pwma.headache$studlab])), sep = '\n')
 amitifadine
 brofaromine
 bupropion
@@ -40,18 +50,33 @@ rx-10100
 selegiline
 tranylcypromine
 
+> cat(paste0(''), sep = '\n')
+
+
+> cat('# Additional details:', sep = '\n')
 # Additional details:
+
+> for (i in sort(unique(df.headache$treatment[df.headache$studlab %in% pwma.headache$studlab]))) {
++   cat(paste0(i, 
++              ' (k = ', 
++      .... [TRUNCATED] 
 amitifadine (k = 1; n = 34; r = 3).
 brofaromine (k = 1; n = 111; r = 53).
 bupropion (k = 11; n = 2076; r = 425).
-dextromethorphan-bupropion (k = 1; n = 156; r = 13).
+dextromethorphan-bupropion (k = 1; n = 163; r = 13).
 gsk372475 (k = 2; n = 305; r = 63).
 moclobemide (k = 2; n = 143; r = 22).
-placebo (k = 26; n = 2862; r = 516).
+placebo (k = 26; n = 2864; r = 516).
 pramipexole (k = 1; n = 104; r = 37).
 ropinirole (k = 1; n = 198; r = 39).
 rx-10100 (k = 1; n = 54; r = 7).
 selegiline (k = 4; n = 412; r = 70).
 tranylcypromine (k = 1; n = 63; r = 11).
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

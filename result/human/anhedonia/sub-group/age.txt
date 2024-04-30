@@ -1,26 +1,36 @@
 
+> if (!inherits(try(metareg(pwma.anhedonia, age), silent = T), "try-error")) {
++   reg.anhedonia.age <- metareg(pwma.anhedonia, age)
++   reg.anhedonia .... [TRUNCATED] 
+
 Mixed-Effects Model (k = 6; tau^2 estimator: REML)
 
-tau^2 (estimated amount of residual heterogeneity):     0.0330 (SE = 0.0346)
+tau^2 (estimated amount of residual heterogeneity):     0.0330 (SE = 0.0347)
 tau (square root of estimated tau^2 value):             0.1815
-I^2 (residual heterogeneity / unaccounted variability): 70.93%
-H^2 (unaccounted variability / sampling variability):   3.44
+I^2 (residual heterogeneity / unaccounted variability): 70.88%
+H^2 (unaccounted variability / sampling variability):   3.43
 R^2 (amount of heterogeneity accounted for):            0.00%
 
 Test for Residual Heterogeneity:
-QE(df = 4) = 13.8906, p-val = 0.0077
+QE(df = 4) = 13.8694, p-val = 0.0077
 
 Test of Moderators (coefficient 2):
-F(df1 = 1, df2 = 4) = 0.2470, p-val = 0.6453
+F(df1 = 1, df2 = 4) = 0.2460, p-val = 0.6459
 
 Model Results:
 
          estimate      se     tval  df    pval    ci.lb   ci.ub    
-intrcpt   -0.0702  0.3696  -0.1899   4  0.8586  -1.0964  0.9560    
-age       -0.0038  0.0076  -0.4970   4  0.6453  -0.0248  0.0173    
+intrcpt   -0.0701  0.3700  -0.1893   4  0.8590  -1.0973  0.9572    
+age       -0.0038  0.0076  -0.4960   4  0.6459  -0.0248  0.0173    
 
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

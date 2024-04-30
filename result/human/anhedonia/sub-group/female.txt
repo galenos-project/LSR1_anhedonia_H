@@ -1,26 +1,35 @@
 
+> if (!inherits(try(metareg(pwma.anhedonia, female_prop), silent = T), "try-error")) {
++   reg.anhedonia.female <- metareg(pwma.anhedonia, female_prop .... [TRUNCATED] 
+
 Mixed-Effects Model (k = 6; tau^2 estimator: REML)
 
 tau^2 (estimated amount of residual heterogeneity):     0.0000 (SE = 0.0090)
-tau (square root of estimated tau^2 value):             0.0002
+tau (square root of estimated tau^2 value):             0.0007
 I^2 (residual heterogeneity / unaccounted variability): 0.00%
 H^2 (unaccounted variability / sampling variability):   1.00
 R^2 (amount of heterogeneity accounted for):            100.00%
 
 Test for Residual Heterogeneity:
-QE(df = 4) = 3.6130, p-val = 0.4609
+QE(df = 4) = 3.6116, p-val = 0.4611
 
 Test of Moderators (coefficient 2):
-F(df1 = 1, df2 = 4) = 13.1760, p-val = 0.0222
+F(df1 = 1, df2 = 4) = 13.1563, p-val = 0.0222
 
 Model Results:
 
              estimate      se     tval  df    pval    ci.lb    ci.ub    
-intrcpt        0.7243  0.2612   2.7725   4  0.0502  -0.0010   1.4495  . 
-female_prop   -1.4761  0.4067  -3.6299   4  0.0222  -2.6051  -0.3470  * 
+intrcpt        0.7238  0.2612   2.7709   4  0.0503  -0.0014   1.4490  . 
+female_prop   -1.4750  0.4067  -3.6272   4  0.0222  -2.6041  -0.3460  * 
 
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

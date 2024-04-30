@@ -1,32 +1,34 @@
+
+> pwma.headache
 Review:     headache
 
 Number of studies: k = 26
-Number of observations: o = 6518 (o.e = 3656, o.c = 2862)
+Number of observations: o = 6527
 Number of events: e = 1259
 
                          OR           95%-CI    t p-value
-Random effects model 1.1609 [1.0299; 1.3086] 2.57  0.0167
-Prediction interval         [1.0077; 1.3374]             
+Random effects model 1.1602 [1.0299; 1.3070] 2.57  0.0166
+Prediction interval         [1.0071; 1.3366]             
 
 Quantifying heterogeneity:
- tau^2 = 0 [0.0000; 0.0551]; tau = 0 [0.0000; 0.2346]
+ tau^2 = 0 [0.0000; 0.0524]; tau = 0 [0.0000; 0.2290]
  I^2 = 0.0% [0.0%; 43.2%]; H = 1.00 [1.00; 1.33]
 
 Test of heterogeneity:
      Q d.f. p-value
- 17.97   25  0.8435
+ 17.79   25  0.8513
 
 Results for subgroups (random effects model):
                                         k     OR             95%-CI  tau^2    tau     Q   I^2
 group = MAOI                            5 0.9739 [0.6956;   1.3638]      0      0  1.93  0.0%
 group = Agonist                         2 1.3881 [0.2477;   7.7769]      0      0  0.22  0.0%
-group = *DRI                           15 1.1923 [1.0244;   1.3878]      0      0 10.28  0.0%
+group = *DRI                           15 1.1913 [1.0249;   1.3847]      0      0 10.10  0.0%
 group = RIMA                            3 1.1748 [0.3822;   3.6108] 0.1342 0.3663  2.57 22.2%
 group = Vesicle transport facilitator   1 6.7895 [0.3707; 124.3454]     --     --  0.00    --
 
 Test for subgroup differences (random effects model):
                   Q d.f. p-value
-Between groups 5.35    4  0.2536
+Between groups 5.34    4  0.2540
 
 Details on meta-analytical method:
 - Inverse variance method
@@ -36,4 +38,10 @@ Details on meta-analytical method:
 - Prediction interval based on t-distribution (df = 24)
 - Continuity correction of 0.5 in studies with zero cell frequencies
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

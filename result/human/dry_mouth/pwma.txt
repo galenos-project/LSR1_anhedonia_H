@@ -1,30 +1,32 @@
+
+> pwma.dry_mouth
 Review:     dry_mouth
 
 Number of studies: k = 24
-Number of observations: o = 6299 (o.e = 3424, o.c = 2875)
+Number of observations: o = 6308
 Number of events: e = 828
 
                          OR           95%-CI    t  p-value
-Random effects model 2.1193 [1.6804; 2.6727] 6.70 < 0.0001
-Prediction interval         [1.1346; 3.9586]              
+Random effects model 2.1175 [1.6792; 2.6702] 6.69 < 0.0001
+Prediction interval         [1.1346; 3.9518]              
 
 Quantifying heterogeneity:
- tau^2 = 0.0798 [0.0000; 0.4681]; tau = 0.2825 [0.0000; 0.6842]
+ tau^2 = 0.0795 [0.0000; 0.4676]; tau = 0.2820 [0.0000; 0.6838]
  I^2 = 36.1% [0.0%; 61.0%]; H = 1.25 [1.00; 1.60]
 
 Test of heterogeneity:
      Q d.f. p-value
- 36.00   23  0.0412
+ 35.98   23  0.0414
 
 Results for subgroups (random effects model):
                k     OR            95%-CI  tau^2    tau     Q   I^2
-group = RIMA   3 2.1768 [0.3286; 14.4203] 0.3563 0.5969  5.61 64.4%
 group = MAOI   6 1.9794 [1.1637;  3.3671] 0.0281 0.1678  4.88  0.0%
-group = *DRI  15 2.1744 [1.5824;  2.9878] 0.1103 0.3321 25.43 44.9%
+group = RIMA   3 2.1768 [0.3286; 14.4203] 0.3563 0.5969  5.61 64.4%
+group = *DRI  15 2.1715 [1.5806;  2.9832] 0.1099 0.3315 25.41 44.9%
 
 Test for subgroup differences (random effects model):
                   Q d.f. p-value
-Between groups 0.14    2  0.9316
+Between groups 0.14    2  0.9333
 
 Details on meta-analytical method:
 - Inverse variance method
@@ -33,4 +35,10 @@ Details on meta-analytical method:
 - Hartung-Knapp adjustment for random effects model (df = 23)
 - Prediction interval based on t-distribution (df = 22)
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

@@ -7,8 +7,6 @@ setwd("~/Documents/GitHub/LSR1_anhedonia_H")
 # functions ----
 source('util/util.R')
 
-# welcome ----
-system(paste0('say -v Moira ', welcome))
 
 # create folders ----
 outcomes <- c('anhedonia', 
@@ -38,6 +36,9 @@ for (i in outcomes) {
 
 # load df ----
 df <- readRDS('rds/human/df.rds')
+
+# amend df ----
+source('util/df_amendments20240430.R')
 
 # anhedonia ----
 df.anhedonia <- df[!is.na(df$anhedonia_followup_mean), c('studlab', 
@@ -1864,7 +1865,7 @@ cat(paste0(''), sep = '\n')
 cat(paste0('File created on ', Sys.Date()), sep = '\n')
 sink()
 
-:# vomiting ----
+# vomiting ----
 df.vomiting <- df[!is.na(df$vomiting), c('studlab', 
                                      'treatment', 
                                      'treatment_details', 

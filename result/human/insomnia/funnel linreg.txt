@@ -1,2 +1,10 @@
 
-File created on 2024-02-22
+> metabias(pwma.insomnia, method.bias = 'linreg')
+
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date()), sep = '\n')
+File created on 2024-04-30
+
+> sink()

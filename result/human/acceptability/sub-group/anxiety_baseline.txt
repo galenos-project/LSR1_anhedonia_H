@@ -1,4 +1,8 @@
 
+> if (!inherits(try(metareg(pwma.acc, anxiety_baseline), silent = T), "try-error")) {
++   reg.acc.anxiety <- metareg(pwma.acc, anxiety_baseline)
++   r .... [TRUNCATED] 
+
 Mixed-Effects Model (k = 15; tau^2 estimator: REML)
 
 tau^2 (estimated amount of residual heterogeneity):     0.0076 (SE = 0.0365)
@@ -23,4 +27,10 @@ anxiety_baseline    0.0282  0.0187   1.5091  13  0.1552  -0.0122  0.0685
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

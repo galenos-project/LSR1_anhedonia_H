@@ -1,7 +1,9 @@
+
+> pwma.vomiting
 Review:     vomiting
 
 Number of studies: k = 5
-Number of observations: o = 962 (o.e = 614, o.c = 348)
+Number of observations: o = 962
 Number of events: e = 115
 
                          OR           95%-CI    t p-value
@@ -34,4 +36,10 @@ Details on meta-analytical method:
 - Prediction interval based on t-distribution (df = 3)
 - Continuity correction of 0.5 in studies with zero cell frequencies
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

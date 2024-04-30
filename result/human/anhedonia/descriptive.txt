@@ -1,4 +1,8 @@
+
+> cat('# List of studies contributing to the meta-analysis:', sep = '\n')
 # List of studies contributing to the meta-analysis:
+
+> cat(pwma.anhedonia$studlab, sep = '\n')
 Bymaster (2011) - 90051758
 Hewett (2009) - 87997883
 Hewett (2010a) - 87997755
@@ -6,14 +10,35 @@ Hewett (2010b) - 87997769
 Jefferson (2006) - 87998173
 Koshino (2013) - 87997374
 
+> cat(paste0(''), sep = '\n')
+
+
+> cat('# List of treatments contributing to the meta-analysis:', sep = '\n')
 # List of treatments contributing to the meta-analysis:
+
+> cat(sort(unique(df.anhedonia$treatment[df.anhedonia$studlab %in% pwma.anhedonia$studlab])), sep = '\n')
 amitifadine
 bupropion
 placebo
 
+> cat(paste0(''), sep = '\n')
+
+
+> cat('# Additional details:', sep = '\n')
 # Additional details:
-amitifadine (k = 1; n = 33; r = 0).
+
+> for (i in sort(unique(df.anhedonia$treatment[df.anhedonia$studlab %in% pwma.anhedonia$studlab]))) {
++   cat(paste0(i, 
++              ' (k = ', 
++   .... [TRUNCATED] 
+amitifadine (k = 1; n = 30; r = 0).
 bupropion (k = 5; n = 1110; r = 0).
 placebo (k = 6; n = 936; r = 0).
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

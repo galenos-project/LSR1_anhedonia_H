@@ -1,4 +1,8 @@
+
+> cat('# List of studies contributing to the meta-analysis:', sep = '\n')
 # List of studies contributing to the meta-analysis:
+
+> cat(pwma.dizziness$studlab, sep = '\n')
 Amsterdam (2003) - 87998463
 Benes (2011) - 87997624
 Bodkin (2002) - 89915354
@@ -23,7 +27,13 @@ Reimherr (1998) - 87998734
 Versiani (1997) - 87998762
 White (1984) - 87999366
 
+> cat(paste0(''), sep = '\n')
+
+
+> cat('# List of treatments contributing to the meta-analysis:', sep = '\n')
 # List of treatments contributing to the meta-analysis:
+
+> cat(sort(unique(df.dizziness$treatment[df.dizziness$studlab %in% pwma.dizziness$studlab])), sep = '\n')
 brofaromine
 bupropion
 dextromethorphan-bupropion
@@ -36,17 +46,32 @@ ropinirole
 selegiline
 tranylcypromine
 
+> cat(paste0(''), sep = '\n')
+
+
+> cat('# Additional details:', sep = '\n')
 # Additional details:
+
+> for (i in sort(unique(df.dizziness$treatment[df.dizziness$studlab %in% pwma.dizziness$studlab]))) {
++   cat(paste0(i, 
++              ' (k = ', 
++   .... [TRUNCATED] 
 brofaromine (k = 1; n = 111; r = 26).
 bupropion (k = 7; n = 1356; r = 117).
-dextromethorphan-bupropion (k = 1; n = 156; r = 26).
+dextromethorphan-bupropion (k = 1; n = 163; r = 26).
 gsk372475 (k = 2; n = 305; r = 30).
 moclobemide (k = 2; n = 130; r = 21).
 phenelzine (k = 2; n = 22; r = 13).
-placebo (k = 23; n = 2471; r = 174).
+placebo (k = 23; n = 2473; r = 174).
 pramipexole (k = 1; n = 104; r = 20).
 ropinirole (k = 1; n = 198; r = 17).
 selegiline (k = 5; n = 544; r = 43).
 tranylcypromine (k = 1; n = 63; r = 24).
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

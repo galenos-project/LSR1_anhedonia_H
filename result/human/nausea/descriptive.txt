@@ -1,4 +1,8 @@
+
+> cat('# List of studies contributing to the meta-analysis:', sep = '\n')
 # List of studies contributing to the meta-analysis:
+
+> cat(pwma.nausea$studlab, sep = '\n')
 Amsterdam (2003) - 87998463
 Benes (2011) - 87997624
 Bymaster (2011) - 90051758
@@ -24,7 +28,13 @@ Parnetti (1993) - 90055317
 Reimherr (1998) - 87998734
 Versiani (1997) - 87998762
 
+> cat(paste0(''), sep = '\n')
+
+
+> cat('# List of treatments contributing to the meta-analysis:', sep = '\n')
 # List of treatments contributing to the meta-analysis:
+
+> cat(sort(unique(df.nausea$treatment[df.nausea$studlab %in% pwma.nausea$studlab])), sep = '\n')
 amitifadine
 brofaromine
 bupropion
@@ -37,17 +47,32 @@ pramipexole
 ropinirole
 selegiline
 
+> cat(paste0(''), sep = '\n')
+
+
+> cat('# Additional details:', sep = '\n')
 # Additional details:
+
+> for (i in sort(unique(df.nausea$treatment[df.nausea$studlab %in% pwma.nausea$studlab]))) {
++   cat(paste0(i, 
++              ' (k = ', 
++            .... [TRUNCATED] 
 amitifadine (k = 1; n = 34; r = 2).
 brofaromine (k = 1; n = 111; r = 41).
 bupropion (k = 12; n = 2211; r = 283).
-dextromethorphan-bupropion (k = 1; n = 156; r = 21).
+dextromethorphan-bupropion (k = 1; n = 163; r = 21).
 gsk372475 (k = 2; n = 305; r = 36).
 minaprine (k = 1; n = 63; r = 1).
 moclobemide (k = 1; n = 108; r = 19).
-placebo (k = 24; n = 2867; r = 291).
+placebo (k = 24; n = 2869; r = 291).
 pramipexole (k = 1; n = 104; r = 50).
 ropinirole (k = 1; n = 198; r = 64).
 selegiline (k = 3; n = 323; r = 23).
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

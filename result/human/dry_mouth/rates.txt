@@ -1,4 +1,14 @@
+
+> cat(paste0('Control event rate (placebo): ', round(dry_mouth.rate.pla, 2)), sep = '\n')
 Control event rate (placebo): 0.09
+
+> cat(paste0('Experimental event rate (pro-dopaminergic interventions): ', round(dry_mouth.eer, 2)), sep = '\n')
 Experimental event rate (pro-dopaminergic interventions): 0.18
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

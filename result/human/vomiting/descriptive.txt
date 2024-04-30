@@ -1,22 +1,47 @@
+
+> cat('# List of studies contributing to the meta-analysis:', sep = '\n')
 # List of studies contributing to the meta-analysis:
+
+> cat(pwma.vomiting$studlab, sep = '\n')
 Benes (2011) - 87997624
 Corrigan (2000) - 90044744
 DelBello (2014) - 87997132
 GlaxoSmithKline (1980) - 89913897
 GlaxoSmithKline (1985) - 89913880
 
+> cat(paste0(''), sep = '\n')
+
+
+> cat('# List of treatments contributing to the meta-analysis:', sep = '\n')
 # List of treatments contributing to the meta-analysis:
+
+> cat(sort(unique(df.vomiting$treatment[df.vomiting$studlab %in% pwma.vomiting$studlab])), sep = '\n')
 bupropion
 placebo
 pramipexole
 ropinirole
 selegiline
 
+> cat(paste0(''), sep = '\n')
+
+
+> cat('# Additional details:', sep = '\n')
 # Additional details:
+
+> for (i in sort(unique(df.vomiting$treatment[df.vomiting$studlab %in% pwma.vomiting$studlab]))) {
++   cat(paste0(i, 
++              ' (k = ', 
++      .... [TRUNCATED] 
 bupropion (k = 2; n = 160; r = 49).
 placebo (k = 5; n = 348; r = 28).
 pramipexole (k = 1; n = 104; r = 17).
 ropinirole (k = 1; n = 198; r = 14).
 selegiline (k = 1; n = 152; r = 7).
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

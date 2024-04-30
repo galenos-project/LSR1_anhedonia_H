@@ -1,31 +1,33 @@
+
+> pwma.insomnia
 Review:     insomnia
 
 Number of studies: k = 22
-Number of observations: o = 5866 (o.e = 3246, o.c = 2620)
+Number of observations: o = 5875
 Number of events: e = 589
 
                          OR           95%-CI    t  p-value
-Random effects model 1.7921 [1.4252; 2.2534] 5.30 < 0.0001
-Prediction interval         [1.1620; 2.7640]              
+Random effects model 1.7906 [1.4242; 2.2513] 5.29 < 0.0001
+Prediction interval         [1.1619; 2.7595]              
 
 Quantifying heterogeneity:
- tau^2 = 0.0302 [0.0000; 0.3218]; tau = 0.1737 [0.0000; 0.5673]
- I^2 = 5.4% [0.0%; 37.7%]; H = 1.03 [1.00; 1.27]
+ tau^2 = 0.0300 [0.0000; 0.3212]; tau = 0.1732 [0.0000; 0.5668]
+ I^2 = 5.3% [0.0%; 37.5%]; H = 1.03 [1.00; 1.27]
 
 Test of heterogeneity:
      Q d.f. p-value
- 22.20   21  0.3883
+ 22.18   21  0.3895
 
 Results for subgroups (random effects model):
                   k     OR            95%-CI  tau^2    tau    Q   I^2
 group = MAOI      5 2.6512 [1.1350;  6.1925] 0.1148 0.3388 5.55 27.9%
 group = RIMA      3 1.2856 [0.3346;  4.9398] 0.2098 0.4581 3.22 37.9%
-group = *DRI     13 1.6798 [1.3255;  2.1288]      0      0 7.61  0.0%
+group = *DRI     13 1.6778 [1.3245;  2.1253]      0      0 7.58  0.0%
 group = Agonist   1 5.2889 [0.6695; 41.7781]     --     -- 0.00    --
 
 Test for subgroup differences (random effects model):
                   Q d.f. p-value
-Between groups 4.05    3  0.2562
+Between groups 4.06    3  0.2556
 
 Details on meta-analytical method:
 - Inverse variance method
@@ -35,4 +37,10 @@ Details on meta-analytical method:
 - Prediction interval based on t-distribution (df = 20)
 - Continuity correction of 0.5 in studies with zero cell frequencies
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

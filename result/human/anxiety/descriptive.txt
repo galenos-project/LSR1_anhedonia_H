@@ -1,4 +1,8 @@
+
+> cat('# List of studies contributing to the meta-analysis:', sep = '\n')
 # List of studies contributing to the meta-analysis:
+
+> cat(pwma.anxiety$studlab, sep = '\n')
 Casacchia (1984) - 87999374
 Chouinard (1993) - 87999011
 Davidson (1988) - 87999240
@@ -16,7 +20,13 @@ Quitkin (1990) - 87999150
 Ravaris (1976) - 87999576
 Reimherr (1998) - 87998734
 
+> cat(paste0(''), sep = '\n')
+
+
+> cat('# List of treatments contributing to the meta-analysis:', sep = '\n')
 # List of treatments contributing to the meta-analysis:
+
+> cat(sort(unique(df.anxiety$treatment[df.anxiety$studlab %in% pwma.anxiety$studlab])), sep = '\n')
 brofaromine
 bupropion
 isocarboxazid
@@ -25,7 +35,16 @@ moclobemide
 phenelzine
 placebo
 
+> cat(paste0(''), sep = '\n')
+
+
+> cat('# Additional details:', sep = '\n')
 # Additional details:
+
+> for (i in sort(unique(df.anxiety$treatment[df.anxiety$studlab %in% pwma.anxiety$studlab]))) {
++   cat(paste0(i, 
++              ' (k = ', 
++         .... [TRUNCATED] 
 brofaromine (k = 1; n = 111; r = 0).
 bupropion (k = 8; n = 1759; r = 0).
 isocarboxazid (k = 2; n = 61; r = 0).
@@ -34,4 +53,10 @@ moclobemide (k = 1; n = 18; r = 0).
 phenelzine (k = 3; n = 69; r = 0).
 placebo (k = 16; n = 1440; r = 0).
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()

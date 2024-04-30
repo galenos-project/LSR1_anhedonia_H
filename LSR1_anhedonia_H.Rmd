@@ -381,7 +381,7 @@ mr_significance_text_anx <- cat(paste0(significance_summary, sep = "\n"))
 
 ### Secondary outcome: Dropouts due to any reason
 
-```{r acceptability_forest, echo=FALSE, fig.width=12, fig.height=14}
+```{r acceptability_forest, echo=FALSE, fig.width=12, fig.height=18}
 forest(pwma.acc, 
        sortvar = seTE, 
        print.I2.ci = T, 

@@ -1,4 +1,7 @@
 
+> if (!inherits(try(metareg(pwma.tol, anhedonia_baseline), silent = T), "try-error")) {
++   reg.tol.anhedonia <- metareg(pwma.tol, anhedonia_baseline) .... [TRUNCATED] 
+
 Mixed-Effects Model (k = 5; tau^2 estimator: REML)
 
 tau^2 (estimated amount of residual heterogeneity):     0 (SE = 0.1760)
@@ -8,19 +11,25 @@ H^2 (unaccounted variability / sampling variability):   1.00
 R^2 (amount of heterogeneity accounted for):            100.00%
 
 Test for Residual Heterogeneity:
-QE(df = 3) = 0.7804, p-val = 0.8542
+QE(df = 3) = 0.7849, p-val = 0.8531
 
 Test of Moderators (coefficient 2):
-F(df1 = 1, df2 = 3) = 18.0547, p-val = 0.0239
+F(df1 = 1, df2 = 3) = 17.9334, p-val = 0.0241
 
 Model Results:
 
                     estimate      se     tval  df    pval    ci.lb    ci.ub    
-intrcpt               1.1528  0.2996   3.8482   3  0.0310   0.1994   2.1062  * 
-anhedonia_baseline   -0.0509  0.0120  -4.2491   3  0.0239  -0.0890  -0.0128  * 
+intrcpt               1.1516  0.3003   3.8349   3  0.0313   0.1959   2.1074  * 
+anhedonia_baseline   -0.0508  0.0120  -4.2348   3  0.0241  -0.0890  -0.0126  * 
 
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
 
-File created on 2024-02-22 by user edoardoostinelli (script v2).
+> cat(paste0(''), sep = '\n')
+
+
+> cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
+File created on 2024-04-30 by user jackkennett (script v2).
+
+> sink()
