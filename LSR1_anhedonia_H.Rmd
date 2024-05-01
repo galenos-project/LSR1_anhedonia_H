@@ -158,11 +158,11 @@ First, we included all the available studies and compared all the antidepressant
 
 ![](result/human/non-dopaminergic/IPD_AD_NMA_pla_with_estimates.png)
 
-The comparative effect of buproprion versus placebo was -0.12 (SMD, 95%CI from -0.25 to 0.00; 34 studies, 14054 participants), lower than what we could observe from the retrieved data (random effects pairwise meta-analysis, bupropion versus placebo): -0.22 (SMD, 95%CI from -0.44 to 0.01; 5 studies, 2020 participants).
+The comparative effect of bupropion versus placebo was -0.12 (SMD, 95%CI from -0.25 to 0.00; 34 studies, 14054 participants), lower than what we could observe from the retrieved data (random effects pairwise meta-analysis, bupropion versus placebo): -0.22 (SMD, 95%CI from -0.44 to 0.01; 5 studies, 2020 participants).
 
 ![](result/human/non-dopaminergic/GALENOS_AD_PWMA.png)
 
-We also performed a random effects pairwise meta-analysis of buproprion versus placebo based on the aggregated IPD, resulting in estimates comparable to the network meta-analytical model (SMD -0.12, 95%CI from -0.29 to 0.05; 4 studies, 1085 participants).
+We also performed a random effects pairwise meta-analysis of bupropion versus placebo based on the aggregated IPD, resulting in estimates comparable to the network meta-analytical model (SMD -0.12, 95%CI from -0.29 to 0.05; 4 studies, 1085 participants).
 
 Finally, we performed a random effects pairwise meta-analysis including aggregate data from both sources (IPD and retrieved as aggregated).
 As three studies (Hewett 2009 - 87997883, Hewett 2010a - 87997755, Koshino 2013 - 87997374) were available in both sources, we prioritised aggregate IPD over data retrieved as aggregated.
