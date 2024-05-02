@@ -3,6 +3,13 @@
 df$studlab[df$studlab=='A multicentre comparative... (1994) - 89915739'] <- 'UK Moclobomide Study Group (1994)'
 
 #error corrections from data extraction, all corrected in original source (EPPI) and reflected in data/human file
+# bymaster 2011
+indices_to_modify <- which(grepl("^Bymaster \\(2011\\)", df$studlab) & df$treatment == "amitifadine")
+if (length(indices_to_modify) > 0) {
+  df$anhedonia_baseline_mean[indices_to_modify] <- 12.7 } # entered as 12.7 
+indices_to_modify <- which(grepl("^Bymaster \\(2011\\)", df$studlab) & df$treatment == "amitifadine")
+if (length(indices_to_modify) > 0) {
+  df$anhedonia_followup_n[indices_to_modify] <- 30 } #entered as 33 
 # coleman 1999
 indices_to_modify <- which(grepl("^Coleman \\(1999\\)", df$studlab) & df$treatment == "bupropion")
 if (length(indices_to_modify) > 0) {
@@ -17,13 +24,7 @@ if (length(indices_to_modify) > 0) {
 indices_to_modify <- which(grepl("^Coleman \\(2001\\)", df$studlab) & df$treatment == "placebo")
 if (length(indices_to_modify) > 0) {
   df$r_tolerability[indices_to_modify] <- 5 } # entered as NA 
-# bymaster 2011
-indices_to_modify <- which(grepl("^Bymaster \\(2011\\)", df$studlab) & df$treatment == "amitifadine")
-if (length(indices_to_modify) > 0) {
-  df$anhedonia_baseline_mean[indices_to_modify] <- 12.7 } # entered as 12.7 
-indices_to_modify <- which(grepl("^Bymaster \\(2011\\)", df$studlab) & df$treatment == "amitifadine")
-if (length(indices_to_modify) > 0) {
-  df$anhedonia_followup_n[indices_to_modify] <- 30 } #entered as 33 
+# koshino  2013
 indices_to_modify <- which(grepl("^Koshino \\(2013\\)", df$studlab) & df$age_mean == "37.50")
 if (length(indices_to_modify) > 0) {
   df$r_tolerability[indices_to_modify] <- 9 } # entered as 12 
@@ -49,13 +50,20 @@ if (length(indices_to_modify) > 0) {
 indices_to_modify <- which(grepl("^Jarrett \\(1999\\)", df$studlab) & df$treatment == "placebo")
 if (length(indices_to_modify) > 0) {
   df$r_tolerability[indices_to_modify] <- NA } # entered as 15
+indices_to_modify <- which(grepl("^Jarrett \\(1999\\)", df$studlab) & df$treatment == "phenelzine")
+if (length(indices_to_modify) > 0) {
+  df$tx_duration[indices_to_modify] <- 10 } # entered as 8.8
 # iosifescu 2022
 indices_to_modify <- which(grepl("^Iosifescu \\(2022\\)", df$studlab) & df$treatment == "placebo")
 if (length(indices_to_modify) > 0) {
-  df$n_randomised[indices_to_modify] <- "164" } # entered as 162
+  df$n_randomised[indices_to_modify] <- 164 } # entered as 162
 indices_to_modify <- which(grepl("^Iosifescu \\(2022\\)", df$studlab) & df$treatment == "dextromethorphan-bupropion")
 if (length(indices_to_modify) > 0) {
-  df$n_randomised[indices_to_modify] <- "163" } # entered as 156
+  df$n_randomised[indices_to_modify] <- 163 } # entered as 156
+# delbello 2014
+indices_to_modify <- which(grepl("^DelBello \\(2014\\)", df$studlab) & df$treatment == "placebo")
+if (length(indices_to_modify) > 0) {
+  df$tx_duration[indices_to_modify] <- 12 } # entered as 8
 
 #change columns to numeric
 df[[3]] <- as.numeric(as.character(df[[3]]))
