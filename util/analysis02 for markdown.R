@@ -1061,6 +1061,7 @@ constipation.eer
   vomiting.eer
 }
 
+# meta-regressions ----
 #this runs all meta regressions for the below outcomes (which more than 10 studies contribute to)
 #set meta-regression results container
  meta_regressions_results <- list()
@@ -1133,7 +1134,90 @@ constipation.eer
         }
       }
       
-    
+# other ----
+{
+  df.anhedonia <- df[!is.na(df$anhedonia_followup_mean), c('studlab', 
+                                                           'treatment', 
+                                                           'treatment_details', 
+                                                           'anhedonia_followup_n', 
+                                                           'anhedonia_followup_mean', 
+                                                           'anhedonia_followup_sd', 
+                                                           'anhedonia_followup_type', 
+                                                           'anhedonia_followup_scale', 
+                                                           'anhedonia_followup_direction', 
+                                                           'age_mean',
+                                                           'female_prop',
+                                                           'anhedonia_baseline_mean',
+                                                           'anxiety_baseline_mean',
+                                                           'reward_baseline_mean',
+                                                           'tx_duration',
+                                                           'arm')]
+  studies.keep <- df.anhedonia$studlab[df.anhedonia$treatment=='bupropion']
+  df.anhedonia <- df.anhedonia[df.anhedonia$studlab %in% studies.keep, ]
+  df.anhedonia.bup <- df.anhedonia[df.anhedonia$treatment %in% c('bupropion', 'placebo'), ]
+  df.anhedonia.bup <- df.anhedonia.bup[!is.na(df.anhedonia.bup$anhedonia_followup_mean), ]
+  df.anhedonia.bup <- df.anhedonia.bup[!is.na(df.anhedonia.bup$anhedonia_followup_direction), ]
+  df.anhedonia.bup$anhedonia_followup_mean[df.anhedonia.bup$anhedonia_followup_direction=='positive'] <- df.anhedonia.bup$anhedonia_followup_mean[df.anhedonia.bup$anhedonia_followup_direction=='positive']*-1
+  colnames(df.anhedonia.bup) <- c('studlab', 
+                              'treatment', 
+                              'treatment_details', 
+                              'n', 
+                              'mean', 
+                              'sd', 
+                              'anhedonia_followup_type', 
+                              'anhedonia_followup_scale', 
+                              'anhedonia_followup_direction', 
+                              'age_mean',
+                              'female_prop',
+                              'anhedonia_baseline_mean',
+                              'anxiety_baseline_mean',
+                              'reward_baseline_mean',
+                              'tx_duration',
+                              'arm')
+  df.anhedonia.bup <- remove.onearm(df.anhedonia.bup)
+  df.anhedonia.bup.merged <- collapse.arms.continuous(df.anhedonia.bup)
+  df.pw.anhedonia.bup <- netmeta::pairwise(studlab = studlab,
+                                       treat = treatment,
+                                       n = n,
+                                       mean = mean,
+                                       sd = sd,
+                                       data = df.anhedonia.bup.merged,
+                                       sm = 'SMD')
+  df.pw.anhedonia.bup$age <- rowMeans(df.pw.anhedonia.bup[, c('age_mean1', 'age_mean2')], na.rm = T)
+  df.pw.anhedonia.bup$female_prop <- rowMeans(df.pw.anhedonia.bup[, c('female_prop1', 'female_prop2')], na.rm = T)
+  df.pw.anhedonia.bup$anhedonia_baseline <- rowMeans(df.pw.anhedonia.bup[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
+  df.pw.anhedonia.bup$anxiety_baseline <- rowMeans(df.pw.anhedonia.bup[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
+  df.pw.anhedonia.bup$reward_baseline <- rowMeans(df.pw.anhedonia.bup[, c('reward_baseline_mean1', 'reward_baseline_mean2')], na.rm = T)
+  df.pw.anhedonia.bup$colour <- ifelse(df.pw.anhedonia.bup$treat1 %in% IMAO, 
+                                   'red', 
+                                   ifelse(df.pw.anhedonia.bup$treat1 %in% RIMA,
+                                          'orange',
+                                          ifelse(df.pw.anhedonia.bup$treat1 %in% DRI,
+                                                 'deepskyblue',
+                                                 ifelse(df.pw.anhedonia.bup$treat1 %in% agonist,
+                                                        'purple',
+                                                        ifelse(df.pw.anhedonia.bup$treat1 %in% vescicular,
+                                                               'green4',
+                                                               'grey'
+                                                        )))))
+  pwma.anhedonia.bup <- metacont(n.e = n1, 
+                                 mean.e = mean1, 
+                                 sd.e = sd1, 
+                                 n.c = n2, 
+                                 mean.c = mean2, 
+                                 sd.c = sd2, 
+                                 studlab = studlab, 
+                                 data = df.pw.anhedonia.bup, 
+                                 sm = 'SMD', 
+                                 method.smd = 'Hedges', 
+                                 comb.fixed = F, 
+                                 comb.random = T, 
+                                 title = 'Anhedonia',
+                                 prediction = T, 
+                                 hakn = T, 
+                                 method.tau = 'REML')
+}
+
 # drop it if you don't like it ----
 names <- c('pwma.anhedonia',
            'pwma.anxiety',
@@ -1165,7 +1249,8 @@ names <- c('pwma.anhedonia',
            'vomiting.eer',
            'vomiting.rate.pla',
            'df',
-           'selected_regressions_results')
+           'selected_regressions_results',
+           'pwma.anhedonia.bup')
 
 rm(list=setdiff(ls(pos=1), names), pos=1)
 
