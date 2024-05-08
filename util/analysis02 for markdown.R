@@ -1065,6 +1065,7 @@ constipation.eer
 #set meta-regression results container
  meta_regressions_results <- list()
       meta_analysis_results <- list(
+        anhedonia_result = pwma.anhedonia,
         anxiety_result = pwma.anxiety, 
         acc_result = pwma.acc,
         tol_result = pwma.tol, 
