@@ -141,7 +141,7 @@ SMD: standardised mean difference, 95%CI: 95% confidence intervals, SD: standard
 `r pwma.anhedonia$k.TE` `r ifelse(pwma.anhedonia$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.anhedonia$n.e.pooled, pwma.anhedonia$n.c.pooled), na.rm = T)` participants (`r pwma.anhedonia$n.e.pooled` allocated to pro-dopaminergic interventions, `r pwma.anhedonia$n.c.pooled` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.anhedonia$lower.random < 0) & (pwma.anhedonia$upper.random < 0)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.anhedonia$lower.random > 0) & (pwma.anhedonia$upper.random > 0)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.anhedonia$TE.random, 3)` (95%CI from `r round(pwma.anhedonia$lower.random, 3)` to `r round(pwma.anhedonia$upper.random, 3)`).
-The study results presented a tau^2^ value of `r round(pwma.anhedonia$tau2, 3)` (accounting for a 95% prediction interval from `r round(exp(pwma.anhedonia$lower.predict), 3)` to `r round(exp(pwma.anhedonia$upper.predict), 3)`).
+The study results presented a tau^2^ value of `r round(pwma.anhedonia$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.anhedonia$lower.predict), 3)` to `r round(pwma.anhedonia$upper.predict), 3)`).
 
 ### 2.4.2 Risk of bias
 
