@@ -13,6 +13,8 @@ Botte (1992) - 87999081
 Bymaster (2011) - 90051758
 Casacchia (1984) - 87999374
 Chouinard (1993) - 87999011
+Clayton (2006a) - 98623053
+Clayton (2006b) - 87998176
 Coleman (1999) - 87998674
 Coleman (2001) - 87998563
 Corrigan (2000) - 90044744
@@ -92,7 +94,7 @@ tranylcypromine
 +              length .... [TRUNCATED] 
 amitifadine (k = 1; n = 34; r = 18).
 brofaromine (k = 1; n = 111; r = 43).
-bupropion (k = 16; n = 2772; r = 764).
+bupropion (k = 18; n = 3051; r = 832).
 dextromethorphan-bupropion (k = 1; n = 163; r = 40).
 gsk372475 (k = 2; n = 305; r = 140).
 isocarboxazid (k = 1; n = 68; r = 39).
@@ -101,7 +103,7 @@ methylphenidate (k = 1; n = 22; r = 5).
 minaprine (k = 3; n = 226; r = 71).
 moclobemide (k = 8; n = 381; r = 116).
 phenelzine (k = 7; n = 173; r = 33).
-placebo (k = 51; n = 3934; r = 1115).
+placebo (k = 53; n = 4212; r = 1181).
 pramipexole (k = 1; n = 104; r = 40).
 ropinirole (k = 1; n = 198; r = 54).
 rx-10100 (k = 1; n = 54; r = 10).
@@ -112,6 +114,6 @@ tranylcypromine (k = 1; n = 63; r = 26).
 
 
 > cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
-File created on 2024-04-30 by user jackkennett (script v2).
+File created on 2024-05-17 by user jkennett (script v2).
 
 > sink()

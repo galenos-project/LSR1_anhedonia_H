@@ -8,6 +8,8 @@ Benes (2011) - 87997624
 Bodkin (2002) - 89915354
 Bymaster (2011) - 90051758
 Chouinard (1993) - 87999011
+Clayton (2006a) - 98623053
+Clayton (2006b) - 87998176
 Coleman (1999) - 87998674
 Coleman (2001) - 87998563
 Corrigan (2000) - 90044744
@@ -62,11 +64,11 @@ tranylcypromine
 +      .... [TRUNCATED] 
 amitifadine (k = 1; n = 34; r = 3).
 brofaromine (k = 1; n = 111; r = 53).
-bupropion (k = 11; n = 2076; r = 425).
+bupropion (k = 13; n = 2355; r = 501).
 dextromethorphan-bupropion (k = 1; n = 163; r = 13).
 gsk372475 (k = 2; n = 305; r = 63).
 moclobemide (k = 2; n = 143; r = 22).
-placebo (k = 26; n = 2864; r = 516).
+placebo (k = 28; n = 3142; r = 592).
 pramipexole (k = 1; n = 104; r = 37).
 ropinirole (k = 1; n = 198; r = 39).
 rx-10100 (k = 1; n = 54; r = 7).
@@ -77,6 +79,6 @@ tranylcypromine (k = 1; n = 63; r = 11).
 
 
 > cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
-File created on 2024-04-30 by user jackkennett (script v2).
+File created on 2024-05-17 by user jkennett (script v2).
 
 > sink()

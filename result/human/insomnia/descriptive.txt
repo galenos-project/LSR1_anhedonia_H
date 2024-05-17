@@ -5,6 +5,8 @@
 > cat(pwma.insomnia$studlab, sep = '\n')
 Bodkin (2002) - 89915354
 Chouinard (1993) - 87999011
+Clayton (2006a) - 98623053
+Clayton (2006b) - 87998176
 Coleman (2001) - 87998563
 Corrigan (2000) - 90044744
 DelBello (2014) - 87997132
@@ -54,11 +56,11 @@ tranylcypromine
 +              ' (k = ', 
 +      .... [TRUNCATED] 
 brofaromine (k = 1; n = 111; r = 26).
-bupropion (k = 10; n = 1969; r = 214).
+bupropion (k = 12; n = 2248; r = 253).
 dextromethorphan-bupropion (k = 1; n = 163; r = 6).
 gsk372475 (k = 2; n = 305; r = 33).
 moclobemide (k = 2; n = 143; r = 20).
-placebo (k = 22; n = 2622; r = 198).
+placebo (k = 24; n = 2900; r = 219).
 pramipexole (k = 1; n = 104; r = 14).
 selegiline (k = 4; n = 395; r = 58).
 tranylcypromine (k = 1; n = 63; r = 20).
@@ -67,6 +69,6 @@ tranylcypromine (k = 1; n = 63; r = 20).
 
 
 > cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
-File created on 2024-04-30 by user jackkennett (script v2).
+File created on 2024-05-17 by user jkennett (script v2).
 
 > sink()

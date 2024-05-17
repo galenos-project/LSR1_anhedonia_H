@@ -3,12 +3,12 @@
 Control event rate (placebo): 0.07
 
 > cat(paste0('Experimental event rate (pro-dopaminergic interventions): ', round(dizziness.eer, 2)), sep = '\n')
-Experimental event rate (pro-dopaminergic interventions): 0.12
+Experimental event rate (pro-dopaminergic interventions): 0.11
 
 > cat(paste0(''), sep = '\n')
 
 
 > cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
-File created on 2024-04-30 by user jackkennett (script v2).
+File created on 2024-05-17 by user jkennett (script v2).
 
 > sink()

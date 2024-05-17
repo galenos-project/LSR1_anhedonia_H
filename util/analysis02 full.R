@@ -1,8 +1,8 @@
 rm(list = setdiff(ls(), lsf.str()))
 library(meta)
+library(dplyr)
 
-# set wd ----
-setwd("~/Documents/GitHub/LSR1_anhedonia_H")
+
 
 # functions ----
 source('util/util.R')
@@ -580,7 +580,7 @@ cat(paste0(''), sep = '\n')
 cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
 sink()
 
-png('result/human/acceptability/forest.png', width = 12.5, height = 15.5, units = 'in', res = 300)
+png('result/human/acceptability/forest.png', width = 12.5, height = 16.5, units = 'in', res = 300)
 forest(pwma.acc, 
        sortvar = seTE, 
        print.I2.ci = T, 
@@ -808,7 +808,7 @@ cat(paste0(''), sep = '\n')
 cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
 sink()
 
-png('result/human/tolerability/forest.png', width = 12.5, height = 13.5, units = 'in', res = 300)
+png('result/human/tolerability/forest.png', width = 12.5, height = 16.5, units = 'in', res = 300)
 forest(pwma.tol, 
        sortvar = seTE, 
        print.I2.ci = T, 

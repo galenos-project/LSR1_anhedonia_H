@@ -2,44 +2,44 @@
 > pwma.dizziness
 Review:     dizziness
 
-Number of studies: k = 22
-Number of observations: o = 5469
-Number of events: e = 511
+Number of studies: k = 24
+Number of observations: o = 6026 (o.e = 3275, o.c = 2751)
+Number of events: e = 541
 
                          OR           95%-CI    t p-value
-Random effects model 1.7160 [1.3221; 2.2273] 4.31  0.0003
-Prediction interval         [0.9026; 3.2627]             
+Random effects model 1.6973 [1.3191; 2.1840] 4.34  0.0002
+Prediction interval         [0.8888; 3.2413]             
 
 Quantifying heterogeneity:
- tau^2 = 0.0796 [0.0000; 0.4917]; tau = 0.2822 [0.0000; 0.7012]
- I^2 = 25.8% [0.0%; 56.0%]; H = 1.16 [1.00; 1.51]
+ tau^2 = 0.0830 [0.0000; 0.4784]; tau = 0.2880 [0.0000; 0.6917]
+ I^2 = 26.5% [0.0%; 55.5%]; H = 1.17 [1.00; 1.50]
 
 Test of heterogeneity:
      Q d.f. p-value
- 28.31   21  0.1316
+ 31.27   23  0.1163
 
 Results for subgroups (random effects model):
                   k     OR           95%-CI   tau^2    tau     Q   I^2
 group = MAOI      7 1.8356 [1.0497; 3.2099]  0.0753 0.2744  7.13 15.8%
 group = Agonist   2 2.7456 [0.8652; 8.7129]       0      0  0.03  0.0%
 group = RIMA      3 1.7717 [0.6053; 5.1856] <0.0001 0.0021  1.82  0.0%
-group = *DRI     10 1.6066 [0.9938; 2.5972]  0.1963 0.4431 17.81 49.5%
+group = *DRI     12 1.5828 [1.0330; 2.4250]  0.1854 0.4306 20.68 46.8%
 
 Test for subgroup differences (random effects model):
                   Q d.f. p-value
-Between groups 8.58    3  0.0354
+Between groups 9.53    3  0.0230
 
 Details on meta-analytical method:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
-- Hartung-Knapp adjustment for random effects model (df = 21)
-- Prediction interval based on t-distribution (df = 20)
+- Hartung-Knapp adjustment for random effects model (df = 23)
+- Prediction interval based on t-distribution (df = 22)
 
 > cat(paste0(''), sep = '\n')
 
 
 > cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
-File created on 2024-04-30 by user jackkennett (script v2).
+File created on 2024-05-17 by user jkennett (script v2).
 
 > sink()

@@ -3,25 +3,25 @@
 +   reg.tol.female <- metareg(pwma.tol, female_prop)
 +   reg.tol.fema .... [TRUNCATED] 
 
-Mixed-Effects Model (k = 36; tau^2 estimator: REML)
+Mixed-Effects Model (k = 38; tau^2 estimator: REML)
 
-tau^2 (estimated amount of residual heterogeneity):     0.0849 (SE = 0.1166)
-tau (square root of estimated tau^2 value):             0.2914
-I^2 (residual heterogeneity / unaccounted variability): 15.98%
-H^2 (unaccounted variability / sampling variability):   1.19
-R^2 (amount of heterogeneity accounted for):            61.89%
+tau^2 (estimated amount of residual heterogeneity):     0.0807 (SE = 0.1105)
+tau (square root of estimated tau^2 value):             0.2841
+I^2 (residual heterogeneity / unaccounted variability): 15.61%
+H^2 (unaccounted variability / sampling variability):   1.18
+R^2 (amount of heterogeneity accounted for):            63.27%
 
 Test for Residual Heterogeneity:
-QE(df = 34) = 42.5255, p-val = 0.1497
+QE(df = 36) = 45.7341, p-val = 0.1283
 
 Test of Moderators (coefficient 2):
-F(df1 = 1, df2 = 34) = 6.8640, p-val = 0.0130
+F(df1 = 1, df2 = 36) = 7.0841, p-val = 0.0115
 
 Model Results:
 
              estimate      se     tval  df    pval    ci.lb    ci.ub     
-intrcpt        2.3061  0.6444   3.5785  34  0.0011   0.9964   3.6157  ** 
-female_prop   -2.7675  1.0563  -2.6199  34  0.0130  -4.9143  -0.6208   * 
+intrcpt        2.3050  0.6449   3.5744  36  0.0010   0.9971   3.6128  ** 
+female_prop   -2.8231  1.0607  -2.6616  36  0.0115  -4.9743  -0.6719   * 
 
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
@@ -31,6 +31,6 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 
 
 > cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
-File created on 2024-04-30 by user jackkennett (script v2).
+File created on 2024-05-17 by user jkennett (script v2).
 
 > sink()

@@ -2,43 +2,43 @@
 > pwma.dry_mouth
 Review:     dry_mouth
 
-Number of studies: k = 24
-Number of observations: o = 6308
-Number of events: e = 828
+Number of studies: k = 26
+Number of observations: o = 6865 (o.e = 3710, o.c = 3155)
+Number of events: e = 920
 
                          OR           95%-CI    t  p-value
-Random effects model 2.1175 [1.6792; 2.6702] 6.69 < 0.0001
-Prediction interval         [1.1346; 3.9518]              
+Random effects model 2.1341 [1.7312; 2.6307] 7.46 < 0.0001
+Prediction interval         [1.2804; 3.5569]              
 
 Quantifying heterogeneity:
- tau^2 = 0.0795 [0.0000; 0.4676]; tau = 0.2820 [0.0000; 0.6838]
- I^2 = 36.1% [0.0%; 61.0%]; H = 1.25 [1.00; 1.60]
+ tau^2 = 0.0525 [0.0000; 0.3995]; tau = 0.2292 [0.0000; 0.6321]
+ I^2 = 32.1% [0.0%; 58.0%]; H = 1.21 [1.00; 1.54]
 
 Test of heterogeneity:
      Q d.f. p-value
- 35.98   23  0.0414
+ 36.83   25  0.0599
 
 Results for subgroups (random effects model):
                k     OR            95%-CI  tau^2    tau     Q   I^2
 group = MAOI   6 1.9794 [1.1637;  3.3671] 0.0281 0.1678  4.88  0.0%
 group = RIMA   3 2.1768 [0.3286; 14.4203] 0.3563 0.5969  5.61 64.4%
-group = *DRI  15 2.1715 [1.5806;  2.9832] 0.1099 0.3315 25.41 44.9%
+group = *DRI  17 2.1816 [1.6663;  2.8564] 0.0645 0.2540 26.21 39.0%
 
 Test for subgroup differences (random effects model):
                   Q d.f. p-value
-Between groups 0.14    2  0.9333
+Between groups 0.16    2  0.9214
 
 Details on meta-analytical method:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
-- Hartung-Knapp adjustment for random effects model (df = 23)
-- Prediction interval based on t-distribution (df = 22)
+- Hartung-Knapp adjustment for random effects model (df = 25)
+- Prediction interval based on t-distribution (df = 24)
 
 > cat(paste0(''), sep = '\n')
 
 
 > cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
-File created on 2024-04-30 by user jackkennett (script v2).
+File created on 2024-05-17 by user jkennett (script v2).
 
 > sink()

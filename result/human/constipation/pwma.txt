@@ -2,45 +2,45 @@
 > pwma.constipation
 Review:     constipation
 
-Number of studies: k = 19
-Number of observations: o = 4818
-Number of events: e = 368
+Number of studies: k = 21
+Number of observations: o = 5375 (o.e = 2987, o.c = 2388)
+Number of events: e = 420
 
                          OR           95%-CI    t p-value
-Random effects model 1.5506 [1.2479; 1.9269] 4.24  0.0005
-Prediction interval         [1.2001; 2.0037]             
+Random effects model 1.4557 [1.1657; 1.8179] 3.53  0.0021
+Prediction interval         [1.1502; 1.8423]             
 
 Quantifying heterogeneity:
- tau^2 = 0 [0.0000; 0.1808]; tau = 0 [0.0000; 0.4252]
- I^2 = 0.0% [0.0%; 48.9%]; H = 1.00 [1.00; 1.40]
+ tau^2 = 0 [0.0000; 0.2406]; tau = 0 [0.0000; 0.4905]
+ I^2 = 0.0% [0.0%; 47.0%]; H = 1.00 [1.00; 1.37]
 
 Test of heterogeneity:
      Q d.f. p-value
- 13.04   18  0.7891
+ 17.92   20  0.5928
 
 Results for subgroups (random effects model):
-                                        k     OR            95%-CI tau^2 tau    Q  I^2
-group = RIMA                            3 1.0014 [0.3757;  2.6688]     0   0 1.50 0.0%
-group = *DRI                           12 1.7191 [1.3280;  2.2255]     0   0 7.27 0.0%
-group = MAOI                            3 1.9393 [0.6736;  5.5831]     0   0 0.59 0.0%
-group = Vesicle transport facilitator   1 2.9223 [0.1447; 59.0273]    --  -- 0.00   --
+                                        k     OR            95%-CI   tau^2    tau     Q  I^2
+group = RIMA                            3 1.0014 [0.3757;  2.6688]       0      0  1.50 0.0%
+group = *DRI                           14 1.5498 [1.1708;  2.0513] <0.0001 0.0014 12.97 0.0%
+group = MAOI                            3 1.9393 [0.6736;  5.5831]       0      0  0.59 0.0%
+group = Vesicle transport facilitator   1 2.9223 [0.1447; 59.0273]      --     --  0.00   --
 
 Test for subgroup differences (random effects model):
                   Q d.f. p-value
-Between groups 5.37    3  0.1465
+Between groups 4.47    3  0.2147
 
 Details on meta-analytical method:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
-- Hartung-Knapp adjustment for random effects model (df = 18)
-- Prediction interval based on t-distribution (df = 17)
+- Hartung-Knapp adjustment for random effects model (df = 20)
+- Prediction interval based on t-distribution (df = 19)
 - Continuity correction of 0.5 in studies with zero cell frequencies
 
 > cat(paste0(''), sep = '\n')
 
 
 > cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
-File created on 2024-04-30 by user jackkennett (script v2).
+File created on 2024-05-17 by user jkennett (script v2).
 
 > sink()

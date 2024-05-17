@@ -10,6 +10,8 @@ Bodkin (2002) - 89915354
 Botte (1992) - 87999081
 Bymaster (2011) - 90051758
 Chouinard (1993) - 87999011
+Clayton (2006a) - 98623053
+Clayton (2006b) - 87998176
 Coleman (1999) - 87998674
 Coleman (2001) - 87998563
 Corrigan (2000) - 90044744
@@ -82,7 +84,7 @@ selegiline
 +              length .... [TRUNCATED] 
 amitifadine (k = 1; n = 34; r = 3).
 brofaromine (k = 1; n = 111; r = 16).
-bupropion (k = 15; n = 2762; r = 203).
+bupropion (k = 17; n = 3041; r = 220).
 dextromethorphan-bupropion (k = 1; n = 163; r = 10).
 gsk372475 (k = 2; n = 305; r = 44).
 isocarboxazid (k = 1; n = 68; r = 10).
@@ -91,7 +93,7 @@ methylphenidate (k = 1; n = 22; r = 2).
 minaprine (k = 1; n = 10; r = 0).
 moclobemide (k = 7; n = 255; r = 16).
 phenelzine (k = 4; n = 207; r = 6).
-placebo (k = 42; n = 3642; r = 154).
+placebo (k = 44; n = 3920; r = 167).
 pramipexole (k = 1; n = 104; r = 25).
 ropinirole (k = 1; n = 198; r = 35).
 rx-10100 (k = 1; n = 54; r = 2).
@@ -101,6 +103,6 @@ selegiline (k = 4; n = 522; r = 33).
 
 
 > cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
-File created on 2024-04-30 by user jackkennett (script v2).
+File created on 2024-05-17 by user jkennett (script v2).
 
 > sink()

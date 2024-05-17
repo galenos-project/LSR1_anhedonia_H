@@ -1,6 +1,6 @@
 
 > cat(paste0('Control event rate (placebo): ', round(acc.rate.pla, 2)), sep = '\n')
-Control event rate (placebo): 0.28
+Control event rate (placebo): 0.27
 
 > cat(paste0('Experimental event rate (pro-dopaminergic interventions): ', round(acc.eer, 2)), sep = '\n')
 Experimental event rate (pro-dopaminergic interventions): 0.27
@@ -9,6 +9,6 @@ Experimental event rate (pro-dopaminergic interventions): 0.27
 
 
 > cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
-File created on 2024-04-30 by user jackkennett (script v2).
+File created on 2024-05-17 by user jkennett (script v2).
 
 > sink()

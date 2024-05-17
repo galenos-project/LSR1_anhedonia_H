@@ -2,44 +2,44 @@
 > pwma.nausea
 Review:     Nausea
 
-Number of studies: k = 24
-Number of observations: o = 6489
-Number of events: e = 831
+Number of studies: k = 26
+Number of observations: o = 7046 (o.e = 3899, o.c = 3147)
+Number of events: e = 915
 
                          OR           95%-CI    t p-value
-Random effects model 1.4561 [1.1822; 1.7935] 3.73  0.0011
-Prediction interval         [0.8279; 2.5611]             
+Random effects model 1.4555 [1.2061; 1.7564] 4.11  0.0004
+Prediction interval         [0.9246; 2.2912]             
 
 Quantifying heterogeneity:
- tau^2 = 0.0641 [0.0000; 0.3121]; tau = 0.2531 [0.0000; 0.5586]
- I^2 = 27.2% [0.0%; 55.9%]; H = 1.17 [1.00; 1.51]
+ tau^2 = 0.0403 [0.0000; 0.2612]; tau = 0.2008 [0.0000; 0.5111]
+ I^2 = 21.9% [0.0%; 51.9%]; H = 1.13 [1.00; 1.44]
 
 Test of heterogeneity:
      Q d.f. p-value
- 31.61   23  0.1085
+ 32.01   25  0.1578
 
 Results for subgroups (random effects model):
                   k     OR            95%-CI  tau^2    tau     Q  I^2
 group = MAOI      3 1.0708 [0.5474;  2.0945]      0      0  0.49 0.0%
 group = Agonist   2 4.6305 [0.2355; 91.0432]      0      0  0.48 0.0%
-group = *DRI     16 1.3805 [1.1184;  1.7040] 0.0078 0.0884 15.45 2.9%
+group = *DRI     18 1.3948 [1.1606;  1.6762]      0      0 15.92 0.0%
 group = RIMA      3 1.2661 [0.4902;  3.2704] 0.0751 0.2740  1.93 0.0%
 
 Test for subgroup differences (random effects model):
                    Q d.f.  p-value
-Between groups 28.93    3 < 0.0001
+Between groups 28.89    3 < 0.0001
 
 Details on meta-analytical method:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
-- Hartung-Knapp adjustment for random effects model (df = 23)
-- Prediction interval based on t-distribution (df = 22)
+- Hartung-Knapp adjustment for random effects model (df = 25)
+- Prediction interval based on t-distribution (df = 24)
 
 > cat(paste0(''), sep = '\n')
 
 
 > cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
-File created on 2024-04-30 by user jackkennett (script v2).
+File created on 2024-05-17 by user jkennett (script v2).
 
 > sink()

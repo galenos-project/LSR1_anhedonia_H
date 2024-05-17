@@ -2,46 +2,46 @@
 > pwma.tol
 Review:     tolerability
 
-Number of studies: k = 41
-Number of observations: o = 8473
-Number of events: e = 560
+Number of studies: k = 43
+Number of observations: o = 9030 (o.e = 5110, o.c = 3920)
+Number of events: e = 590
 
                          OR           95%-CI    t  p-value
-Random effects model 1.8763 [1.4074; 2.5014] 4.42 < 0.0001
-Prediction interval         [0.6854; 5.1366]              
+Random effects model 1.8250 [1.3819; 2.4103] 4.37 < 0.0001
+Prediction interval         [0.6735; 4.9451]              
 
 Quantifying heterogeneity:
- tau^2 = 0.2285 [0.0132; 0.9155]; tau = 0.4780 [0.1150; 0.9568]
- I^2 = 34.8% [4.4%; 55.6%]; H = 1.24 [1.02; 1.50]
+ tau^2 = 0.2256 [0.0196; 0.8893]; tau = 0.4750 [0.1399; 0.9430]
+ I^2 = 35.2% [5.8%; 55.4%]; H = 1.24 [1.03; 1.50]
 
 Test of heterogeneity:
      Q d.f. p-value
- 61.36   40  0.0165
+ 64.82   42  0.0134
 
 Results for subgroups (random effects model):
                                         k     OR           95%-CI  tau^2    tau     Q   I^2
 group = MAOI                            8 1.8772 [1.0102; 3.4885]      0      0  7.07  1.0%
 group = RIMA                            9 1.0913 [0.4951; 2.4053] 0.3289 0.5735 10.05 20.4%
 group = Agonist                         3 2.1780 [1.1805; 4.0186]      0      0  0.33  0.0%
-group = *DRI                           20 2.3375 [1.5315; 3.5678] 0.3654 0.6045 37.05 48.7%
+group = *DRI                           22 2.1656 [1.4495; 3.2356] 0.3494 0.5911 40.77 48.5%
 group = Vesicle transport facilitator   1 0.2308 [0.0356; 1.4939]     --     --  0.00    --
 
 Test for subgroup differences (random effects model):
                   Q d.f. p-value
-Between groups 9.27    4  0.0547
+Between groups 8.80    4  0.0662
 
 Details on meta-analytical method:
 - Inverse variance method
 - Restricted maximum-likelihood estimator for tau^2
 - Q-Profile method for confidence interval of tau^2 and tau
-- Hartung-Knapp adjustment for random effects model (df = 40)
-- Prediction interval based on t-distribution (df = 39)
+- Hartung-Knapp adjustment for random effects model (df = 42)
+- Prediction interval based on t-distribution (df = 41)
 - Continuity correction of 0.5 in studies with zero cell frequencies
 
 > cat(paste0(''), sep = '\n')
 
 
 > cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
-File created on 2024-04-30 by user jackkennett (script v2).
+File created on 2024-05-17 by user jkennett (script v2).
 
 > sink()

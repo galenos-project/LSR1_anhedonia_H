@@ -7,6 +7,8 @@ Amsterdam (2003) - 87998463
 Benes (2011) - 87997624
 Bymaster (2011) - 90051758
 Chouinard (1993) - 87999011
+Clayton (2006a) - 98623053
+Clayton (2006b) - 87998176
 Coleman (1999) - 87998674
 Coleman (2001) - 87998563
 Corrigan (2000) - 90044744
@@ -59,12 +61,12 @@ selegiline
 +            .... [TRUNCATED] 
 amitifadine (k = 1; n = 34; r = 2).
 brofaromine (k = 1; n = 111; r = 41).
-bupropion (k = 12; n = 2211; r = 283).
+bupropion (k = 14; n = 2490; r = 332).
 dextromethorphan-bupropion (k = 1; n = 163; r = 21).
 gsk372475 (k = 2; n = 305; r = 36).
 minaprine (k = 1; n = 63; r = 1).
 moclobemide (k = 1; n = 108; r = 19).
-placebo (k = 24; n = 2869; r = 291).
+placebo (k = 26; n = 3147; r = 326).
 pramipexole (k = 1; n = 104; r = 50).
 ropinirole (k = 1; n = 198; r = 64).
 selegiline (k = 3; n = 323; r = 23).
@@ -73,6 +75,6 @@ selegiline (k = 3; n = 323; r = 23).
 
 
 > cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
-File created on 2024-04-30 by user jackkennett (script v2).
+File created on 2024-05-17 by user jkennett (script v2).
 
 > sink()

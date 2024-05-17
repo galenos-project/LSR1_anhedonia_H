@@ -7,6 +7,8 @@ Amsterdam (2003) - 87998463
 Benes (2011) - 87997624
 Bodkin (2002) - 89915354
 Chouinard (1993) - 87999011
+Clayton (2006a) - 98623053
+Clayton (2006b) - 87998176
 Corrigan (2000) - 90044744
 DelBello (2014) - 87997132
 Feiger (2006) - 87998150
@@ -57,12 +59,12 @@ tranylcypromine
 +              ' (k = ', 
 +   .... [TRUNCATED] 
 brofaromine (k = 1; n = 111; r = 26).
-bupropion (k = 7; n = 1356; r = 117).
+bupropion (k = 9; n = 1635; r = 135).
 dextromethorphan-bupropion (k = 1; n = 163; r = 26).
 gsk372475 (k = 2; n = 305; r = 30).
 moclobemide (k = 2; n = 130; r = 21).
 phenelzine (k = 2; n = 22; r = 13).
-placebo (k = 23; n = 2473; r = 174).
+placebo (k = 25; n = 2751; r = 186).
 pramipexole (k = 1; n = 104; r = 20).
 ropinirole (k = 1; n = 198; r = 17).
 selegiline (k = 5; n = 544; r = 43).
@@ -72,6 +74,6 @@ tranylcypromine (k = 1; n = 63; r = 24).
 
 
 > cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
-File created on 2024-04-30 by user jackkennett (script v2).
+File created on 2024-05-17 by user jkennett (script v2).
 
 > sink()

@@ -5,25 +5,25 @@
 + } else {
 +   cat( .... [TRUNCATED] 
 
-Mixed-Effects Model (k = 44; tau^2 estimator: REML)
+Mixed-Effects Model (k = 46; tau^2 estimator: REML)
 
-tau^2 (estimated amount of residual heterogeneity):     0.2609 (SE = 0.0918)
-tau (square root of estimated tau^2 value):             0.5108
-I^2 (residual heterogeneity / unaccounted variability): 68.63%
-H^2 (unaccounted variability / sampling variability):   3.19
-R^2 (amount of heterogeneity accounted for):            0.36%
+tau^2 (estimated amount of residual heterogeneity):     0.2390 (SE = 0.0833)
+tau (square root of estimated tau^2 value):             0.4889
+I^2 (residual heterogeneity / unaccounted variability): 67.22%
+H^2 (unaccounted variability / sampling variability):   3.05
+R^2 (amount of heterogeneity accounted for):            0.52%
 
 Test for Residual Heterogeneity:
-QE(df = 42) = 119.5787, p-val < .0001
+QE(df = 44) = 122.1338, p-val < .0001
 
 Test of Moderators (coefficient 2):
-F(df1 = 1, df2 = 42) = 1.3765, p-val = 0.2473
+F(df1 = 1, df2 = 44) = 1.4500, p-val = 0.2350
 
 Model Results:
 
          estimate      se     tval  df    pval    ci.lb   ci.ub    
-intrcpt    0.4895  0.4903   0.9984  42  0.3238  -0.4999  1.4789    
-age       -0.0132  0.0112  -1.1732  42  0.2473  -0.0359  0.0095    
+intrcpt    0.4877  0.4689   1.0403  44  0.3039  -0.4572  1.4327    
+age       -0.0131  0.0108  -1.2042  44  0.2350  -0.0349  0.0088    
 
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
@@ -33,6 +33,6 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 
 
 > cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
-File created on 2024-04-30 by user jackkennett (script v2).
+File created on 2024-05-17 by user jkennett (script v2).
 
 > sink()

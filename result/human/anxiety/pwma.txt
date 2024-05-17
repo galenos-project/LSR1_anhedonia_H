@@ -3,7 +3,7 @@
 Review:     Anxiety
 
 Number of studies: k = 11
-Number of observations: o = 3517
+Number of observations: o = 3517 (o.e = 2077, o.c = 1440)
 
                          SMD             95%-CI     t p-value
 Random effects model -0.1656 [-0.2435; -0.0877] -4.74  0.0008
@@ -39,6 +39,6 @@ Details on meta-analytical method:
 
 
 > cat(paste0('File created on ', Sys.Date(), ' by user ', Sys.info()[['user']], ' (script v', version, ').'), sep = '\n')
-File created on 2024-04-30 by user jackkennett (script v2).
+File created on 2024-05-17 by user jkennett (script v2).
 
 > sink()
