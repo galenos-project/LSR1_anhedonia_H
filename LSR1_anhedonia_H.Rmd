@@ -26,9 +26,10 @@ all.studies <- unique(c(pwma.acc$studlab,
                         pwma.vomiting$studlab))
 all.participants <- sum(df$n_randomised[df$studlab %in% all.studies], na.rm = T)
 knitr::opts_chunk$set(echo = T)
+options(scipen=100, digits=4)
 ```
 
-## 1. Methods (brief)
+# 1. Methods (brief)
 
 In this first iteration of the living systematic review we searched for randomised controlled trials that compared pro-dopaminergic interventions to placebo in adults with unipolar depression (i.e. any standardised measure, above-threshold symptoms on any standardised measure, or a clinical diagnosis based on any operationalised criteria).
 
@@ -70,9 +71,8 @@ To evaluate biases due to missing evidence and biases across studies, the ROB-ME
 Effect sizes were calculated as standardised mean differences (SMDs) for continuous outcomes (anhedonia and anxiety symptom severity) and odds ratios (ORs) for dichotomous outcomes (acceptability, tolerability, and specific-adverse events).
 We calculated the 95% confidence interval (CI) around the pooled effect size for each meta-analysis.
 
-Meta-analyses were conducted using a random effects model with the inverse variance method, using the restricted maximum-likelihood estimator for tau^2^ and the Q-Profile method for the confidence interval of tau^2^.
-Confidence intervals were adjusted using the Hartung-Knapp method.
-Prediction intervals were calculated to better report the effect of heterogeneity on the overall pooled effect.
+Meta-analyses were conducted using a random effects model with the inverse variance method, using the restricted maximum-likelihood estimator for tau^2^ and the Hartung-Knapp correction method to adjust 95% confidence intervals, if there are at least five studies.
+Prediction intervals of the overall pooled effect were calculated to report the heterogeneity.
 
 We conducted a series of sensitivity analyses on the primary outcome.
 We aggregated individual participant data (IPD) of randomised controlled trials on antidepressants in people with depression, performing a series of random effects network meta-analyses to compare the effects of pro-dopaminergic and non-pro-dopaminergic pharmacological interventions on anhedonia.
@@ -93,7 +93,7 @@ A list of abbreviations can be found towards the end of the document.
 
 ![](data/human/lsr1_prisma.jpg)
 
-Figure 1. PRISMA 2020 flow diagram (Page et al. 2021).
+**Figure 1.** PRISMA 2020 flow diagram (Page et al. 2021).
 
 [Back to top](#)
 
@@ -135,13 +135,13 @@ forest(pwma.anhedonia,
        )
 ```
 
-**Figure X** Forest plot for symptoms of anhedonia (primary outcome) comparing pro-dopaminergic interventions vs placebo for individuals with anhedonia at 4-12 weeks (primary timepoint).
+**Figure 2.** Forest plot for symptoms of anhedonia (primary outcome) comparing pro-dopaminergic interventions vs placebo for individuals with anhedonia at 4-12 weeks (primary timepoint).
 SMD: standardised mean difference, 95%CI: 95% confidence intervals, SD: standard deviation.
 
 `r pwma.anhedonia$k.TE` `r ifelse(pwma.anhedonia$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.anhedonia$n.e.pooled, pwma.anhedonia$n.c.pooled), na.rm = T)` participants (`r pwma.anhedonia$n.e.pooled` allocated to pro-dopaminergic interventions, `r pwma.anhedonia$n.c.pooled` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.anhedonia$lower.random < 0) & (pwma.anhedonia$upper.random < 0)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.anhedonia$lower.random > 0) & (pwma.anhedonia$upper.random > 0)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.anhedonia$TE.random, 3)` (95%CI from `r round(pwma.anhedonia$lower.random, 3)` to `r round(pwma.anhedonia$upper.random, 3)`).
-The study results presented a tau^2^ value of `r round(pwma.anhedonia$tau2, 3)` (accounting for a 95% prediction interval from `r round(pwma.anhedonia$lower.predict, 3)` to `r round(pwma.anhedonia$upper.predict, 3)`).
+There is some heterogeneity as shown by the 95% prediction interval from `r round(pwma.anhedonia$lower.predict, 3)` to `r round(pwma.anhedonia$upper.predict, 3)`.
 
 ### 2.4.2 Risk of bias
 
@@ -155,21 +155,11 @@ The extent to which the result was affected by across-study biases is unclear an
 This result was judged to be at moderate risk of bias due to indirectness as while there was no clear indication of indirectness in terms of population, comparator, or outcomes, 80% of the studies measured the same intervention, bupropion.
 
 ### 2.4.3 Reporting bias
-We evaluated the reporting bias using the ROB-ME tool (Page et al. 2023), taking into account the usable data from the eligible studies identified in the search, the comprehensiveness of the search, small-study effects, and potential patterns of missingness. We followed the algorithm to assign a low or high risk of reporting bias, or to express some concerns, by answering signalling questions related to the domains mentioned above.
 
-#### 2.4.3.1 Results matrix
+We evaluated the reporting bias using the ROB-ME tool (Page et al. 2023), taking into account the usable data from the eligible studies identified in the search, the comprehensiveness of the search, small-study effects, and potential patterns of missingness.
+We followed the algorithm to assign a low or high risk of reporting bias, or to express some concerns, by answering signalling questions related to the domains mentioned above.
 
-
-#### 2.4.3.2 Funnel plot and examination of small-study effects
-
-
-#### 2.4.3.3 Coverage of the search strategy
-
-
-#### 2.4.3.4 ROB-ME evaluation
-
-
-#### 2.4.4 Sub-group and meta-regression analyses
+### 2.4.4 Sub-group and meta-regression analyses
 
 We did not perform a meta-regression as the total number of studies was below 10.
 
@@ -238,13 +228,16 @@ The study results presented a tau^2^ value of `r round(pwma.anxiety$tau2, 3)` (a
 
 ### 2.5.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity. We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable). For anxiety baseline, the regression coefficient ($\beta$) is intended per point increase. For age, the regression coefficient ($\beta$) is intended per year of age.
+The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable).
+For anxiety baseline, the regression coefficient ($\beta$) is intended per point increase.
+For age, the regression coefficient ($\beta$) is intended per year of age.
 
-|     Moderator       |   $\beta$  |     95% CI     |  Marginal R~\*~^2^ (%)  |
-|:-------------------:|:----------:|:--------------:|:-------------------:|
-| Anxiety baseline    | `r round(selected_regressions_results[["acc_result_anxiety_baseline"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["acc_result_anxiety_baseline"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["acc_result_anxiety_baseline"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["acc_result_anxiety_baseline"]][["R2"]], 2)` |
-| Age                 | `r round(selected_regressions_results[["acc_result_age"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["acc_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["acc_result_age"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["acc_result_age"]][["R2"]], 2)` |
-| Female proportion   | `r round(selected_regressions_results[["acc_result_female_prop"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["acc_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["acc_result_female_prop"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["acc_result_female_prop"]][["R2"]], 2)` |
+|     Moderator     |                                         $\beta$                                          |                                                                                         95% CI                                                                                         |                                Marginal R~\*~^2^ (%)                                |
+|:------------:|:------------:|:----------------------------:|:------------:|
+| Anxiety baseline  | `r round(selected_regressions_results[["acc_result_anxiety_baseline"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["acc_result_anxiety_baseline"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["acc_result_anxiety_baseline"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results[["acc_result_anxiety_baseline"]][["R2"]], 2)` |
+|        Age        |       `r round(selected_regressions_results[["acc_result_age"]][["beta"]][2], 2)`        |              `r round(selected_regressions_results[["acc_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["acc_result_age"]][["ci.ub"]][2], 2)`              |       `r round(selected_regressions_results[["acc_result_age"]][["R2"]], 2)`        |
+| Female proportion |   `r round(selected_regressions_results[["acc_result_female_prop"]][["beta"]][2], 2)`    |      `r round(selected_regressions_results[["acc_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["acc_result_female_prop"]][["ci.ub"]][2], 2)`      |   `r round(selected_regressions_results[["acc_result_female_prop"]][["R2"]], 2)`    |
 
 [Back to top](#)
 
@@ -282,13 +275,16 @@ The study results presented a tau^2^ value of `r round(pwma.acc$tau2, 3)` (accou
 
 ### 2.6.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity. We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable). For anxiety baseline, the regression coefficient ($\beta$) is intended per point increase. For age, the regression coefficient ($\beta$) is intended per year of age.
+The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable).
+For anxiety baseline, the regression coefficient ($\beta$) is intended per point increase.
+For age, the regression coefficient ($\beta$) is intended per year of age.
 
-|     Moderator       |   $\beta$  |     95% CI     |  Marginal R~\*~^2^ (%)  |
-|:-------------------:|:----------:|:--------------:|:-------------------:|
-| Anxiety baseline    | `r round(selected_regressions_results[["anxiety_result_anxiety_baseline"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["anxiety_result_anxiety_baseline"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["anxiety_result_anxiety_baseline"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["anxiety_result_anxiety_baseline"]][["R2"]], 2)` |
-| Age                 | `r round(selected_regressions_results[["anxiety_result_age"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["anxiety_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["anxiety_result_age"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["anxiety_result_age"]][["R2"]], 2)` |
-| Female proportion   | `r round(selected_regressions_results[["anxiety_result_female_prop"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["anxiety_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["anxiety_result_female_prop"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["anxiety_result_female_prop"]][["R2"]], 2)` |
+|     Moderator     |                                           $\beta$                                            |                                                                                             95% CI                                                                                             |                                  Marginal R~\*~^2^ (%)                                  |
+|:------------:|:------------:|:----------------------------:|:------------:|
+| Anxiety baseline  | `r round(selected_regressions_results[["anxiety_result_anxiety_baseline"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["anxiety_result_anxiety_baseline"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["anxiety_result_anxiety_baseline"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results[["anxiety_result_anxiety_baseline"]][["R2"]], 2)` |
+|        Age        |       `r round(selected_regressions_results[["anxiety_result_age"]][["beta"]][2], 2)`        |              `r round(selected_regressions_results[["anxiety_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["anxiety_result_age"]][["ci.ub"]][2], 2)`              |       `r round(selected_regressions_results[["anxiety_result_age"]][["R2"]], 2)`        |
+| Female proportion |   `r round(selected_regressions_results[["anxiety_result_female_prop"]][["beta"]][2], 2)`    |      `r round(selected_regressions_results[["anxiety_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["anxiety_result_female_prop"]][["ci.ub"]][2], 2)`      |   `r round(selected_regressions_results[["anxiety_result_female_prop"]][["R2"]], 2)`    |
 
 [Back to top](#)
 
@@ -327,13 +323,16 @@ The study results presented a tau^2^ value of `r round(pwma.tol$tau2, 3)` (accou
 
 ### 2.7.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity. We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable). For anxiety baseline, the regression coefficient ($\beta$) is intended per point increase. For age, the regression coefficient ($\beta$) is intended per year of age.
+The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable).
+For anxiety baseline, the regression coefficient ($\beta$) is intended per point increase.
+For age, the regression coefficient ($\beta$) is intended per year of age.
 
-|     Moderator       |   $\beta$  |     95% CI     |  Marginal R~\*~^2^ (%)  |
-|:-------------------:|:----------:|:--------------:|:-------------------:|
-| Anxiety baseline    | `r round(selected_regressions_results[["tol_result_anxiety_baseline"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["tol_result_anxiety_baseline"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["tol_result_anxiety_baseline"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["tol_result_anxiety_baseline"]][["R2"]], 2)` |
-| Age                 | `r round(selected_regressions_results[["tol_result_age"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["tol_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["tol_result_age"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["tol_result_age"]][["R2"]], 2)` |
-| Female proportion   | `r round(selected_regressions_results[["tol_result_female_prop"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["tol_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["tol_result_female_prop"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["tol_result_female_prop"]][["R2"]], 2)` |
+|     Moderator     |                                         $\beta$                                          |                                                                                         95% CI                                                                                         |                                Marginal R~\*~^2^ (%)                                |
+|:------------:|:------------:|:----------------------------:|:------------:|
+| Anxiety baseline  | `r round(selected_regressions_results[["tol_result_anxiety_baseline"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["tol_result_anxiety_baseline"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["tol_result_anxiety_baseline"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results[["tol_result_anxiety_baseline"]][["R2"]], 2)` |
+|        Age        |       `r round(selected_regressions_results[["tol_result_age"]][["beta"]][2], 2)`        |              `r round(selected_regressions_results[["tol_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["tol_result_age"]][["ci.ub"]][2], 2)`              |       `r round(selected_regressions_results[["tol_result_age"]][["R2"]], 2)`        |
+| Female proportion |   `r round(selected_regressions_results[["tol_result_female_prop"]][["beta"]][2], 2)`    |      `r round(selected_regressions_results[["tol_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["tol_result_female_prop"]][["ci.ub"]][2], 2)`      |   `r round(selected_regressions_results[["tol_result_female_prop"]][["R2"]], 2)`    |
 
 [Back to top](#)
 
@@ -371,12 +370,14 @@ The study results presented a tau^2^ value of `r round(pwma.nausea$tau2, 3)` (ac
 
 ### 2.8.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity. We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable). For age, the regression coefficient ($\beta$) is intended per year of age.
+The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable).
+For age, the regression coefficient ($\beta$) is intended per year of age.
 
-|     Moderator       |   $\beta$  |     95% CI     |  Marginal R~\*~^2^ (%)  |
-|:-------------------:|:----------:|:--------------:|:-------------------:|
-| Age                 | `r round(selected_regressions_results[["nausea_result_age"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["nausea_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["nausea_result_age"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["nausea_result_age"]][["R2"]], 2)` |
-| Female proportion   | `r round(selected_regressions_results[["nausea_result_female_prop"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["nausea_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["nausea_result_female_prop"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["nausea_result_female_prop"]][["R2"]], 2)` |
+|     Moderator     |                                        $\beta$                                         |                                                                                       95% CI                                                                                       |                               Marginal R~\*~^2^ (%)                               |
+|:------------:|:------------:|:----------------------------:|:------------:|
+|        Age        |     `r round(selected_regressions_results[["nausea_result_age"]][["beta"]][2], 2)`     |         `r round(selected_regressions_results[["nausea_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["nausea_result_age"]][["ci.ub"]][2], 2)`         |     `r round(selected_regressions_results[["nausea_result_age"]][["R2"]], 2)`     |
+| Female proportion | `r round(selected_regressions_results[["nausea_result_female_prop"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["nausea_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["nausea_result_female_prop"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results[["nausea_result_female_prop"]][["R2"]], 2)` |
 
 [Back to top](#)
 
@@ -414,12 +415,14 @@ The study results presented a tau^2^ value of `r round(pwma.headache$tau2, 3)` (
 
 ### 2.9.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity. We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable). For age, the regression coefficient ($\beta$) is intended per year of age.
+The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable).
+For age, the regression coefficient ($\beta$) is intended per year of age.
 
-|     Moderator       |   $\beta$  |     95% CI     |  Marginal R~\*~^2^ (%)  |
-|:-------------------:|:----------:|:--------------:|:-------------------:|
-| Age                 | `r round(selected_regressions_results[["headache_result_age"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["headache_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["headache_result_age"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["headache_result_age"]][["R2"]], 2)` |
-| Female proportion   | `r round(selected_regressions_results[["headache_result_female_prop"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["headache_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["headache_result_female_prop"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["headache_result_female_prop"]][["R2"]], 2)` |
+|     Moderator     |                                         $\beta$                                          |                                                                                         95% CI                                                                                         |                                Marginal R~\*~^2^ (%)                                |
+|:------------:|:------------:|:----------------------------:|:------------:|
+|        Age        |     `r round(selected_regressions_results[["headache_result_age"]][["beta"]][2], 2)`     |         `r round(selected_regressions_results[["headache_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["headache_result_age"]][["ci.ub"]][2], 2)`         |     `r round(selected_regressions_results[["headache_result_age"]][["R2"]], 2)`     |
+| Female proportion | `r round(selected_regressions_results[["headache_result_female_prop"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["headache_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["headache_result_female_prop"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results[["headache_result_female_prop"]][["R2"]], 2)` |
 
 [Back to top](#)
 
@@ -457,12 +460,14 @@ The study results presented a tau^2^ value of `r round(pwma.insomnia$tau2, 3)` (
 
 ### 2.10.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity. We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable). For age, the regression coefficient ($\beta$) is intended per year of age.
+The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable).
+For age, the regression coefficient ($\beta$) is intended per year of age.
 
-|     Moderator       |   $\beta$  |     95% CI     |  Marginal R~\*~^2^ (%)  |
-|:-------------------:|:----------:|:--------------:|:-------------------:|
-| Age                 | `r round(selected_regressions_results[["insomnia_result_age"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["insomnia_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["insomnia_result_age"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["insomnia_result_age"]][["R2"]], 2)` |
-| Female proportion   | `r round(selected_regressions_results[["insomnia_result_female_prop"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["insomnia_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["insomnia_result_female_prop"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["insomnia_result_female_prop"]][["R2"]], 2)` |
+|     Moderator     |                                         $\beta$                                          |                                                                                         95% CI                                                                                         |                                Marginal R~\*~^2^ (%)                                |
+|:------------:|:------------:|:----------------------------:|:------------:|
+|        Age        |     `r round(selected_regressions_results[["insomnia_result_age"]][["beta"]][2], 2)`     |         `r round(selected_regressions_results[["insomnia_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["insomnia_result_age"]][["ci.ub"]][2], 2)`         |     `r round(selected_regressions_results[["insomnia_result_age"]][["R2"]], 2)`     |
+| Female proportion | `r round(selected_regressions_results[["insomnia_result_female_prop"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["insomnia_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["insomnia_result_female_prop"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results[["insomnia_result_female_prop"]][["R2"]], 2)` |
 
 [Back to top](#)
 
@@ -502,13 +507,16 @@ There were no significant subgroup differences between participants assigned to 
 
 ### 2.11.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity. We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable). For age, the regression coefficient ($\beta$) is intended per year of age. For treatment duration, the regression coefficient ($\beta$) is intended per increasing number of weeks.
+The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable).
+For age, the regression coefficient ($\beta$) is intended per year of age.
+For treatment duration, the regression coefficient ($\beta$) is intended per increasing number of weeks.
 
-|     Moderator       |   $\beta$  |     95% CI     |  Marginal R~\*~^2^ (%)  |
-|:-------------------:|:----------:|:--------------:|:-------------------:|
-| Age                 | `r round(selected_regressions_results[["constipation_result_age"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["constipation_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["constipation_result_age"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["constipation_result_age"]][["R2"]], 2)` |
-| Treatment duration  | `r round(selected_regressions_results[["constipation_result_tx_duration"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["constipation_result_tx_duration"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["constipation_result_tx_duration"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["constipation_result_tx_duration"]][["R2"]], 2)` |
-| Female proportion   | `r round(selected_regressions_results[["constipation_result_female_prop"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["constipation_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["constipation_result_female_prop"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["constipation_result_female_prop"]][["R2"]], 2)` |
+|     Moderator      |                                           $\beta$                                            |                                                                                             95% CI                                                                                             |                                  Marginal R~\*~^2^ (%)                                  |
+|:------------:|:------------:|:----------------------------:|:------------:|
+|        Age         |     `r round(selected_regressions_results[["constipation_result_age"]][["beta"]][2], 2)`     |         `r round(selected_regressions_results[["constipation_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["constipation_result_age"]][["ci.ub"]][2], 2)`         |     `r round(selected_regressions_results[["constipation_result_age"]][["R2"]], 2)`     |
+| Treatment duration | `r round(selected_regressions_results[["constipation_result_tx_duration"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["constipation_result_tx_duration"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["constipation_result_tx_duration"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results[["constipation_result_tx_duration"]][["R2"]], 2)` |
+| Female proportion  | `r round(selected_regressions_results[["constipation_result_female_prop"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["constipation_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["constipation_result_female_prop"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results[["constipation_result_female_prop"]][["R2"]], 2)` |
 
 [Back to top](#)
 
@@ -546,12 +554,14 @@ The study results presented a tau^2^ value of `r round(pwma.dizziness$tau2, 3)` 
 
 ### 2.12.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity. We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable). For age, the regression coefficient ($\beta$) is intended per year of age.
+The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable).
+For age, the regression coefficient ($\beta$) is intended per year of age.
 
-|     Moderator       |   $\beta$  |     95% CI     |  Marginal R~\*~^2^ (%)  |
-|:-------------------:|:----------:|:--------------:|:-------------------:|
-| Age                 | `r round(selected_regressions_results[["dizziness_result_age"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["dizziness_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["dizziness_result_age"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["dizziness_result_age"]][["R2"]], 2)` |
-| Female proportion   | `r round(selected_regressions_results[["dizziness_result_female_prop"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["dizziness_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["dizziness_result_female_prop"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["dizziness_result_female_prop"]][["R2"]], 2)` |
+|     Moderator     |                                          $\beta$                                          |                                                                                          95% CI                                                                                          |                                Marginal R~\*~^2^ (%)                                 |
+|:------------:|:------------:|:----------------------------:|:------------:|
+|        Age        |     `r round(selected_regressions_results[["dizziness_result_age"]][["beta"]][2], 2)`     |         `r round(selected_regressions_results[["dizziness_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["dizziness_result_age"]][["ci.ub"]][2], 2)`         |     `r round(selected_regressions_results[["dizziness_result_age"]][["R2"]], 2)`     |
+| Female proportion | `r round(selected_regressions_results[["dizziness_result_female_prop"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["dizziness_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["dizziness_result_female_prop"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results[["dizziness_result_female_prop"]][["R2"]], 2)` |
 
 [Back to top](#)
 
@@ -589,13 +599,16 @@ The study results presented a tau^2^ value of `r round(pwma.dry_mouth$tau2, 3)` 
 
 ### 2.13.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity. We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable). For age, the regression coefficient ($\beta$) is intended per year of age. For treatment duration, the regression coefficient ($\beta$) is intended per increasing number of weeks.
+The table below shows which of the covariates, if any, explain some of the heterogeneity observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+We present marginal R~\*~^2^ based on effect sizes, which measures the proportion of variance explained by including moderators in the model (the % change in the between-studies variance when the covariate is included in the model, in other words the % of the heterogeneity explained by the variable).
+For age, the regression coefficient ($\beta$) is intended per year of age.
+For treatment duration, the regression coefficient ($\beta$) is intended per increasing number of weeks.
 
-|     Moderator       |   $\beta$  |     95% CI     |  Marginal R~\*~^2^ (%)  |
-|:-------------------:|:----------:|:--------------:|:-------------------:|
-| Age                 | `r round(selected_regressions_results[["dry_mouth_result_age"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["dry_mouth_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["dry_mouth_result_age"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["dry_mouth_result_age"]][["R2"]], 2)` |
-| Treatment duration  | `r round(selected_regressions_results[["dry_mouth_result_tx_duration"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["dry_mouth_result_tx_duration"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["dry_mouth_result_tx_duration"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["dry_mouth_result_tx_duration"]][["R2"]], 2)` |
-| Female proportion   | `r round(selected_regressions_results[["dry_mouth_result_female_prop"]][["beta"]][2], 2)` |  `r round(selected_regressions_results[["dry_mouth_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["dry_mouth_result_female_prop"]][["ci.ub"]][2], 2)`   | `r round(selected_regressions_results[["dry_mouth_result_female_prop"]][["R2"]], 2)` |
+|     Moderator      |                                          $\beta$                                          |                                                                                          95% CI                                                                                          |                                Marginal R~\*~^2^ (%)                                 |
+|:------------:|:------------:|:----------------------------:|:------------:|
+|        Age         |     `r round(selected_regressions_results[["dry_mouth_result_age"]][["beta"]][2], 2)`     |         `r round(selected_regressions_results[["dry_mouth_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["dry_mouth_result_age"]][["ci.ub"]][2], 2)`         |     `r round(selected_regressions_results[["dry_mouth_result_age"]][["R2"]], 2)`     |
+| Treatment duration | `r round(selected_regressions_results[["dry_mouth_result_tx_duration"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["dry_mouth_result_tx_duration"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["dry_mouth_result_tx_duration"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results[["dry_mouth_result_tx_duration"]][["R2"]], 2)` |
+| Female proportion  | `r round(selected_regressions_results[["dry_mouth_result_female_prop"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["dry_mouth_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["dry_mouth_result_female_prop"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results[["dry_mouth_result_female_prop"]][["R2"]], 2)` |
 
 [Back to top](#)
 
