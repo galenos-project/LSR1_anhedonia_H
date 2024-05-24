@@ -25,6 +25,7 @@ df <- readRDS('rds/human/df.rds')
 
 # amend df ----
 source('util/df_amendments20240430.R')
+df$tx_duration[df$studlab=='Ravaris (1976) - 87999576'] <- 6
 
 # anhedonia ----
 {
@@ -1062,78 +1063,87 @@ constipation.eer
 }
 
 # meta-regressions ----
-#this runs all meta regressions for the below outcomes (which more than 10 studies contribute to)
-#set meta-regression results container
- meta_regressions_results <- list()
-      meta_analysis_results <- list(
-        anhedonia_result = pwma.anhedonia,
-        anxiety_result = pwma.anxiety, 
-        acc_result = pwma.acc,
-        tol_result = pwma.tol, 
-        nausea_result = pwma.nausea,
-        headache_result = pwma.headache,
-        insomnia_result = pwma.insomnia,
-        dry_mouth_result = pwma.dry_mouth,
-        constipation_result = pwma.constipation,
-        dizziness_result = pwma.dizziness
-      )
-      #set meta regression predictors
-      predictors <- c("age", "female_prop", "anhedonia_baseline", "anxiety_baseline", "reward_baseline", "tx_duration")
-      
-      # Function to perform a single meta-regression, adjusted to check for study count
-      perform_meta_regression <- function(meta_result, predictor_var) {
-        # Assuming 'k' represents the number of studies in the meta-analysis result
-        # You might need to adjust this part depending on the structure of your meta-analysis result objects
-        if(meta_result$k >= 10) { 
-          # If there are 10 or more studies, perform the meta-regression
-          formula <- as.formula(paste0("~", predictor_var))
-          result <- metareg(meta_result, formula)
-          return(result)
-        } else {
-          # If there are fewer than 10 studies, return a message or NULL
-          return(paste0("Not enough studies (", k, ") for ", predictor_var))
-        }
-      }
-      # Iterating over meta-analysis results and predictors
-      for(meta_result_name in names(meta_analysis_results)) {
-        for(predictor_var in predictors) {
-          # Constructing a unique key for storing results
-          result_key <- paste(meta_result_name, predictor_var, sep = "_")
-          # Attempting the meta-regression, catching errors to continue with the next iteration
-          result <- tryCatch({
-            # Attempt to perform meta-regression, now with a study count check
-            perform_meta_regression(meta_analysis_results[[meta_result_name]], predictor_var)
-          }, error = function(e) {
-            # If an error occurs, print a message and return NULL
-            message(paste0("Meta-regression failed for ", result_key, ": ", e$message))
-            NULL # Return NULL to indicate failure
-          }
-          )
-          # Store the result if the meta-regression was successful; otherwise, result will be NULL or a message
-          meta_regressions_results[[result_key]] <- result
-        }
-      }
-  
-      
-#this code removes regression results where there is a k < 10      
-      # Initialize a new list to store selected regression results
-      selected_regressions_results <- list()
-      
-      # Iterate through each key in the meta_regressions_results
-      for (result_key in names(meta_regressions_results)) {
-        # Access the regression result object
-        regression_result <- meta_regressions_results[[result_key]]
-        
-        # Check if regression_result is indeed a list and contains the 'k' value
-        if (is.list(regression_result) && !is.null(regression_result[["k"]])) {
-          # Check if 'k' is greater or equal to 10
-          if (regression_result[["k"]] >= 10) {
-            # If so, add this regression result to the selected_regressions_results list
-            selected_regressions_results[[result_key]] <- regression_result
-          }
-        }
-      }
-      
+reg.anxiety.age <- metareg(pwma.anxiety, age)
+reg.anxiety.female <- metareg(pwma.anxiety, female_prop)
+reg.anxiety.anxiety <- metareg(pwma.anxiety, anxiety_baseline)
+reg.anxiety.tx <- metareg(pwma.anxiety, tx_duration)
+reg.acc.age <- metareg(pwma.acc, age)
+reg.acc.female <- metareg(pwma.acc, female_prop)
+reg.acc.anxiety <- metareg(pwma.acc, anxiety_baseline)
+reg.acc.tx <- metareg(pwma.acc, tx_duration)
+reg.tol.age <- metareg(pwma.tol, age)
+reg.tol.female <- metareg(pwma.tol, female_prop)
+reg.tol.anxiety <- metareg(pwma.tol, anxiety_baseline)
+reg.tol.tx <- metareg(pwma.tol, tx_duration)
+reg.nausea.age <- metareg(pwma.nausea, age)
+reg.nausea.female <- metareg(pwma.nausea, female_prop)
+reg.nausea.anxiety <- metareg(pwma.nausea, anxiety_baseline)
+reg.nausea.tx <- metareg(pwma.nausea, tx_duration)
+reg.headache.age <- metareg(pwma.headache, age)
+reg.headache.female <- metareg(pwma.headache, female_prop)
+reg.headache.anxiety <- metareg(pwma.headache, anxiety_baseline)
+reg.headache.tx <- metareg(pwma.headache, tx_duration)
+reg.insomnia.age <- metareg(pwma.insomnia, age)
+reg.insomnia.female <- metareg(pwma.insomnia, female_prop)
+reg.insomnia.anxiety <- metareg(pwma.insomnia, anxiety_baseline)
+reg.insomnia.tx <- metareg(pwma.insomnia, tx_duration)
+reg.constipation.age <- metareg(pwma.constipation, age)
+reg.constipation.female <- metareg(pwma.constipation, female_prop)
+reg.constipation.anxiety <- metareg(pwma.constipation, anxiety_baseline)
+reg.constipation.tx <- metareg(pwma.constipation, tx_duration)
+reg.dizziness.age <- metareg(pwma.dizziness, age)
+reg.dizziness.female <- metareg(pwma.dizziness, female_prop)
+reg.dizziness.anxiety <- metareg(pwma.dizziness, anxiety_baseline)
+reg.dizziness.tx <- metareg(pwma.dizziness, tx_duration)
+reg.dry_mouth.age <- metareg(pwma.dry_mouth, age)
+reg.dry_mouth.female <- metareg(pwma.dry_mouth, female_prop)
+reg.dry_mouth.anxiety <- metareg(pwma.dry_mouth, anxiety_baseline)
+reg.dry_mouth.tx <- metareg(pwma.dry_mouth, tx_duration)
+
+if (reg.anxiety.age$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.anxiety.female$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.anxiety.anxiety$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.anxiety.tx$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.acc.age$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.acc.female$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.acc.anxiety$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.acc.tx$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.tol.age$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.tol.female$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.tol.anxiety$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.tol.tx$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.nausea.age$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.nausea.female$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.nausea.anxiety$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')} # drop
+if (reg.nausea.tx$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.headache.age$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.headache.female$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.headache.anxiety$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')} # drop
+if (reg.headache.tx$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.insomnia.age$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.insomnia.female$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.insomnia.anxiety$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')} # drop
+if (reg.insomnia.tx$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.constipation.age$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.constipation.female$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.constipation.anxiety$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')} # drop
+if (reg.constipation.tx$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.dizziness.age$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.dizziness.female$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.dizziness.anxiety$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')} # drop
+if (reg.dizziness.tx$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.dry_mouth.age$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.dry_mouth.female$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+if (reg.dry_mouth.anxiety$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')} # drop
+if (reg.dry_mouth.tx$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
+
+rm(reg.nausea.anxiety)
+rm(reg.headache.anxiety)
+rm(reg.insomnia.anxiety)
+rm(reg.constipation.anxiety)
+rm(reg.dizziness.anxiety)
+rm(reg.dry_mouth.anxiety)
+
 # other ----
 {
   df.anhedonia <- df[!is.na(df$anhedonia_followup_mean), c('studlab', 
@@ -1249,7 +1259,36 @@ names <- c('pwma.anhedonia',
            'vomiting.eer',
            'vomiting.rate.pla',
            'df',
-           'selected_regressions_results',
+           'reg.anxiety.age',
+           'reg.anxiety.female',
+           'reg.anxiety.anxiety',
+           'reg.anxiety.tx',
+           'reg.acc.age',
+           'reg.acc.female',
+           'reg.acc.anxiety',
+           'reg.acc.tx',
+           'reg.tol.age',
+           'reg.tol.female',
+           'reg.tol.anxiety',
+           'reg.tol.tx',
+           'reg.nausea.age',
+           'reg.nausea.female',
+           'reg.nausea.tx',
+           'reg.headache.age',
+           'reg.headache.female',
+           'reg.headache.tx',
+           'reg.insomnia.age',
+           'reg.insomnia.female',
+           'reg.insomnia.tx',
+           'reg.constipation.age',
+           'reg.constipation.female',
+           'reg.constipation.tx',
+           'reg.dizziness.age',
+           'reg.dizziness.female',
+           'reg.dizziness.tx',
+           'reg.dry_mouth.age',
+           'reg.dry_mouth.female',
+           'reg.dry_mouth.tx',
            'pwma.anhedonia.bup')
 
 rm(list=setdiff(ls(pos=1), names), pos=1)

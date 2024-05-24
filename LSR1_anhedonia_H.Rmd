@@ -50,7 +50,7 @@ As specified in our [protocol](https://wellcomeopenresearch.org/articles/8-425 "
 -   anhedonia symptom severity: using anhedonia-specific scales, anhedonia-specific sub-scales, or individual items focusing on anhedonia (observer-rated or self-rated). Continuous, primary outcome.
 -   acceptability: proportion of participants dropping out for any reason. Binary, secondary outcome.
 -   tolerability: the proportion of participants dropping out due to an adverse event. Binary, secondary outcome.
--   safety: the proportion of participants reporting specific adverse events. Binary, secondary outcome.
+-   safety: the proportion of participants reporting specific adverse events (i.e. constipation, dizziness, dry mouth, nausea, headache, insomnia, vomiting). Binary, secondary outcome.
 -   anxiety symptom severity: as per observer or self-reported standardised scales. Continuous, secondary outcome.
 
 For anhedonia and anxiety symptom severity, we extracted outcome data reported at 8 weeks post-treatment or manipulation.
@@ -71,14 +71,16 @@ To evaluate biases due to missing evidence and biases across studies, the ROB-ME
 Effect sizes were calculated as standardised mean differences (SMDs) for continuous outcomes (anhedonia and anxiety symptom severity) and odds ratios (ORs) for dichotomous outcomes (acceptability, tolerability, and specific-adverse events).
 We calculated the 95% confidence interval (CI) around the pooled effect size for each meta-analysis.
 
-Meta-analyses were conducted using a random effects model with the inverse variance method, using the restricted maximum-likelihood estimator for tau^2^ and the Hartung-Knapp correction method to adjust 95% confidence intervals, if there are at least five studies.
+Meta-analyses were conducted using a random effects model with the inverse variance method, using the restricted maximum-likelihood estimator for 𝞽^2^ and the Hartung-Knapp correction method to adjust 95% confidence intervals, if there are at least five studies.
 Prediction intervals of the overall pooled effect were calculated to report the heterogeneity.
 
-We conducted a series of sensitivity analyses on the primary outcome.
-We aggregated individual participant data (IPD) of randomised controlled trials on antidepressants in people with depression, performing a series of random effects network meta-analyses to compare the effects of pro-dopaminergic and non-pro-dopaminergic pharmacological interventions on anhedonia.
+In terms of sensitivity analyses, we aggregated individual participant data (IPD) on the MADRS "inability to feel" item from 34 randomised controlled trials (14054 participants) on antidepressants in people with depression we had access to. We performed the following analyses to estimate the performance of bupropion versus placebo at the primary outcome (i.e. reduction in anhedonia scores):
+- aggregated IPD, all antidepressants and placebo, random effects network meta-analysis.
+- aggregated IPD, bupropion versus placebo, random effects pairwise meta-analysis.
+- combination of aggregated IPD and early studies identified in this living systematic review for which IPD were not available, random effects pairwise meta-analysis.
 
-Subgroup analyses and meta-regressions were also conducted for the following variables: mean age of participants, mean anhedonia baseline score, mean anxiety baseline score, sex (proportion of female participants), and planned treatment duration.
-This was done using a mixed-effects model with the estimation of the between-study heterogeneity tau^2^ based on the REML method.
+Meta-regressions were also conducted for the following variables: mean age of participants, mean anhedonia baseline score, mean anxiety baseline score, sex (proportion of female participants), and planned treatment duration.
+This was done using a mixed-effects model with the estimation of the between-study heterogeneity 𝞽^2^ based on the REML method.
 Meta-regressions were only conducted for outcomes where data was available from 10 or more studies.
 
 Summary of evidence tables were constructed for all outcomes including a summary of the meta-analytic result, biases within-study, across-study, and due to indirectness.
@@ -95,6 +97,7 @@ A list of abbreviations can be found towards the end of the document.
 
 **Figure 1.** PRISMA 2020 flow diagram (Page et al. 2021).
 
+
 ## 2.2 Table of included studies
 
 ```{r table_of_characteristics_anhedonia, echo=F}
@@ -103,12 +106,13 @@ knitr::kable(toca_Indir) %>%
   kable_styling(bootstrap_options = "bordered")
 ```
 
-*Table 1. characteristics of included studies that reported anhedonia scores. NA = not available*
+**Table 1.** Characteristics of included studies that reported anhedonia scores. NA = not available.
+
 
 ## 2.3 Description of included studies
 
 We identified `r length(unique(df$studlab))` eligible studies.
-The study characteristics for studies that reported anhedonia scores can be found in **Table 1** and characteristics of studies that did not report anhedonia can be found in **Table 2**.
+The characteristics of the identified studies can be found in **Table 1**.
 Data from `r cat(paste0(length(all.studies)))` studies contributed with at least one outcome with quantitative data (total of `r all.participants` participants), which included adults from multiple countries.
 The mean age of participants was `r round(mean(df$age_mean, na.rm = T), 1)` years (range `r round(min(df$age_mean, na.rm = T), 0)` to `r round(max(df$age_mean, na.rm = T), 0)` years), with a mean proportion of `r round(mean(df$female_prop, na.rm = T), 2)` female participants (range `r round(min(df$female_prop, na.rm = T), 2)` to `r round(max(df$female_prop, na.rm = T), 2)`).
 Included studies allocated the participants to treatment lasting between `r round(min(df$tx_duration, na.rm = T), 1)` to `r round(max(df$tx_duration, na.rm = T), 1)` weeks (median, `r round(median(df$tx_duration, na.rm = T), 1)` weeks).
@@ -134,6 +138,7 @@ forest(pwma.anhedonia,
 **Figure 2.** Forest plot for symptoms of anhedonia (primary outcome) comparing pro-dopaminergic interventions vs placebo for individuals with anhedonia at 4-12 weeks (primary timepoint).
 SMD: standardised mean difference, 95%CI: 95% confidence intervals, SD: standard deviation.
 
+
 `r pwma.anhedonia$k.TE` `r ifelse(pwma.anhedonia$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.anhedonia$n.e.pooled, pwma.anhedonia$n.c.pooled), na.rm = T)` participants (`r pwma.anhedonia$n.e.pooled` allocated to pro-dopaminergic interventions, `r pwma.anhedonia$n.c.pooled` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.anhedonia$lower.random < 0) & (pwma.anhedonia$upper.random < 0)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.anhedonia$lower.random > 0) & (pwma.anhedonia$upper.random > 0)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.anhedonia$TE.random, 3)` (95%CI from `r round(pwma.anhedonia$lower.random, 3)` to `r round(pwma.anhedonia$upper.random, 3)`).
@@ -141,9 +146,10 @@ There is some heterogeneity as shown by the 95% prediction interval from `r roun
 
 ### 2.4.2 Risk of bias
 
-![](data\human\LSR1RoBVisuals\robanhedonia1.png)
+![](data/human/LSR1RoBVisuals/robanhedonia1.png){width=65%}
 
-![](data\human\LSR1RoBVisuals\robanhedonia2.png)
+**Figure 3.** Risk of bias assessment.
+
 
 Evidence for the efficacy of pro-dopaminergic interventions vs placebo in improving anhedonia was rated moderate for risk of bias.
 50% of the included studies had an overall high risk of bias while the other 50% had moderate risk of bias, primarily due to missing outcome data, issues with outcome measurement, and selective reporting of findings.
@@ -155,16 +161,20 @@ This result was judged to be at moderate risk of bias due to indirectness as whi
 We evaluated the reporting bias using the ROB-ME tool (Page et al. 2023), taking into account the usable data from the eligible studies identified in the search, the comprehensiveness of the search, small-study effects, and potential patterns of missingness.
 We followed the algorithm to assign a low or high risk of reporting bias, or to express some concerns, by answering signalling questions related to the domains mentioned above.
 
-### 2.4.4 Sub-group and meta-regression analyses
+### 2.4.4 Meta-regression analyses
 
-We did not perform a meta-regression as the total number of studies was below 10.
+We did not perform any meta-regressions (mean anhedonia baseline score, mean anxiety baseline score, age, sex, planned treatment duration) as the total number of studies was below 10.
 
 ### 2.4.5 Sensitivity analyses
 
 We performed a series of random effects network meta-analyses on the MADRS "inability to feel" item (aggregated IPD from 34 studies, 14054 participants).
 First, we included all the available studies and compared all the antidepressants against placebo.
 
+#### 2.4.5.1 Aggregated IPD, all antidepressants and placebo, random effects network meta-analysis
 ![](result/human/non-dopaminergic/IPD_AD_NMA_pla_with_estimates.png)
+
+**Figure 4.** Comparative effect sizes of antidepressants versus placebo.
+
 
 The comparative effect of bupropion versus placebo was -0.12 (SMD, 95%CI from -0.25 to 0.00; 34 studies, 14054 participants), lower than what we could observe from the retrieved data (random effects pairwise meta-analysis, bupropion versus placebo): `r round(pwma.anhedonia.bup$TE.random, 2)` (SMD, 95%CI from `r round(pwma.anhedonia.bup$lower.random, 2)` to `r round(pwma.anhedonia.bup$upper.random, 2)`; `r round(pwma.anhedonia.bup$k.TE, 2)` `r ifelse(pwma.anhedonia.bup$k.TE>1, 'studies', 'study')`, `r pwma.anhedonia.bup$n.e.pooled+pwma.anhedonia.bup$n.c.pooled` participants).
 
@@ -182,8 +192,14 @@ forest(pwma.anhedonia.bup,
        )
 ```
 
+**Figure 5.** Forest plot for symptoms of anhedonia (primary outcome) comparing bupropion versus placebo for individuals with anhedonia at 4-12 weeks (primary timepoint).
+SMD: standardised mean difference, 95%CI: 95% confidence intervals, SD: standard deviation.
+
+
+#### 2.4.5.2 Aggregated IPD, bupropion versus placebo, random effects pairwise meta-analysis
 We also performed a random effects pairwise meta-analysis of bupropion versus placebo based on the aggregated IPD, resulting in estimates comparable to the network meta-analytical model (SMD -0.12, 95%CI from -0.29 to 0.05; 4 studies, 1085 participants).
 
+#### 2.4.5.3 Aggregated IPD and early studies identified in this living systematic review, random effects pairwise meta-analysis
 Finally, we performed a random effects pairwise meta-analysis including aggregate data from both sources (IPD and retrieved as aggregated).
 As three studies (Hewett 2009 - 87997883, Hewett 2010a - 87997755, Koshino 2013 - 87997374) were available in both sources, we prioritised aggregate IPD over data retrieved as aggregated.
 The comparative effect of bupropion versus placebo was -0.19 (SMD, 95%CI from -0.33 to 0.04; 6 studies, 2489 participants)
@@ -206,31 +222,38 @@ forest(pwma.anxiety,
 )
 ```
 
-**Figure X** Forest plot for symptoms of anxiety (secondary outcome) comparing pro-dopaminergic interventions vs placebo for individuals with anxiety at 4-12 weeks (primary timepoint).
+**Figure 6** Forest plot for symptoms of anxiety (secondary outcome) comparing pro-dopaminergic interventions vs placebo for individuals with anxiety at 4-12 weeks (primary timepoint).
 SMD: standardised mean difference, 95%CI: 95% confidence intervals, SD: standard deviation.
+
 
 `r pwma.anxiety$k.TE` `r ifelse(pwma.anxiety$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.anxiety$n.e.pooled, pwma.anxiety$n.c.pooled), na.rm = T)` participants (`r pwma.anxiety$n.e.pooled` allocated to pro-dopaminergic interventions, `r pwma.anxiety$n.c.pooled` allocated to pill placebo.
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.anxiety$lower.random < 0) & (pwma.anxiety$upper.random < 0)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.anxiety$lower.random > 0) & (pwma.anxiety$upper.random > 0)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.anxiety$TE.random, 3)` (95%CI from `r round(pwma.anxiety$lower.random, 3)` to `r round(pwma.anxiety$upper.random, 3)`).
-The study results presented a tau^2^ value of `r round(pwma.anxiety$tau2, 3)` indicating little to no heterogeneity (95% prediction interval: `r round(pwma.anxiety$lower.predict, 3)` to `r round(pwma.anxiety$upper.predict, 3)`).
+The study results presented a 𝞽^2^ value of `r round(pwma.anxiety$tau2, 3)` indicating little to no heterogeneity (95% prediction interval: `r round(pwma.anxiety$lower.predict, 3)` to `r round(pwma.anxiety$upper.predict, 3)`).
 
 ### 2.5.2 Risk of Bias
 
-![](data\human\LSR1RoBVisuals\robanxiety1.png)
+![](data/human/LSR1RoBVisuals/robanxiety1.png){width=65%}
 
-![](data\human\LSR1RoBVisuals\robanxiety2.png)
+**Figure 7.** Risk of bias assessment.
 
-### 2.5.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+### 2.5.3 Meta-regression analyses
+
+The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on anxiety symptom severity.
 For anxiety baseline, the regression coefficient ($\beta$) is intended per point increase.
 For age, the regression coefficient ($\beta$) is intended per year of age.
+For female proportion, the regression coefficient ($\beta$) is intended per percentual point increase.
+For treatment duration, the regression coefficient ($\beta$) is intended per week.
+We did not perform a meta-regression on mean anhedonia baseline score as the total number of studies was below 10.
 
 |     Moderator     |                                         $\beta$                                          |                                                                                         95% CI                                                                                         |                                    𝞽^2^                                     |
-|:----------------:|:----------------:|:------------------:|:----------------:|
-| Anxiety baseline  | `r round(selected_regressions_results[["acc_result_anxiety_baseline"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["acc_result_anxiety_baseline"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["acc_result_anxiety_baseline"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results$acc_result_anxiety_baseline$tau2, 2)` |
-|        Age        |       `r round(selected_regressions_results[["acc_result_age"]][["beta"]][2], 2)`        |              `r round(selected_regressions_results[["acc_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["acc_result_age"]][["ci.ub"]][2], 2)`              |       `r round(selected_regressions_results$acc_result_age$tau2, 2)`        |
-| Female proportion |   `r round(selected_regressions_results[["acc_result_female_prop"]][["beta"]][2], 2)`    |      `r round(selected_regressions_results[["acc_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["acc_result_female_prop"]][["ci.ub"]][2], 2)`      |   `r round(selected_regressions_results$acc_result_female_prop$tau2, 2)`    |
+|:------------------:|:----------------:|:------------------:|:----------------:|
+|    Unadjusted    | . | . | `r round(pwma.anxiety$tau2, 2)` |
+| Anxiety baseline  | `r round(reg.anxiety.anxiety[["beta"]][2], 2)` | `r round(reg.anxiety.anxiety[["ci.lb"]][2], 2)` to `r round(reg.anxiety.anxiety[["ci.ub"]][2], 2)` | `r round(reg.anxiety.anxiety$tau2, 2)` |
+|        Age        |       `r round(reg.anxiety.age[["beta"]][2], 2)`        |              `r round(reg.anxiety.age[["ci.lb"]][2], 2)` to `r round(reg.anxiety.age[["ci.ub"]][2], 2)`              |       `r round(reg.anxiety.age$tau2, 2)`        |
+| Female proportion |   `r round(reg.anxiety.female[["beta"]][2], 2)`    |      `r round(reg.anxiety.female[["ci.lb"]][2], 2)` to `r round(reg.anxiety.female[["ci.ub"]][2], 2)`      |   `r round(reg.anxiety.female$tau2, 2)`    |
+| Treatment duration |   `r round(reg.anxiety.tx[["beta"]][2], 2)`    |      `r round(reg.anxiety.tx[["ci.lb"]][2], 2)` to `r round(reg.anxiety.tx[["ci.ub"]][2], 2)`      |   `r round(reg.anxiety.tx$tau2, 2)`    |
 
 ## 2.6 Secondary outcome: Dropouts due to any reason
 
@@ -250,32 +273,40 @@ forest(pwma.acc,
 )
 ```
 
-**Figure X** Forest plot for dropouts due to any reason for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
+**Figure 8** Forest plot for dropouts due to any reason for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
 OR: odds ratio, 95%CI: 95% confidence intervals.
+
 
 `r pwma.acc$k.TE` `r ifelse(pwma.acc$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.acc$n.e., pwma.acc$n.c.), na.rm = T)` participants (`r sum(pwma.acc$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.acc$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.acc$lower.random) < 1) & (exp(pwma.acc$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.acc$lower.random) > 1) & (exp(pwma.acc$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.acc$TE.random), 3)` (95%CI from `r round(exp(pwma.acc$lower.random), 3)` to `r round(exp(pwma.acc$upper.random), 3)`).
-The study results presented a tau^2^ value of `r round(pwma.acc$tau2, 3)`.
+The study results presented a 𝞽^2^ value of `r round(pwma.acc$tau2, 3)`.
 There is some heterogeneity as shown by the 95% prediction interval from `r round(exp(pwma.acc$lower.predict), 3)` to `r round(exp(pwma.acc$upper.predict), 3)`.
 
 ### 2.6.2 Risk of bias
 
-![](data\human\LSR1RoBVisuals\robacceptability1.png)
+![](data/human/LSR1RoBVisuals/robacceptability1.png){width=65%}
 
-![](data\human\LSR1RoBVisuals\robacceptability2.png)
+### 2.6.3 Meta-regression analyses
 
-### 2.6.3 Sub-group and meta-regression analyses
+**Figure 9.** Risk of bias assessment.
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+
+The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on acceptability.
 For anxiety baseline, the regression coefficient ($\beta$) is intended per point increase.
 For age, the regression coefficient ($\beta$) is intended per year of age.
+For female proportion, the regression coefficient ($\beta$) is intended per percentual point increase.
+For treatment duration, the regression coefficient ($\beta$) is intended per week.
+We did not perform a meta-regression on mean anhedonia baseline score as the total number of studies was below 10.
 
 |     Moderator     |                                           $\beta$                                            |                                                                                             95% CI                                                                                             |                                      𝞽^2^                                       |
 |:----------------:|:----------------:|:------------------:|:----------------:|
-| Anxiety baseline  | `r round(selected_regressions_results[["anxiety_result_anxiety_baseline"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["anxiety_result_anxiety_baseline"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["anxiety_result_anxiety_baseline"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results$anxiety_result_anxiety_baseline$tau2, 2)` |
-|        Age        |       `r round(selected_regressions_results[["anxiety_result_age"]][["beta"]][2], 2)`        |              `r round(selected_regressions_results[["anxiety_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["anxiety_result_age"]][["ci.ub"]][2], 2)`              |       `r round(selected_regressions_results$anxiety_result_age$tau2, 2)`        |
-| Female proportion |   `r round(selected_regressions_results[["anxiety_result_female_prop"]][["beta"]][2], 2)`    |      `r round(selected_regressions_results[["anxiety_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["anxiety_result_female_prop"]][["ci.ub"]][2], 2)`      |   `r round(selected_regressions_results$anxiety_result_female_prop$tau2, 2)`    |
+|    Unadjusted    | . | . | `r round(pwma.acc$tau2, 2)` |
+| Anxiety baseline  | `r round(reg.acc.anxiety[["beta"]][2], 2)` | `r round(reg.acc.anxiety[["ci.lb"]][2], 2)` to `r round(reg.acc.anxiety[["ci.ub"]][2], 2)` | `r round(reg.acc.anxiety$tau2, 2)` |
+|        Age        |       `r round(reg.acc.age[["beta"]][2], 2)`        |              `r round(reg.acc.age[["ci.lb"]][2], 2)` to `r round(reg.acc.age[["ci.ub"]][2], 2)`              |       `r round(reg.acc.age$tau2, 2)`        |
+| Female proportion |   `r round(reg.acc.female[["beta"]][2], 2)`    |      `r round(reg.acc.female[["ci.lb"]][2], 2)` to `r round(reg.acc.female[["ci.ub"]][2], 2)`      |   `r round(reg.acc.female$tau2, 2)`    |
+| Treatment duration |   `r round(reg.acc.tx[["beta"]][2], 2)`    |      `r round(reg.acc.tx[["ci.lb"]][2], 2)` to `r round(reg.acc.tx[["ci.ub"]][2], 2)`      |   `r round(reg.acc.tx$tau2, 2)`    |
+
 
 ## 2.7 Secondary outcome: dropouts due to side effects
 
@@ -296,31 +327,38 @@ forest(pwma.tol,
 )
 ```
 
-**Figure X** Forest plot for dropouts due to adverse events for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
+**Figure 10** Forest plot for dropouts due to adverse events for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
 OR: odds ratio, 95%CI: 95% confidence intervals.
+
 
 `r pwma.tol$k.TE` `r ifelse(pwma.tol$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.tol$n.e., pwma.tol$n.c.), na.rm = T)` participants (`r sum(pwma.tol$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.tol$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.tol$lower.random) < 1) & (exp(pwma.tol$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.tol$lower.random > 1)) & (exp(pwma.tol$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.tol$TE.random), 3)` (95%CI from `r round(exp(pwma.tol$lower.random), 3)` to `r round(exp(pwma.tol$upper.random), 3)`).
-The study results presented a tau^2^ value of `r round(pwma.tol$tau2, 3)` indicating the presence of some heterogeneity (95% prediction interval from `r round(exp(pwma.acc$lower.predict), 3)` to `r round(exp(pwma.tol$upper.predict), 3)`).
+The study results presented a 𝞽^2^ value of `r round(pwma.tol$tau2, 3)` indicating the presence of some heterogeneity (95% prediction interval from `r round(exp(pwma.acc$lower.predict), 3)` to `r round(exp(pwma.tol$upper.predict), 3)`).
 
 ### 2.7.2 Risk of bias
 
-![](data\human\LSR1RoBVisuals\robtolerability1.png)
+![](data/human/LSR1RoBVisuals/robtolerability1.png){width=65%}
 
-![](data\human\LSR1RoBVisuals\robtolerability2.png)
+**Figure 11.** Risk of bias assessment.
 
-### 2.7.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+### 2.7.3 Meta-regression analyses
+
+The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on tolerability.
 For anxiety baseline, the regression coefficient ($\beta$) is intended per point increase.
 For age, the regression coefficient ($\beta$) is intended per year of age.
+For female proportion, the regression coefficient ($\beta$) is intended per percentual point increase.
+For treatment duration, the regression coefficient ($\beta$) is intended per week.
+We did not perform a meta-regression on mean anhedonia baseline score as the total number of studies was below 10.
 
 |     Moderator     |                                         $\beta$                                          |                                                                                         95% CI                                                                                         |                                    𝞽^2^                                     |
 |:----------------:|:----------------:|:------------------:|:----------------:|
-| Anxiety baseline  | `r round(selected_regressions_results[["tol_result_anxiety_baseline"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["tol_result_anxiety_baseline"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["tol_result_anxiety_baseline"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results$tol_result_anxiety_baseline$tau2, 2)` |
-|        Age        |       `r round(selected_regressions_results[["tol_result_age"]][["beta"]][2], 2)`        |              `r round(selected_regressions_results[["tol_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["tol_result_age"]][["ci.ub"]][2], 2)`              |       `r round(selected_regressions_results$tol_result_age$tau2, 2)`        |
-| Female proportion |   `r round(selected_regressions_results[["tol_result_female_prop"]][["beta"]][2], 2)`    |      `r round(selected_regressions_results[["tol_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["tol_result_female_prop"]][["ci.ub"]][2], 2)`      |   `r round(selected_regressions_results$tol_result_female_prop$tau2, 2)`    |
+|    Unadjusted    | . | . | `r round(pwma.tol$tau2, 2)` |
+| Anxiety baseline  | `r round(reg.tol.anxiety[["beta"]][2], 2)` | `r round(reg.tol.anxiety[["ci.lb"]][2], 2)` to `r round(reg.tol.anxiety[["ci.ub"]][2], 2)` | `r round(reg.tol.anxiety$tau2, 2)` |
+|        Age        |       `r round(reg.tol.age[["beta"]][2], 2)`        |              `r round(reg.tol.age[["ci.lb"]][2], 2)` to `r round(reg.tol.age[["ci.ub"]][2], 2)`              |       `r round(reg.tol.age$tau2, 2)`        |
+| Female proportion |   `r round(reg.tol.female[["beta"]][2], 2)`    |      `r round(reg.tol.female[["ci.lb"]][2], 2)` to `r round(reg.tol.female[["ci.ub"]][2], 2)`      |   `r round(reg.tol.female$tau2, 2)`    |
+| Treatment duration |   `r round(reg.tol.tx[["beta"]][2], 2)`    |      `r round(reg.tol.tx[["ci.lb"]][2], 2)` to `r round(reg.tol.tx[["ci.ub"]][2], 2)`      |   `r round(reg.tol.tx$tau2, 2)`    |
 
 ## 2.8 Secondary outcome: nausea
 
@@ -340,29 +378,36 @@ forest(pwma.nausea,
 )
 ```
 
-**Figure X** Forest plot for nausea for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
+**Figure 12** Forest plot for nausea for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
 OR: odds ratio, 95%CI: 95% confidence intervals.
+
 
 `r pwma.nausea$k.TE` `r ifelse(pwma.nausea$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.nausea$n.e., pwma.nausea$n.c.), na.rm = T)` participants (`r sum(pwma.nausea$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.nausea$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.nausea$lower.random) < 1) & (exp(pwma.nausea$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.nausea$lower.random) > 1) & (exp(pwma.nausea$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.nausea$TE.random), 3)` (95%CI from `r round(exp(pwma.nausea$lower.random), 3)` to `r round(exp(pwma.nausea$upper.random), 3)`).
-The study results presented a tau^2^ value of `r round(pwma.nausea$tau2, 3)` indicating the presence of some heterogeneity (95% prediction interval from `r round(exp(pwma.nausea$lower.predict), 3)` to `r round(exp(pwma.nausea$upper.predict), 3)`).
+The study results presented a 𝞽^2^ value of `r round(pwma.nausea$tau2, 3)` indicating the presence of some heterogeneity (95% prediction interval from `r round(exp(pwma.nausea$lower.predict), 3)` to `r round(exp(pwma.nausea$upper.predict), 3)`).
 
 ### 2.8.2 Risk of bias
 
-![](data\human\LSR1RoBVisuals\robnausea1.png)
+![](data/human/LSR1RoBVisuals/robnausea1.png){width=65%}
 
-![](data\human\LSR1RoBVisuals\robnausea2.png)
+**Figure 13.** Risk of bias assessment.
 
-### 2.8.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+### 2.8.3 Meta-regression analyses
+
+The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on nausea.
 For age, the regression coefficient ($\beta$) is intended per year of age.
+For female proportion, the regression coefficient ($\beta$) is intended per percentual point increase.
+For treatment duration, the regression coefficient ($\beta$) is intended per week.
+We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
 |     Moderator     |                                        $\beta$                                         |                                                                                       95% CI                                                                                       |                                   𝞽^2^                                    |
 |:----------------:|:----------------:|:------------------:|:----------------:|
-|        Age        |     `r round(selected_regressions_results[["nausea_result_age"]][["beta"]][2], 2)`     |         `r round(selected_regressions_results[["nausea_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["nausea_result_age"]][["ci.ub"]][2], 2)`         |     `r round(selected_regressions_results$nausea_result_age$tau2, 2)`     |
-| Female proportion | `r round(selected_regressions_results[["nausea_result_female_prop"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["nausea_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["nausea_result_female_prop"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results$nausea_result_female_prop$tau2, 2)` |
+|    Unadjusted    | . | . | `r round(pwma.nausea$tau2, 2)` |
+|        Age        |       `r round(reg.nausea.age[["beta"]][2], 2)`        |              `r round(reg.nausea.age[["ci.lb"]][2], 2)` to `r round(reg.nausea.age[["ci.ub"]][2], 2)`              |       `r round(reg.nausea.age$tau2, 2)`        |
+| Female proportion |   `r round(reg.nausea.female[["beta"]][2], 2)`    |      `r round(reg.nausea.female[["ci.lb"]][2], 2)` to `r round(reg.nausea.female[["ci.ub"]][2], 2)`      |   `r round(reg.nausea.female$tau2, 2)`    |
+| Treatment duration |   `r round(reg.nausea.tx[["beta"]][2], 2)`    |      `r round(reg.nausea.tx[["ci.lb"]][2], 2)` to `r round(reg.nausea.tx[["ci.ub"]][2], 2)`      |   `r round(reg.nausea.tx$tau2, 2)`    |
 
 ## 2.9 Secondary outcome: headache
 
@@ -382,29 +427,36 @@ forest(pwma.headache,
 )
 ```
 
-**Figure X** Forest plot for headaches for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
+**Figure 14** Forest plot for headaches for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
 OR: odds ratio, 95%CI: 95% confidence intervals.
+
 
 `r pwma.headache$k.TE` `r ifelse(pwma.headache$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.headache$n.e., pwma.headache$n.c.), na.rm = T)` participants (`r sum(pwma.headache$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.headache$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.headache$lower.random) < 1) & (exp(pwma.headache$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.headache$lower.random) > 1) & (exp(pwma.headache$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.headache$TE.random), 3)` (95%CI from `r round(exp(pwma.headache$lower.random), 3)` to `r round(exp(pwma.headache$upper.random), 3)`).
-The study results presented a tau^2^ value of `r round(pwma.headache$tau2, 3)` indicating little to no heterogeneity (95% prediction interval from `r round(exp(pwma.headache$lower.predict), 3)` to `r round(exp(pwma.headache$upper.predict), 3)`).
+The study results presented a 𝞽^2^ value of `r round(pwma.headache$tau2, 3)` indicating little to no heterogeneity (95% prediction interval from `r round(exp(pwma.headache$lower.predict), 3)` to `r round(exp(pwma.headache$upper.predict), 3)`).
 
 ### 2.9.2 Risk of bias
 
-![](data\human\LSR1RoBVisuals\robheadache1.png)
+![](data/human/LSR1RoBVisuals/robheadache1.png){width=65%}
 
-![](data\human\LSR1RoBVisuals\robheadache2.png)
+**Figure 15.** Risk of bias assessment.
 
-### 2.9.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+### 2.9.3 Meta-regression analyses
+
+The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on headache.
 For age, the regression coefficient ($\beta$) is intended per year of age.
+For female proportion, the regression coefficient ($\beta$) is intended per percentual point increase.
+For treatment duration, the regression coefficient ($\beta$) is intended per week.
+We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
 |     Moderator     |                                         $\beta$                                          |                                                                                         95% CI                                                                                         |                                    𝞽^2^                                     |
 |:----------------:|:----------------:|:------------------:|:----------------:|
-|        Age        |     `r round(selected_regressions_results[["headache_result_age"]][["beta"]][2], 2)`     |         `r round(selected_regressions_results[["headache_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["headache_result_age"]][["ci.ub"]][2], 2)`         |     `r round(selected_regressions_results$headache_result_age$tau2, 2)`     |
-| Female proportion | `r round(selected_regressions_results[["headache_result_female_prop"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["headache_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["headache_result_female_prop"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results$headache_result_female_prop$tau2, 2)` |
+|    Unadjusted    | . | . | `r round(pwma.headache$tau2, 2)` |
+|        Age        |       `r round(reg.headache.age[["beta"]][2], 2)`        |              `r round(reg.headache.age[["ci.lb"]][2], 2)` to `r round(reg.headache.age[["ci.ub"]][2], 2)`              |       `r round(reg.headache.age$tau2, 2)`        |
+| Female proportion |   `r round(reg.headache.female[["beta"]][2], 2)`    |      `r round(reg.headache.female[["ci.lb"]][2], 2)` to `r round(reg.headache.female[["ci.ub"]][2], 2)`      |   `r round(reg.headache.female$tau2, 2)`    |
+| Treatment duration |   `r round(reg.headache.tx[["beta"]][2], 2)`    |      `r round(reg.headache.tx[["ci.lb"]][2], 2)` to `r round(reg.headache.tx[["ci.ub"]][2], 2)`      |   `r round(reg.headache.tx$tau2, 2)`    |
 
 ## 2.10 Secondary outcome: insomnia
 
@@ -424,29 +476,36 @@ forest(pwma.insomnia,
 )
 ```
 
-**Figure X** Forest plot for insomnia for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
+**Figure 16** Forest plot for insomnia for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
 OR: odds ratio, 95%CI: 95% confidence intervals.
+
 
 `r pwma.insomnia$k.TE` `r ifelse(pwma.insomnia$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.insomnia$n.e., pwma.insomnia$n.c.), na.rm = T)` participants (`r sum(pwma.insomnia$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.insomnia$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.insomnia$lower.random) < 1) & (exp(pwma.insomnia$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.insomnia$lower.random) > 1) & (exp(pwma.insomnia$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.insomnia$TE.random), 3)` (95%CI from `r round(exp(pwma.insomnia$lower.random), 3)` to `r round(exp(pwma.insomnia$upper.random), 3)`).
-The study results presented a tau^2^ value of `r round(pwma.insomnia$tau2, 3)` indicating some heterogeneity (95% prediction interval from `r round(exp(pwma.insomnia$lower.predict), 3)` to `r round(exp(pwma.insomnia$upper.predict), 3)`).
+The study results presented a 𝞽^2^ value of `r round(pwma.insomnia$tau2, 3)` indicating some heterogeneity (95% prediction interval from `r round(exp(pwma.insomnia$lower.predict), 3)` to `r round(exp(pwma.insomnia$upper.predict), 3)`).
 
 ### 2.10.2 Risk of bias
 
-![](data\human\LSR1RoBVisuals\robinsomnia1.png)
+![](data/human/LSR1RoBVisuals/robinsomnia1.png){width=65%}
 
-![](data\human\LSR1RoBVisuals\robinsomnia2.png)
+**Figure 17.** Risk of bias assessment.
 
-### 2.10.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+### 2.10.3 Meta-regression analyses
+
+The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on insomnia.
 For age, the regression coefficient ($\beta$) is intended per year of age.
+For female proportion, the regression coefficient ($\beta$) is intended per percentual point increase.
+For treatment duration, the regression coefficient ($\beta$) is intended per week.
+We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
 |     Moderator     |                                         $\beta$                                          |                                                                                         95% CI                                                                                         |                                    𝞽^2^                                     |
 |:----------------:|:----------------:|:------------------:|:----------------:|
-|        Age        |     `r round(selected_regressions_results[["insomnia_result_age"]][["beta"]][2], 2)`     |         `r round(selected_regressions_results[["insomnia_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["insomnia_result_age"]][["ci.ub"]][2], 2)`         |     `r round(selected_regressions_results$insomnia_result_age$tau2, 2)`     |
-| Female proportion | `r round(selected_regressions_results[["insomnia_result_female_prop"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["insomnia_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["insomnia_result_female_prop"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results$insomnia_result_female_prop$tau2, 2)` |
+|    Unadjusted    | . | . | `r round(pwma.insomnia$tau2, 2)` |
+|        Age        |       `r round(reg.insomnia.age[["beta"]][2], 2)`        |              `r round(reg.insomnia.age[["ci.lb"]][2], 2)` to `r round(reg.insomnia.age[["ci.ub"]][2], 2)`              |       `r round(reg.insomnia.age$tau2, 2)`        |
+| Female proportion |   `r round(reg.insomnia.female[["beta"]][2], 2)`    |      `r round(reg.insomnia.female[["ci.lb"]][2], 2)` to `r round(reg.insomnia.female[["ci.ub"]][2], 2)`      |   `r round(reg.insomnia.female$tau2, 2)`    |
+| Treatment duration |   `r round(reg.insomnia.tx[["beta"]][2], 2)`    |      `r round(reg.insomnia.tx[["ci.lb"]][2], 2)` to `r round(reg.insomnia.tx[["ci.ub"]][2], 2)`      |   `r round(reg.insomnia.tx$tau2, 2)`    |
 
 ## 2.11 Secondary outcome: constipation
 
@@ -466,33 +525,38 @@ forest(pwma.constipation,
 )
 ```
 
-**Figure X** Forest plot for dropouts due to adverse events for the comparison of pro-dopaminergic interventions vs placebo at 8 (4-12) weeks.
+**Figure 18** Forest plot for dropouts due to adverse events for the comparison of pro-dopaminergic interventions vs placebo at 8 (4-12) weeks.
 OR: odds ratio, 95%CI: 95% confidence intervals.
+
 
 `r pwma.constipation$k.TE` `r ifelse(pwma.constipation$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.constipation$n.e., pwma.constipation$n.c.), na.rm = T)` participants (`r sum(pwma.constipation$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.constipation$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.constipation$lower.random) < 1) & (exp(pwma.constipation$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.constipation$lower.random) > 1) & (exp(pwma.constipation$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.constipation$TE.random), 3)` (95%CI from `r round(exp(pwma.constipation$lower.random), 3)` to `r round(exp(pwma.constipation$upper.random), 3)`).
-The study results presented a tau^2^ value of `r round(pwma.constipation$tau2, 3)` indicating little to no heterogeneity (95% prediction interval from `r round(exp(pwma.constipation$lower.predict), 3)` to `r round(exp(pwma.constipation$upper.predict), 3)`).
+The study results presented a 𝞽^2^ value of `r round(pwma.constipation$tau2, 3)` indicating little to no heterogeneity (95% prediction interval from `r round(exp(pwma.constipation$lower.predict), 3)` to `r round(exp(pwma.constipation$upper.predict), 3)`).
 
-There were no significant subgroup differences between participants assigned to different classes of drug.
+There were no important differences between participants assigned to different classes of drug.
 
 ### 2.11.2 Risk of bias
 
-![](data\human\LSR1RoBVisuals\robconstipation1.png)
+![](data/human/LSR1RoBVisuals/robconstipation1.png){width=65%}
 
-![](data\human\LSR1RoBVisuals\robconstipation2.png)
+**Figure 19.** Risk of bias assessment.
 
-### 2.11.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+### 2.11.3 Meta-regression analyses
+
+The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on constipation.
 For age, the regression coefficient ($\beta$) is intended per year of age.
-For treatment duration, the regression coefficient ($\beta$) is intended per increasing number of weeks.
+For female proportion, the regression coefficient ($\beta$) is intended per percentual point increase.
+For treatment duration, the regression coefficient ($\beta$) is intended per week.
+We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
 |     Moderator      |                                           $\beta$                                            |                                                                                             95% CI                                                                                             |                                      𝞽^2^                                       |
 |:----------------:|:----------------:|:------------------:|:----------------:|
-|        Age         |     `r round(selected_regressions_results[["constipation_result_age"]][["beta"]][2], 2)`     |         `r round(selected_regressions_results[["constipation_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["constipation_result_age"]][["ci.ub"]][2], 2)`         |     `r round(selected_regressions_results$constipation_result_age$tau2, 2)`     |
-| Treatment duration | `r round(selected_regressions_results[["constipation_result_tx_duration"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["constipation_result_tx_duration"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["constipation_result_tx_duration"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results$constipation_result_tx_duration$tau2, 2)` |
-| Female proportion  | `r round(selected_regressions_results[["constipation_result_female_prop"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["constipation_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["constipation_result_female_prop"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results$constipation_result_female_prop$tau2, 2)` |
+|    Unadjusted    | . | . | `r round(pwma.constipation$tau2, 2)` |
+|        Age        |       `r round(reg.constipation.age[["beta"]][2], 2)`        |              `r round(reg.constipation.age[["ci.lb"]][2], 2)` to `r round(reg.constipation.age[["ci.ub"]][2], 2)`              |       `r round(reg.constipation.age$tau2, 2)`        |
+| Female proportion |   `r round(reg.constipation.female[["beta"]][2], 2)`    |      `r round(reg.constipation.female[["ci.lb"]][2], 2)` to `r round(reg.constipation.female[["ci.ub"]][2], 2)`      |   `r round(reg.constipation.female$tau2, 2)`    |
+| Treatment duration |   `r round(reg.constipation.tx[["beta"]][2], 2)`    |      `r round(reg.constipation.tx[["ci.lb"]][2], 2)` to `r round(reg.constipation.tx[["ci.ub"]][2], 2)`      |   `r round(reg.constipation.tx$tau2, 2)`    |
 
 ## 2.12 Secondary outcome: dizziness
 
@@ -512,30 +576,37 @@ forest(pwma.dizziness,
 )
 ```
 
-**Figure X** Forest plot for dizziness for the comparison of pro-dopaminergic interventions vs placebo at 8 (4-12) weeks.
+**Figure 20** Forest plot for dizziness for the comparison of pro-dopaminergic interventions vs placebo at 8 (4-12) weeks.
 OR: odds ratio, 95%CI: 95% confidence intervals.
+
 
 `r pwma.dizziness$k.TE` `r ifelse(pwma.dizziness$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.dizziness$n.e., pwma.dizziness$n.c.), na.rm = T)` participants (`r sum(pwma.dizziness$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.dizziness$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.dizziness$lower.random) < 1) & (exp(pwma.dizziness$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.dizziness$lower.random) > 1) & (exp(pwma.dizziness$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.dizziness$TE.random), 3)` (95%CI from `r round(exp(pwma.dizziness$lower.random), 3)` to `r round(exp(pwma.dizziness$upper.random), 3)`).
-The study results presented a tau^2^ value of `r round(pwma.dizziness$tau2, 3)`.
+The study results presented a 𝞽^2^ value of `r round(pwma.dizziness$tau2, 3)`.
 There is some heterogeneity as shown by the 95% prediction interval from `r round(exp(pwma.dizziness$lower.predict), 3)` to `r round(exp(pwma.dizziness$upper.predict), 3)`.
 
 ### 2.12.2 Risk of bias
 
-![](data\human\LSR1RoBVisuals\robdizziness1.png)
+![](data/human/LSR1RoBVisuals/robdizziness1.png){width=65%}
 
-![](data\human\LSR1RoBVisuals\robdizziness2.png)
+**Figure 21.** Risk of bias assessment.
 
-### 2.12.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+### 2.12.3 Meta-regression analyses
+
+The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on dizziness.
 For age, the regression coefficient ($\beta$) is intended per year of age.
+For female proportion, the regression coefficient ($\beta$) is intended per percentual point increase.
+For treatment duration, the regression coefficient ($\beta$) is intended per week.
+We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
 |     Moderator     |                                          $\beta$                                          |                                                                                          95% CI                                                                                          |                                     𝞽^2^                                     |
 |:----------------:|:----------------:|:------------------:|:----------------:|
-|        Age        |     `r round(selected_regressions_results[["dizziness_result_age"]][["beta"]][2], 2)`     |         `r round(selected_regressions_results[["dizziness_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["dizziness_result_age"]][["ci.ub"]][2], 2)`         |     `r round(selected_regressions_results$dizziness_result_age$tau2, 2)`     |
-| Female proportion | `r round(selected_regressions_results[["dizziness_result_female_prop"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["dizziness_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["dizziness_result_female_prop"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results$dizziness_result_female_prop$tau2, 2)` |
+|    Unadjusted    | . | . | `r round(pwma.dizziness$tau2, 2)` |
+|        Age        |       `r round(reg.dizziness.age[["beta"]][2], 2)`        |              `r round(reg.dizziness.age[["ci.lb"]][2], 2)` to `r round(reg.dizziness.age[["ci.ub"]][2], 2)`              |       `r round(reg.dizziness.age$tau2, 2)`        |
+| Female proportion |   `r round(reg.dizziness.female[["beta"]][2], 2)`    |      `r round(reg.dizziness.female[["ci.lb"]][2], 2)` to `r round(reg.dizziness.female[["ci.ub"]][2], 2)`      |   `r round(reg.dizziness.female$tau2, 2)`    |
+| Treatment duration |   `r round(reg.dizziness.tx[["beta"]][2], 2)`    |      `r round(reg.dizziness.tx[["ci.lb"]][2], 2)` to `r round(reg.dizziness.tx[["ci.ub"]][2], 2)`      |   `r round(reg.dizziness.tx$tau2, 2)`    |
 
 ## 2.13 Secondary outcome: dry mouth
 
@@ -555,31 +626,36 @@ forest(pwma.dry_mouth,
 )
 ```
 
-**Figure X** Forest plot for dry mouth for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
+**Figure 22** Forest plot for dry mouth for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
 OR: odds ratio, 95%CI: 95% confidence intervals.
+
 
 `r pwma.dry_mouth$k.TE` `r ifelse(pwma.dry_mouth$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.dry_mouth$n.e., pwma.dry_mouth$n.c.), na.rm = T)` participants (`r sum(pwma.dry_mouth$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.dry_mouth$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.dry_mouth$lower.random) < 1) & (exp(pwma.dry_mouth$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.dry_mouth$lower.random) > 1) & (exp(pwma.dry_mouth$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.dry_mouth$TE.random), 3)` (95%CI from `r round(exp(pwma.dry_mouth$lower.random), 3)` to `r round(exp(pwma.dry_mouth$upper.random), 3)`).
-The study results presented a tau^2^ value of `r round(pwma.dry_mouth$tau2, 3)` indicating some heterogeneity (95% prediction interval from `r round(exp(pwma.dry_mouth$lower.predict), 3)` to `r round(exp(pwma.dry_mouth$upper.predict), 3)`).
+The study results presented a 𝞽^2^ value of `r round(pwma.dry_mouth$tau2, 3)` indicating some heterogeneity (95% prediction interval from `r round(exp(pwma.dry_mouth$lower.predict), 3)` to `r round(exp(pwma.dry_mouth$upper.predict), 3)`).
 
 ### 2.13.2 Risk of bias
 
-![](data\human\LSR1RoBVisuals\robdrymouth1.png)
+![](data/human/LSR1RoBVisuals/robdrymouth1.png){width=65%}
 
-![](data\human\LSR1RoBVisuals\robdrymouth2.png)
+**Figure 23.** Risk of bias assessment.
 
-### 2.13.3 Sub-group and meta-regression analyses
 
-The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on anhedonia symptom severity.
+### 2.13.3 Meta-regression analyses
+
+The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on dry mouth.
 For age, the regression coefficient ($\beta$) is intended per year of age.
-For treatment duration, the regression coefficient ($\beta$) is intended per increasing number of weeks.
+For female proportion, the regression coefficient ($\beta$) is intended per percentual point increase.
+For treatment duration, the regression coefficient ($\beta$) is intended per week.
+We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
 |     Moderator      |                                          $\beta$                                          |                                                                                          95% CI                                                                                          |                                     𝞽^2^                                     |
 |:----------------:|:----------------:|:------------------:|:----------------:|
-|        Age         |     `r round(selected_regressions_results[["dry_mouth_result_age"]][["beta"]][2], 2)`     |         `r round(selected_regressions_results[["dry_mouth_result_age"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["dry_mouth_result_age"]][["ci.ub"]][2], 2)`         |     `r round(selected_regressions_results$dry_mouth_result_age$tau2, 2)`     |
-| Treatment duration | `r round(selected_regressions_results[["dry_mouth_result_tx_duration"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["dry_mouth_result_tx_duration"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["dry_mouth_result_tx_duration"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results$dry_mouth_result_tx_duration$tau2, 2)` |
-| Female proportion  | `r round(selected_regressions_results[["dry_mouth_result_female_prop"]][["beta"]][2], 2)` | `r round(selected_regressions_results[["dry_mouth_result_female_prop"]][["ci.lb"]][2], 2)` to `r round(selected_regressions_results[["dry_mouth_result_female_prop"]][["ci.ub"]][2], 2)` | `r round(selected_regressions_results$dry_mouth_result_female_prop$tau2, 2)` |
+|    Unadjusted    | . | . | `r round(pwma.dry_mouth$tau2, 2)` |
+|        Age        |       `r round(reg.dry_mouth.age[["beta"]][2], 2)`        |              `r round(reg.dry_mouth.age[["ci.lb"]][2], 2)` to `r round(reg.dry_mouth.age[["ci.ub"]][2], 2)`              |       `r round(reg.dry_mouth.age$tau2, 2)`        |
+| Female proportion |   `r round(reg.dry_mouth.female[["beta"]][2], 2)`    |      `r round(reg.dry_mouth.female[["ci.lb"]][2], 2)` to `r round(reg.dry_mouth.female[["ci.ub"]][2], 2)`      |   `r round(reg.dry_mouth.female$tau2, 2)`    |
+| Treatment duration |   `r round(reg.dry_mouth.tx[["beta"]][2], 2)`    |      `r round(reg.dry_mouth.tx[["ci.lb"]][2], 2)` to `r round(reg.dry_mouth.tx[["ci.ub"]][2], 2)`      |   `r round(reg.dry_mouth.tx$tau2, 2)`    |
 
 ## 2.14 Secondary outcome: vomiting
 
@@ -599,23 +675,25 @@ forest(pwma.vomiting,
 )
 ```
 
-**Figure X** Forest plot for vomiting for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
+**Figure 24** Forest plot for vomiting for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
 OR: odds ratio, 95%CI: 95% confidence intervals.
+
 
 `r pwma.vomiting$k.TE` `r ifelse(pwma.vomiting$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.vomiting$n.e., pwma.vomiting$n.c.), na.rm = T)` participants (`r sum(pwma.vomiting$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.vomiting$n.c.)` allocated to pill placebo).
 
 The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.vomiting$lower.random) < 1) & (exp(pwma.vomiting$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.vomiting$lower.random) > 1) & (exp(pwma.vomiting$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.vomiting$TE.random), 3)` (95%CI from `r round(exp(pwma.vomiting$lower.random), 3)` to `r round(exp(pwma.vomiting$upper.random), 3)`).
-The study results presented a tau^2^ value of `r round(pwma.vomiting$tau2, 3)` indicating little to no heterogeneity (95% prediction interval from `r round(exp(pwma.vomiting$lower.predict), 3)` to `r round(exp(pwma.vomiting$upper.predict), 3)`).
+The study results presented a 𝞽^2^ value of `r round(pwma.vomiting$tau2, 3)` indicating little to no heterogeneity (95% prediction interval from `r round(exp(pwma.vomiting$lower.predict), 3)` to `r round(exp(pwma.vomiting$upper.predict), 3)`).
 
 ### 2.14.2 Risk of bias
 
-![](data\human\LSR1RoBVisuals\robvomiting1.png)
+![](data/human/LSR1RoBVisuals/robvomiting1.png){width=65%}
 
-![](data\human\LSR1RoBVisuals\robvomiting2.png)
+**Figure 25.** Risk of bias assessment.
 
-### 2.14.3 Sub-group and meta-regression analyses
 
-We did not perform a meta-regression as the total number of studies was below 10.
+### 2.14.3 Meta-regression analyses
+
+We did not perform any meta-regressions (mean anhedonia baseline score, mean anxiety baseline score, age, sex, planned treatment duration) as the total number of studies was below 10.
 
 ## 2.15 Summary of evidence tables
 
@@ -625,6 +703,9 @@ SoE_Indir <- read_xlsx("data/human/LSR1_H_SOE.xlsx", "SOE")
 knitr::kable(SoE_Indir) %>%
   kable_styling(bootstrap_options = "bordered")
 ```
+
+**Table 2.** Summary of evidence table for the considered outcomes.
+
 
 # 3. Abbreviations
 
