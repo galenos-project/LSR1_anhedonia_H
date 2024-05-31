@@ -66,7 +66,7 @@ Adverse events were extracted using the exact terms they were reported in the in
 
 We assessed risk of bias with the RoB2 tool (Higgins et al. 2019).
 All outcomes for all included studies were assessed by at least two reviewers (JK, CF, CA, AH) and conflicts were resolved by discussion between reviewers (Flemyng et al. 2023).
-To evaluate biases due to missing evidence and biases across studies, the ROB-ME tool (Page et al. 2023) was used with the same double screening and conflict resolution process as described above.
+To evaluate biases due to missing evidence and biases across studies, the ROB-ME tool (Page et al. 2023) was used with the same double screening and conflict resolution process as described above. We took into account the usable data from the eligible studies identified in the search, the comprehensiveness of the search, and potential patterns of missingness and small-study effects. We followed the algorithm to assign a low or high risk of reporting bias, or to express some concerns, by answering signalling questions related to the domains mentioned above.
 
 Effect sizes were calculated as standardised mean differences (SMDs) for continuous outcomes (anhedonia and anxiety symptom severity) and odds ratios (ORs) for dichotomous outcomes (acceptability, tolerability, and specific-adverse events).
 We calculated the 95% confidence interval (CI) around the pooled effect size for each meta-analysis.
@@ -147,11 +147,12 @@ There is some heterogeneity as shown by the 95% prediction interval from `r roun
 
 **Figure 3.** Risk of bias assessment.
 
-Evidence for the efficacy of pro-dopaminergic interventions vs placebo were rated as having a range in their overall risk of bias. Two studies (33%) were assessed as having ‘high’ risk of bias due to having ‘high’ risk of bias in the missing outcome data domain and selection of the reported results domain. Two studies (33%) had an overall ‘moderate’ risk of bias rating as they had ‘some concerns’ in two domain ratings. The remaining two studies were rated as having a ‘low’ overall risk of bias.
+Evidence for the efficacy of pro-dopaminergic interventions vs placebo were rated as having a range in their overall risk of bias. Two studies (33%) were assessed as having ‘high’ risk of bias due to having ‘high’ risk of bias in the missing outcome data domain and selection of the reported results domain. Two studies (33%) had an overall ‘moderate’ risk of bias rating as they had ‘some concerns’ in two domain ratings. The remaining two studies were rated as having a ‘low’ overall risk of bias. This result was judged to be at moderate risk of bias due to indirectness as while there was no clear indication of indirectness in terms of population, comparator, or outcomes, five of the six studies measured the same intervention, bupropion.
+
 
 ### 2.4.3 Reporting bias
 
-The extent to which the result was affected by across-study biases is unclear. This result was judged to be at moderate risk of bias due to indirectness as while there was no clear indication of indirectness in terms of population, comparator, or outcomes, five of the six studies measured the same intervention, bupropion.
+The extent to which the result was affected by across-study biases was rated as low as per the RoB-ME assessment (Page et al. 2023). This was as the potential for missing studies across the review was judged to be low. In addition, he risk of bias due to missing evidence was also low as none of the included studies were deemed to have generated an eligible result that was not reported, and no studies were judged to be unclear as to whether they generated an eligible result that was not reported. We made this decision based on the results matrix we generated in step 2 of the RoB-ME tool (Page et al. 2023). 
 
 ### 2.4.4 Meta-regression analyses
 
