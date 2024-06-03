@@ -31,10 +31,10 @@ options(scipen=100, digits=4)
 
 # 1. Methods (brief)
 
-In this first iteration of the living systematic review we searched for randomised controlled trials that compared pro-dopaminergic interventions to placebo in adults with unipolar depression (i.e. any standardised measure, above-threshold symptoms on any standardised measure, or a clinical diagnosis based on any operationalised criteria).
+In this first iteration of the living systematic review we searched for randomised controlled trials that compared pro-dopaminergic interventions to placebo in adults with unipolar depression (i.e.above-threshold symptoms on any standardised measure, or a clinical diagnosis based on any operationalised criteria).
 
 Eight databases were searched from inception up to the 9th of November, 2023 (see [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies") for full search strings).
-Database search results were imported into [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") and de-duplicated prior to screening.
+Database search results were imported into [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") and duplicates were removed prior to screening.
 All steps related to record screening and data extraction were completed in [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer").
 
 Titles and abstracts of the identified records were screened by at least two reviewers (CF, MC, JK, JP).
@@ -43,9 +43,7 @@ The full-text screening was conducted by at least two reviewers (CF, JK, JP, AK,
 Conflicts at title and abstract, and full-text screening, were resolved through discussion between the two reviewers and involvement of a third reviewer (AC, EGO).
 Additional information on the full study eligibility criteria can be found in the pre-published [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies").
 
-Relevant data was extracted using [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") by at least two reviewers (CF, CA, EB, JK).
-
-As specified in our [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies"), we focused on the following outcomes:
+We focused on the following outcomes:
 
 -   anhedonia symptom severity: using anhedonia-specific scales, anhedonia-specific sub-scales, or individual items focusing on anhedonia (observer-rated or self-rated). Continuous, primary outcome.
 -   anxiety symptom severity: as per observer or self-reported standardised scales. Continuous, secondary outcome.
@@ -58,25 +56,26 @@ If the information at 8 weeks was not available, we considered eligible data ran
 For acceptability, tolerability, safety and safety (specific adverse events), we extracted outcome data reported at the end of the studies.
 
 When extracting continuous outcomes we extracted mean and standard deviation to two decimal places.
-Where standard error was reported instead, we converted the value to standard deviation.
-Baseline and endpoint values were extracted, where only change in score and baseline or endpoint was reported, the missing value was calculated by adding or subtracting the change score to the baseline or endpoint.
+Where standard error was reported, we converted the value to standard deviation.
+Baseline and endpoint values were extracted. These were preferred to change in score and endpoint, in which case the missing value was calculated by adding or subtracting the change in score from the time point given. 
 
 When extracting dichotomous outcomes we extracted natural numbers and where only percentages of participant groups were reported, a value was calculated and rounded up to the nearest natural number.
-Adverse events were extracted using the exact terms they were reported in the included studies.
+Adverse events were extracted using the exact wording used to report them in the included studies.
+
+Relevant data was extracted using [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") by at least two reviewers (CF, CA, EB, JK).
 
 We assessed risk of bias with the RoB2 tool (Higgins et al. 2019).
-All outcomes for all included studies were assessed by at least two reviewers (JK, CF, CA, AH) and conflicts were resolved by discussion between reviewers (Flemyng et al. 2023).
+All outcomes for all included studies were assessed by at least two reviewers (JK, CF, CA, AH) and conflicts were resolved by discussion between reviewers.
 To evaluate biases due to missing evidence, the ROB-ME tool (Page et al. 2023) was used with the same double screening and conflict resolution process as described above.
-We took into account the usable data from the eligible studies identified in the search, the comprehensiveness of the search, and potential patterns of missingness and small-study effects.
-We followed the algorithm to assign a low or high risk of reporting bias, or to express some concerns, by answering signalling questions related to the domains mentioned above.
 
 Effect sizes were calculated as standardised mean differences (SMDs) for continuous outcomes (anhedonia and anxiety symptom severity) and odds ratios (ORs) for dichotomous outcomes (acceptability, tolerability, and specific-adverse events).
 We calculated the 95% confidence interval (CI) around the pooled effect size for each meta-analysis.
 
 Meta-analyses were conducted using a random effects model with the inverse variance method, using the restricted maximum-likelihood estimator for 𝞽^2^ and the Hartung-Knapp correction method to adjust 95% confidence intervals, if there are at least five studies.
-Prediction intervals of the overall pooled effect were calculated to report the heterogeneity.
+Prediction intervals of the overall pooled effect were calculated to convey the amount of heterogeneity.
 
-In terms of sensitivity analyses, we aggregated individual participant data (IPD) on the MADRS "inability to feel" item from 34 randomised controlled trials (14054 participants) on antidepressants in people with depression we had access to.
+In order to better contextualise pro-dopaminergic interventions within wider literature on the effects of antidepressants on anhedonia, we aggregated individual participant data (IPD) on the MADRS "inability to feel" item from 34 randomised controlled trials (14054 participants) on antidepressants in people with depression we had access to.
+We utilised this post-hoc analysis to add further evidence on the impact of non-dopaminergic intervantions on anhedonia in depression and in doing so, better understand the evidence we analysed on dopamine-specific drugs. 
 We performed the following analyses to estimate the performance of bupropion versus placebo at the primary outcome (i.e. reduction in anhedonia scores): - aggregated IPD, all antidepressants and placebo, random effects network meta-analysis.
 - aggregated IPD, bupropion versus placebo, random effects pairwise meta-analysis.
 - combination of aggregated IPD and early studies identified in this living systematic review for which IPD were not available, random effects pairwise meta-analysis.
@@ -734,11 +733,6 @@ We used R version 4.3.1 (R Core Team 2023) and the following packages; meta (Bal
     (2019).
     Assessing risk of bias in a randomized trial. 
     *Cochrane handbook for systematic reviews of interventions*, 205-228.
-
--   Flemyng, E., Moore, T. H., Boutron, I., Higgins, J. P., Hróbjartsson, A., Nejstgaard, C. H., & Dwan, K.
-    (2023).
-    Using Risk of Bias 2 to assess results from randomised controlled trials: guidance from Cochrane.
-    BMJ *Evidence-Based Medicine*, 28(4), 260-266.
 
 -   Page, M. J., McKenzie, J. E., Bossuyt, P. M., Boutron, I., Hoffmann, T. C., Mulrow, C. D., ... & Moher, D.
     (2021).
