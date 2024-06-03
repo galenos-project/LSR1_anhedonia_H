@@ -153,7 +153,6 @@ Evidence for the efficacy of pro-dopaminergic interventions vs placebo were rate
 Two studies (33%) were assessed as having 'high' risk of bias due to having 'high' risk of bias in the missing outcome data domain and selection of the reported results domain.
 Two studies (33%) had an overall 'moderate' risk of bias rating as they had 'some concerns' in two domain ratings.
 The remaining two studies were rated as having a 'low' overall risk of bias.
-This result was judged to be at moderate risk of bias due to indirectness as while there was no clear indication of indirectness in terms of population, comparator, or outcomes, five of the six studies measured the same intervention, bupropion.
 
 ### 2.4.3 Reporting bias
 
