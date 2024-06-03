@@ -1,6 +1,6 @@
 ---
 title: "A systematic review and meta-analysis of pro-dopaminergic interventions for anhedonia - results from human studies"
-author: "Jaycee Kennett, Claire , Edoardo G. Ostinelli, Virginia Chiocchia <span style='font-size: 15px'></style>"
+author: "Jaycee Kennett , Edoardo G. Ostinelli, Virginia Chiocchia <span style='font-size: 15px'></style>"
 output: 
   html_document:
       toc: TRUE
