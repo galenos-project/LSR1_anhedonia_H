@@ -151,10 +151,14 @@ df$tx_duration[df$studlab=='Ravaris (1976) - 87999576'] <- 6
                                      data = df.anxiety.merged,
                                      sm = 'SMD')
   df.pw.anxiety$age <- rowMeans(df.pw.anxiety[, c('age_mean1', 'age_mean2')], na.rm = T)
+  df.pw.anxiety$age_reg <- (df.pw.anxiety$age - min(df.pw.anxiety$age, na.rm = T))/10
+  df.pw.anxiety$tx_duration_reg <- 
+    df.pw.anxiety$tx_duration - min(df.pw.anxiety$tx_duration, na.rm = T)
   df.pw.anxiety$female_prop <- rowMeans(df.pw.anxiety[, c('female_prop1', 'female_prop2')], na.rm = T)
   df.pw.anxiety$anhedonia_baseline <- rowMeans(df.pw.anxiety[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
   df.pw.anxiety$anxiety_baseline <- rowMeans(df.pw.anxiety[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
   df.pw.anxiety$reward_baseline <- rowMeans(df.pw.anxiety[, c('reward_baseline_mean1', 'reward_baseline_mean2')], na.rm = T)
+  
   df.pw.anxiety$colour <- ifelse(df.pw.anxiety$treat1 %in% IMAO, 
                                  'red', 
                                  ifelse(df.pw.anxiety$treat1 %in% RIMA,
@@ -235,10 +239,14 @@ df$tx_duration[df$studlab=='Ravaris (1976) - 87999576'] <- 6
                                  data = df.acc.merged,
                                  sm = 'OR')
   df.pw.acc$age <- rowMeans(df.pw.acc[, c('age_mean1', 'age_mean2')], na.rm = T)
+  df.pw.acc$age_reg <- (df.pw.acc$age - min(df.pw.acc$age, na.rm = T))/10
+  df.pw.acc$tx_duration_reg <- 
+    df.pw.acc$tx_duration - min(df.pw.acc$tx_duration, na.rm = T)  
   df.pw.acc$female_prop <- rowMeans(df.pw.acc[, c('female_prop1', 'female_prop2')], na.rm = T)
   df.pw.acc$anhedonia_baseline <- rowMeans(df.pw.acc[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
   df.pw.acc$anxiety_baseline <- rowMeans(df.pw.acc[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
   df.pw.acc$reward_baseline <- rowMeans(df.pw.acc[, c('reward_baseline_mean1', 'reward_baseline_mean2')], na.rm = T)
+  
   df.pw.acc$colour <- ifelse(df.pw.acc$treat1 %in% IMAO, 
                              'red', 
                              ifelse(df.pw.acc$treat1 %in% RIMA,
@@ -331,6 +339,8 @@ acc.eer
                                  data = df.tol.merged,
                                  sm = 'OR')
   df.pw.tol$age <- rowMeans(df.pw.tol[, c('age_mean1', 'age_mean2')], na.rm = T)
+  df.pw.tol$age_reg <- (df.pw.tol$age - min(df.pw.tol$age, na.rm = T))/10
+  df.pw.tol$tx_duration_reg <- df.pw.tol$tx_duration - min(df.pw.tol$tx_duration, na.rm = T)  
   df.pw.tol$female_prop <- rowMeans(df.pw.tol[, c('female_prop1', 'female_prop2')], na.rm = T)
   df.pw.tol$anhedonia_baseline <- rowMeans(df.pw.tol[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
   df.pw.tol$anxiety_baseline <- rowMeans(df.pw.tol[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
@@ -427,6 +437,8 @@ acc.eer
                                     data = df.nausea.merged,
                                     sm = 'OR')
   df.pw.nausea$age <- rowMeans(df.pw.nausea[, c('age_mean1', 'age_mean2')], na.rm = T)
+  df.pw.nausea$age_reg <- (df.pw.nausea$age - min(df.pw.nausea$age, na.rm = T))/10
+  df.pw.nausea$tx_duration_reg <- df.pw.nausea$tx_duration - min(df.pw.nausea$tx_duration, na.rm = T)  
   df.pw.nausea$female_prop <- rowMeans(df.pw.nausea[, c('female_prop1', 'female_prop2')], na.rm = T)
   df.pw.nausea$anhedonia_baseline <- rowMeans(df.pw.nausea[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
   df.pw.nausea$anxiety_baseline <- rowMeans(df.pw.nausea[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
@@ -523,6 +535,8 @@ nausea.eer
                                       data = df.headache.merged,
                                       sm = 'OR')
   df.pw.headache$age <- rowMeans(df.pw.headache[, c('age_mean1', 'age_mean2')], na.rm = T)
+  df.pw.headache$age_reg <- (df.pw.headache$age - min(df.pw.headache$age, na.rm = T))/10
+  df.pw.headache$tx_duration_reg <- df.pw.headache$tx_duration - min(df.pw.headache$tx_duration, na.rm = T)  
   df.pw.headache$female_prop <- rowMeans(df.pw.headache[, c('female_prop1', 'female_prop2')], na.rm = T)
   df.pw.headache$anhedonia_baseline <- rowMeans(df.pw.headache[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
   df.pw.headache$anxiety_baseline <- rowMeans(df.pw.headache[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
@@ -619,6 +633,8 @@ nausea.eer
                                       data = df.insomnia.merged,
                                       sm = 'OR')
   df.pw.insomnia$age <- rowMeans(df.pw.insomnia[, c('age_mean1', 'age_mean2')], na.rm = T)
+  df.pw.insomnia$age_reg <- (df.pw.insomnia$age - min(df.pw.insomnia$age, na.rm = T))/10
+  df.pw.insomnia$tx_duration_reg <- df.pw.insomnia$tx_duration - min(df.pw.insomnia$tx_duration, na.rm = T)  
   df.pw.insomnia$female_prop <- rowMeans(df.pw.insomnia[, c('female_prop1', 'female_prop2')], na.rm = T)
   df.pw.insomnia$anhedonia_baseline <- rowMeans(df.pw.insomnia[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
   df.pw.insomnia$anxiety_baseline <- rowMeans(df.pw.insomnia[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
@@ -715,6 +731,9 @@ insomnia.eer
                                        data = df.dry_mouth.merged,
                                        sm = 'OR')
   df.pw.dry_mouth$age <- rowMeans(df.pw.dry_mouth[, c('age_mean1', 'age_mean2')], na.rm = T)
+  df.pw.dry_mouth$age_reg <- (df.pw.dry_mouth$age - min(df.pw.dry_mouth$age, na.rm = T))/10
+  df.pw.dry_mouth$tx_duration_reg <- 
+    df.pw.dry_mouth$tx_duration - min(df.pw.dry_mouth$tx_duration, na.rm = T)  
   df.pw.dry_mouth$female_prop <- rowMeans(df.pw.dry_mouth[, c('female_prop1', 'female_prop2')], na.rm = T)
   df.pw.dry_mouth$anhedonia_baseline <- rowMeans(df.pw.dry_mouth[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
   df.pw.dry_mouth$anxiety_baseline <- rowMeans(df.pw.dry_mouth[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
@@ -811,6 +830,9 @@ dry_mouth.eer
                                           data = df.constipation.merged,
                                           sm = 'OR')
   df.pw.constipation$age <- rowMeans(df.pw.constipation[, c('age_mean1', 'age_mean2')], na.rm = T)
+  df.pw.constipation$age_reg <- (df.pw.constipation$age - min(df.pw.constipation$age, na.rm = T))/10
+  df.pw.constipation$tx_duration_reg <- 
+    df.pw.constipation$tx_duration - min(df.pw.constipation$tx_duration, na.rm = T)  
   df.pw.constipation$female_prop <- rowMeans(df.pw.constipation[, c('female_prop1', 'female_prop2')], na.rm = T)
   df.pw.constipation$anhedonia_baseline <- rowMeans(df.pw.constipation[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
   df.pw.constipation$anxiety_baseline <- rowMeans(df.pw.constipation[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
@@ -907,6 +929,9 @@ constipation.eer
                                        data = df.dizziness.merged,
                                        sm = 'OR')
   df.pw.dizziness$age <- rowMeans(df.pw.dizziness[, c('age_mean1', 'age_mean2')], na.rm = T)
+  df.pw.dizziness$age_reg <- (df.pw.dizziness$age - min(df.pw.dizziness$age, na.rm = T))/10
+  df.pw.dizziness$tx_duration_reg <- 
+    df.pw.dizziness$tx_duration - min(df.pw.dizziness$tx_duration, na.rm = T)  
   df.pw.dizziness$female_prop <- rowMeans(df.pw.dizziness[, c('female_prop1', 'female_prop2')], na.rm = T)
   df.pw.dizziness$anhedonia_baseline <- rowMeans(df.pw.dizziness[, c('anhedonia_baseline_mean1', 'anhedonia_baseline_mean2')], na.rm = T)
   df.pw.dizziness$anxiety_baseline <- rowMeans(df.pw.dizziness[, c('anxiety_baseline_mean1', 'anxiety_baseline_mean2')], na.rm = T)
@@ -1041,7 +1066,6 @@ constipation.eer
                            comb.random = T, 
                            title = 'vomiting',
                            prediction = T, 
-                           hakn = T, 
                            method.tau = 'REML',
                            subgroup = group)
   
@@ -1063,42 +1087,42 @@ constipation.eer
 }
 
 # meta-regressions ----
-reg.anxiety.age <- metareg(pwma.anxiety, age)
+reg.anxiety.age <- metareg(pwma.anxiety, age_reg)
 reg.anxiety.female <- metareg(pwma.anxiety, female_prop)
 reg.anxiety.anxiety <- metareg(pwma.anxiety, anxiety_baseline)
-reg.anxiety.tx <- metareg(pwma.anxiety, tx_duration)
-reg.acc.age <- metareg(pwma.acc, age)
+reg.anxiety.tx <- metareg(pwma.anxiety, tx_duration_reg)
+reg.acc.age <- metareg(pwma.acc, age_reg)
 reg.acc.female <- metareg(pwma.acc, female_prop)
 reg.acc.anxiety <- metareg(pwma.acc, anxiety_baseline)
-reg.acc.tx <- metareg(pwma.acc, tx_duration)
-reg.tol.age <- metareg(pwma.tol, age)
+reg.acc.tx <- metareg(pwma.acc, tx_duration_reg)
+reg.tol.age <- metareg(pwma.tol, age_reg)
 reg.tol.female <- metareg(pwma.tol, female_prop)
 reg.tol.anxiety <- metareg(pwma.tol, anxiety_baseline)
-reg.tol.tx <- metareg(pwma.tol, tx_duration)
-reg.nausea.age <- metareg(pwma.nausea, age)
+reg.tol.tx <- metareg(pwma.tol, tx_duration_reg)
+reg.nausea.age <- metareg(pwma.nausea, age_reg)
 reg.nausea.female <- metareg(pwma.nausea, female_prop)
 reg.nausea.anxiety <- metareg(pwma.nausea, anxiety_baseline)
-reg.nausea.tx <- metareg(pwma.nausea, tx_duration)
-reg.headache.age <- metareg(pwma.headache, age)
+reg.nausea.tx <- metareg(pwma.nausea, tx_duration_reg)
+reg.headache.age <- metareg(pwma.headache, age_reg)
 reg.headache.female <- metareg(pwma.headache, female_prop)
 reg.headache.anxiety <- metareg(pwma.headache, anxiety_baseline)
-reg.headache.tx <- metareg(pwma.headache, tx_duration)
-reg.insomnia.age <- metareg(pwma.insomnia, age)
+reg.headache.tx <- metareg(pwma.headache, tx_duration_reg)
+reg.insomnia.age <- metareg(pwma.insomnia, age_reg)
 reg.insomnia.female <- metareg(pwma.insomnia, female_prop)
 reg.insomnia.anxiety <- metareg(pwma.insomnia, anxiety_baseline)
-reg.insomnia.tx <- metareg(pwma.insomnia, tx_duration)
-reg.constipation.age <- metareg(pwma.constipation, age)
+reg.insomnia.tx <- metareg(pwma.insomnia, tx_duration_reg)
+reg.constipation.age <- metareg(pwma.constipation, age_reg)
 reg.constipation.female <- metareg(pwma.constipation, female_prop)
 reg.constipation.anxiety <- metareg(pwma.constipation, anxiety_baseline)
-reg.constipation.tx <- metareg(pwma.constipation, tx_duration)
-reg.dizziness.age <- metareg(pwma.dizziness, age)
+reg.constipation.tx <- metareg(pwma.constipation, tx_duration_reg)
+reg.dizziness.age <- metareg(pwma.dizziness, age_reg)
 reg.dizziness.female <- metareg(pwma.dizziness, female_prop)
 reg.dizziness.anxiety <- metareg(pwma.dizziness, anxiety_baseline)
-reg.dizziness.tx <- metareg(pwma.dizziness, tx_duration)
-reg.dry_mouth.age <- metareg(pwma.dry_mouth, age)
+reg.dizziness.tx <- metareg(pwma.dizziness, tx_duration_reg)
+reg.dry_mouth.age <- metareg(pwma.dry_mouth, age_reg)
 reg.dry_mouth.female <- metareg(pwma.dry_mouth, female_prop)
 reg.dry_mouth.anxiety <- metareg(pwma.dry_mouth, anxiety_baseline)
-reg.dry_mouth.tx <- metareg(pwma.dry_mouth, tx_duration)
+reg.dry_mouth.tx <- metareg(pwma.dry_mouth, tx_duration_reg)
 
 if (reg.anxiety.age$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
 if (reg.anxiety.female$k >= 10) {cat('Keep it.', sep = '\n')} else {cat('[!] Drop it.', sep = '\n')}
