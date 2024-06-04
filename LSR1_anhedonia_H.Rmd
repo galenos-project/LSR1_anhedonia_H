@@ -175,15 +175,9 @@ We did not perform any meta-regressions as the total number of studies was below
 We performed a series of post-hoc analyses on the MADRS "inability to feel" item (aggregated IPD from 34 studies, 14054 participants).
 First, we included all the available studies and compared all the antidepressants against placebo.
 
-#### 2.4.5.1 Aggregated IPD, all antidepressants and placebo, random effects network meta-analysis
-
-![](result/human/non-dopaminergic/IPD_AD_NMA_pla_with_estimates.png)
-
-**Figure 4.** Comparative effect sizes of antidepressants versus placebo.
-
-The comparative effect of bupropion versus placebo was -0.12 (SMD, 95% CI from -0.25 to 0.00; 34 studies, 14054 participants), lower than what we could observe from the retrieved data (random effects pairwise meta-analysis, bupropion versus placebo): `r round(pwma.anhedonia.bup$TE.random, 2)` (SMD, 95% CI from `r round(pwma.anhedonia.bup$lower.random, 2)` to `r round(pwma.anhedonia.bup$upper.random, 2)`; `r round(pwma.anhedonia.bup$k.TE, 2)` `r ifelse(pwma.anhedonia.bup$k.TE>1, 'studies', 'study')`, `r pwma.anhedonia.bup$n.e.pooled+pwma.anhedonia.bup$n.c.pooled` participants).
-
-```{r anhedonia_forest_bup, echo=FALSE, fig.width=11, fig.height=4}
+ ### 2.4.5.1 Pro-dopaminergic interventions and non-dopaminergic drugs vs placebo, random effects meta-analysis
+ 
+ ```{r anhedonia_forest_bup, echo=FALSE, fig.width=11, fig.height=4}
 forest(pwma.anhedonia.bup, 
        sortvar = seTE, 
        print.I2.ci = T, 
@@ -197,22 +191,29 @@ forest(pwma.anhedonia.bup,
        )
 ```
 
-**Figure 5.** Forest plot for symptoms of anhedonia (primary outcome) comparing bupropion versus placebo for individuals with anhedonia at 4-12 weeks (primary timepoint).
+**Figure 4.** Forest plot for symptoms of anhedonia (primary outcome) comparing bupropion versus placebo for individuals with anhedonia at 4-12 weeks (primary timepoint).
 SMD: standardised mean difference, 95% CI: 95% confidence intervals, SD: standard deviation.
+
+![](result/human/non-dopaminergic/IPD_AD_NMA_pla_with_estimates.png)
+
+
+**Figure 5.** Comparative effect sizes of antidepressants versus placebo.
+
+The mean effect of bupropion (pro-dopaminergic intervention) versus placebo was -0.12 (SMD, 95% CI from -0.25 to 0.00; 34 studies, 14054 participants). In comparison, we found effects across non-dopaminergic interventions to range from -0.09 (SMD, 95% CI from -0.78 to 0.60) in amitryptiline to -0.40 (SMD, 95% CI from -0.48 to -0.32) in duloxetine.
 
 #### 2.4.5.2 Aggregated IPD, bupropion versus placebo, random effects pairwise meta-analysis
 
-We also performed a random effects pairwise meta-analysis of bupropion versus placebo based on the aggregated IPD, resulting in estimates comparable to the network meta-analytical model (SMD -0.12, 95% CI from -0.29 to 0.05; 4 studies, 1085 participants).
+We also performed a random effects pairwise meta-analysis of bupropion versus placebo based on the aggregated IPD of the 'inability to feel' item on the MADRS scale, resulting in estimates comparable to the network meta-analytical model (SMD -0.12, 95% CI from -0.29 to 0.05; 4 studies, 1085 participants).
 
 #### 2.4.5.3 Aggregated IPD and early studies identified in this living systematic review, random effects pairwise meta-analysis
 
 Finally, we performed a random effects pairwise meta-analysis including aggregate data from both sources (IPD and retrieved as aggregated).
 As three studies (Hewett 2009 - 87997883, Hewett 2010a - 87997755, Koshino 2013 - 87997374) were available in both sources, we prioritised aggregate IPD over data retrieved as aggregated.
-The comparative effect of bupropion versus placebo was -0.19 (SMD, 95% CI from -0.33 to 0.04; 6 studies, 2489 participants)
+The mean effect of bupropion versus placebo was -0.19 (SMD, 95% CI from -0.33 to 0.04; 6 studies, 2489 participants)
 
 ## 2.5 Secondary outcome: Reduction in mean anxiety score at 8 weeks (from 4 to 12 weeks)
 
-### 2.5.1 Pairwise meta-analysis
+### 2.5.1 Pairwise meta-analysis with LSR data
 
 ```{r anxiety_forest, echo=FALSE, fig.width=11, fig.height=8}
 forest(pwma.anxiety, 
@@ -230,9 +231,9 @@ forest(pwma.anxiety,
 ```
 
 **Figure 6** Forest plot for symptoms of anxiety (secondary outcome) comparing pro-dopaminergic interventions vs placebo for individuals with anxiety at 4-12 weeks (primary timepoint).
-SMD: standardised mean difference, 95% CI: 95% confidence intervals, SD: standard deviation.
+SMD: standardised mean difference, 95% CI: 95% confidence intervals, SD: standard deviation. RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor. 
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.anxiety$lower.random < 0) & (pwma.anxiety$upper.random < 0)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.anxiety$lower.random > 0) & (pwma.anxiety$upper.random > 0)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.anxiety$TE.random, 3)` (95% CI from `r round(pwma.anxiety$lower.random, 3)` to `r round(pwma.anxiety$upper.random, 3)`).
+The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.anxiety$lower.random < 0) & (pwma.anxiety$upper.random < 0)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.anxiety$lower.random > 0) & (pwma.anxiety$upper.random > 0)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.anxiety$TE.random, 3)` (95% CI from `r round(pwma.anxiety$lower.random, 3)` to `r round(pwma.anxiety$upper.random, 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.anxiety$tau2, 3)` indicating little to no heterogeneity (95% prediction interval: `r round(pwma.anxiety$lower.predict, 3)` to `r round(pwma.anxiety$upper.predict, 3)`).
 
 ### 2.5.2 Risk of Bias
@@ -276,7 +277,7 @@ forest(pwma.acc,
 **Figure 8** Forest plot for dropouts due to any reason for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
 OR: odds ratio, 95% CI: 95% confidence intervals.
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.acc$lower.random) < 1) & (exp(pwma.acc$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.acc$lower.random) > 1) & (exp(pwma.acc$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.acc$TE.random), 3)` (95% CI from `r round(exp(pwma.acc$lower.random), 3)` to `r round(exp(pwma.acc$upper.random), 3)`).
+The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.acc$lower.random) < 1) & (exp(pwma.acc$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.acc$lower.random) > 1) & (exp(pwma.acc$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.acc$TE.random), 3)` (95% CI from `r round(exp(pwma.acc$lower.random), 3)` to `r round(exp(pwma.acc$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.acc$tau2, 3)`.
 There is some heterogeneity as shown by the 95% prediction interval from `r round(exp(pwma.acc$lower.predict), 3)` to `r round(exp(pwma.acc$upper.predict), 3)`.
 
@@ -328,7 +329,7 @@ forest(pwma.tol,
 **Figure 10** Forest plot for dropouts due to adverse events for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
 OR: odds ratio, 95% CI: 95% confidence intervals.
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.tol$lower.random) < 1) & (exp(pwma.tol$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.tol$lower.random > 1)) & (exp(pwma.tol$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.tol$TE.random), 3)` (95% CI from `r round(exp(pwma.tol$lower.random), 3)` to `r round(exp(pwma.tol$upper.random), 3)`).
+The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.tol$lower.random) < 1) & (exp(pwma.tol$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.tol$lower.random > 1)) & (exp(pwma.tol$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.tol$TE.random), 3)` (95% CI from `r round(exp(pwma.tol$lower.random), 3)` to `r round(exp(pwma.tol$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.tol$tau2, 3)` indicating the presence of some heterogeneity (95% prediction interval from `r round(exp(pwma.acc$lower.predict), 3)` to `r round(exp(pwma.tol$upper.predict), 3)`).
 
 ### 2.7.2 Risk of bias
@@ -374,7 +375,7 @@ forest(pwma.nausea,
 **Figure 12** Forest plot for nausea for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
 OR: odds ratio, 95% CI: 95% confidence intervals.
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.nausea$lower.random) < 1) & (exp(pwma.nausea$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.nausea$lower.random) > 1) & (exp(pwma.nausea$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.nausea$TE.random), 3)` (95% CI from `r round(exp(pwma.nausea$lower.random), 3)` to `r round(exp(pwma.nausea$upper.random), 3)`).
+The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.nausea$lower.random) < 1) & (exp(pwma.nausea$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.nausea$lower.random) > 1) & (exp(pwma.nausea$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.nausea$TE.random), 3)` (95% CI from `r round(exp(pwma.nausea$lower.random), 3)` to `r round(exp(pwma.nausea$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.nausea$tau2, 3)` indicating the presence of some heterogeneity (95% prediction interval from `r round(exp(pwma.nausea$lower.predict), 3)` to `r round(exp(pwma.nausea$upper.predict), 3)`).
 
 ### 2.8.2 Risk of bias
@@ -417,7 +418,7 @@ forest(pwma.headache,
 **Figure 14** Forest plot for headaches for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
 OR: odds ratio, 95% CI: 95% confidence intervals.
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.headache$lower.random) < 1) & (exp(pwma.headache$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.headache$lower.random) > 1) & (exp(pwma.headache$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.headache$TE.random), 3)` (95% CI from `r round(exp(pwma.headache$lower.random), 3)` to `r round(exp(pwma.headache$upper.random), 3)`).
+The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.headache$lower.random) < 1) & (exp(pwma.headache$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.headache$lower.random) > 1) & (exp(pwma.headache$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.headache$TE.random), 3)` (95% CI from `r round(exp(pwma.headache$lower.random), 3)` to `r round(exp(pwma.headache$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.headache$tau2, 3)` indicating little to no heterogeneity (95% prediction interval from `r round(exp(pwma.headache$lower.predict), 3)` to `r round(exp(pwma.headache$upper.predict), 3)`).
 
 ### 2.9.2 Risk of bias
@@ -460,7 +461,7 @@ forest(pwma.insomnia,
 **Figure 16** Forest plot for insomnia for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
 OR: odds ratio, 95% CI: 95% confidence intervals.
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.insomnia$lower.random) < 1) & (exp(pwma.insomnia$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.insomnia$lower.random) > 1) & (exp(pwma.insomnia$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.insomnia$TE.random), 3)` (95% CI from `r round(exp(pwma.insomnia$lower.random), 3)` to `r round(exp(pwma.insomnia$upper.random), 3)`).
+The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.insomnia$lower.random) < 1) & (exp(pwma.insomnia$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.insomnia$lower.random) > 1) & (exp(pwma.insomnia$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.insomnia$TE.random), 3)` (95% CI from `r round(exp(pwma.insomnia$lower.random), 3)` to `r round(exp(pwma.insomnia$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.insomnia$tau2, 3)` indicating some heterogeneity (95% prediction interval from `r round(exp(pwma.insomnia$lower.predict), 3)` to `r round(exp(pwma.insomnia$upper.predict), 3)`).
 
 ### 2.10.2 Risk of bias
@@ -503,7 +504,7 @@ forest(pwma.constipation,
 **Figure 18** Forest plot for constipation for the comparison of pro-dopaminergic interventions vs placebo at 8 (4-12) weeks.
 OR: odds ratio, 95% CI: 95% confidence intervals.
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.constipation$lower.random) < 1) & (exp(pwma.constipation$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.constipation$lower.random) > 1) & (exp(pwma.constipation$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.constipation$TE.random), 3)` (95% CI from `r round(exp(pwma.constipation$lower.random), 3)` to `r round(exp(pwma.constipation$upper.random), 3)`).
+The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.constipation$lower.random) < 1) & (exp(pwma.constipation$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.constipation$lower.random) > 1) & (exp(pwma.constipation$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.constipation$TE.random), 3)` (95% CI from `r round(exp(pwma.constipation$lower.random), 3)` to `r round(exp(pwma.constipation$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.constipation$tau2, 3)` indicating little to no heterogeneity (95% prediction interval from `r round(exp(pwma.constipation$lower.predict), 3)` to `r round(exp(pwma.constipation$upper.predict), 3)`).
 
 There were no important differences between participants assigned to different classes of drug.
@@ -548,7 +549,7 @@ forest(pwma.dizziness,
 **Figure 20** Forest plot for dizziness for the comparison of pro-dopaminergic interventions vs placebo at 8 (4-12) weeks.
 OR: odds ratio, 95% CI: 95% confidence intervals.
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.dizziness$lower.random) < 1) & (exp(pwma.dizziness$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.dizziness$lower.random) > 1) & (exp(pwma.dizziness$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.dizziness$TE.random), 3)` (95% CI from `r round(exp(pwma.dizziness$lower.random), 3)` to `r round(exp(pwma.dizziness$upper.random), 3)`).
+The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.dizziness$lower.random) < 1) & (exp(pwma.dizziness$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.dizziness$lower.random) > 1) & (exp(pwma.dizziness$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.dizziness$TE.random), 3)` (95% CI from `r round(exp(pwma.dizziness$lower.random), 3)` to `r round(exp(pwma.dizziness$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.dizziness$tau2, 3)`.
 There is some heterogeneity as shown by the 95% prediction interval from `r round(exp(pwma.dizziness$lower.predict), 3)` to `r round(exp(pwma.dizziness$upper.predict), 3)`.
 
@@ -594,7 +595,7 @@ forest(pwma.dry_mouth,
 **Figure 22** Forest plot for dry mouth for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
 OR: odds ratio, 95% CI: 95% confidence intervals.
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.dry_mouth$lower.random) < 1) & (exp(pwma.dry_mouth$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.dry_mouth$lower.random) > 1) & (exp(pwma.dry_mouth$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.dry_mouth$TE.random), 3)` (95% CI from `r round(exp(pwma.dry_mouth$lower.random), 3)` to `r round(exp(pwma.dry_mouth$upper.random), 3)`).
+The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.dry_mouth$lower.random) < 1) & (exp(pwma.dry_mouth$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.dry_mouth$lower.random) > 1) & (exp(pwma.dry_mouth$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.dry_mouth$TE.random), 3)` (95% CI from `r round(exp(pwma.dry_mouth$lower.random), 3)` to `r round(exp(pwma.dry_mouth$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.dry_mouth$tau2, 3)` indicating some heterogeneity (95% prediction interval from `r round(exp(pwma.dry_mouth$lower.predict), 3)` to `r round(exp(pwma.dry_mouth$upper.predict), 3)`).
 
 ### 2.13.2 Risk of bias
@@ -641,7 +642,7 @@ OR: odds ratio, 95% CI: 95% confidence intervals.
 
 `r pwma.vomiting$k.TE` `r ifelse(pwma.vomiting$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.vomiting$n.e., pwma.vomiting$n.c.), na.rm = T)` participants (`r sum(pwma.vomiting$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.vomiting$n.c.)` allocated to pill placebo).
 
-The comparative effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.vomiting$lower.random) < 1) & (exp(pwma.vomiting$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.vomiting$lower.random) > 1) & (exp(pwma.vomiting$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.vomiting$TE.random), 3)` (95% CI from `r round(exp(pwma.vomiting$lower.random), 3)` to `r round(exp(pwma.vomiting$upper.random), 3)`).
+The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.vomiting$lower.random) < 1) & (exp(pwma.vomiting$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.vomiting$lower.random) > 1) & (exp(pwma.vomiting$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.vomiting$TE.random), 3)` (95% CI from `r round(exp(pwma.vomiting$lower.random), 3)` to `r round(exp(pwma.vomiting$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.vomiting$tau2, 3)` indicating little to no heterogeneity (95% prediction interval from `r round(exp(pwma.vomiting$lower.predict), 3)` to `r round(exp(pwma.vomiting$upper.predict), 3)`).
 
 ### 2.14.2 Risk of bias
@@ -705,3 +706,4 @@ We used R version 4.3.1 (R Core Team 2023) and the following packages; meta (Bal
 -   Page, M. J., Sterne, J. A., Boutron, I., Hróbjartsson, A., Kirkham, J. J., Li, T., ... & Higgins, J. P. (2023).
     ROB-ME: a tool for assessing risk of bias due to missing evidence in systematic reviews with meta-analysis. 
     *bmj*, *383*
+    
