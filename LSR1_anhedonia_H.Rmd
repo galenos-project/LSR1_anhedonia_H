@@ -34,7 +34,7 @@ options(scipen=100, digits=4)
 In this first iteration of the living systematic review we searched for randomised controlled trials that compared pro-dopaminergic interventions to placebo in adults with unipolar depression (i.e. above-threshold symptoms on any standardised measure, or a clinical diagnosis based on any operationalised criteria).
 
 Eight databases were searched from inception up to the 9th of November, 2023 (see [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies") for full search strings).
-Database search results were imported into [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") and de-duplicated prior to screening.
+Database search results were imported into [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") and duplicates were removed prior to screening.
 All steps related to record screening and data extraction were completed in [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer").
 
 Titles and abstracts of the identified records were screened by at least two reviewers (CF, MC, JK, JP).
@@ -42,15 +42,16 @@ We retrieved the full-texts and any supporting documents for all records that we
 The full-text screening was conducted by at least two reviewers (CF, JK, JP, AK, EB).
 Conflicts at title and abstract, and full-text screening, were resolved through discussion between the two reviewers and involvement of a third reviewer (AC, EGO).
 
-Relevant data was extracted using [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") by at least two reviewers (CF, CA, EB, JK).
-
-We focused on the following outcomes:
-
--   anhedonia symptom severity: using anhedonia-specific scales, anhedonia-specific sub-scales, or individual items focusing on anhedonia (observer-rated or self-rated). Continuous, primary outcome.
--   anxiety symptom severity: as per observer or self-reported standardised scales. Continuous, secondary outcome.
--   acceptability: proportion of participants dropping out for any reason. Binary, secondary outcome.
--   tolerability: the proportion of participants dropping out due to an adverse event. Binary, secondary outcome.
--   safety: the proportion of participants reporting specific adverse events (nausea, headache, insomnia, constipation, dizziness, dry mouth, vomiting). Binary, secondary outcome.
+We focused on the following outcomes: - anhedonia symptom severity: using anhedonia-specific scales, anhedonia-specific sub-scales, or individual items focusing on anhedonia (observer-rated or self-rated).
+Continuous, primary outcome.
+- anxiety symptom severity: as per observer or self-reported standardised scales.
+Continuous, secondary outcome.
+- acceptability: proportion of participants dropping out for any reason.
+Binary, secondary outcome.
+- tolerability: the proportion of participants dropping out due to an adverse event.
+Binary, secondary outcome.
+- safety: the proportion of participants reporting specific adverse events (nausea, headache, insomnia, constipation, dizziness, dry mouth, vomiting).
+Binary, secondary outcome.
 
 Additional information on the full study eligibility criteria can be found in the pre-published [protocol](https://wellcomeopenresearch.org/articles/8-425 "Pro-dopaminergic pharmacological interventions for anhedonia in depression: protocol for a living systematic review of human and non-human studies").
 
@@ -60,10 +61,13 @@ For acceptability, tolerability, safety and safety (specific adverse events), we
 
 When extracting continuous outcomes we extracted mean and standard deviation to two decimal places.
 Where standard error was reported, we converted the value to standard deviation.
-Baseline and endpoint values were extracted, where only change in score and baseline or endpoint was reported, the missing value was calculated by adding or subtracting the change score to the baseline or endpoint.
+Baseline and endpoint values were extracted.
+These were preferred to change in score and endpoint, in which case the missing value was calculated by adding or subtracting the change in score from the time point given.
 
 When extracting dichotomous outcomes we extracted natural numbers and where only percentages of participant groups were reported, a value was calculated and rounded up to the nearest natural number.
-Adverse events were extracted using the exact terms they were reported in the included studies.
+Adverse events were extracted using the exact wording used to report them in the included studies.
+
+Relevant data was extracted using [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") by at least two reviewers (CF, CA, EB, JK).
 
 We assessed risk of bias with the RoB2 tool (Higgins et al. 2019).
 All outcomes for all included studies were assessed by at least two reviewers (JK, CF, CA, AH) and conflicts were resolved by discussion between reviewers.
@@ -75,10 +79,13 @@ We calculated the 95% confidence interval (CI) around the pooled effect size for
 Meta-analyses were conducted using a random effects model with the inverse variance method, using the restricted maximum-likelihood estimator for 𝞽^2^ and the Hartung-Knapp correction method to adjust 95% confidence intervals, if there are at least five studies.
 Prediction intervals of the overall pooled effect were calculated to convey the amount of heterogeneity.
 
-In a post-hoc approach to add evidence about the impact of non-dopaminergic drugs, we aggregated individual participant data (IPD) on the MADRS "inability to feel" item from 34 randomised controlled trials (14054 participants) on antidepressants in people with depression we had access to.
-We performed the following analyses to estimate the performance of bupropion versus placebo at the primary outcome (i.e. reduction in anhedonia scores): - aggregated IPD, all antidepressants and placebo, random effects network meta-analysis.
-- aggregated IPD, bupropion versus placebo, random effects pairwise meta-analysis.
-- combination of aggregated IPD and early studies identified in this living systematic review for which IPD were not available, random effects pairwise meta-analysis.
+In order to better contextualise pro-dopaminergic interventions within wider literature on the effects of antidepressants on anhedonia, we aggregated individual participant data (IPD) on the MADRS "inability to feel" item from 34 randomised controlled trials (14054 participants) on antidepressants in people with depression that we had access to.
+We utilised this post-hoc analysis to add further evidence on the impact of non-dopaminergic intervantions on anhedonia in depression and in doing so, better understand the evidence we analysed on dopamine-specific drugs.
+We performed the following analyses to estimate the performance of bupropion versus placebo at the primary outcome (i.e. reduction in anhedonia scores):
+
+-   aggregated IPD, all antidepressants and placebo, random effects network meta-analysis.
+-   aggregated IPD, bupropion versus placebo, random effects pairwise meta-analysis.
+-   combination of aggregated IPD and early studies identified in this living systematic review for which IPD were not available, random effects pairwise meta-analysis.
 
 Meta-regressions were planned for the following variables: mean age of participants, mean anhedonia baseline score, mean anxiety baseline score, sex (proportion of female participants), and planned treatment duration.
 Meta-regressions were only conducted for outcomes where data was available from 10 or more studies.
@@ -289,7 +296,7 @@ For treatment duration, the regression coefficient ($\beta$) is intended per wee
 We did not perform a meta-regression on mean anhedonia baseline score as the total number of studies was below 10.
 
 |                                                   |                     OR                     |                                           95% CI                                           |                𝞽^2^                |
-|:----------------:|:--------------:|:--------------:|:--------------:|
+|:-----------------:|:----------------:|:----------------:|:----------------:|
 |                 Unadjusted effect                 |   `r round(exp(pwma.acc$TE.random), 3)`    |    `r round(exp(pwma.acc$lower.random), 3)` to `r round(exp(pwma.acc$upper.random), 3)`    |    `r round(pwma.acc$tau2, 2)`     |
 |                   **Moderator**                   |                                            |                                         **95% CI**                                         |              **𝞽^2^**              |
 |       Anxiety baseline (per point increase)       | `r round(reg.acc.anxiety[["beta"]][2], 2)` | `r round(reg.acc.anxiety[["ci.lb"]][2], 2)` to `r round(reg.acc.anxiety[["ci.ub"]][2], 2)` | `r round(reg.acc.anxiety$tau2, 2)` |
@@ -336,7 +343,7 @@ The table below shows which of the covariates, if any, explain some of the heter
 We did not perform a meta-regression on mean anhedonia baseline score as the total number of studies was below 10.
 
 |                                                   |                     OR                     |                                           95% CI                                           |                𝞽^2^                |
-|:----------------:|:--------------:|:--------------:|:--------------:|
+|:-----------------:|:----------------:|:----------------:|:----------------:|
 |                 Unadjusted effect                 |   `r round(exp(pwma.tol$TE.random), 3)`    |    `r round(exp(pwma.tol$lower.random), 3)` to `r round(exp(pwma.tol$upper.random), 3)`    |    `r round(pwma.tol$tau2, 2)`     |
 |                   **Moderator**                   |                                            |                                         **95% CI**                                         |              **𝞽^2^**              |
 |       Anxiety baseline (per point increase)       | `r round(reg.tol.anxiety[["beta"]][2], 2)` | `r round(reg.tol.anxiety[["ci.lb"]][2], 2)` to `r round(reg.tol.anxiety[["ci.ub"]][2], 2)` | `r round(reg.tol.anxiety$tau2, 2)` |
@@ -382,7 +389,7 @@ The table below shows which of the covariates, if any, explain some of the heter
 We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
 |                                                   |                      OR                      |                                             95% CI                                             |                 𝞽^2^                 |
-|:----------------:|:--------------:|:--------------:|:--------------:|
+|:-----------------:|:----------------:|:----------------:|:----------------:|
 |                 Unadjusted effect                 |   `r round(exp(pwma.nausea$TE.random), 3)`   |   `r round(exp(pwma.nausea$lower.random), 3)` to `r round(exp(pwma.nausea$upper.random), 3)`   |    `r round(pwma.nausea$tau2, 2)`    |
 |                   **Moderator**                   |                                              |                                           **95% CI**                                           |               **𝞽^2^**               |
 |            Age (per 10 year increase)             |  `r round(reg.nausea.age[["beta"]][2], 2)`   |    `r round(reg.nausea.age[["ci.lb"]][2], 2)` to `r round(reg.nausea.age[["ci.ub"]][2], 2)`    |  `r round(reg.nausea.age$tau2, 2)`   |
@@ -425,7 +432,7 @@ The table below shows which of the covariates, if any, could modify the relative
 We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
 |                                                   |                       OR                       |                                               95% CI                                               |                  𝞽^2^                  |
-|:----------------:|:--------------:|:--------------:|:--------------:|
+|:-----------------:|:----------------:|:----------------:|:----------------:|
 |                 Unadjusted effect                 |   `r round(exp(pwma.headache$TE.random), 3)`   |   `r round(exp(pwma.headache$lower.random), 3)` to `r round(exp(pwma.headache$upper.random), 3)`   |    `r round(pwma.headache$tau2, 2)`    |
 |                   **Moderator**                   |                                                |                                             **95% CI**                                             |                **𝞽^2^**                |
 |            Age (per 10 year increase)             |  `r round(reg.headache.age[["beta"]][2], 2)`   |    `r round(reg.headache.age[["ci.lb"]][2], 2)` to `r round(reg.headache.age[["ci.ub"]][2], 2)`    |  `r round(reg.headache.age$tau2, 2)`   |
@@ -468,7 +475,7 @@ The table below shows which of the covariates, if any, explain some of the heter
 We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
 |                                                   |                       OR                       |                                               95% CI                                               |                  𝞽^2^                  |
-|:----------------:|:--------------:|:--------------:|:--------------:|
+|:-----------------:|:----------------:|:----------------:|:----------------:|
 |                 Unadjusted effect                 |   `r round(exp(pwma.insomnia$TE.random), 3)`   |   `r round(exp(pwma.insomnia$lower.random), 3)` to `r round(exp(pwma.insomnia$upper.random), 3)`   |    `r round(pwma.insomnia$tau2, 2)`    |
 |                   **Moderator**                   |                                                |                                             **95% CI**                                             |                **𝞽^2^**                |
 |            Age (per 10 year increase)             |  `r round(reg.insomnia.age[["beta"]][2], 2)`   |    `r round(reg.insomnia.age[["ci.lb"]][2], 2)` to `r round(reg.insomnia.age[["ci.ub"]][2], 2)`    |  `r round(reg.insomnia.age$tau2, 2)`   |
@@ -513,7 +520,7 @@ The table below shows which of the covariates, if any, could modify the relative
 We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
 |                                                   |                         OR                         |                                                   95% CI                                                   |                    𝞽^2^                    |
-|:----------------:|:--------------:|:--------------:|:--------------:|
+|:-----------------:|:----------------:|:----------------:|:----------------:|
 |                 Unadjusted effect                 |   `r round(exp(pwma.constipation$TE.random), 3)`   |   `r round(exp(pwma.constipation$lower.random), 3)` to `r round(exp(pwma.constipation$upper.random), 3)`   |    `r round(pwma.constipation$tau2, 2)`    |
 |                   **Moderator**                   |                                                    |                                                 **95% CI**                                                 |                  **𝞽^2^**                  |
 |            Age (per 10 year increase)             |  `r round(reg.constipation.age[["beta"]][2], 2)`   |    `r round(reg.constipation.age[["ci.lb"]][2], 2)` to `r round(reg.constipation.age[["ci.ub"]][2], 2)`    |  `r round(reg.constipation.age$tau2, 2)`   |
@@ -557,7 +564,7 @@ The table below shows which of the covariates, if any, explain some of the heter
 We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
 |                                                   |                       OR                        |                                                95% CI                                                |                  𝞽^2^                   |
-|:----------------:|:--------------:|:--------------:|:--------------:|
+|:-----------------:|:----------------:|:----------------:|:----------------:|
 |                 Unadjusted effect                 |   `r round(exp(pwma.dizziness$TE.random), 3)`   |   `r round(exp(pwma.dizziness$lower.random), 3)` to `r round(exp(pwma.dizziness$upper.random), 3)`   |    `r round(pwma.dizziness$tau2, 2)`    |
 |                   **Moderator**                   |                                                 |                                              **95% CI**                                              |                **𝞽^2^**                 |
 |            Age (per 10 year increase)             |  `r round(reg.dizziness.age[["beta"]][2], 2)`   |    `r round(reg.dizziness.age[["ci.lb"]][2], 2)` to `r round(reg.dizziness.age[["ci.ub"]][2], 2)`    |  `r round(reg.dizziness.age$tau2, 2)`   |
