@@ -106,9 +106,18 @@ A list of abbreviations can be found towards the end of the document.
 
 ## 2.2 Table of included studies
 
-```{r table_of_characteristics_anhedonia, echo=F}
-toca_Indir <- read_xlsx("data/human/toc.xlsx")
-knitr::kable(toca_Indir) %>%
+```{r table_of_characteristics_anhedonia, echo=F, results='asis'}
+
+toc <- read_xlsx("data/human/toc.xlsx")
+toc[] <- lapply(toc, function(x) {
+  if(is.numeric(x)) {
+    sprintf("%.3g", x)
+  } else {
+    x
+  }
+})
+
+knitr::kable(toc, escape = F) %>%
   kable_styling(bootstrap_options = "bordered")
 ```
 
@@ -732,6 +741,6 @@ knitr::kable(rob_me2) %>%
 Scores indicate potential for missing studies in the review (3) and risk of bias due to missing evidence in the meta-analysis, as per the ROB-ME tool.
 ```{r echo = F}
 rob_me3 <- read_xlsx("data/human/LSR1_ROB_ME.xlsx", "Steps 3 & 4")
-knitr::kable(rob_me3) %>%
+knitr::kable(rob_me3, digits = 2) %>%
   kable_styling(bootstrap_options = "bordered")
 ```
