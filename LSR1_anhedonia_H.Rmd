@@ -109,14 +109,6 @@ A list of abbreviations can be found towards the end of the document.
 ```{r table_of_characteristics_anhedonia, echo=F, results='asis'}
 
 toc <- read_xlsx("data/human/toc.xlsx")
-toc[] <- lapply(toc, function(x) {
-  if(is.numeric(x)) {
-    sprintf("%.3g", x)
-  } else {
-    x
-  }
-})
-
 knitr::kable(toc, escape = F) %>%
   kable_styling(bootstrap_options = "bordered")
 ```
