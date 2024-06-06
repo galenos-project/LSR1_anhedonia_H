@@ -67,7 +67,8 @@ These were preferred to change in score and endpoint, in which case the missing 
 When extracting dichotomous outcomes we extracted natural numbers and where only percentages of participant groups were reported, a value was calculated and rounded up to the nearest natural number.
 Adverse events were extracted using the exact wording used to report them in the included studies.
 
-Relevant data was extracted using [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") by at least two reviewers (CF, CA, EB, JK). EPPI-Reviewer was used to screen records, extract data, and assess risk of bias.
+Relevant data was extracted using [EPPI-Reviewer](https://eppi.ioe.ac.uk/cms/Default.aspx?tabid=2914 "EPPI-Reviewer") by at least two reviewers (CF, CA, EB, JK).
+EPPI-Reviewer was used to screen records, extract data, and assess risk of bias.
 
 We assessed risk of bias with the RoB2 tool (Higgins et al. 2019).
 All outcomes for all included studies were assessed by at least two reviewers (JK, CF, CA, AH) and conflicts were resolved by discussion between reviewers.
@@ -177,8 +178,8 @@ We had access to individual participant data (IPD) of randomised controlled tria
 We performed a series of post-hoc analyses on the MADRS "inability to feel" item (aggregated IPD from 34 studies, 14054 participants).
 First, we included all the available studies and compared all the antidepressants against placebo.
 
- ### 2.4.5.1 Pro-dopaminergic interventions and non-dopaminergic drugs vs placebo, random effects meta-analysis
- 
+\### 2.4.5.1 Pro-dopaminergic interventions and non-dopaminergic drugs vs placebo, random effects meta-analysis
+
 ```{r anhedonia_forest_bup, echo=FALSE, fig.width=11, fig.height=4}
 forest(pwma.anhedonia.bup, 
        sortvar = seTE, 
@@ -198,10 +199,10 @@ SMD: standardised mean difference, 95% CI: 95% confidence intervals, SD: standar
 
 ![](result/human/non-dopaminergic/IPD_AD_NMA_pla_with_estimates.png)
 
-
 **Figure 5.** Comparative effect sizes of antidepressants versus placebo.
 
-The mean effect of bupropion (pro-dopaminergic intervention) versus placebo was -0.12 (SMD, 95% CI from -0.25 to 0.00; 34 studies, 14054 participants). In comparison, we found effects across non-dopaminergic interventions to range from -0.09 (SMD, 95% CI from -0.78 to 0.60) in amitryptiline to -0.40 (SMD, 95% CI from -0.48 to -0.32) in duloxetine.
+The mean effect of bupropion (pro-dopaminergic intervention) versus placebo was -0.12 (SMD, 95% CI from -0.25 to 0.00; 34 studies, 14054 participants).
+In comparison, we found effects across non-dopaminergic interventions to range from -0.09 (SMD, 95% CI from -0.78 to 0.60) in amitryptiline to -0.40 (SMD, 95% CI from -0.48 to -0.32) in duloxetine.
 
 #### 2.4.5.2 Aggregated IPD, bupropion versus placebo, random effects pairwise meta-analysis
 
@@ -233,7 +234,8 @@ forest(pwma.anxiety,
 ```
 
 **Figure 6** Forest plot for symptoms of anxiety (secondary outcome) comparing pro-dopaminergic interventions vs placebo for individuals with anxiety at 4-12 weeks (primary timepoint).
-SMD: standardised mean difference, 95% CI: 95% confidence intervals, SD: standard deviation. RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor. 
+SMD: standardised mean difference, 95% CI: 95% confidence intervals, SD: standard deviation.
+RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
 The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.anxiety$lower.random < 0) & (pwma.anxiety$upper.random < 0)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.anxiety$lower.random > 0) & (pwma.anxiety$upper.random > 0)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.anxiety$TE.random, 3)` (95% CI from `r round(pwma.anxiety$lower.random, 3)` to `r round(pwma.anxiety$upper.random, 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.anxiety$tau2, 3)` indicating little to no heterogeneity (95% prediction interval: `r round(pwma.anxiety$lower.predict, 3)` to `r round(pwma.anxiety$upper.predict, 3)`).
@@ -277,7 +279,7 @@ forest(pwma.acc,
 ```
 
 **Figure 8** Forest plot for dropouts due to any reason for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
-OR: odds ratio, 95% CI: 95% confidence intervals.RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor. 
+OR: odds ratio, 95% CI: 95% confidence intervals.RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
 The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.acc$lower.random) < 1) & (exp(pwma.acc$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.acc$lower.random) > 1) & (exp(pwma.acc$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.acc$TE.random), 3)` (95% CI from `r round(exp(pwma.acc$lower.random), 3)` to `r round(exp(pwma.acc$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.acc$tau2, 3)`.
@@ -329,7 +331,7 @@ forest(pwma.tol,
 ```
 
 **Figure 10** Forest plot for dropouts due to adverse events for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
-OR: odds ratio, 95% CI: 95% confidence intervals.RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor. 
+OR: odds ratio, 95% CI: 95% confidence intervals.RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
 The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.tol$lower.random) < 1) & (exp(pwma.tol$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.tol$lower.random > 1)) & (exp(pwma.tol$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.tol$TE.random), 3)` (95% CI from `r round(exp(pwma.tol$lower.random), 3)` to `r round(exp(pwma.tol$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.tol$tau2, 3)` indicating the presence of some heterogeneity (95% prediction interval from `r round(exp(pwma.acc$lower.predict), 3)` to `r round(exp(pwma.tol$upper.predict), 3)`).
@@ -375,7 +377,8 @@ forest(pwma.nausea,
 ```
 
 **Figure 12** Forest plot for nausea for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
-OR: odds ratio, 95% CI: 95% confidence intervals. RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor. 
+OR: odds ratio, 95% CI: 95% confidence intervals.
+RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
 The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.nausea$lower.random) < 1) & (exp(pwma.nausea$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.nausea$lower.random) > 1) & (exp(pwma.nausea$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.nausea$TE.random), 3)` (95% CI from `r round(exp(pwma.nausea$lower.random), 3)` to `r round(exp(pwma.nausea$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.nausea$tau2, 3)` indicating the presence of some heterogeneity (95% prediction interval from `r round(exp(pwma.nausea$lower.predict), 3)` to `r round(exp(pwma.nausea$upper.predict), 3)`).
@@ -418,7 +421,8 @@ forest(pwma.headache,
 ```
 
 **Figure 14** Forest plot for headaches for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
-OR: odds ratio, 95% CI: 95% confidence intervals. RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor. 
+OR: odds ratio, 95% CI: 95% confidence intervals.
+RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
 The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.headache$lower.random) < 1) & (exp(pwma.headache$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.headache$lower.random) > 1) & (exp(pwma.headache$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.headache$TE.random), 3)` (95% CI from `r round(exp(pwma.headache$lower.random), 3)` to `r round(exp(pwma.headache$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.headache$tau2, 3)` indicating little to no heterogeneity (95% prediction interval from `r round(exp(pwma.headache$lower.predict), 3)` to `r round(exp(pwma.headache$upper.predict), 3)`).
@@ -461,7 +465,8 @@ forest(pwma.insomnia,
 ```
 
 **Figure 16** Forest plot for insomnia for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
-OR: odds ratio, 95% CI: 95% confidence intervals. RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor. 
+OR: odds ratio, 95% CI: 95% confidence intervals.
+RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
 The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.insomnia$lower.random) < 1) & (exp(pwma.insomnia$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.insomnia$lower.random) > 1) & (exp(pwma.insomnia$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.insomnia$TE.random), 3)` (95% CI from `r round(exp(pwma.insomnia$lower.random), 3)` to `r round(exp(pwma.insomnia$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.insomnia$tau2, 3)` indicating some heterogeneity (95% prediction interval from `r round(exp(pwma.insomnia$lower.predict), 3)` to `r round(exp(pwma.insomnia$upper.predict), 3)`).
@@ -504,7 +509,8 @@ forest(pwma.constipation,
 ```
 
 **Figure 18** Forest plot for constipation for the comparison of pro-dopaminergic interventions vs placebo at 8 (4-12) weeks.
-OR: odds ratio, 95% CI: 95% confidence intervals. RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor. 
+OR: odds ratio, 95% CI: 95% confidence intervals.
+RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
 The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.constipation$lower.random) < 1) & (exp(pwma.constipation$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.constipation$lower.random) > 1) & (exp(pwma.constipation$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.constipation$TE.random), 3)` (95% CI from `r round(exp(pwma.constipation$lower.random), 3)` to `r round(exp(pwma.constipation$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.constipation$tau2, 3)` indicating little to no heterogeneity (95% prediction interval from `r round(exp(pwma.constipation$lower.predict), 3)` to `r round(exp(pwma.constipation$upper.predict), 3)`).
@@ -549,7 +555,8 @@ forest(pwma.dizziness,
 ```
 
 **Figure 20** Forest plot for dizziness for the comparison of pro-dopaminergic interventions vs placebo at 8 (4-12) weeks.
-OR: odds ratio, 95% CI: 95% confidence intervals. RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor. 
+OR: odds ratio, 95% CI: 95% confidence intervals.
+RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
 The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.dizziness$lower.random) < 1) & (exp(pwma.dizziness$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.dizziness$lower.random) > 1) & (exp(pwma.dizziness$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.dizziness$TE.random), 3)` (95% CI from `r round(exp(pwma.dizziness$lower.random), 3)` to `r round(exp(pwma.dizziness$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.dizziness$tau2, 3)`.
@@ -595,7 +602,8 @@ forest(pwma.dry_mouth,
 ```
 
 **Figure 22** Forest plot for dry mouth for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
-OR: odds ratio, 95% CI: 95% confidence intervals. RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor. 
+OR: odds ratio, 95% CI: 95% confidence intervals.
+RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
 The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.dry_mouth$lower.random) < 1) & (exp(pwma.dry_mouth$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.dry_mouth$lower.random) > 1) & (exp(pwma.dry_mouth$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.dry_mouth$TE.random), 3)` (95% CI from `r round(exp(pwma.dry_mouth$lower.random), 3)` to `r round(exp(pwma.dry_mouth$upper.random), 3)`).
 The study results presented a 𝞽^2^ value of `r round(pwma.dry_mouth$tau2, 3)` indicating some heterogeneity (95% prediction interval from `r round(exp(pwma.dry_mouth$lower.predict), 3)` to `r round(exp(pwma.dry_mouth$upper.predict), 3)`).
@@ -640,7 +648,8 @@ forest(pwma.vomiting,
 ```
 
 **Figure 24** Forest plot for vomiting for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
-OR: odds ratio, 95% CI: 95% confidence intervals. RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor. 
+OR: odds ratio, 95% CI: 95% confidence intervals.
+RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
 `r pwma.vomiting$k.TE` `r ifelse(pwma.vomiting$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.vomiting$n.e., pwma.vomiting$n.c.), na.rm = T)` participants (`r sum(pwma.vomiting$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.vomiting$n.c.)` allocated to pill placebo).
 
@@ -705,10 +714,11 @@ We used R version 4.3.1 (R Core Team 2023) and the following packages; meta (Bal
     Assessing risk of bias in a randomized trial. 
     *Cochrane handbook for systematic reviews of interventions*, 205-228.
 
--   Page, M. J., Sterne, J. A., Boutron, I., Hróbjartsson, A., Kirkham, J. J., Li, T., ... & Higgins, J. P. (2023).
+-   Page, M. J., Sterne, J. A., Boutron, I., Hróbjartsson, A., Kirkham, J. J., Li, T., ...
+    & Higgins, J. P. (2023).
     ROB-ME: a tool for assessing risk of bias due to missing evidence in systematic reviews with meta-analysis. 
     *bmj*, *383*
-    
+
 # 6. Risk of Bias - Missing Evidence Assessment
 
 ## 6.1 ROB-ME Matrix Step 1
@@ -718,10 +728,11 @@ rob_me1 <- read_xlsx("data/human/LSR1_ROB_ME.xlsx", "Step 1")
 knitr::kable(rob_me1) %>%
   kable_styling(bootstrap_options = "bordered")
 ```
+
 ## 6.2 ROB-ME Matrix Step 2
 
-1 = A study result is available for inclusion in the meta-analysis, 2 = no study result is available for inclusion in the meta-analysis, for a reason unrelated to the P value, magnitude or direction of the result, 3 = unclear whether an eligible study result was generated, 4 = no study result is available for inclusion in the meta-analysis, likely because of the P value, magnitude or direction of the result generated, . = study did not measure outcome.
-
+1 = A study result is available for inclusion in the meta-analysis, 2 = no study result is available for inclusion in the meta-analysis, for a reason unrelated to the P value, magnitude or direction of the result, 3 = unclear whether an eligible study result was generated, 4 = no study result is available for inclusion in the meta-analysis, likely because of the P value, magnitude or direction of the result generated, .
+= study did not measure outcome.
 
 ```{r echo = F}
 rob_me2 <- read_xlsx("data/human/LSR1_ROB_ME.xlsx", "Step 2")
@@ -729,8 +740,10 @@ knitr::kable(rob_me2) %>%
   kable_styling(bootstrap_options = "bordered")
 ```
 
-## 6.2 ROB-ME Step 3 & 4 
+## 6.2 ROB-ME Step 3 & 4
+
 Scores indicate potential for missing studies in the review (3) and risk of bias due to missing evidence in the meta-analysis, as per the ROB-ME tool.
+
 ```{r echo = F}
 rob_me3 <- read_xlsx("data/human/LSR1_ROB_ME.xlsx", "Steps 3 & 4")
 knitr::kable(rob_me3, digits = 2) %>%
