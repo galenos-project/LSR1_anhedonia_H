@@ -1,6 +1,6 @@
 ---
-title: "A systematic review and meta-analysis of pro-dopaminergic interventions for anhedonia - results from human studies"
-author: "Jaycee Kennett, Claire Friedrich, Edoardo G. Ostinelli, Virginia Chiocchia <span style='font-size: 15px'></style>"
+title: "Pro-dopaminergic pharmacological interventions for anhedonia in depression: a living systematic review and meta-analysis of human and non-human data "
+author: "Edoardo G. Ostinelli, Jaycee Kennett,, Virginia Chiocchia, Malcolm Macleod, Claire Friedrich,, Francesca Tinsdeall, Ava Homiar,, Charlotte Austin,,  Fiona Ramage,  Eduarda Raquel Almeida Batista,, Michael Browning,, Catherine Harmer, Spyridon Siafis, Claire Stansfield, Hossein Dehdarirad, Ayse Kurtulmus, Maddalena Cipriani, Rossario Aronica, Olena Maksym, Simonne Wright, Tannatswa Chikaura, Lea Milligan, James Thomas, Carmen Moreno, Toshi A Furukawa, Soraya Seedat, Jennifer Potts,, Georgia Salanti, Andrea Cipriani,vand the GALENOS team <span style='font-size: 15px'></style>"
 output: 
   html_document:
       toc: TRUE
@@ -10,6 +10,56 @@ editor_options:
   markdown: 
     wrap: sentence
 ---
+
+### 
+
+## Abstract
+
+## Background
+
+Pro-dopaminergic pharmacological interventions have shown promise in treating anhedonia in people with depression, prompting us to conduct a living systematic review to synthesise data from human and non-human studies.
+
+## Methods
+
+We co-produced a living systematic review of controlled studies investigating the efficacy of pro-dopaminergic interventions in reducing symptoms of anhedonia in people with depression and relevant animal models.
+Multiple electronic databases were searched, from which studies were screened, extracted and assessed for risk of bias by two independent reviewers (until 09.11.2023).
+The primary outcomes were standardised mean differences (SMD) for anhedonia symptoms in human studies and sucrose preference test for animal models.
+We synthesised data with random-effects meta-analyses and calculated prediction intervals to better report the effects of heterogeneity.
+We also analysed drop-out rates and occurrences of specific adverse events.
+To contextualise the results of pro-dopaminergic drugs, we performed a series of random effects network meta-analyses on a specific anhedonia item also from other antidepressant agents.
+
+## Results
+
+We included 6 human studies and found that pro-dopaminergic interventions were better than placebo in reducing symptoms of anhedonia (n= 2076; SMD -0.24, 95%CI -0.46 to -0.03).
+Eleven studies in people with depression reported data about anxiety and pro-dopaminergic interventions were more efficacious in reducing symptoms compared to placebo (n= 3517, SMD -0.17, 95% CI -0.24 to -0.09).
+We did not find data in human studies about reward and reinforcement.
+In animal models, pro-dopaminergic interventions improved sucrose preference (27 studies, SMD 1.34, 95% CI 0.88 to 1.79) and we found evidence that the mechanism of pro-dopaminergic interventions occurred via an indirect pathway, highlighting the role of dopamine metabolism.
+Additional analysis of human data found that other non-dopaminergic antidepressants (e.g., some selective serotonin reuptake inhibitors and serotonin and noradrenaline reuptake inhibitors) showed greater improvements in anhedonia symptoms compared to bupropion, the pro-dopaminergic antidepressant included in the analysis.
+
+## Conclusion
+
+Pro-dopaminergic interventions are more effective at reducing anhedonia in humans than placebo and in animal models of depression; this supports the existing evidence on the role of dopamine in reward systems.
+However, this may occur via an indirect pathway and at the moment it is not possible to distinguish between a specific effect of pro-dopaminergic interventions on anhedonia and a more general effect of antidepressants on these symptoms.
+More data on reward and reinforcement in humans with anhedonia are needed to better triangulate human and animal evidence sources and properly examine the relationship between dopamine modulation and anhedonia.
+
+## Plain language summary
+
+Anhedonia is a common feature of depression, where a person lacks general interest, motivation, and enjoyment.
+It is thought that a lack of dopamine is associated with symptoms of anhedonia in people with depression.
+Some studies found that pro-dopaminergic drugs, which are drugs that can mimic the effects of dopamine in the brain, can reduce symptoms of anhedonia.
+However, it is unknown how these drug treatments can target the processes in our body that cause anhedonia.
+
+The goal of this project was to review information from published studies on how pro-dopaminergic drugs (medications such as certain antidepressants or stimulants) target processes in the body that cause anhedonia.
+As this is a living systematic review, the team will search for new studies every 3 months and this report will be updated when new evidence is available.
+
+We found that pro-dopaminergic drugs reduced anhedonia and decreased anxiety in human studies.
+These studies also mentioned that the dopamine agents were tolerated well, however, many participants discontinued the treatment due to side effects.
+Similarly, we found that pro-dopaminergic agents increased dopamine levels in animals.
+
+Further research is needed to better understand the role of pro-dopaminergic agents in reducing anhedonia, specifically on reward and reinforcement tasks which will help us examine the mechanism underlying anhedonia in more detail.
+Future work should explore how the different mechanisms of these drugs affect symptoms of anhedonia, as well as adding other drugs to a patient's treatment in addition to the pro-dopamine agent.
+Future studies should also include a range of pro-dopaminergic drugs as currently the majority of studies measuring anhedonia used one antidepressant.
+This would allow us to be more confident in the effects of dopamine rather than the one antidepressant.
 
 ```{r echo = F, include = F, warning = F}
 source('util/analysis02 for markdown.R')
@@ -104,20 +154,10 @@ A list of abbreviations can be found towards the end of the document.
 ![](data/human/lsr1_prisma.jpg)
 
 **Figure 1.** PRISMA 2020 flow diagram.
-
-## 2.2 Table of included studies
-
-```{r table_of_characteristics_anhedonia, echo=F, results='asis'}
-
-toc <- read_xlsx("data/human/toc.xlsx")
-knitr::kable(toc, escape = F) %>%
-  kable_styling(bootstrap_options = "bordered")
-```
-
-**Table 1.** Characteristics of included studies that reported anhedonia scores.
+\` **Table 1.** Characteristics of included studies that reported anhedonia scores.
 NA = not available.
 
-## 2.3 Description of included studies
+## 2.2 Description of included studies
 
 We identified `r length(unique(df$studlab))` eligible studies.
 The characteristics of the identified studies can be found in **Table 1**.
@@ -125,9 +165,9 @@ Data from `r cat(paste0(length(all.studies)))` studies contributed with at least
 The mean age of participants was `r round(mean(df$age_mean, na.rm = T), 1)` years (range `r round(min(df$age_mean, na.rm = T), 0)` to `r round(max(df$age_mean, na.rm = T), 0)` years), with a mean proportion of `r round(mean(df$female_prop, na.rm = T), 2)` female participants (range `r round(min(df$female_prop, na.rm = T), 2)` to `r round(max(df$female_prop, na.rm = T), 2)`).
 Included studies allocated the participants to treatment lasting between `r round(min(df$tx_duration, na.rm = T), 1)` to `r round(max(df$tx_duration, na.rm = T), 1)` weeks (median, `r round(median(df$tx_duration, na.rm = T), 1)` weeks).
 
-## 2.4 Primary outcome: reduction in anhedonia scores at 8 weeks (from 4 to 12 weeks)
+## 2.3 Primary outcome: reduction in anhedonia scores at 8 weeks (from 4 to 12 weeks)
 
-### 2.4.1 Pairwise meta-analysis
+### 2.3.1 Pairwise meta-analysis
 
 ```{r anhedonia_forest, echo=FALSE, fig.width=11, fig.height=4}
 forest(pwma.anhedonia, 
@@ -150,7 +190,7 @@ SMD: standardised mean difference, 95% CI: 95% confidence intervals, SD: standar
 The effect of pro-dopaminergic drugs versus placebo showed `r ifelse(((pwma.anhedonia$lower.random < 0) & (pwma.anhedonia$upper.random < 0)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.anhedonia$lower.random > 0) & (pwma.anhedonia$upper.random > 0)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.anhedonia$TE.random, 3)` (95% CI from `r round(pwma.anhedonia$lower.random, 3)` to `r round(pwma.anhedonia$upper.random, 3)`).
 There is some heterogeneity as shown by the 95% prediction interval from `r round(pwma.anhedonia$lower.predict, 3)` to `r round(pwma.anhedonia$upper.predict, 3)`.
 
-### 2.4.2 Risk of bias
+### 2.3.2 Risk of bias
 
 ![](data/human/LSR1RoBVisuals/robanhedonia1.png){width="65%"}
 
@@ -161,24 +201,21 @@ Two studies (33%) were assessed as having 'high' risk of bias due to having 'hig
 Two studies (33%) had an overall 'moderate' risk of bias rating as they had 'some concerns' in two domain ratings.
 The remaining two studies were rated as having a 'low' overall risk of bias.
 
-### 2.4.3 Reporting bias
+### 2.3.3 Reporting bias
 
 The extent to which the result was affected by reporting biases was rated as low as per the RoB-ME assessment (Page et al. 2023).
 This was as the potential for missing studies across the review was judged to be low.
 In addition, none of the included studies were deemed to have generated an eligible result that was not reported, and no studies were judged to be unclear as to whether they generated an eligible result that was not reported.
 We made this decision based on the results matrix we generated in step 2 of the RoB-ME tool (Page et al. 2023).
 
-### 2.4.4 Meta-regression analyses
+### 2.3.4 Meta-regression analyses
 
 We did not perform any meta-regressions as the total number of studies was below 10.
 
-### 2.4.5 Post-hoc analyses
+### 2.3.5 Post-hoc analyses
 
 We had access to individual participant data (IPD) of randomised controlled trials on depression from a NIHR-funded project.
 We performed a series of post-hoc analyses on the MADRS "inability to feel" item (aggregated IPD from 34 studies, 14054 participants).
-First, we included all the available studies and compared all the antidepressants against placebo.
-
-\### 2.4.5.1 Pro-dopaminergic interventions and non-dopaminergic drugs vs placebo, random effects meta-analysis
 
 ```{r anhedonia_forest_bup, echo=FALSE, fig.width=11, fig.height=4}
 forest(pwma.anhedonia.bup, 
@@ -194,29 +231,22 @@ forest(pwma.anhedonia.bup,
        )
 ```
 
-**Figure 4.** Forest plot for symptoms of anhedonia (primary outcome) comparing bupropion versus placebo for individuals with anhedonia at 4-12 weeks (primary timepoint).
+We conducted network meta-analysis.
+**Figure 4** shows the results of each active drug versus placebo.
 SMD: standardised mean difference, 95% CI: 95% confidence intervals, SD: standard deviation.
 
 ![](result/human/non-dopaminergic/IPD_AD_NMA_pla_with_estimates.png)
 
-**Figure 5.** Comparative effect sizes of antidepressants versus placebo.
+**Figure 5.** Summary SMD for the 'inability to feel' item on the MADRS scale, from indirect and direct evidence (network meta-analysis) of antidepressant versus placebo.
+Buproprion is the only pro-dopaminergic drug shown.
 
 The mean effect of bupropion (pro-dopaminergic intervention) versus placebo was -0.12 (SMD, 95% CI from -0.25 to 0.00; 34 studies, 14054 participants).
-In comparison, we found effects across non-dopaminergic interventions to range from -0.09 (SMD, 95% CI from -0.78 to 0.60) in amitryptiline to -0.40 (SMD, 95% CI from -0.48 to -0.32) in duloxetine.
+In comparison, we found effects across non-dopaminergic interventions to range from -0.09 (SMD, 95% CI from -0.19 to 0.08) in agomelatine to -0.50 (SMD, 95% CI from -0.48 to -0.32) in duloxetine.
+The range of effects found for bupropion verses non-dopaminergic interventions was 0.28 (SMD, 95%CI from -0.15 to 0.41) to -0.07 (SMD, 95%CI from -0.23 to 0.09).
 
-#### 2.4.5.2 Aggregated IPD, bupropion versus placebo, random effects pairwise meta-analysis
+## 2.4 Secondary outcome: Reduction in mean anxiety score at 8 weeks (from 4 to 12 weeks)
 
-We also performed a random effects pairwise meta-analysis of bupropion versus placebo based on the aggregated IPD of the 'inability to feel' item on the MADRS scale, resulting in estimates comparable to the network meta-analytical model (SMD -0.12, 95% CI from -0.29 to 0.05; 4 studies, 1085 participants).
-
-#### 2.4.5.3 Aggregated IPD and early studies identified in this living systematic review, random effects pairwise meta-analysis
-
-Finally, we performed a random effects pairwise meta-analysis including aggregate data from both sources (IPD and retrieved as aggregated).
-As three studies (Hewett 2009 - 87997883, Hewett 2010a - 87997755, Koshino 2013 - 87997374) were available in both sources, we prioritised aggregate IPD over data retrieved as aggregated.
-The mean effect of bupropion versus placebo was -0.19 (SMD, 95% CI from -0.33 to 0.04; 6 studies, 2489 participants)
-
-## 2.5 Secondary outcome: Reduction in mean anxiety score at 8 weeks (from 4 to 12 weeks)
-
-### 2.5.1 Pairwise meta-analysis with LSR data
+### 2.4.1 Pairwise meta-analysis
 
 ```{r anxiety_forest, echo=FALSE, fig.width=11, fig.height=8}
 forest(pwma.anxiety, 
@@ -237,19 +267,15 @@ forest(pwma.anxiety,
 SMD: standardised mean difference, 95% CI: 95% confidence intervals, SD: standard deviation.
 RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
-The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((pwma.anxiety$lower.random < 0) & (pwma.anxiety$upper.random < 0)), 'an effect favouring pro-dopaminergic interventions', ifelse(((pwma.anxiety$lower.random > 0) & (pwma.anxiety$upper.random > 0)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with a SMD of `r round(pwma.anxiety$TE.random, 3)` (95% CI from `r round(pwma.anxiety$lower.random, 3)` to `r round(pwma.anxiety$upper.random, 3)`).
-The study results presented a 𝞽^2^ value of `r round(pwma.anxiety$tau2, 3)` indicating little to no heterogeneity (95% prediction interval: `r round(pwma.anxiety$lower.predict, 3)` to `r round(pwma.anxiety$upper.predict, 3)`).
-
-### 2.5.2 Risk of Bias
+### 2.4.2 Risk of Bias
 
 ![](data/human/LSR1RoBVisuals/robanxiety1.png){width="65%"}
 
 **Figure 7.** Risk of bias assessment.
 
-### 2.5.3 Meta-regression analyses
+### 2.4.3 Meta-regression analyses
 
 The table below shows which of the covariates could modify the treatment effect of pro-dopaminergic interventions on anxiety symptom severity.
-We did not perform a meta-regression on mean anhedonia baseline score as the total number of studies was below 10.
 
 |                                                   |                      SMD                       |                                               95% CI                                               |                  𝞽^2^                  |
 |:----------------:|:----------------:|:----------------:|:----------------:|
@@ -260,9 +286,9 @@ We did not perform a meta-regression on mean anhedonia baseline score as the tot
 | Female proportion (per percentage point increase) | `r round(reg.anxiety.female[["beta"]][2], 2)`  |  `r round(reg.anxiety.female[["ci.lb"]][2], 2)` to `r round(reg.anxiety.female[["ci.ub"]][2], 2)`  | `r round(reg.anxiety.female$tau2, 2)`  |
 |      Treatment duration (per week increase)       |   `r round(reg.anxiety.tx[["beta"]][2], 2)`    |      `r round(reg.anxiety.tx[["ci.lb"]][2], 2)` to `r round(reg.anxiety.tx[["ci.ub"]][2], 2)`      |   `r round(reg.anxiety.tx$tau2, 2)`    |
 
-## 2.6 Secondary outcome: Dropouts due to any reason
+## 2.5 Secondary outcome: Dropouts due to any reason
 
-### 2.6.1 Pairwise meta-analysis
+### 2.5.1 Pairwise meta-analysis
 
 ```{r acceptability_forest, echo=FALSE, fig.height=16, fig.width=11}
 forest(pwma.acc, 
@@ -281,24 +307,15 @@ forest(pwma.acc,
 **Figure 8** Forest plot for dropouts due to any reason for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
 OR: odds ratio, 95% CI: 95% confidence intervals.RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
-The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.acc$lower.random) < 1) & (exp(pwma.acc$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.acc$lower.random) > 1) & (exp(pwma.acc$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.acc$TE.random), 3)` (95% CI from `r round(exp(pwma.acc$lower.random), 3)` to `r round(exp(pwma.acc$upper.random), 3)`).
-The study results presented a 𝞽^2^ value of `r round(pwma.acc$tau2, 3)`.
-There is some heterogeneity as shown by the 95% prediction interval from `r round(exp(pwma.acc$lower.predict), 3)` to `r round(exp(pwma.acc$upper.predict), 3)`.
-
-### 2.6.2 Risk of bias
+### 2.5.2 Risk of bias
 
 ![](data/human/LSR1RoBVisuals/robacceptability1.png){width="65%"}
 
-### 2.6.3 Meta-regression analyses
+### 2.5.3 Meta-regression analyses
 
 **Figure 9.** Risk of bias assessment.
 
 The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on acceptability.
-For anxiety baseline, the regression coefficient ($\beta$) is intended per point increase.
-For age, the regression coefficient ($\beta$) is intended per year of age increase.
-For female proportion, the regression coefficient ($\beta$) is intended per percentage point increase.
-For treatment duration, the regression coefficient ($\beta$) is intended per week increase.
-We did not perform a meta-regression on mean anhedonia baseline score as the total number of studies was below 10.
 
 |                                                   |                     OR                     |                                           95% CI                                           |                𝞽^2^                |
 |:-----------------:|:----------------:|:----------------:|:----------------:|
@@ -309,11 +326,11 @@ We did not perform a meta-regression on mean anhedonia baseline score as the tot
 | Female proportion (per percentage point increase) | `r round(reg.acc.female[["beta"]][2], 2)`  |  `r round(reg.acc.female[["ci.lb"]][2], 2)` to `r round(reg.acc.female[["ci.ub"]][2], 2)`  | `r round(reg.acc.female$tau2, 2)`  |
 |      Treatment duration (per week increase)       |   `r round(reg.acc.tx[["beta"]][2], 2)`    |      `r round(reg.acc.tx[["ci.lb"]][2], 2)` to `r round(reg.acc.tx[["ci.ub"]][2], 2)`      |   `r round(reg.acc.tx$tau2, 2)`    |
 
-The smaller 𝞽^2^ value for anxiety baseline suggests that this predictor seem to explain the heterogeneity.
+The smaller 𝞽^2^ value for anxiety baseline suggests that this variable seem to explain the heterogeneity.
 
-## 2.7 Secondary outcome: dropouts due to side effects
+## 2.6 Secondary outcome: dropouts due to side effects
 
-### 2.7.1 Pairwise meta-analysis
+### 2.6.1 Pairwise meta-analysis
 
 ```{r tolerability_forest, echo=FALSE, fig.width=11, fig.height=15}
 
@@ -333,19 +350,15 @@ forest(pwma.tol,
 **Figure 10** Forest plot for dropouts due to adverse events for the comparison of pro-dopaminergic interventions vs placebo at 4-12 weeks.
 OR: odds ratio, 95% CI: 95% confidence intervals.RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
-The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.tol$lower.random) < 1) & (exp(pwma.tol$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.tol$lower.random > 1)) & (exp(pwma.tol$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.tol$TE.random), 3)` (95% CI from `r round(exp(pwma.tol$lower.random), 3)` to `r round(exp(pwma.tol$upper.random), 3)`).
-The study results presented a 𝞽^2^ value of `r round(pwma.tol$tau2, 3)` indicating the presence of some heterogeneity (95% prediction interval from `r round(exp(pwma.acc$lower.predict), 3)` to `r round(exp(pwma.tol$upper.predict), 3)`).
-
-### 2.7.2 Risk of bias
+### 2.6.2 Risk of bias
 
 ![](data/human/LSR1RoBVisuals/robtolerability1.png){width="65%"}
 
 **Figure 11.** Risk of bias assessment.
 
-### 2.7.3 Meta-regression analyses
+### 2.6.3 Meta-regression analyses
 
 The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on tolerability.
-We did not perform a meta-regression on mean anhedonia baseline score as the total number of studies was below 10.
 
 |                                                   |                     OR                     |                                           95% CI                                           |                𝞽^2^                |
 |:-----------------:|:----------------:|:----------------:|:----------------:|
@@ -358,9 +371,9 @@ We did not perform a meta-regression on mean anhedonia baseline score as the tot
 
 The smaller 𝞽^2^ values for anxiety baseline and female proportion suggest that these predictors seem to explain the heterogeneity.
 
-## 2.8 Secondary outcome: nausea
+## 2.7 Secondary outcome: nausea
 
-### 2.8.1 Pairwise meta-analysis
+### 2.7.1 Pairwise meta-analysis
 
 ```{r nausea_forest, echo=FALSE, fig.width=11, fig.height=12}
 forest(pwma.nausea, 
@@ -380,19 +393,15 @@ forest(pwma.nausea,
 OR: odds ratio, 95% CI: 95% confidence intervals.
 RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
-The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.nausea$lower.random) < 1) & (exp(pwma.nausea$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.nausea$lower.random) > 1) & (exp(pwma.nausea$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.nausea$TE.random), 3)` (95% CI from `r round(exp(pwma.nausea$lower.random), 3)` to `r round(exp(pwma.nausea$upper.random), 3)`).
-The study results presented a 𝞽^2^ value of `r round(pwma.nausea$tau2, 3)` indicating the presence of some heterogeneity (95% prediction interval from `r round(exp(pwma.nausea$lower.predict), 3)` to `r round(exp(pwma.nausea$upper.predict), 3)`).
-
-### 2.8.2 Risk of bias
+### 2.7.2 Risk of bias
 
 ![](data/human/LSR1RoBVisuals/robnausea1.png){width="65%"}
 
 **Figure 13.** Risk of bias assessment.
 
-### 2.8.3 Meta-regression analyses
+### 2.7.3 Meta-regression analyses
 
 The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on nausea.
-We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
 |                                                   |                      OR                      |                                             95% CI                                             |                 𝞽^2^                 |
 |:-----------------:|:----------------:|:----------------:|:----------------:|
@@ -402,9 +411,9 @@ We did not perform a meta-regression on mean anhedonia and anxiety baseline scor
 | Female proportion (per percentage point increase) | `r round(reg.nausea.female[["beta"]][2], 2)` | `r round(reg.nausea.female[["ci.lb"]][2], 2)` to `r round(reg.nausea.female[["ci.ub"]][2], 2)` | `r round(reg.nausea.female$tau2, 2)` |
 |      Treatment duration (per week increase)       |   `r round(reg.nausea.tx[["beta"]][2], 2)`   |     `r round(reg.nausea.tx[["ci.lb"]][2], 2)` to `r round(reg.nausea.tx[["ci.ub"]][2], 2)`     |   `r round(reg.nausea.tx$tau2, 2)`   |
 
-## 2.9 Secondary outcome: headache
+## 2.8 Secondary outcome: headache
 
-### 2.9.1 Pairwise meta-analysis
+### 2.8.1 Pairwise meta-analysis
 
 ```{r headache_forest, echo=FALSE, fig.width=11, fig.height=12}
 forest(pwma.headache, 
@@ -424,16 +433,13 @@ forest(pwma.headache,
 OR: odds ratio, 95% CI: 95% confidence intervals.
 RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
-The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.headache$lower.random) < 1) & (exp(pwma.headache$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.headache$lower.random) > 1) & (exp(pwma.headache$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.headache$TE.random), 3)` (95% CI from `r round(exp(pwma.headache$lower.random), 3)` to `r round(exp(pwma.headache$upper.random), 3)`).
-The study results presented a 𝞽^2^ value of `r round(pwma.headache$tau2, 3)` indicating little to no heterogeneity (95% prediction interval from `r round(exp(pwma.headache$lower.predict), 3)` to `r round(exp(pwma.headache$upper.predict), 3)`).
-
-### 2.9.2 Risk of bias
+### 2.8.2 Risk of bias
 
 ![](data/human/LSR1RoBVisuals/robheadache1.png){width="65%"}
 
 **Figure 15.** Risk of bias assessment.
 
-### 2.9.3 Meta-regression analyses
+### 2.8.3 Meta-regression analyses
 
 The table below shows which of the covariates, if any, could modify the relative treatment effect of pro-dopaminergic interventions on headache.
 We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
@@ -446,9 +452,9 @@ We did not perform a meta-regression on mean anhedonia and anxiety baseline scor
 | Female proportion (per percentage point increase) | `r round(reg.headache.female[["beta"]][2], 2)` | `r round(reg.headache.female[["ci.lb"]][2], 2)` to `r round(reg.headache.female[["ci.ub"]][2], 2)` | `r round(reg.headache.female$tau2, 2)` |
 |      Treatment duration (per week increase)       |   `r round(reg.headache.tx[["beta"]][2], 2)`   |     `r round(reg.headache.tx[["ci.lb"]][2], 2)` to `r round(reg.headache.tx[["ci.ub"]][2], 2)`     |   `r round(reg.headache.tx$tau2, 2)`   |
 
-## 2.10 Secondary outcome: insomnia
+## 2.9 Secondary outcome: insomnia
 
-### 2.10.1 Pairwise meta-analysis
+### 2.9.1 Pairwise meta-analysis
 
 ```{r insomnia_forest, echo=FALSE, fig.width=11, fig.height=10}
 forest(pwma.insomnia, 
@@ -468,19 +474,15 @@ forest(pwma.insomnia,
 OR: odds ratio, 95% CI: 95% confidence intervals.
 RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
-The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.insomnia$lower.random) < 1) & (exp(pwma.insomnia$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.insomnia$lower.random) > 1) & (exp(pwma.insomnia$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.insomnia$TE.random), 3)` (95% CI from `r round(exp(pwma.insomnia$lower.random), 3)` to `r round(exp(pwma.insomnia$upper.random), 3)`).
-The study results presented a 𝞽^2^ value of `r round(pwma.insomnia$tau2, 3)` indicating some heterogeneity (95% prediction interval from `r round(exp(pwma.insomnia$lower.predict), 3)` to `r round(exp(pwma.insomnia$upper.predict), 3)`).
-
-### 2.10.2 Risk of bias
+### 2.9.2 Risk of bias
 
 ![](data/human/LSR1RoBVisuals/robinsomnia1.png){width="65%"}
 
 **Figure 17.** Risk of bias assessment.
 
-### 2.10.3 Meta-regression analyses
+### 2.9.3 Meta-regression analyses
 
 The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on insomnia.
-We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
 |                                                   |                       OR                       |                                               95% CI                                               |                  𝞽^2^                  |
 |:-----------------:|:----------------:|:----------------:|:----------------:|
@@ -490,9 +492,9 @@ We did not perform a meta-regression on mean anhedonia and anxiety baseline scor
 | Female proportion (per percentage point increase) | `r round(reg.insomnia.female[["beta"]][2], 2)` | `r round(reg.insomnia.female[["ci.lb"]][2], 2)` to `r round(reg.insomnia.female[["ci.ub"]][2], 2)` | `r round(reg.insomnia.female$tau2, 2)` |
 |      Treatment duration (per week increase)       |   `r round(reg.insomnia.tx[["beta"]][2], 2)`   |     `r round(reg.insomnia.tx[["ci.lb"]][2], 2)` to `r round(reg.insomnia.tx[["ci.ub"]][2], 2)`     |   `r round(reg.insomnia.tx$tau2, 2)`   |
 
-## 2.11 Secondary outcome: constipation
+## 2.10 Secondary outcome: constipation
 
-### 2.11.1 Pairwise meta-analysis
+### 2.10.1 Pairwise meta-analysis
 
 ```{r constipation_forest, echo=FALSE, fig.width=11, fig.height=9}
 forest(pwma.constipation, 
@@ -512,21 +514,15 @@ forest(pwma.constipation,
 OR: odds ratio, 95% CI: 95% confidence intervals.
 RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
-The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.constipation$lower.random) < 1) & (exp(pwma.constipation$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.constipation$lower.random) > 1) & (exp(pwma.constipation$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.constipation$TE.random), 3)` (95% CI from `r round(exp(pwma.constipation$lower.random), 3)` to `r round(exp(pwma.constipation$upper.random), 3)`).
-The study results presented a 𝞽^2^ value of `r round(pwma.constipation$tau2, 3)` indicating little to no heterogeneity (95% prediction interval from `r round(exp(pwma.constipation$lower.predict), 3)` to `r round(exp(pwma.constipation$upper.predict), 3)`).
-
-There were no important differences between participants assigned to different classes of drug.
-
-### 2.11.2 Risk of bias
+### 2.10.2 Risk of bias
 
 ![](data/human/LSR1RoBVisuals/robconstipation1.png){width="65%"}
 
 **Figure 19.** Risk of bias assessment.
 
-### 2.11.3 Meta-regression analyses
+### 2.10.3 Meta-regression analyses
 
 The table below shows which of the covariates, if any, could modify the relative treatment effect of pro-dopaminergic interventions on constipation.
-We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
 |                                                   |                         OR                         |                                                   95% CI                                                   |                    𝞽^2^                    |
 |:-----------------:|:----------------:|:----------------:|:----------------:|
@@ -536,7 +532,7 @@ We did not perform a meta-regression on mean anhedonia and anxiety baseline scor
 | Female proportion (per percentage point increase) | `r round(reg.constipation.female[["beta"]][2], 2)` | `r round(reg.constipation.female[["ci.lb"]][2], 2)` to `r round(reg.constipation.female[["ci.ub"]][2], 2)` | `r round(reg.constipation.female$tau2, 2)` |
 |      Treatment duration (per week increase)       |   `r round(reg.constipation.tx[["beta"]][2], 2)`   |     `r round(reg.constipation.tx[["ci.lb"]][2], 2)` to `r round(reg.constipation.tx[["ci.ub"]][2], 2)`     |   `r round(reg.constipation.tx$tau2, 2)`   |
 
-## 2.12 Secondary outcome: dizziness
+## 2.11 Secondary outcome: dizziness
 
 ### 2.12.1 Pairwise meta-analysis
 
@@ -558,20 +554,15 @@ forest(pwma.dizziness,
 OR: odds ratio, 95% CI: 95% confidence intervals.
 RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
-The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.dizziness$lower.random) < 1) & (exp(pwma.dizziness$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.dizziness$lower.random) > 1) & (exp(pwma.dizziness$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.dizziness$TE.random), 3)` (95% CI from `r round(exp(pwma.dizziness$lower.random), 3)` to `r round(exp(pwma.dizziness$upper.random), 3)`).
-The study results presented a 𝞽^2^ value of `r round(pwma.dizziness$tau2, 3)`.
-There is some heterogeneity as shown by the 95% prediction interval from `r round(exp(pwma.dizziness$lower.predict), 3)` to `r round(exp(pwma.dizziness$upper.predict), 3)`.
-
-### 2.12.2 Risk of bias
+### 2.11.2 Risk of bias
 
 ![](data/human/LSR1RoBVisuals/robdizziness1.png){width="65%"}
 
 **Figure 21.** Risk of bias assessment.
 
-### 2.12.3 Meta-regression analyses
+### 2.11.3 Meta-regression analyses
 
 The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on dizziness.
-We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
 |                                                   |                       OR                        |                                                95% CI                                                |                  𝞽^2^                   |
 |:-----------------:|:----------------:|:----------------:|:----------------:|
@@ -583,9 +574,9 @@ We did not perform a meta-regression on mean anhedonia and anxiety baseline scor
 
 The smaller 𝞽^2^ values for female proportion and treatment duration suggest that these predictors may explain some of the heterogeneity.
 
-## 2.13 Secondary outcome: dry mouth
+## 2.12 Secondary outcome: dry mouth
 
-### 2.13.1 Pairwise meta-analysis
+### 2.12.1 Pairwise meta-analysis
 
 ```{r dry_mouth_forest, echo=FALSE, fig.width=11, fig.height=10}
 forest(pwma.dry_mouth, 
@@ -605,19 +596,15 @@ forest(pwma.dry_mouth,
 OR: odds ratio, 95% CI: 95% confidence intervals.
 RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
-The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.dry_mouth$lower.random) < 1) & (exp(pwma.dry_mouth$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.dry_mouth$lower.random) > 1) & (exp(pwma.dry_mouth$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.dry_mouth$TE.random), 3)` (95% CI from `r round(exp(pwma.dry_mouth$lower.random), 3)` to `r round(exp(pwma.dry_mouth$upper.random), 3)`).
-The study results presented a 𝞽^2^ value of `r round(pwma.dry_mouth$tau2, 3)` indicating some heterogeneity (95% prediction interval from `r round(exp(pwma.dry_mouth$lower.predict), 3)` to `r round(exp(pwma.dry_mouth$upper.predict), 3)`).
-
-### 2.13.2 Risk of bias
+### 2.12.2 Risk of bias
 
 ![](data/human/LSR1RoBVisuals/robdrymouth1.png){width="65%"}
 
 **Figure 23.** Risk of bias assessment.
 
-### 2.13.3 Meta-regression analyses
+### 2.12.3 Meta-regression analyses
 
 The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on dry mouth.
-We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
 |                                                   |                       OR                        |                                                95% CI                                                |                  𝞽^2^                   |
 |:----------------:|:----------------:|:-----------------:|:----------------:|
@@ -629,9 +616,9 @@ We did not perform a meta-regression on mean anhedonia and anxiety baseline scor
 
 The smaller 𝞽^2^ value for female proportion suggests that this predictor seems to explain some of the heterogeneity.
 
-## 2.14 Secondary outcome: vomiting
+## 2.13 Secondary outcome: vomiting
 
-### 2.14.1 Pairwise meta-analysis
+### 2.13.1 Pairwise meta-analysis
 
 ```{r vomiting_forest, echo=FALSE, fig.width=11}
 forest(pwma.vomiting, 
@@ -651,22 +638,17 @@ forest(pwma.vomiting,
 OR: odds ratio, 95% CI: 95% confidence intervals.
 RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
-`r pwma.vomiting$k.TE` `r ifelse(pwma.vomiting$k.TE>1, 'studies', 'study')` contributed with data to the meta-analysis with a total of `r sum(c(pwma.vomiting$n.e., pwma.vomiting$n.c.), na.rm = T)` participants (`r sum(pwma.vomiting$n.e.)` allocated to pro-dopaminergic interventions, `r sum(pwma.vomiting$n.c.)` allocated to pill placebo).
-
-The mean effect of pro-dopaminergic interventions versus placebo showed `r ifelse(((exp(pwma.vomiting$lower.random) < 1) & (exp(pwma.vomiting$upper.random) < 1)), 'an effect favouring pro-dopaminergic interventions', ifelse(((exp(pwma.vomiting$lower.random) > 1) & (exp(pwma.vomiting$upper.random) > 1)), 'an effect favouring placebo', 'a comparable effect not excluding the null effect'))` with an OR of `r round(exp(pwma.vomiting$TE.random), 3)` (95% CI from `r round(exp(pwma.vomiting$lower.random), 3)` to `r round(exp(pwma.vomiting$upper.random), 3)`).
-The study results presented a 𝞽^2^ value of `r round(pwma.vomiting$tau2, 3)` indicating little to no heterogeneity (95% prediction interval from `r round(exp(pwma.vomiting$lower.predict), 3)` to `r round(exp(pwma.vomiting$upper.predict), 3)`).
-
-### 2.14.2 Risk of bias
+### 2.13.2 Risk of bias
 
 ![](data/human/LSR1RoBVisuals/robvomiting1.png){width="65%"}
 
 **Figure 25.** Risk of bias assessment.
 
-### 2.14.3 Meta-regression analyses
+### 2.13.3 Meta-regression analyses
 
 We did not perform any meta-regressions as the total number of studies was below 10.
 
-## 2.15 Summary of evidence tables
+## 2.14 Summary of evidence tables
 
 ```{r echo = F}
 SoE_Indir <- read_xlsx("data/human/LSR1_H_SOE.xlsx")
@@ -674,8 +656,6 @@ SoE_Indir <- read_xlsx("data/human/LSR1_H_SOE.xlsx")
 knitr::kable(SoE_Indir) %>%
   kable_styling(bootstrap_options = "bordered")
 ```
-
-**Table 2.** Summary of evidence table for the considered outcomes.
 
 # 3. Abbreviations
 
@@ -714,14 +694,22 @@ We used R version 4.3.1 (R Core Team 2023) and the following packages; meta (Bal
     Assessing risk of bias in a randomized trial. 
     *Cochrane handbook for systematic reviews of interventions*, 205-228.
 
--   Page, M. J., Sterne, J. A., Boutron, I., Hróbjartsson, A., Kirkham, J. J., Li, T., ...
-    & Higgins, J. P. (2023).
+-   Page, M. J., Sterne, J. A., Boutron, I., Hróbjartsson, A., Kirkham, J. J., Li, T., ... & Higgins, J. P. (2023).
     ROB-ME: a tool for assessing risk of bias due to missing evidence in systematic reviews with meta-analysis. 
     *bmj*, *383*
 
-# 6. Risk of Bias - Missing Evidence Assessment
+# 6 Table of included studies
 
-## 6.1 ROB-ME Matrix Step 1
+```{r table_of_characteristics_anhedonia, echo=F, results='asis'}
+
+toc <- read_xlsx("data/human/toc.xlsx")
+knitr::kable(toc, escape = F) %>%
+  kable_styling(bootstrap_options = "bordered")
+```
+
+# 7. Risk of Bias - Missing Evidence Assessment
+
+## 7.1 ROB-ME Matrix Step 1
 
 ```{r echo = F}
 rob_me1 <- read_xlsx("data/human/LSR1_ROB_ME.xlsx", "Step 1")
@@ -729,10 +717,10 @@ knitr::kable(rob_me1) %>%
   kable_styling(bootstrap_options = "bordered")
 ```
 
-## 6.2 ROB-ME Matrix Step 2
+## 7.2 ROB-ME Matrix Step 2
 
 1 = A study result is available for inclusion in the meta-analysis, 2 = no study result is available for inclusion in the meta-analysis, for a reason unrelated to the P value, magnitude or direction of the result, 3 = unclear whether an eligible study result was generated, 4 = no study result is available for inclusion in the meta-analysis, likely because of the P value, magnitude or direction of the result generated, .
-= study did not measure outcome.
+= study did not measure outcome based on information provided in the publication or clinical trial report.
 
 ```{r echo = F}
 rob_me2 <- read_xlsx("data/human/LSR1_ROB_ME.xlsx", "Step 2")
@@ -740,9 +728,9 @@ knitr::kable(rob_me2) %>%
   kable_styling(bootstrap_options = "bordered")
 ```
 
-## 6.2 ROB-ME Step 3 & 4
+## 7.3 ROB-ME Step 3 & 4
 
-Scores indicate potential for missing studies in the review (3) and risk of bias due to missing evidence in the meta-analysis, as per the ROB-ME tool.
+Scores indicate potential for missing studies in the review (3) and risk of bias due to missing evidence in the meta-analysis, as per the ROB-ME tool, abbreviations indicate answers to signalling questions in the tool algorithm N = no, PN = probably no, PY = probably yes, Y = yes, NA = question not applicable.
 
 ```{r echo = F}
 rob_me3 <- read_xlsx("data/human/LSR1_ROB_ME.xlsx", "Steps 3 & 4")
