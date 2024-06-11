@@ -1,6 +1,6 @@
 ---
-title: "Pro-dopaminergic pharmacological interventions for anhedonia in depression: a living systematic review and meta-analysis of human and non-human data "
-author: "Edoardo G. Ostinelli, Jaycee Kennett,, Virginia Chiocchia, Malcolm Macleod, Claire Friedrich,, Francesca Tinsdeall, Ava Homiar,, Charlotte Austin,,  Fiona Ramage,  Eduarda Raquel Almeida Batista,, Michael Browning,, Catherine Harmer, Spyridon Siafis, Claire Stansfield, Hossein Dehdarirad, Ayse Kurtulmus, Maddalena Cipriani, Rossario Aronica, Olena Maksym, Simonne Wright, Tannatswa Chikaura, Lea Milligan, James Thomas, Carmen Moreno, Toshi A Furukawa, Soraya Seedat, Jennifer Potts,, Georgia Salanti, Andrea Cipriani,vand the GALENOS team <span style='font-size: 15px'></style>"
+title: "Pro-dopaminergic pharmacological interventions for anhedonia in depression: a living systematic review and meta-analysis of human and non-human data"
+author: "Edoardo G Ostinelli, Jaycee Kennett, Virginia Chiocchia, Malcolm Macleod, Claire Friedrich, Francesca Tinsdeall, Ava Homiar, Charlotte Austin, Fiona Ramage,  Eduarda RA Batista, Michael Browning, Catherine Harmer, Spyridon Siafis, Claire Stansfield, Hossein Dehdarirad, Ayse Kurtulmus, Maddalena Cipriani, Olena Maksym, Simonne Wright, Tannatswa Chikaura, Lea Milligan, James Thomas, Carmen Moreno, Toshi A Furukawa, Soraya Seedat, Jennifer Potts, Georgia Salanti, Andrea Cipriani, and the GALENOS team<span style='font-size: 15px'></style>"
 output: 
   html_document:
       toc: TRUE
