@@ -1,6 +1,6 @@
 ---
 title: "Pro-dopaminergic pharmacological interventions for anhedonia in depression: a living systematic review and meta-analysis of human and non-human data"
-author: "Edoardo G Ostinelli, Jaycee Kennett, Virginia Chiocchia, Malcolm Macleod, Claire Friedrich, Francesca Tinsdeall, Ava Homiar, Charlotte Austin, Fiona Ramage,  Eduarda RA Batista, Michael Browning, Catherine Harmer, Spyridon Siafis, Claire Stansfield, Hossein Dehdarirad, Ayse Kurtulmus, Maddalena Cipriani, Olena Maksym, Simonne Wright, Tannatswa Chikaura, Lea Milligan, James Thomas, Carmen Moreno, Toshi A Furukawa, Soraya Seedat, Jennifer Potts, Georgia Salanti, Andrea Cipriani, and the GALENOS team<span style='font-size: 15px'></style>"
+author: "Edoardo G Ostinelli, Jaycee Kennett, Virginia Chiocchia, Malcolm Macleod, Claire Friedrich, Francesca Tinsdeall, Ava Homiar, Charlotte Austin, Fiona Ramage,  Eduarda RA Batista, Michael Browning, Catherine Harmer, Spyridon Siafis, Claire Stansfield, Hossein Dehdarirad, Ayse Kurtulmus, Maddalena Cipriani, Olena Maksym, Simonne Wright, Tannatswa Chikaura, Lea Milligan, James Thomas, Carmen Moreno, Toshi A Furukawa, Soraya Seedat, Jennifer Potts, Georgia Salanti, Andrea Cipriani, and the GALENOS team.<span style='font-size: 15px'></style>"
 output: 
   html_document:
       toc: TRUE
@@ -10,8 +10,6 @@ editor_options:
   markdown: 
     wrap: sentence
 ---
-
-### 
 
 ## Abstract
 
@@ -321,10 +319,10 @@ The table below shows which of the covariates, if any, explain some of the heter
 |:-----------------:|:----------------:|:----------------:|:----------------:|
 |                 Unadjusted effect                 |   `r round(exp(pwma.acc$TE.random), 3)`    |    `r round(exp(pwma.acc$lower.random), 3)` to `r round(exp(pwma.acc$upper.random), 3)`    |    `r round(pwma.acc$tau2, 2)`     |
 |                   **Moderator**                   |                                            |                                         **95% CI**                                         |              **𝞽^2^**              |
-|       Anxiety baseline (per point increase)       | `r round(reg.acc.anxiety[["beta"]][2], 2)` | `r round(reg.acc.anxiety[["ci.lb"]][2], 2)` to `r round(reg.acc.anxiety[["ci.ub"]][2], 2)` | `r round(reg.acc.anxiety$tau2, 2)` |
-|            Age (per 10 year increase)             |   `r round(reg.acc.age[["beta"]][2], 2)`   |     `r round(reg.acc.age[["ci.lb"]][2], 2)` to `r round(reg.acc.age[["ci.ub"]][2], 2)`     |   `r round(reg.acc.age$tau2, 2)`   |
-| Female proportion (per percentage point increase) | `r round(reg.acc.female[["beta"]][2], 2)`  |  `r round(reg.acc.female[["ci.lb"]][2], 2)` to `r round(reg.acc.female[["ci.ub"]][2], 2)`  | `r round(reg.acc.female$tau2, 2)`  |
-|      Treatment duration (per week increase)       |   `r round(reg.acc.tx[["beta"]][2], 2)`    |      `r round(reg.acc.tx[["ci.lb"]][2], 2)` to `r round(reg.acc.tx[["ci.ub"]][2], 2)`      |   `r round(reg.acc.tx$tau2, 2)`    |
+|       Anxiety baseline (per point increase)       | `r round(exp(reg.acc.anxiety[["beta"]][2]), 2)` | `r round(exp(reg.acc.anxiety[["ci.lb"]][2]), 2)` to `r round(exp(reg.acc.anxiety[["ci.ub"]][2]), 2)` | `r round(reg.acc.anxiety$tau2, 2)` |
+|            Age (per 10 year increase)             |   `r round(exp(reg.acc.age[["beta"]][2]), 2)`   |     `r round(exp(reg.acc.age[["ci.lb"]][2]), 2)` to `r round(exp(reg.acc.age[["ci.ub"]][2]), 2)`     |   `r round(reg.acc.age$tau2, 2)`   |
+| Female proportion (per percentage point increase) | `r round(exp(reg.acc.female[["beta"]][2]), 2)`  |  `r round(exp(reg.acc.female[["ci.lb"]][2]), 2)` to `r round(exp(reg.acc.female[["ci.ub"]][2]), 2)`  | `r round(reg.acc.female$tau2, 2)`  |
+|      Treatment duration (per week increase)       |   `r round(exp(reg.acc.tx[["beta"]][2]), 2)`    |      `r round(exp(reg.acc.tx[["ci.lb"]][2]), 2)` to `r round(exp(reg.acc.tx[["ci.ub"]][2]), 2)`      |   `r round(reg.acc.tx$tau2, 2)`    |
 
 The smaller 𝞽^2^ value for anxiety baseline suggests that this variable seem to explain the heterogeneity.
 
@@ -364,10 +362,10 @@ The table below shows which of the covariates, if any, explain some of the heter
 |:-----------------:|:----------------:|:----------------:|:----------------:|
 |                 Unadjusted effect                 |   `r round(exp(pwma.tol$TE.random), 3)`    |    `r round(exp(pwma.tol$lower.random), 3)` to `r round(exp(pwma.tol$upper.random), 3)`    |    `r round(pwma.tol$tau2, 2)`     |
 |                   **Moderator**                   |                                            |                                         **95% CI**                                         |              **𝞽^2^**              |
-|       Anxiety baseline (per point increase)       | `r round(reg.tol.anxiety[["beta"]][2], 2)` | `r round(reg.tol.anxiety[["ci.lb"]][2], 2)` to `r round(reg.tol.anxiety[["ci.ub"]][2], 2)` | `r round(reg.tol.anxiety$tau2, 2)` |
-|            Age (per 10 year increase)             |   `r round(reg.tol.age[["beta"]][2], 2)`   |     `r round(reg.tol.age[["ci.lb"]][2], 2)` to `r round(reg.tol.age[["ci.ub"]][2], 2)`     |   `r round(reg.tol.age$tau2, 2)`   |
-| Female proportion (per percentage point increase) | `r round(reg.tol.female[["beta"]][2], 2)`  |  `r round(reg.tol.female[["ci.lb"]][2], 2)` to `r round(reg.tol.female[["ci.ub"]][2], 2)`  | `r round(reg.tol.female$tau2, 2)`  |
-|      Treatment duration (per week increase)       |   `r round(reg.tol.tx[["beta"]][2], 2)`    |      `r round(reg.tol.tx[["ci.lb"]][2], 2)` to `r round(reg.tol.tx[["ci.ub"]][2], 2)`      |   `r round(reg.tol.tx$tau2, 2)`    |
+|       Anxiety baseline (per point increase)       | `r round(exp(reg.tol.anxiety[["beta"]][2]), 2)` | `r round(exp(reg.tol.anxiety[["ci.lb"]][2]), 2)` to `r round(exp(reg.tol.anxiety[["ci.ub"]][2]), 2)` | `r round(reg.tol.anxiety$tau2, 2)` |
+|            Age (per 10 year increase)             |   `r round(exp(reg.tol.age[["beta"]][2]), 2)`   |     `r round(exp(reg.tol.age[["ci.lb"]][2]), 2)` to `r round(exp(reg.tol.age[["ci.ub"]][2]), 2)`     |   `r round(reg.tol.age$tau2, 2)`   |
+| Female proportion (per percentage point increase) | `r round(exp(reg.tol.female[["beta"]][2]), 2)`  |  `r round(exp(reg.tol.female[["ci.lb"]][2]), 2)` to `r round(exp(reg.tol.female[["ci.ub"]][2]), 2)`  | `r round(reg.tol.female$tau2, 2)`  |
+|      Treatment duration (per week increase)       |   `r round(exp(reg.tol.tx[["beta"]][2]), 2)`    |      `r round(exp(reg.tol.tx[["ci.lb"]][2]), 2)` to `r round(exp(reg.tol.tx[["ci.ub"]][2]), 2)`      |   `r round(reg.tol.tx$tau2, 2)`    |
 
 The smaller 𝞽^2^ values for anxiety baseline and female proportion suggest that these predictors seem to explain the heterogeneity.
 
@@ -407,9 +405,9 @@ The table below shows which of the covariates, if any, explain some of the heter
 |:-----------------:|:----------------:|:----------------:|:----------------:|
 |                 Unadjusted effect                 |   `r round(exp(pwma.nausea$TE.random), 3)`   |   `r round(exp(pwma.nausea$lower.random), 3)` to `r round(exp(pwma.nausea$upper.random), 3)`   |    `r round(pwma.nausea$tau2, 2)`    |
 |                   **Moderator**                   |                                              |                                           **95% CI**                                           |               **𝞽^2^**               |
-|            Age (per 10 year increase)             |  `r round(reg.nausea.age[["beta"]][2], 2)`   |    `r round(reg.nausea.age[["ci.lb"]][2], 2)` to `r round(reg.nausea.age[["ci.ub"]][2], 2)`    |  `r round(reg.nausea.age$tau2, 2)`   |
-| Female proportion (per percentage point increase) | `r round(reg.nausea.female[["beta"]][2], 2)` | `r round(reg.nausea.female[["ci.lb"]][2], 2)` to `r round(reg.nausea.female[["ci.ub"]][2], 2)` | `r round(reg.nausea.female$tau2, 2)` |
-|      Treatment duration (per week increase)       |   `r round(reg.nausea.tx[["beta"]][2], 2)`   |     `r round(reg.nausea.tx[["ci.lb"]][2], 2)` to `r round(reg.nausea.tx[["ci.ub"]][2], 2)`     |   `r round(reg.nausea.tx$tau2, 2)`   |
+|            Age (per 10 year increase)             |  `r round(exp(reg.nausea.age[["beta"]][2]), 2)`   |    `r round(exp(reg.nausea.age[["ci.lb"]][2]), 2)` to `r round(exp(reg.nausea.age[["ci.ub"]][2]), 2)`    |  `r round(reg.nausea.age$tau2, 2)`   |
+| Female proportion (per percentage point increase) | `r round(exp(reg.nausea.female[["beta"]][2]), 2)` | `r round(exp(reg.nausea.female[["ci.lb"]][2]), 2)` to `r round(exp(reg.nausea.female[["ci.ub"]][2]), 2)` | `r round(reg.nausea.female$tau2, 2)` |
+|      Treatment duration (per week increase)       |   `r round(exp(reg.nausea.tx[["beta"]][2]), 2)`   |     `r round(exp(reg.nausea.tx[["ci.lb"]][2]), 2)` to `r round(exp(reg.nausea.tx[["ci.ub"]][2]), 2)`     |   `r round(reg.nausea.tx$tau2, 2)`   |
 
 ## 2.8 Secondary outcome: headache
 
@@ -448,9 +446,9 @@ We did not perform a meta-regression on mean anhedonia and anxiety baseline scor
 |:-----------------:|:----------------:|:----------------:|:----------------:|
 |                 Unadjusted effect                 |   `r round(exp(pwma.headache$TE.random), 3)`   |   `r round(exp(pwma.headache$lower.random), 3)` to `r round(exp(pwma.headache$upper.random), 3)`   |    `r round(pwma.headache$tau2, 2)`    |
 |                   **Moderator**                   |                                                |                                             **95% CI**                                             |                **𝞽^2^**                |
-|            Age (per 10 year increase)             |  `r round(reg.headache.age[["beta"]][2], 2)`   |    `r round(reg.headache.age[["ci.lb"]][2], 2)` to `r round(reg.headache.age[["ci.ub"]][2], 2)`    |  `r round(reg.headache.age$tau2, 2)`   |
-| Female proportion (per percentage point increase) | `r round(reg.headache.female[["beta"]][2], 2)` | `r round(reg.headache.female[["ci.lb"]][2], 2)` to `r round(reg.headache.female[["ci.ub"]][2], 2)` | `r round(reg.headache.female$tau2, 2)` |
-|      Treatment duration (per week increase)       |   `r round(reg.headache.tx[["beta"]][2], 2)`   |     `r round(reg.headache.tx[["ci.lb"]][2], 2)` to `r round(reg.headache.tx[["ci.ub"]][2], 2)`     |   `r round(reg.headache.tx$tau2, 2)`   |
+|            Age (per 10 year increase)             |  `r round(exp(reg.headache.age[["beta"]][2]), 2)`   |    `r round(exp(reg.headache.age[["ci.lb"]][2]), 2)` to `r round(exp(reg.headache.age[["ci.ub"]][2]), 2)`    |  `r round(reg.headache.age$tau2, 2)`   |
+| Female proportion (per percentage point increase) | `r round(exp(reg.headache.female[["beta"]][2]), 2)` | `r round(exp(reg.headache.female[["ci.lb"]][2]), 2)` to `r round(exp(reg.headache.female[["ci.ub"]][2]), 2)` | `r round(reg.headache.female$tau2, 2)` |
+|      Treatment duration (per week increase)       |   `r round(exp(reg.headache.tx[["beta"]][2]), 2)`   |     `r round(exp(reg.headache.tx[["ci.lb"]][2]), 2)` to `r round(exp(reg.headache.tx[["ci.ub"]][2]), 2)`     |   `r round(reg.headache.tx$tau2, 2)`   |
 
 ## 2.9 Secondary outcome: insomnia
 
@@ -488,9 +486,9 @@ The table below shows which of the covariates, if any, explain some of the heter
 |:-----------------:|:----------------:|:----------------:|:----------------:|
 |                 Unadjusted effect                 |   `r round(exp(pwma.insomnia$TE.random), 3)`   |   `r round(exp(pwma.insomnia$lower.random), 3)` to `r round(exp(pwma.insomnia$upper.random), 3)`   |    `r round(pwma.insomnia$tau2, 2)`    |
 |                   **Moderator**                   |                                                |                                             **95% CI**                                             |                **𝞽^2^**                |
-|            Age (per 10 year increase)             |  `r round(reg.insomnia.age[["beta"]][2], 2)`   |    `r round(reg.insomnia.age[["ci.lb"]][2], 2)` to `r round(reg.insomnia.age[["ci.ub"]][2], 2)`    |  `r round(reg.insomnia.age$tau2, 2)`   |
-| Female proportion (per percentage point increase) | `r round(reg.insomnia.female[["beta"]][2], 2)` | `r round(reg.insomnia.female[["ci.lb"]][2], 2)` to `r round(reg.insomnia.female[["ci.ub"]][2], 2)` | `r round(reg.insomnia.female$tau2, 2)` |
-|      Treatment duration (per week increase)       |   `r round(reg.insomnia.tx[["beta"]][2], 2)`   |     `r round(reg.insomnia.tx[["ci.lb"]][2], 2)` to `r round(reg.insomnia.tx[["ci.ub"]][2], 2)`     |   `r round(reg.insomnia.tx$tau2, 2)`   |
+|            Age (per 10 year increase)             |  `r round(exp(reg.insomnia.age[["beta"]][2]), 2)`   |    `r round(exp(reg.insomnia.age[["ci.lb"]][2]), 2)` to `r round(exp(reg.insomnia.age[["ci.ub"]][2]), 2)`    |  `r round(reg.insomnia.age$tau2, 2)`   |
+| Female proportion (per percentage point increase) | `r round(exp(reg.insomnia.female[["beta"]][2]), 2)` | `r round(exp(reg.insomnia.female[["ci.lb"]][2]), 2)` to `r round(exp(reg.insomnia.female[["ci.ub"]][2]), 2)` | `r round(reg.insomnia.female$tau2, 2)` |
+|      Treatment duration (per week increase)       |   `r round(exp(reg.insomnia.tx[["beta"]][2]), 2)`   |     `r round(exp(reg.insomnia.tx[["ci.lb"]][2]), 2)` to `r round(exp(reg.insomnia.tx[["ci.ub"]][2]), 2)`     |   `r round(reg.insomnia.tx$tau2, 2)`   |
 
 ## 2.10 Secondary outcome: constipation
 
@@ -528,9 +526,9 @@ The table below shows which of the covariates, if any, could modify the relative
 |:-----------------:|:----------------:|:----------------:|:----------------:|
 |                 Unadjusted effect                 |   `r round(exp(pwma.constipation$TE.random), 3)`   |   `r round(exp(pwma.constipation$lower.random), 3)` to `r round(exp(pwma.constipation$upper.random), 3)`   |    `r round(pwma.constipation$tau2, 2)`    |
 |                   **Moderator**                   |                                                    |                                                 **95% CI**                                                 |                  **𝞽^2^**                  |
-|            Age (per 10 year increase)             |  `r round(reg.constipation.age[["beta"]][2], 2)`   |    `r round(reg.constipation.age[["ci.lb"]][2], 2)` to `r round(reg.constipation.age[["ci.ub"]][2], 2)`    |  `r round(reg.constipation.age$tau2, 2)`   |
-| Female proportion (per percentage point increase) | `r round(reg.constipation.female[["beta"]][2], 2)` | `r round(reg.constipation.female[["ci.lb"]][2], 2)` to `r round(reg.constipation.female[["ci.ub"]][2], 2)` | `r round(reg.constipation.female$tau2, 2)` |
-|      Treatment duration (per week increase)       |   `r round(reg.constipation.tx[["beta"]][2], 2)`   |     `r round(reg.constipation.tx[["ci.lb"]][2], 2)` to `r round(reg.constipation.tx[["ci.ub"]][2], 2)`     |   `r round(reg.constipation.tx$tau2, 2)`   |
+|            Age (per 10 year increase)             |  `r round(exp(reg.constipation.age[["beta"]][2]), 2)`   |    `r round(exp(reg.constipation.age[["ci.lb"]][2]), 2)` to `r round(exp(reg.constipation.age[["ci.ub"]][2]), 2)`    |  `r round(reg.constipation.age$tau2, 2)`   |
+| Female proportion (per percentage point increase) | `r round(exp(reg.constipation.female[["beta"]][2]), 2)` | `r round(exp(reg.constipation.female[["ci.lb"]][2]), 2)` to `r round(exp(reg.constipation.female[["ci.ub"]][2]), 2)` | `r round(reg.constipation.female$tau2, 2)` |
+|      Treatment duration (per week increase)       |   `r round(exp(reg.constipation.tx[["beta"]][2]), 2)`   |     `r round(exp(reg.constipation.tx[["ci.lb"]][2]), 2)` to `r round(exp(reg.constipation.tx[["ci.ub"]][2]), 2)`     |   `r round(reg.constipation.tx$tau2, 2)`   |
 
 ## 2.11 Secondary outcome: dizziness
 
@@ -551,8 +549,8 @@ forest(pwma.dizziness,
 ```
 
 **Figure 20** Forest plot for dizziness for the comparison of pro-dopaminergic interventions vs placebo at 8 (4-12) weeks.
-OR: odds ratio, 95% CI: 95% confidence intervals.
-RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
+
+OR: odds ratio, 95% CI: 95% confidence intervals. RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
 ### 2.11.2 Risk of bias
 
@@ -568,9 +566,9 @@ The table below shows which of the covariates, if any, explain some of the heter
 |:-----------------:|:----------------:|:----------------:|:----------------:|
 |                 Unadjusted effect                 |   `r round(exp(pwma.dizziness$TE.random), 3)`   |   `r round(exp(pwma.dizziness$lower.random), 3)` to `r round(exp(pwma.dizziness$upper.random), 3)`   |    `r round(pwma.dizziness$tau2, 2)`    |
 |                   **Moderator**                   |                                                 |                                              **95% CI**                                              |                **𝞽^2^**                 |
-|            Age (per 10 year increase)             |  `r round(reg.dizziness.age[["beta"]][2], 2)`   |    `r round(reg.dizziness.age[["ci.lb"]][2], 2)` to `r round(reg.dizziness.age[["ci.ub"]][2], 2)`    |  `r round(reg.dizziness.age$tau2, 2)`   |
-| Female proportion (per percentage point increase) | `r round(reg.dizziness.female[["beta"]][2], 2)` | `r round(reg.dizziness.female[["ci.lb"]][2], 2)` to `r round(reg.dizziness.female[["ci.ub"]][2], 2)` | `r round(reg.dizziness.female$tau2, 2)` |
-|      Treatment duration (per week increase)       |   `r round(reg.dizziness.tx[["beta"]][2], 2)`   |     `r round(reg.dizziness.tx[["ci.lb"]][2], 2)` to `r round(reg.dizziness.tx[["ci.ub"]][2], 2)`     |   `r round(reg.dizziness.tx$tau2, 2)`   |
+|            Age (per 10 year increase)             |  `r round(exp(reg.dizziness.age[["beta"]][2]), 2)`   |    `r round(exp(reg.dizziness.age[["ci.lb"]][2]), 2)` to `r round(exp(reg.dizziness.age[["ci.ub"]][2]), 2)`    |  `r round(reg.dizziness.age$tau2, 2)`   |
+| Female proportion (per percentage point increase) | `r round(exp(reg.dizziness.female[["beta"]][2]), 2)` | `r round(exp(reg.dizziness.female[["ci.lb"]][2]), 2)` to `r round(exp(reg.dizziness.female[["ci.ub"]][2]), 2)` | `r round(reg.dizziness.female$tau2, 2)` |
+|      Treatment duration (per week increase)       |   `r round(exp(reg.dizziness.tx[["beta"]][2]), 2)`   |     `r round(exp(reg.dizziness.tx[["ci.lb"]][2]), 2)` to `r round(exp(reg.dizziness.tx[["ci.ub"]][2]), 2)`     |   `r round(reg.dizziness.tx$tau2, 2)`   |
 
 The smaller 𝞽^2^ values for female proportion and treatment duration suggest that these predictors may explain some of the heterogeneity.
 
@@ -610,9 +608,9 @@ The table below shows which of the covariates, if any, explain some of the heter
 |:----------------:|:----------------:|:-----------------:|:----------------:|
 |                 Unadjusted effect                 |   `r round(exp(pwma.dry_mouth$TE.random), 3)`   |   `r round(exp(pwma.dry_mouth$lower.random), 3)` to `r round(exp(pwma.dry_mouth$upper.random), 3)`   |    `r round(pwma.dry_mouth$tau2, 2)`    |
 |                   **Moderator**                   |                     $\beta$                     |                                              **95% CI**                                              |                **𝞽^2^**                 |
-|            Age (per 10 year increase)             |  `r round(reg.dry_mouth.age[["beta"]][2], 2)`   |    `r round(reg.dry_mouth.age[["ci.lb"]][2], 2)` to `r round(reg.dry_mouth.age[["ci.ub"]][2], 2)`    |  `r round(reg.dry_mouth.age$tau2, 2)`   |
-| Female proportion (per percentage point increase) | `r round(reg.dry_mouth.female[["beta"]][2], 2)` | `r round(reg.dry_mouth.female[["ci.lb"]][2], 2)` to `r round(reg.dry_mouth.female[["ci.ub"]][2], 2)` | `r round(reg.dry_mouth.female$tau2, 2)` |
-|      Treatment duration (per week increase)       |   `r round(reg.dry_mouth.tx[["beta"]][2], 2)`   |     `r round(reg.dry_mouth.tx[["ci.lb"]][2], 2)` to `r round(reg.dry_mouth.tx[["ci.ub"]][2], 2)`     |   `r round(reg.dry_mouth.tx$tau2, 2)`   |
+|            Age (per 10 year increase)             |  `r round(exp(reg.dry_mouth.age[["beta"]][2]), 2)`   |    `r round(exp(reg.dry_mouth.age[["ci.lb"]][2]), 2)` to `r round(exp(reg.dry_mouth.age[["ci.ub"]][2]), 2)`    |  `r round(reg.dry_mouth.age$tau2, 2)`   |
+| Female proportion (per percentage point increase) | `r round(exp(reg.dry_mouth.female[["beta"]][2]), 2)` | `r round(exp(reg.dry_mouth.female[["ci.lb"]][2]), 2)` to `r round(exp(reg.dry_mouth.female[["ci.ub"]][2]), 2)` | `r round(reg.dry_mouth.female$tau2, 2)` |
+|      Treatment duration (per week increase)       |   `r round(exp(reg.dry_mouth.tx[["beta"]][2]), 2)`   |     `r round(exp(reg.dry_mouth.tx[["ci.lb"]][2]), 2)` to `r round(exp(reg.dry_mouth.tx[["ci.ub"]][2]), 2)`     |   `r round(reg.dry_mouth.tx$tau2, 2)`   |
 
 The smaller 𝞽^2^ value for female proportion suggests that this predictor seems to explain some of the heterogeneity.
 
