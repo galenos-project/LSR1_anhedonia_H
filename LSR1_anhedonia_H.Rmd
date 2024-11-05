@@ -11,54 +11,6 @@ editor_options:
     wrap: sentence
 ---
 
-## Abstract
-
-## Background
-
-Pro-dopaminergic pharmacological interventions have shown promise in treating anhedonia in people with depression, prompting us to conduct a living systematic review to synthesise data from human and non-human studies.
-
-## Methods
-
-We co-produced a living systematic review of controlled studies investigating the efficacy of pro-dopaminergic interventions in reducing symptoms of anhedonia in people with depression and relevant animal models.
-Multiple electronic databases were searched, from which studies were screened, extracted and assessed for risk of bias by two independent reviewers (until 09.11.2023).
-The primary outcomes were standardised mean differences (SMD) for anhedonia symptoms in human studies and sucrose preference test for animal models.
-We synthesised data with random-effects meta-analyses and calculated prediction intervals to better report the effects of heterogeneity.
-We also analysed drop-out rates and occurrences of specific adverse events.
-To contextualise the results of pro-dopaminergic drugs, we performed a series of random effects network meta-analyses on a specific anhedonia item also from other antidepressant agents.
-
-## Results
-
-We included 6 human studies and found that pro-dopaminergic interventions were better than placebo in reducing symptoms of anhedonia (n= 2076; SMD -0.24, 95%CI -0.46 to -0.03).
-Eleven studies in people with depression reported data about anxiety and pro-dopaminergic interventions were more efficacious in reducing symptoms compared to placebo (n= 3517, SMD -0.17, 95% CI -0.24 to -0.09).
-We did not find data in human studies about reward and reinforcement.
-In animal models, pro-dopaminergic interventions improved sucrose preference (27 studies, SMD 1.34, 95% CI 0.88 to 1.79) and we found evidence that the mechanism of pro-dopaminergic interventions occurred via an indirect pathway, highlighting the role of dopamine metabolism.
-Additional analysis of human data found that other non-dopaminergic antidepressants (e.g., some selective serotonin reuptake inhibitors and serotonin and noradrenaline reuptake inhibitors) showed greater improvements in anhedonia symptoms compared to bupropion, the pro-dopaminergic antidepressant included in the analysis.
-
-## Conclusion
-
-Pro-dopaminergic interventions are more effective at reducing anhedonia in humans than placebo and in animal models of depression; this supports the existing evidence on the role of dopamine in reward systems.
-However, this may occur via an indirect pathway and at the moment it is not possible to distinguish between a specific effect of pro-dopaminergic interventions on anhedonia and a more general effect of antidepressants on these symptoms.
-More data on reward and reinforcement in humans with anhedonia are needed to better triangulate human and animal evidence sources and properly examine the relationship between dopamine modulation and anhedonia.
-
-## Plain language summary
-
-Anhedonia is a common feature of depression, where a person lacks general interest, motivation, and enjoyment.
-It is thought that a lack of dopamine is associated with symptoms of anhedonia in people with depression.
-Some studies found that pro-dopaminergic drugs, which are drugs that can mimic the effects of dopamine in the brain, can reduce symptoms of anhedonia.
-However, it is unknown how these drug treatments can target the processes in our body that cause anhedonia.
-
-The goal of this project was to review information from published studies on how pro-dopaminergic drugs (medications such as certain antidepressants or stimulants) target processes in the body that cause anhedonia.
-As this is a living systematic review, the team will search for new studies every 3 months and this report will be updated when new evidence is available.
-
-We found that pro-dopaminergic drugs reduced anhedonia and decreased anxiety in human studies.
-These studies also mentioned that the dopamine agents were tolerated well, however, many participants discontinued the treatment due to side effects.
-Similarly, we found that pro-dopaminergic agents increased dopamine levels in animals.
-
-Further research is needed to better understand the role of pro-dopaminergic agents in reducing anhedonia, specifically on reward and reinforcement tasks which will help us examine the mechanism underlying anhedonia in more detail.
-Future work should explore how the different mechanisms of these drugs affect symptoms of anhedonia, as well as adding other drugs to a patient's treatment in addition to the pro-dopamine agent.
-Future studies should also include a range of pro-dopaminergic drugs as currently the majority of studies measuring anhedonia used one antidepressant.
-This would allow us to be more confident in the effects of dopamine rather than the one antidepressant.
-
 ```{r echo = F, include = F, warning = F}
 source('util/analysis02 for markdown.R')
 all.studies <- unique(c(pwma.acc$studlab,
@@ -170,7 +122,6 @@ Included studies allocated the participants to treatment lasting between `r roun
 ```{r anhedonia_forest, echo=FALSE, fig.width=11, fig.height=4}
 forest(pwma.anhedonia, 
        sortvar = seTE, 
-       print.I2.ci = T, 
        label.e = 'Pro-doparminergic drug', 
        label.c = 'Placebo', 
        label.left = 'Favours drug',
@@ -218,7 +169,6 @@ We performed a series of post-hoc analyses on the MADRS "inability to feel" item
 ```{r anhedonia_forest_bup, echo=FALSE, fig.width=11, fig.height=4}
 forest(pwma.anhedonia.bup, 
        sortvar = seTE, 
-       print.I2.ci = T, 
        label.e = 'Bupropion', 
        label.c = 'Placebo', 
        label.left = 'Favours bupropion',
@@ -249,7 +199,6 @@ The range of effects found for bupropion verses non-dopaminergic interventions w
 ```{r anxiety_forest, echo=FALSE, fig.width=11, fig.height=8}
 forest(pwma.anxiety, 
        sortvar = seTE, 
-       print.I2.ci = T, 
        label.e = 'Pro-doparminergic drug', 
        label.c = 'Placebo', 
        label.left = 'Favours drug',
@@ -291,7 +240,6 @@ The table below shows which of the covariates could modify the treatment effect 
 ```{r acceptability_forest, echo=FALSE, fig.height=16, fig.width=11}
 forest(pwma.acc, 
        sortvar = seTE, 
-       print.I2.ci = T, 
        label.e = 'Pro-doparminergic drug', 
        label.c = 'Placebo', 
        label.left = 'Favours drug',
@@ -315,10 +263,10 @@ OR: odds ratio, 95% CI: 95% confidence intervals.RIMA: Reversible inhibitors of 
 
 The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on acceptability.
 
-|                                                   |                     OR                     |                                           95% CI                                           |                𝞽^2^                |
+|                                                   |                       OR                        |                                                95% CI                                                |                𝞽^2^                |
 |:-----------------:|:----------------:|:----------------:|:----------------:|
-|                 Unadjusted effect                 |   `r round(exp(pwma.acc$TE.random), 3)`    |    `r round(exp(pwma.acc$lower.random), 3)` to `r round(exp(pwma.acc$upper.random), 3)`    |    `r round(pwma.acc$tau2, 2)`     |
-|                   **Moderator**                   |                                            |                                         **95% CI**                                         |              **𝞽^2^**              |
+|                 Unadjusted effect                 |      `r round(exp(pwma.acc$TE.random), 3)`      |         `r round(exp(pwma.acc$lower.random), 3)` to `r round(exp(pwma.acc$upper.random), 3)`         |    `r round(pwma.acc$tau2, 2)`     |
+|                   **Moderator**                   |                                                 |                                              **95% CI**                                              |              **𝞽^2^**              |
 |       Anxiety baseline (per point increase)       | `r round(exp(reg.acc.anxiety[["beta"]][2]), 2)` | `r round(exp(reg.acc.anxiety[["ci.lb"]][2]), 2)` to `r round(exp(reg.acc.anxiety[["ci.ub"]][2]), 2)` | `r round(reg.acc.anxiety$tau2, 2)` |
 |            Age (per 10 year increase)             |   `r round(exp(reg.acc.age[["beta"]][2]), 2)`   |     `r round(exp(reg.acc.age[["ci.lb"]][2]), 2)` to `r round(exp(reg.acc.age[["ci.ub"]][2]), 2)`     |   `r round(reg.acc.age$tau2, 2)`   |
 | Female proportion (per percentage point increase) | `r round(exp(reg.acc.female[["beta"]][2]), 2)`  |  `r round(exp(reg.acc.female[["ci.lb"]][2]), 2)` to `r round(exp(reg.acc.female[["ci.ub"]][2]), 2)`  | `r round(reg.acc.female$tau2, 2)`  |
@@ -334,7 +282,6 @@ The smaller 𝞽^2^ value for anxiety baseline suggests that this variable seem 
 
 forest(pwma.tol, 
        sortvar = seTE, 
-       print.I2.ci = T,
        label.e = 'Pro-doparminergic drug', 
        label.c = 'Placebo', 
        label.left = 'Favours drug',
@@ -358,10 +305,10 @@ OR: odds ratio, 95% CI: 95% confidence intervals.RIMA: Reversible inhibitors of 
 
 The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on tolerability.
 
-|                                                   |                     OR                     |                                           95% CI                                           |                𝞽^2^                |
+|                                                   |                       OR                        |                                                95% CI                                                |                𝞽^2^                |
 |:-----------------:|:----------------:|:----------------:|:----------------:|
-|                 Unadjusted effect                 |   `r round(exp(pwma.tol$TE.random), 3)`    |    `r round(exp(pwma.tol$lower.random), 3)` to `r round(exp(pwma.tol$upper.random), 3)`    |    `r round(pwma.tol$tau2, 2)`     |
-|                   **Moderator**                   |                                            |                                         **95% CI**                                         |              **𝞽^2^**              |
+|                 Unadjusted effect                 |      `r round(exp(pwma.tol$TE.random), 3)`      |         `r round(exp(pwma.tol$lower.random), 3)` to `r round(exp(pwma.tol$upper.random), 3)`         |    `r round(pwma.tol$tau2, 2)`     |
+|                   **Moderator**                   |                                                 |                                              **95% CI**                                              |              **𝞽^2^**              |
 |       Anxiety baseline (per point increase)       | `r round(exp(reg.tol.anxiety[["beta"]][2]), 2)` | `r round(exp(reg.tol.anxiety[["ci.lb"]][2]), 2)` to `r round(exp(reg.tol.anxiety[["ci.ub"]][2]), 2)` | `r round(reg.tol.anxiety$tau2, 2)` |
 |            Age (per 10 year increase)             |   `r round(exp(reg.tol.age[["beta"]][2]), 2)`   |     `r round(exp(reg.tol.age[["ci.lb"]][2]), 2)` to `r round(exp(reg.tol.age[["ci.ub"]][2]), 2)`     |   `r round(reg.tol.age$tau2, 2)`   |
 | Female proportion (per percentage point increase) | `r round(exp(reg.tol.female[["beta"]][2]), 2)`  |  `r round(exp(reg.tol.female[["ci.lb"]][2]), 2)` to `r round(exp(reg.tol.female[["ci.ub"]][2]), 2)`  | `r round(reg.tol.female$tau2, 2)`  |
@@ -376,7 +323,6 @@ The smaller 𝞽^2^ values for anxiety baseline and female proportion suggest th
 ```{r nausea_forest, echo=FALSE, fig.width=11, fig.height=12}
 forest(pwma.nausea, 
        sortvar = seTE, 
-       print.I2.ci = T, 
        label.e = 'Pro-doparminergic drug', 
        label.c = 'Placebo', 
        label.left = 'Favours drug',
@@ -401,10 +347,10 @@ RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhi
 
 The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on nausea.
 
-|                                                   |                      OR                      |                                             95% CI                                             |                 𝞽^2^                 |
+|                                                   |                        OR                         |                                                  95% CI                                                  |                 𝞽^2^                 |
 |:-----------------:|:----------------:|:----------------:|:----------------:|
-|                 Unadjusted effect                 |   `r round(exp(pwma.nausea$TE.random), 3)`   |   `r round(exp(pwma.nausea$lower.random), 3)` to `r round(exp(pwma.nausea$upper.random), 3)`   |    `r round(pwma.nausea$tau2, 2)`    |
-|                   **Moderator**                   |                                              |                                           **95% CI**                                           |               **𝞽^2^**               |
+|                 Unadjusted effect                 |     `r round(exp(pwma.nausea$TE.random), 3)`      |        `r round(exp(pwma.nausea$lower.random), 3)` to `r round(exp(pwma.nausea$upper.random), 3)`        |    `r round(pwma.nausea$tau2, 2)`    |
+|                   **Moderator**                   |                                                   |                                                **95% CI**                                                |               **𝞽^2^**               |
 |            Age (per 10 year increase)             |  `r round(exp(reg.nausea.age[["beta"]][2]), 2)`   |    `r round(exp(reg.nausea.age[["ci.lb"]][2]), 2)` to `r round(exp(reg.nausea.age[["ci.ub"]][2]), 2)`    |  `r round(reg.nausea.age$tau2, 2)`   |
 | Female proportion (per percentage point increase) | `r round(exp(reg.nausea.female[["beta"]][2]), 2)` | `r round(exp(reg.nausea.female[["ci.lb"]][2]), 2)` to `r round(exp(reg.nausea.female[["ci.ub"]][2]), 2)` | `r round(reg.nausea.female$tau2, 2)` |
 |      Treatment duration (per week increase)       |   `r round(exp(reg.nausea.tx[["beta"]][2]), 2)`   |     `r round(exp(reg.nausea.tx[["ci.lb"]][2]), 2)` to `r round(exp(reg.nausea.tx[["ci.ub"]][2]), 2)`     |   `r round(reg.nausea.tx$tau2, 2)`   |
@@ -416,7 +362,6 @@ The table below shows which of the covariates, if any, explain some of the heter
 ```{r headache_forest, echo=FALSE, fig.width=11, fig.height=12}
 forest(pwma.headache, 
        sortvar = seTE, 
-       print.I2.ci = T, 
        label.e = 'Pro-doparminergic drug', 
        label.c = 'Placebo', 
        label.left = 'Favours drug',
@@ -442,10 +387,10 @@ RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhi
 The table below shows which of the covariates, if any, could modify the relative treatment effect of pro-dopaminergic interventions on headache.
 We did not perform a meta-regression on mean anhedonia and anxiety baseline scores as the total number of studies was below 10.
 
-|                                                   |                       OR                       |                                               95% CI                                               |                  𝞽^2^                  |
+|                                                   |                         OR                          |                                                    95% CI                                                    |                  𝞽^2^                  |
 |:-----------------:|:----------------:|:----------------:|:----------------:|
-|                 Unadjusted effect                 |   `r round(exp(pwma.headache$TE.random), 3)`   |   `r round(exp(pwma.headache$lower.random), 3)` to `r round(exp(pwma.headache$upper.random), 3)`   |    `r round(pwma.headache$tau2, 2)`    |
-|                   **Moderator**                   |                                                |                                             **95% CI**                                             |                **𝞽^2^**                |
+|                 Unadjusted effect                 |     `r round(exp(pwma.headache$TE.random), 3)`      |        `r round(exp(pwma.headache$lower.random), 3)` to `r round(exp(pwma.headache$upper.random), 3)`        |    `r round(pwma.headache$tau2, 2)`    |
+|                   **Moderator**                   |                                                     |                                                  **95% CI**                                                  |                **𝞽^2^**                |
 |            Age (per 10 year increase)             |  `r round(exp(reg.headache.age[["beta"]][2]), 2)`   |    `r round(exp(reg.headache.age[["ci.lb"]][2]), 2)` to `r round(exp(reg.headache.age[["ci.ub"]][2]), 2)`    |  `r round(reg.headache.age$tau2, 2)`   |
 | Female proportion (per percentage point increase) | `r round(exp(reg.headache.female[["beta"]][2]), 2)` | `r round(exp(reg.headache.female[["ci.lb"]][2]), 2)` to `r round(exp(reg.headache.female[["ci.ub"]][2]), 2)` | `r round(reg.headache.female$tau2, 2)` |
 |      Treatment duration (per week increase)       |   `r round(exp(reg.headache.tx[["beta"]][2]), 2)`   |     `r round(exp(reg.headache.tx[["ci.lb"]][2]), 2)` to `r round(exp(reg.headache.tx[["ci.ub"]][2]), 2)`     |   `r round(reg.headache.tx$tau2, 2)`   |
@@ -457,7 +402,6 @@ We did not perform a meta-regression on mean anhedonia and anxiety baseline scor
 ```{r insomnia_forest, echo=FALSE, fig.width=11, fig.height=10}
 forest(pwma.insomnia, 
        sortvar = seTE, 
-       print.I2.ci = T, 
        label.e = 'Pro-doparminergic drug', 
        label.c = 'Placebo', 
        label.left = 'Favours drug',
@@ -482,10 +426,10 @@ RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhi
 
 The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on insomnia.
 
-|                                                   |                       OR                       |                                               95% CI                                               |                  𝞽^2^                  |
+|                                                   |                         OR                          |                                                    95% CI                                                    |                  𝞽^2^                  |
 |:-----------------:|:----------------:|:----------------:|:----------------:|
-|                 Unadjusted effect                 |   `r round(exp(pwma.insomnia$TE.random), 3)`   |   `r round(exp(pwma.insomnia$lower.random), 3)` to `r round(exp(pwma.insomnia$upper.random), 3)`   |    `r round(pwma.insomnia$tau2, 2)`    |
-|                   **Moderator**                   |                                                |                                             **95% CI**                                             |                **𝞽^2^**                |
+|                 Unadjusted effect                 |     `r round(exp(pwma.insomnia$TE.random), 3)`      |        `r round(exp(pwma.insomnia$lower.random), 3)` to `r round(exp(pwma.insomnia$upper.random), 3)`        |    `r round(pwma.insomnia$tau2, 2)`    |
+|                   **Moderator**                   |                                                     |                                                  **95% CI**                                                  |                **𝞽^2^**                |
 |            Age (per 10 year increase)             |  `r round(exp(reg.insomnia.age[["beta"]][2]), 2)`   |    `r round(exp(reg.insomnia.age[["ci.lb"]][2]), 2)` to `r round(exp(reg.insomnia.age[["ci.ub"]][2]), 2)`    |  `r round(reg.insomnia.age$tau2, 2)`   |
 | Female proportion (per percentage point increase) | `r round(exp(reg.insomnia.female[["beta"]][2]), 2)` | `r round(exp(reg.insomnia.female[["ci.lb"]][2]), 2)` to `r round(exp(reg.insomnia.female[["ci.ub"]][2]), 2)` | `r round(reg.insomnia.female$tau2, 2)` |
 |      Treatment duration (per week increase)       |   `r round(exp(reg.insomnia.tx[["beta"]][2]), 2)`   |     `r round(exp(reg.insomnia.tx[["ci.lb"]][2]), 2)` to `r round(exp(reg.insomnia.tx[["ci.ub"]][2]), 2)`     |   `r round(reg.insomnia.tx$tau2, 2)`   |
@@ -497,7 +441,6 @@ The table below shows which of the covariates, if any, explain some of the heter
 ```{r constipation_forest, echo=FALSE, fig.width=11, fig.height=9}
 forest(pwma.constipation, 
        sortvar = seTE, 
-       print.I2.ci = T, 
        label.e = 'Pro-doparminergic drug', 
        label.c = 'Placebo', 
        label.left = 'Favours drug',
@@ -522,10 +465,10 @@ RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhi
 
 The table below shows which of the covariates, if any, could modify the relative treatment effect of pro-dopaminergic interventions on constipation.
 
-|                                                   |                         OR                         |                                                   95% CI                                                   |                    𝞽^2^                    |
+|                                                   |                           OR                            |                                                        95% CI                                                        |                    𝞽^2^                    |
 |:-----------------:|:----------------:|:----------------:|:----------------:|
-|                 Unadjusted effect                 |   `r round(exp(pwma.constipation$TE.random), 3)`   |   `r round(exp(pwma.constipation$lower.random), 3)` to `r round(exp(pwma.constipation$upper.random), 3)`   |    `r round(pwma.constipation$tau2, 2)`    |
-|                   **Moderator**                   |                                                    |                                                 **95% CI**                                                 |                  **𝞽^2^**                  |
+|                 Unadjusted effect                 |     `r round(exp(pwma.constipation$TE.random), 3)`      |        `r round(exp(pwma.constipation$lower.random), 3)` to `r round(exp(pwma.constipation$upper.random), 3)`        |    `r round(pwma.constipation$tau2, 2)`    |
+|                   **Moderator**                   |                                                         |                                                      **95% CI**                                                      |                  **𝞽^2^**                  |
 |            Age (per 10 year increase)             |  `r round(exp(reg.constipation.age[["beta"]][2]), 2)`   |    `r round(exp(reg.constipation.age[["ci.lb"]][2]), 2)` to `r round(exp(reg.constipation.age[["ci.ub"]][2]), 2)`    |  `r round(reg.constipation.age$tau2, 2)`   |
 | Female proportion (per percentage point increase) | `r round(exp(reg.constipation.female[["beta"]][2]), 2)` | `r round(exp(reg.constipation.female[["ci.lb"]][2]), 2)` to `r round(exp(reg.constipation.female[["ci.ub"]][2]), 2)` | `r round(reg.constipation.female$tau2, 2)` |
 |      Treatment duration (per week increase)       |   `r round(exp(reg.constipation.tx[["beta"]][2]), 2)`   |     `r round(exp(reg.constipation.tx[["ci.lb"]][2]), 2)` to `r round(exp(reg.constipation.tx[["ci.ub"]][2]), 2)`     |   `r round(reg.constipation.tx$tau2, 2)`   |
@@ -537,7 +480,6 @@ The table below shows which of the covariates, if any, could modify the relative
 ```{r dizziness_forest, echo=FALSE, fig.width=11, fig.height=10}
 forest(pwma.dizziness, 
        sortvar = seTE, 
-       print.I2.ci = T, 
        label.e = 'Pro-doparminergic drug', 
        label.c = 'Placebo', 
        label.left = 'Favours drug',
@@ -550,7 +492,8 @@ forest(pwma.dizziness,
 
 **Figure 20** Forest plot for dizziness for the comparison of pro-dopaminergic interventions vs placebo at 8 (4-12) weeks.
 
-OR: odds ratio, 95% CI: 95% confidence intervals. RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
+OR: odds ratio, 95% CI: 95% confidence intervals.
+RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhibitors, DRI: dopamine reuptake inhibitor.
 
 ### 2.11.2 Risk of bias
 
@@ -562,10 +505,10 @@ OR: odds ratio, 95% CI: 95% confidence intervals. RIMA: Reversible inhibitors of
 
 The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on dizziness.
 
-|                                                   |                       OR                        |                                                95% CI                                                |                  𝞽^2^                   |
+|                                                   |                          OR                          |                                                     95% CI                                                     |                  𝞽^2^                   |
 |:-----------------:|:----------------:|:----------------:|:----------------:|
-|                 Unadjusted effect                 |   `r round(exp(pwma.dizziness$TE.random), 3)`   |   `r round(exp(pwma.dizziness$lower.random), 3)` to `r round(exp(pwma.dizziness$upper.random), 3)`   |    `r round(pwma.dizziness$tau2, 2)`    |
-|                   **Moderator**                   |                                                 |                                              **95% CI**                                              |                **𝞽^2^**                 |
+|                 Unadjusted effect                 |     `r round(exp(pwma.dizziness$TE.random), 3)`      |        `r round(exp(pwma.dizziness$lower.random), 3)` to `r round(exp(pwma.dizziness$upper.random), 3)`        |    `r round(pwma.dizziness$tau2, 2)`    |
+|                   **Moderator**                   |                                                      |                                                   **95% CI**                                                   |                **𝞽^2^**                 |
 |            Age (per 10 year increase)             |  `r round(exp(reg.dizziness.age[["beta"]][2]), 2)`   |    `r round(exp(reg.dizziness.age[["ci.lb"]][2]), 2)` to `r round(exp(reg.dizziness.age[["ci.ub"]][2]), 2)`    |  `r round(reg.dizziness.age$tau2, 2)`   |
 | Female proportion (per percentage point increase) | `r round(exp(reg.dizziness.female[["beta"]][2]), 2)` | `r round(exp(reg.dizziness.female[["ci.lb"]][2]), 2)` to `r round(exp(reg.dizziness.female[["ci.ub"]][2]), 2)` | `r round(reg.dizziness.female$tau2, 2)` |
 |      Treatment duration (per week increase)       |   `r round(exp(reg.dizziness.tx[["beta"]][2]), 2)`   |     `r round(exp(reg.dizziness.tx[["ci.lb"]][2]), 2)` to `r round(exp(reg.dizziness.tx[["ci.ub"]][2]), 2)`     |   `r round(reg.dizziness.tx$tau2, 2)`   |
@@ -579,7 +522,6 @@ The smaller 𝞽^2^ values for female proportion and treatment duration suggest 
 ```{r dry_mouth_forest, echo=FALSE, fig.width=11, fig.height=10}
 forest(pwma.dry_mouth, 
        sortvar = seTE, 
-       print.I2.ci = T, 
        label.e = 'Pro-doparminergic drug', 
        label.c = 'Placebo', 
        label.left = 'Favours drug',
@@ -604,10 +546,10 @@ RIMA: Reversible inhibitors of monoamine oxidase-A, MAOI: monoamine oxidase inhi
 
 The table below shows which of the covariates, if any, explain some of the heterogeneity (𝞽^2^) observed in the effect sizes of the effect of pro-dopaminergic interventions on dry mouth.
 
-|                                                   |                       OR                        |                                                95% CI                                                |                  𝞽^2^                   |
+|                                                   |                          OR                          |                                                     95% CI                                                     |                  𝞽^2^                   |
 |:----------------:|:----------------:|:-----------------:|:----------------:|
-|                 Unadjusted effect                 |   `r round(exp(pwma.dry_mouth$TE.random), 3)`   |   `r round(exp(pwma.dry_mouth$lower.random), 3)` to `r round(exp(pwma.dry_mouth$upper.random), 3)`   |    `r round(pwma.dry_mouth$tau2, 2)`    |
-|                   **Moderator**                   |                     $\beta$                     |                                              **95% CI**                                              |                **𝞽^2^**                 |
+|                 Unadjusted effect                 |     `r round(exp(pwma.dry_mouth$TE.random), 3)`      |        `r round(exp(pwma.dry_mouth$lower.random), 3)` to `r round(exp(pwma.dry_mouth$upper.random), 3)`        |    `r round(pwma.dry_mouth$tau2, 2)`    |
+|                   **Moderator**                   |                       $\beta$                        |                                                   **95% CI**                                                   |                **𝞽^2^**                 |
 |            Age (per 10 year increase)             |  `r round(exp(reg.dry_mouth.age[["beta"]][2]), 2)`   |    `r round(exp(reg.dry_mouth.age[["ci.lb"]][2]), 2)` to `r round(exp(reg.dry_mouth.age[["ci.ub"]][2]), 2)`    |  `r round(reg.dry_mouth.age$tau2, 2)`   |
 | Female proportion (per percentage point increase) | `r round(exp(reg.dry_mouth.female[["beta"]][2]), 2)` | `r round(exp(reg.dry_mouth.female[["ci.lb"]][2]), 2)` to `r round(exp(reg.dry_mouth.female[["ci.ub"]][2]), 2)` | `r round(reg.dry_mouth.female$tau2, 2)` |
 |      Treatment duration (per week increase)       |   `r round(exp(reg.dry_mouth.tx[["beta"]][2]), 2)`   |     `r round(exp(reg.dry_mouth.tx[["ci.lb"]][2]), 2)` to `r round(exp(reg.dry_mouth.tx[["ci.ub"]][2]), 2)`     |   `r round(reg.dry_mouth.tx$tau2, 2)`   |
@@ -621,7 +563,6 @@ The smaller 𝞽^2^ value for female proportion suggests that this predictor see
 ```{r vomiting_forest, echo=FALSE, fig.width=11}
 forest(pwma.vomiting, 
        sortvar = seTE, 
-       print.I2.ci = T, 
        label.e = 'Pro-doparminergic drug', 
        label.c = 'Placebo', 
        label.left = 'Favours drug',
