@@ -2,11 +2,10 @@ rm(list = setdiff(ls(), lsf.str()))
 library(meta)
 library(dplyr)
 
-
+setwd('/Users/edoardoostinelli/Documents/GitHub/LSR1_anhedonia_H')
 
 # functions ----
 source('util/util.R')
-
 
 # create folders ----
 outcomes <- c('anhedonia', 
@@ -2693,8 +2692,278 @@ write.csv(r, 'result/human/non-dopaminergic/IPD_LSR1_PWMA.csv')
 
 rm(r)
 
+# asked during triangulation ----
+# only two studies with different scales across sources
+## lsr ----
+lsr.df <- df.pw.anhedonia[df.pw.anhedonia$studlab=='Hewett (2009) - 87997883' | df.pw.anhedonia$studlab=='Hewett (2010a) - 87997755', ]
+pwma.lsr <- metacont(n.e = n1, 
+                           mean.e = mean1, 
+                           sd.e = sd1, 
+                           n.c = n2, 
+                           mean.c = mean2, 
+                           sd.c = sd2, 
+                           studlab = studlab, 
+                           data = lsr.df, 
+                           sm = 'SMD', 
+                           method.smd = 'Hedges', 
+                           comb.fixed = F, 
+                           comb.random = T, 
+                           title = 'Anhedonia',
+                           prediction = T, 
+                           hakn = T, 
+                           method.tau = 'REML')
+
+pwma.lsr.nohakn <- metacont(n.e = n1, 
+                     mean.e = mean1, 
+                     sd.e = sd1, 
+                     n.c = n2, 
+                     mean.c = mean2, 
+                     sd.c = sd2, 
+                     studlab = studlab, 
+                     data = lsr.df, 
+                     sm = 'SMD', 
+                     method.smd = 'Hedges', 
+                     comb.fixed = F, 
+                     comb.random = T, 
+                     title = 'Anhedonia',
+                     prediction = T, 
+                     hakn = F, 
+                     method.tau = 'REML'
+                     )
+
+setwd('~/Downloads')
+sink('pwma lsr.txt')
+pwma.lsr
+sink()
+
+png('pwma lsr - forest.png', width = 12.5, height = 5, units = 'in', res = 300)
+forest(pwma.lsr, 
+       sortvar = seTE, 
+       print.I2.ci = T, 
+       label.e = 'Bupropion', 
+       label.c = 'Placebo', 
+       label.left = 'Favours bupropion',
+       label.right = "Favours placebo",
+       smlab = 'Anhedonia symptoms severity',
+       col.square = pwma.lsr$data$colour
+       #lower.equi = -0.20, upper.equi = 0.20, 
+       #col.equi = '#F8F8F8', 
+       #fill.lower.equi = c("#E4EBF4", "#F8F8F8"),
+       #fill.upper.equi = c("#F8F8F8", "#EFE6ED")
+       )
+dev.off()
+
+sink('pwma lsr - no hakn.txt')
+pwma.lsr.nohakn
+sink()
+
+png('pwma lsr - no hakn - forest.png', width = 12.5, height = 5, units = 'in', res = 300)
+forest(pwma.lsr.nohakn, 
+       sortvar = seTE, 
+       print.I2.ci = T, 
+       label.e = 'Bupropion', 
+       label.c = 'Placebo', 
+       label.left = 'Favours bupropion',
+       label.right = "Favours placebo",
+       smlab = 'Anhedonia symptoms severity',
+       col.square = pwma.lsr$data$colour
+       #lower.equi = -0.20, upper.equi = 0.20, 
+       #col.equi = '#F8F8F8', 
+       #fill.lower.equi = c("#E4EBF4", "#F8F8F8"),
+       #fill.upper.equi = c("#F8F8F8", "#EFE6ED")
+)
+dev.off()
+
+## ipd ----
+# PWMA, bup vs pla ----
+library(netmeta)
+desirable <- c('treat', 'TE', 'LCI', 'UCI', 'seTE')
+results.all <- list()
+
+for (i in 1:10) {
+  df <- read.csv(paste0('~/OneDrive - Nexus365/GALENOS/LSR1/dataset/non-dopaminergic/data_inhouse_vivli_aggregate/data_aggregated_', i, '.csv'))
+  studies.keep <- df$STUDYID[df$TREATMENT_GROUP=='bupropion']
+  df <- df[df$STUDYID %in% studies.keep, ]
+  df <- df[df$TREATMENT_GROUP %in% c('bupropion', 'placebo'), ]
+  df$STUDYID[df$STUDYID=='AK130939'] <- 'Hewitt 2010a - AK130939'
+  df$STUDYID[df$STUDYID=='WXL101497'] <- 'Hewitt 2009 - WXL101497'
+  df <- df[df$STUDYID=='Hewitt 2010a - AK130939' | df$STUDYID=='Hewitt 2009 - WXL101497', ]
+  df.pw <- netmeta::pairwise(studlab = STUDYID,
+                             treat = TREATMENT_GROUP,
+                             n = patient_n,
+                             mean = endpoint_mean,
+                             sd = endpoint_std,
+                             data = df,
+                             sm = 'SMD')
+  pwma.df <- metacont(n.e = n1, 
+                      mean.e = mean1, 
+                      sd.e = sd1, 
+                      n.c = n2, 
+                      mean.c = mean2, 
+                      sd.c = sd2, 
+                      studlab = studlab, 
+                      data = df.pw, 
+                      sm = 'SMD', 
+                      method.smd = 'Hedges', 
+                      comb.fixed = F, 
+                      comb.random = T, 
+                      title = 'MADRS item 8',
+                      prediction = T, 
+                      hakn = T, 
+                      method.tau = 'REML')
+  results <- data.frame(matrix(ncol = length(desirable),
+                               nrow = 1))
+  colnames(results) <- desirable
+  results[, 'treat'] <- 'bupropion'
+  results[, 'TE'] <- pwma.df$TE.random
+  results[, 'LCI'] <- pwma.df$lower.random
+  results[, 'UCI'] <- pwma.df$upper.random
+  results[, 'seTE'] <- pwma.df$seTE.random
+  results.all[[i]] <- results
+  rm(df)
+  rm(df.pw)
+  rm(pwma.df)
+  rm(results)
+}
+
+r <- do.call(rbind, results.all)
+r <- aggregate(r, list(r$treat), mean)
+r <- r[,-which(colnames(r)=='treat')]
+
+write.csv(r, 'pwma ipd.csv')
+rm(r)
 
 
+for (i in 1:10) {
+  df <- read.csv(paste0('~/OneDrive - Nexus365/GALENOS/LSR1/dataset/non-dopaminergic/data_inhouse_vivli_aggregate/data_aggregated_', i, '.csv'))
+  studies.keep <- df$STUDYID[df$TREATMENT_GROUP=='bupropion']
+  df <- df[df$STUDYID %in% studies.keep, ]
+  df <- df[df$TREATMENT_GROUP %in% c('bupropion', 'placebo'), ]
+  df$STUDYID[df$STUDYID=='AK130939'] <- 'Hewitt 2010a - AK130939'
+  df$STUDYID[df$STUDYID=='WXL101497'] <- 'Hewitt 2009 - WXL101497'
+  df <- df[df$STUDYID=='Hewitt 2010a - AK130939' | df$STUDYID=='Hewitt 2009 - WXL101497', ]
+  df.pw <- netmeta::pairwise(studlab = STUDYID,
+                             treat = TREATMENT_GROUP,
+                             n = patient_n,
+                             mean = endpoint_mean,
+                             sd = endpoint_std,
+                             data = df,
+                             sm = 'SMD')
+  pwma.df <- metacont(n.e = n1, 
+                      mean.e = mean1, 
+                      sd.e = sd1, 
+                      n.c = n2, 
+                      mean.c = mean2, 
+                      sd.c = sd2, 
+                      studlab = studlab, 
+                      data = df.pw, 
+                      sm = 'SMD', 
+                      method.smd = 'Hedges', 
+                      comb.fixed = F, 
+                      comb.random = T, 
+                      title = 'MADRS item 8',
+                      prediction = T, 
+                      hakn = F, 
+                      method.tau = 'REML')
+  results <- data.frame(matrix(ncol = length(desirable),
+                               nrow = 1))
+  colnames(results) <- desirable
+  results[, 'treat'] <- 'bupropion'
+  results[, 'TE'] <- pwma.df$TE.random
+  results[, 'LCI'] <- pwma.df$lower.random
+  results[, 'UCI'] <- pwma.df$upper.random
+  results[, 'seTE'] <- pwma.df$seTE.random
+  results.all[[i]] <- results
+  rm(df)
+  rm(df.pw)
+  rm(pwma.df)
+  rm(results)
+}
+
+r <- do.call(rbind, results.all)
+r <- aggregate(r, list(r$treat), mean)
+r <- r[,-which(colnames(r)=='treat')]
+
+write.csv(r, 'pwma ipd - no hakn.csv')
+
+# full MADRS score
+df.madrs.all <- read.csv('full_madrs.csv')
+df.madrs.all.pw <- netmeta::pairwise(studlab = studlab,
+                           treat = treat,
+                           n = n,
+                           mean = mean,
+                           sd = sd,
+                           data = df.madrs.all,
+                           sm = 'SMD')
+pwma.madrs.df <- metacont(n.e = n1, 
+                    mean.e = mean1, 
+                    sd.e = sd1, 
+                    n.c = n2, 
+                    mean.c = mean2, 
+                    sd.c = sd2, 
+                    studlab = studlab, 
+                    data = df.madrs.all.pw, 
+                    sm = 'SMD', 
+                    method.smd = 'Hedges', 
+                    comb.fixed = F, 
+                    comb.random = T, 
+                    title = 'MADRS item 8',
+                    prediction = T, 
+                    hakn = F, 
+                    method.tau = 'REML')
+
+sink('pwma full madrs.txt')
+pwma.madrs.df
+sink()
+
+png('pwma full madrs.png', width = 12.5, height = 5, units = 'in', res = 300)
+forest(pwma.madrs.df, 
+       sortvar = seTE, 
+       print.I2.ci = T, 
+       label.e = 'Bupropion', 
+       label.c = 'Placebo', 
+       label.left = 'Favours bupropion',
+       label.right = "Favours placebo",
+       smlab = 'Anhedonia symptoms severity',
+       col.square = pwma.lsr$data$colour
+       #lower.equi = -0.20, upper.equi = 0.20, 
+       #col.equi = '#F8F8F8', 
+       #fill.lower.equi = c("#E4EBF4", "#F8F8F8"),
+       #fill.upper.equi = c("#F8F8F8", "#EFE6ED")
+)
+dev.off()
 
 
+# ipd meta reg ----
+i = 10
+df <- read.csv(paste0('~/OneDrive - Nexus365/GALENOS/LSR1/dataset/non-dopaminergic/data_inhouse_vivli_aggregate/data_aggregated_', i, '.csv'))
+studies.keep <- df$STUDYID[df$TREATMENT_GROUP=='bupropion']
+df <- df[df$STUDYID %in% studies.keep, ]
+df <- df[df$TREATMENT_GROUP %in% c('bupropion', 'placebo'), ]
+df.pw <- netmeta::pairwise(studlab = STUDYID,
+                           treat = TREATMENT_GROUP,
+                           n = patient_n,
+                           mean = endpoint_mean,
+                           sd = endpoint_std,
+                           data = df,
+                           sm = 'SMD')
 
+df.pw$baseline <- rowMeans(df.pw[, c('baseline_mean1', 'baseline_mean2')])
+pwma.df <- metacont(n.e = n1, 
+                    mean.e = mean1, 
+                    sd.e = sd1, 
+                    n.c = n2, 
+                    mean.c = mean2, 
+                    sd.c = sd2, 
+                    studlab = studlab, 
+                    data = df.pw, 
+                    sm = 'SMD', 
+                    method.smd = 'Hedges', 
+                    comb.fixed = F, 
+                    comb.random = T, 
+                    title = 'MADRS item 8',
+                    prediction = T, 
+                    hakn = T, 
+                    method.tau = 'REML')
+reg.anhedonia.anhedonia <- metareg(pwma.df, baseline)
+reg.anhedonia.anhedonia

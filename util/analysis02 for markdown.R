@@ -182,6 +182,7 @@ df$tx_duration[df$studlab=='Ravaris (1976) - 87999576'] <- 6
                                                      ifelse(df.pw.anxiety$colour=='green4',
                                                             'Vesicle transport facilitator',
                                                             'Other')))))
+  
   pwma.anxiety <- metacont(n.e = n1, 
                            mean.e = mean1, 
                            sd.e = sd1, 
@@ -199,6 +200,27 @@ df$tx_duration[df$studlab=='Ravaris (1976) - 87999576'] <- 6
                            hakn = T, 
                            method.tau = 'REML',
                            subgroup = group)
+  
+  df.pw.anxiety2 <- df.pw.anxiety
+  df.pw.anxiety2 <- df.pw.anxiety2[!is.na(df.pw.anxiety2$TE), ]
+  
+  pwma.anxiety2 <- metacont(n.e = n1, 
+                            mean.e = mean1, 
+                            sd.e = sd1, 
+                            n.c = n2, 
+                            mean.c = mean2, 
+                            sd.c = sd2, 
+                            studlab = studlab, 
+                            data = df.pw.anxiety2, 
+                            sm = 'SMD', 
+                            method.smd = 'Hedges', 
+                            common = F, 
+                            random = T, 
+                            title = 'Anxiety',
+                            prediction = T, 
+                            hakn = T, 
+                            method.tau = 'REML',
+                            subgroup = group)
 }
 
 # acceptability ----
@@ -1255,6 +1277,7 @@ rm(reg.dry_mouth.anxiety)
 # drop it if you don't like it ----
 names <- c('pwma.anhedonia',
            'pwma.anxiety',
+           'pwma.anxiety2',
            'pwma.acc',
            'acc.eer',
            'acc.rate.pla',
