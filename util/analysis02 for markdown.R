@@ -64,7 +64,7 @@ df$tx_duration[df$studlab=='Ravaris (1976) - 87999576'] <- 6
                               'arm')
   df.anhedonia <- remove.onearm(df.anhedonia)
   df.anhedonia.merged <- collapse.arms.continuous(df.anhedonia)
-  df.pw.anhedonia <- netmeta::pairwise(studlab = studlab,
+  df.pw.anhedonia <- pairwise(studlab = studlab,
                                        treat = treatment,
                                        n = n,
                                        mean = mean,
@@ -143,7 +143,7 @@ df$tx_duration[df$studlab=='Ravaris (1976) - 87999576'] <- 6
                             'arm')
   df.anxiety <- remove.onearm(df.anxiety)
   df.anxiety.merged <- collapse.arms.continuous(df.anxiety)
-  df.pw.anxiety <- netmeta::pairwise(studlab = studlab,
+  df.pw.anxiety <- pairwise(studlab = studlab,
                                      treat = treatment,
                                      n = n,
                                      mean = mean,
@@ -254,7 +254,7 @@ df$tx_duration[df$studlab=='Ravaris (1976) - 87999576'] <- 6
   df.acc <- df.acc[-(is.na(df.acc$n)), ]
   df.acc <- remove.onearm(df.acc)
   df.acc.merged <- collapse.arms.binary(df.acc)
-  df.pw.acc <- netmeta::pairwise(studlab = studlab,
+  df.pw.acc <- pairwise(studlab = studlab,
                                  treat = treatment,
                                  n = n,
                                  event = r,
@@ -354,7 +354,7 @@ acc.eer
   df.tol$treatment_details <- ifelse(df.tol$treatment_details=='placebo', 'placebo', 'active')
   df.tol <- remove.onearm(df.tol)
   df.tol.merged <- collapse.arms.binary(df.tol)
-  df.pw.tol <- netmeta::pairwise(studlab = studlab,
+  df.pw.tol <- pairwise(studlab = studlab,
                                  treat = treatment,
                                  n = n,
                                  event = r,
@@ -452,7 +452,7 @@ acc.eer
   df.nausea$treatment_details <- ifelse(df.nausea$treatment_details=='placebo', 'placebo', 'active')
   df.nausea <- remove.onearm(df.nausea)
   df.nausea.merged <- collapse.arms.binary(df.nausea)
-  df.pw.nausea <- netmeta::pairwise(studlab = studlab,
+  df.pw.nausea <- pairwise(studlab = studlab,
                                     treat = treatment,
                                     n = n,
                                     event = r,
@@ -550,7 +550,7 @@ nausea.eer
   df.headache$treatment_details <- ifelse(df.headache$treatment_details=='placebo', 'placebo', 'active')
   df.headache <- remove.onearm(df.headache)
   df.headache.merged <- collapse.arms.binary(df.headache)
-  df.pw.headache <- netmeta::pairwise(studlab = studlab,
+  df.pw.headache <- pairwise(studlab = studlab,
                                       treat = treatment,
                                       n = n,
                                       event = r,
@@ -648,7 +648,7 @@ nausea.eer
   df.insomnia$treatment_details <- ifelse(df.insomnia$treatment_details=='placebo', 'placebo', 'active')
   df.insomnia <- remove.onearm(df.insomnia)
   df.insomnia.merged <- collapse.arms.binary(df.insomnia)
-  df.pw.insomnia <- netmeta::pairwise(studlab = studlab,
+  df.pw.insomnia <- pairwise(studlab = studlab,
                                       treat = treatment,
                                       n = n,
                                       event = r,
@@ -746,7 +746,7 @@ insomnia.eer
   df.dry_mouth$treatment_details <- ifelse(df.dry_mouth$treatment_details=='placebo', 'placebo', 'active')
   df.dry_mouth <- remove.onearm(df.dry_mouth)
   df.dry_mouth.merged <- collapse.arms.binary(df.dry_mouth)
-  df.pw.dry_mouth <- netmeta::pairwise(studlab = studlab,
+  df.pw.dry_mouth <- pairwise(studlab = studlab,
                                        treat = treatment,
                                        n = n,
                                        event = r,
@@ -845,7 +845,7 @@ dry_mouth.eer
   df.constipation$treatment_details <- ifelse(df.constipation$treatment_details=='placebo', 'placebo', 'active')
   df.constipation <- remove.onearm(df.constipation)
   df.constipation.merged <- collapse.arms.binary(df.constipation)
-  df.pw.constipation <- netmeta::pairwise(studlab = studlab,
+  df.pw.constipation <- pairwise(studlab = studlab,
                                           treat = treatment,
                                           n = n,
                                           event = r,
@@ -944,7 +944,7 @@ constipation.eer
   df.dizziness$treatment_details <- ifelse(df.dizziness$treatment_details=='placebo', 'placebo', 'active')
   df.dizziness <- remove.onearm(df.dizziness)
   df.dizziness.merged <- collapse.arms.binary(df.dizziness)
-  df.pw.dizziness <- netmeta::pairwise(studlab = studlab,
+  df.pw.dizziness <- pairwise(studlab = studlab,
                                        treat = treatment,
                                        n = n,
                                        event = r,
@@ -1043,7 +1043,7 @@ constipation.eer
   df.vomiting$treatment_details <- ifelse(df.vomiting$treatment_details=='placebo', 'placebo', 'active')
   df.vomiting <- remove.onearm(df.vomiting)
   df.vomiting.merged <- collapse.arms.binary(df.vomiting)
-  df.pw.vomiting <- netmeta::pairwise(studlab = studlab,
+  df.pw.vomiting <- pairwise(studlab = studlab,
                                       treat = treatment,
                                       n = n,
                                       event = r,
@@ -1232,7 +1232,7 @@ rm(reg.dry_mouth.anxiety)
                               'arm')
   df.anhedonia.bup <- remove.onearm(df.anhedonia.bup)
   df.anhedonia.bup.merged <- collapse.arms.continuous(df.anhedonia.bup)
-  df.pw.anhedonia.bup <- netmeta::pairwise(studlab = studlab,
+  df.pw.anhedonia.bup <- pairwise(studlab = studlab,
                                        treat = treatment,
                                        n = n,
                                        mean = mean,
